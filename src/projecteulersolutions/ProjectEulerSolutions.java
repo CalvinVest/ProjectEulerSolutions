@@ -8,12 +8,24 @@ public class ProjectEulerSolutions {
 
     }
     
+    /*
+    invokeProblemByNumber executes the particular problem
+    requested by the user by taking the problem number as an input
+    and invokes the printAnswer method of the particular problem.
+    
+    The existence of the particular class is verified by ifProblemExists(int)
+    and all exceptions related to the classloader are handled within
+    JavaClassLoader.
+    */
     public static void invokeProblemByNumber(int problemNumber) {
         String problemNumberText = String.format("%04d", problemNumber);
+        //Initiates new classloader to invoke the problem itself
         JavaClassLoader jcl = new JavaClassLoader();
-        if(ifProblemExists(problemNumber)) {
+        if(ifProblemExists(problemNumber)) { // proceeds if problem solution exists
             System.out.println("Problem " + problemNumber + ": ");
+            // Problem 0000: _
             jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printAnswer");
+            // Problem 0000: The answer to this problem is whatever
         }
     }
     
