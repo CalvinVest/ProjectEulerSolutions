@@ -1,11 +1,26 @@
 package projecteulersolutions;
 
-import java.io.File;
+import java.io.File; // Used to verify the existence of a given problem0000.java
+import java.util.Scanner; // Used for user input in main menu
 
 public class ProjectEulerSolutions {
 
     public static void main(String[] args) {
-
+        printUserMenu();
+    }
+    
+    public static void printUserMenu() {
+        Scanner userIn = new Scanner(System.in);
+        System.out.println("Welcome, select an option:");
+        char userInChar;
+        do {
+            System.out.println("Q: Quit");
+            System.out.println("S: Solve problem by number");
+            System.out.print("> ");
+            userInChar = userIn.next().charAt(0);
+        } while(userInChar != 'q');
+        
+        System.out.println("Thank you!");
     }
     
     /*
