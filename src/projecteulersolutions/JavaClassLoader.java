@@ -27,16 +27,12 @@ public class JavaClassLoader extends ClassLoader {
             
             Method myMethod = myClass.getMethod(methodName);
             myMethod.invoke(myClassObject);
-        } catch (ClassNotFoundException cnfe) {
-            
-        } catch (NoSuchMethodException nsme) {
-            
-        } catch (InstantiationException ie) {
-            
-        } catch (IllegalAccessException iae) {
-            
-        } catch (InvocationTargetException ite) {
-            
+        } catch (ClassNotFoundException
+                | NoSuchMethodException
+                | InstantiationException
+                | IllegalAccessException
+                | InvocationTargetException e) {
+            System.out.println("Exception encountered - " + e);   
         }
     }
 }
