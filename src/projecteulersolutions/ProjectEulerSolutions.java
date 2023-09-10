@@ -18,9 +18,22 @@ public class ProjectEulerSolutions {
             System.out.println("S: Solve problem by number");
             System.out.print("> ");
             userInChar = userIn.next().charAt(0);
+            
+            switch(userInChar) {
+                case 'q': break;
+                case 's': printSolutionMenu(userIn);
+                break;
+            }
         } while(userInChar != 'q');
         
         System.out.println("Thank you!");
+    }
+    
+    public static void printSolutionMenu(Scanner userIn) {
+        System.out.println("Enter the Project Euler Problem #: ");
+        System.out.print("> ");
+        int userProblemNumber = userIn.nextInt();
+        invokeProblemByNumber(userProblemNumber);
     }
     
     /*
