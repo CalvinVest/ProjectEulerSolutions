@@ -17,7 +17,7 @@ public class ProjectEulerSolutions {
             System.out.println("Q: Quit");
             System.out.println("S: Solve problem by number");
             System.out.print("> ");
-            userInChar = userIn.next().charAt(0);
+            userInChar = userIn.next().toLowerCase().charAt(0);
             
             switch(userInChar) {
                 case 'q': break;
