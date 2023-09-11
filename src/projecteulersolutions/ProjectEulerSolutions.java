@@ -20,9 +20,10 @@ public class ProjectEulerSolutions {
             userInChar = userIn.next().toLowerCase().charAt(0);
             
             switch(userInChar) {
-                case 'q': break;
-                case 's': printSolutionMenu(userIn);
-                break;
+                case 'q' -> {
+                }
+                case 's' -> printSolutionMenu(userIn);
+                default -> System.out.println("Invalid entry, please try again.");
             }
         } while(userInChar != 'q');
         
