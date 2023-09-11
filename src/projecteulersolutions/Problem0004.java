@@ -24,13 +24,18 @@ public class Problem0004 extends Problem {
     
     private boolean isPalindrome(int i) {
         String str = Integer.toString(i);
+        // integers n and m are placeholders for the indeces
+        // of two corresponding digits in the input integer i
+        // for palindromic checks
         int n = 0, m = str.length() - 1;
-        while(n < m) {
-            if(str.charAt(n) != str.charAt(m))
-                return false;
-            n++;
-            m--;
+        while(n < m) { // n is lower bound var and m is upper bound var
+            if(str.charAt(n) != str.charAt(m)) // if digits are not the same
+                return false; // not palindromic
+            n++; // increase lower bound
+            m--; // decrease upper bound
         }
+        // if the while loop is broken because n >= m, then
+        // the int i is palindromic, return true.
         return true;
     }
 }
