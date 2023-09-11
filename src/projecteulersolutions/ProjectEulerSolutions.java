@@ -55,6 +55,9 @@ public class ProjectEulerSolutions {
             // Problem 0000: _
             jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printAnswer");
             // Problem 0000: The answer to this problem is whatever
+            System.out.println();
+        } else {
+            System.out.println("Problem solution does not exist.\n");
         }
     }
     
@@ -75,7 +78,7 @@ public class ProjectEulerSolutions {
             System.getProperty("user.dir") // user directory
             + "\\src\\projecteulersolutions\\" // project directory
             + "Problem" + problemNumberText + ".java"); // given problem solution
-        System.out.println(file.toString()); // indicates existence of file with tostring
+        System.out.println("Loading Problem" + problemNumberText + ".java"); // indicates testing of file with tostring
         return file.exists(); // returns existence of file as flag
     }
 }
