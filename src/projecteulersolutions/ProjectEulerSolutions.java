@@ -106,14 +106,27 @@ public class ProjectEulerSolutions {
         return file.exists(); // returns existence of file as flag
     }
     
+    /*
+    printProblemSolutionList() is a print function to display
+    all problems which have a solution as a file list.
+    All problem solutions are in classes of the format
+        Problem0000.java
+    and are listed in ascending order in this function.
+    */
     public static void printProblemSolutionList() {
+        // project directory:
         File file = new File(
             System.getProperty("user.dir")
             + "\\src\\projecteulersolutions");
+        // list of strings to represent source folder contents:
         String[] pathnames = file.list();
+        
+        // print list of valid files
         System.out.println("\n============================");
         for(String p : pathnames) {
+            // if file is in format of "Problem0000.java"
             if("Problem".equals(p.substring(0,7)) && p.length() == 16) {
+                // print file name to console as existing problem solution
                 System.out.println(p);
             }
         }
