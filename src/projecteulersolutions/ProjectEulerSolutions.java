@@ -21,14 +21,20 @@ public class ProjectEulerSolutions {
         do {
             System.out.println("\nQ: Quit");
             System.out.println("S: Solve problem by number");
+            System.out.println("P: Problem List");
             System.out.print("> ");
             userInChar = userIn.next().toLowerCase().charAt(0);
             
             switch(userInChar) {
-                case 'q' -> {
-                }
-                case 's' -> printSolutionMenu(userIn);
-                default -> System.out.println("Invalid entry, please try again.");
+                case 'q': 
+                    break;
+                case 's':
+                    printSolutionMenu(userIn);
+                    break;
+                case 'p':
+                    printProblemSolutionList();
+                    break;
+                default: System.out.println("Invalid entry, please try again.");
             }
         } while(userInChar != 'q');
         
