@@ -99,4 +99,18 @@ public class ProjectEulerSolutions {
         System.out.println("============================\n");
         return file.exists(); // returns existence of file as flag
     }
+    
+    public static void printProblemSolutionList() {
+        File file = new File(
+            System.getProperty("user.dir")
+            + "\\src\\projecteulersolutions");
+        String[] pathnames = file.list();
+        System.out.println("\n============================");
+        for(String p : pathnames) {
+            if("Problem".equals(p.substring(0,7)) && p.length() == 16) {
+                System.out.println(p);
+            }
+        }
+        System.out.println("============================\n");
+    }
 }
