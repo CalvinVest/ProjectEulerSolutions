@@ -18,6 +18,5 @@ public class Problem0002 extends Problem {
         }
         
         System.out.println("The sum of all even Fibonacci numbers below 4,000,000 is " + sum);
-        
     }
 }
