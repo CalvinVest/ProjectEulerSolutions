@@ -9,26 +9,37 @@ public class ProjectEulerSolutions {
         printUserMenu();
     }
     
+    /*
+    printUserMenu() is the primary UI for this application.
+    The menu contains options for showing particular solutions,
+    quitting the application, and has catches for invalid inputs.
+    */
     public static void printUserMenu() {
         Scanner userIn = new Scanner(System.in);
-        System.out.println("Welcome, select an option:");
+        System.out.println("Welcome, select an option.");
         char userInChar;
         do {
             System.out.println("Q: Quit");
             System.out.println("S: Solve problem by number");
             System.out.print("> ");
-            userInChar = userIn.next().charAt(0);
+            userInChar = userIn.next().toLowerCase().charAt(0);
             
             switch(userInChar) {
-                case 'q': break;
-                case 's': printSolutionMenu(userIn);
-                break;
+                case 'q' -> {
+                }
+                case 's' -> printSolutionMenu(userIn);
+                default -> System.out.println("Invalid entry, please try again.");
             }
         } while(userInChar != 'q');
         
         System.out.println("Thank you!");
     }
     
+    /*
+    printSolutionMenu(Scanner) prints the UI for executing a problem solution.
+    this function calls invokeProblemByNumber() to execute the particular solution
+    based on the user input obtained in this function.
+    */
     public static void printSolutionMenu(Scanner userIn) {
         System.out.println("Enter the Project Euler Problem #: ");
         System.out.print("> ");
@@ -49,11 +60,14 @@ public class ProjectEulerSolutions {
         String problemNumberText = String.format("%04d", problemNumber);
         //Initiates new classloader to invoke the problem itself
         JavaClassLoader jcl = new JavaClassLoader();
-        if(ifProblemExists(problemNumber)) { // proceeds if problem solution exists
+        if(existsProblem(problemNumber)) { // proceeds if problem solution exists
             System.out.println("Problem " + problemNumber + ": ");
             // Problem 0000: _
             jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printAnswer");
             // Problem 0000: The answer to this problem is whatever
+            System.out.println();
+        } else {
+            System.out.println("Problem solution does not exist.\n");
         }
     }
     
@@ -66,7 +80,7 @@ public class ProjectEulerSolutions {
     given problem's solution exists within the naming convention above,
     return true.
     */
-    public static boolean ifProblemExists(int problemNumber) {
+    public static boolean existsProblem(int problemNumber) {
         //Convert problem number sent as integer to convention Problem0000.java
         String problemNumberText = String.format("%04d", problemNumber);
         // File object created with given problem number and convention
@@ -74,7 +88,7 @@ public class ProjectEulerSolutions {
             System.getProperty("user.dir") // user directory
             + "\\src\\projecteulersolutions\\" // project directory
             + "Problem" + problemNumberText + ".java"); // given problem solution
-        System.out.println(file.toString()); // indicates existence of file with tostring
+        System.out.println("Loading Problem" + problemNumberText + ".java"); // Loading message
         return file.exists(); // returns existence of file as flag
     }
 }
