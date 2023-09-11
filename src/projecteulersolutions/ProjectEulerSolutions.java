@@ -88,7 +88,9 @@ public class ProjectEulerSolutions {
             System.getProperty("user.dir") // user directory
             + "\\src\\projecteulersolutions\\" // project directory
             + "Problem" + problemNumberText + ".java"); // given problem solution
+        System.out.println("========================");
         System.out.println("Loading Problem" + problemNumberText + ".java"); // Loading message
+        System.out.println("========================\n");
         return file.exists(); // returns existence of file as flag
     }
 }
