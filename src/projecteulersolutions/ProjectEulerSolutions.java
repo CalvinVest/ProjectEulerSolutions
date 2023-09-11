@@ -19,7 +19,7 @@ public class ProjectEulerSolutions {
         System.out.println("Welcome, select an option.");
         char userInChar;
         do {
-            System.out.println("Q: Quit");
+            System.out.println("\nQ: Quit");
             System.out.println("S: Solve problem by number");
             System.out.print("> ");
             userInChar = userIn.next().toLowerCase().charAt(0);
@@ -88,9 +88,15 @@ public class ProjectEulerSolutions {
             System.getProperty("user.dir") // user directory
             + "\\src\\projecteulersolutions\\" // project directory
             + "Problem" + problemNumberText + ".java"); // given problem solution
-        System.out.println("========================");
+        System.out.println("\n============================");
         System.out.println("Loading Problem" + problemNumberText + ".java"); // Loading message
-        System.out.println("========================\n");
+        
+        boolean existsFlag = file.exists();
+        if (existsFlag)
+            System.out.println("Success");
+        else
+            System.out.println("Failed: File does not exist.");
+        System.out.println("============================\n");
         return file.exists(); // returns existence of file as flag
     }
 }
