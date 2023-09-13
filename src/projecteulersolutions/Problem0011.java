@@ -31,9 +31,9 @@ public class Problem0011 extends Problem {
     
     @Override
     public void printAnswer() {
-        String[] matrixSubstrs = splitStringForMatrix(matrixString);
+        String[] matrixSubstrs = matrixString.split(" ");
         int[][] matrix = convertSubstringsToMatrix(matrixSubstrs);
-                
+        
         System.out.println("The maximum adjacent value product is " + findMaxAdjValProd(matrix));
     }
     
@@ -90,10 +90,4 @@ public class Problem0011 extends Problem {
         }
         return matrix;
     }
-    
-    private String[] splitStringForMatrix(String matrixString) {
-        return matrixString.split(" ");
-    }
-    
-    
 }
