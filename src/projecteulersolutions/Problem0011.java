@@ -37,15 +37,6 @@ public class Problem0011 extends Problem {
         System.out.println("The maximum adjacent value product is " + findMaxAdjValProd(matrix));
     }
     
-    private void printMatrix(int[][] matrix) {
-        for(int i = 0; i < matrix.length; i++) {
-            for(int j = 0; j < matrix[0].length; j++) {
-                System.out.printf("%02d ", matrix[i][j]);
-            }
-            System.out.println();
-        }
-    }
-    
     private int findMaxAdjValProd(int[][] mx) {
         int maxAdjValProd = 0;
         
@@ -55,7 +46,6 @@ public class Problem0011 extends Problem {
                 int product = mx[i][j] * mx[i+1][j] * mx[i+2][j] * mx[i+3][j];
                 if(product > maxAdjValProd) {
                     maxAdjValProd = product;
-                    System.out.println("Hori: " + product);
                 }
             }
         }
@@ -66,7 +56,6 @@ public class Problem0011 extends Problem {
                 int product = mx[i][j] * mx[i][j+1] * mx[i][j+2] * mx[i][j+3];
                 if(product > maxAdjValProd) {
                     maxAdjValProd = product;
-                    System.out.println("Vert: " + product);
                 }
             }
         }
@@ -77,7 +66,6 @@ public class Problem0011 extends Problem {
                 int product = mx[i][j] * mx[i+1][j+1] * mx[i+2][j+2] * mx[i+3][j+3];
                 if(product > maxAdjValProd) {
                     maxAdjValProd = product;
-                    System.out.println("DgDn: " + product);
                 }
             }
         }
@@ -88,7 +76,6 @@ public class Problem0011 extends Problem {
                 int product = mx[i][j] * mx[i-1][j+1] * mx[i-2][j+2] * mx[i-3][j+3];
                 if(product > maxAdjValProd) {
                     maxAdjValProd = product;
-                    System.out.println("DgUp: " + product);
                 }
             }
         }
@@ -110,10 +97,7 @@ public class Problem0011 extends Problem {
     }
     
     private String[] splitStringForMatrix(String matrixString) {
-        int[][] matrix = new int[20][20];
-        String[] splitMatrixStrings = matrixString.split(" ");
-        
-        return splitMatrixStrings;
+        return matrixString.split(" ");
     }
     
     
