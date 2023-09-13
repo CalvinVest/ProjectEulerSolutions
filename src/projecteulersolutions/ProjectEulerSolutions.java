@@ -1,6 +1,7 @@
 package projecteulersolutions;
 
 import java.io.File; // Used to verify the existence of a given problem0000.java
+import java.util.Date;
 import java.util.Scanner; // Used for user input in main menu
 
 public class ProjectEulerSolutions {
@@ -67,11 +68,14 @@ public class ProjectEulerSolutions {
         //Initiates new classloader to invoke the problem itself
         JavaClassLoader jcl = new JavaClassLoader();
         if(existsProblem(problemNumber)) { // proceeds if problem solution exists
+            Date dStart = new Date();
             System.out.println("Problem " + problemNumber + ": ");
             // Problem 0000: _
             jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printAnswer");
             // Problem 0000: The answer to this problem is whatever
-            System.out.println();
+            Date dEnd = new Date();
+            long durationSec = (dEnd.getTime() - dStart.getTime()) / 1000;
+            System.out.println("The problem took " + durationSec + " seconds to complete.\n");
         } else {
             System.out.println("Problem solution does not exist.\n");
         }
