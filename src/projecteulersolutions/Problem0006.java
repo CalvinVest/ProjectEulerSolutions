@@ -17,17 +17,19 @@ public class Problem0006 extends Problem {
     
     @Override
     public void printAnswer() {
-        int sum = 0;
-        for(int i = 1; i <= 100; i++) {
-            sum += i;
+        // initiate sum variables
+        int sum = 0; // sum of 1 to 100
+        int sumOfSquares = 0; // sum of 1^2 to 100^2
+        for(int i = 1; i <= 100; i++) { // for 1 to 100
+            sum += i; // add all values to sum
+            sumOfSquares += i * i; // add square of all values to sum
         }
+        // square of sum 1 to 100
         int squareOfSums = sum * sum;
-        int sumOfSquares = 0;
-        for(int i = 1; i <= 100; i++) {
-            sumOfSquares += i * i;
-        }
         
-        System.out.println("The difference between the sum of squares and square of sums for 1-100 is "
+        // print answer
+        System.out.println("The difference between the sum of "
+            + "squares and square of sums for 1-100 is "
             + (squareOfSums - sumOfSquares));
     }
 }
