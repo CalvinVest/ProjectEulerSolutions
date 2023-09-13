@@ -31,27 +31,36 @@ public class Problem0011 extends Problem {
     
     @Override
     public void printAnswer() {
-        System.out.println(matrixString.substring(0, 20));
-        
         String[] matrixSubstrs = splitStringForMatrix(matrixString);
-        for(String str : matrixSubstrs) {
-            System.out.print(str + "|");
-        }
+        int[][] matrix = convertSubstringsToMatrix(matrixSubstrs);
+        printMatrix(matrix);
     }
     
     private void printMatrix(int[][] matrix) {
         for(int i = 0; i < matrix.length; i++) {
             for(int j = 0; j < matrix[0].length; j++) {
-                System.out.printf("%d02i ", matrix[i][j]);
+                System.out.printf("%02d ", matrix[i][j]);
             }
             System.out.println();
         }
     }
     
+    private int[][] convertSubstringsToMatrix(String[] substrings) {
+        int[][] matrix = new int[20][20];
+        int count = 0;
+        
+        for(int i = 0; i < matrix.length; i++) {
+            for(int j = 0; j < matrix[i].length; j++) {
+                matrix[i][j] = Integer.parseInt(substrings[count]);
+                count++;
+            }
+        }
+        return matrix;
+    }
+    
     private String[] splitStringForMatrix(String matrixString) {
         int[][] matrix = new int[20][20];
         String[] splitMatrixStrings = matrixString.split(" ");
-        
         
         return splitMatrixStrings;
     }
