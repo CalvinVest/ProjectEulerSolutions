@@ -33,7 +33,8 @@ public class Problem0011 extends Problem {
     public void printAnswer() {
         String[] matrixSubstrs = splitStringForMatrix(matrixString);
         int[][] matrix = convertSubstringsToMatrix(matrixSubstrs);
-        printMatrix(matrix);
+                
+        System.out.println("The maximum adjacent value product is " + findMaxAdjValProd(matrix));
     }
     
     private void printMatrix(int[][] matrix) {
@@ -43,6 +44,56 @@ public class Problem0011 extends Problem {
             }
             System.out.println();
         }
+    }
+    
+    private int findMaxAdjValProd(int[][] mx) {
+        int maxAdjValProd = 0;
+        
+        // Horizontal
+        for(int i = 0; i < mx.length - 3; i++) {
+            for(int j = 0; j < mx[0].length; j++) {
+                int product = mx[i][j] * mx[i+1][j] * mx[i+2][j] * mx[i+3][j];
+                if(product > maxAdjValProd) {
+                    maxAdjValProd = product;
+                    System.out.println("Hori: " + product);
+                }
+            }
+        }
+        
+        // Vertical
+        for(int i = 0; i < mx.length; i++) {
+            for(int j = 0; j < mx[0].length - 3; j++) {
+                int product = mx[i][j] * mx[i][j+1] * mx[i][j+2] * mx[i][j+3];
+                if(product > maxAdjValProd) {
+                    maxAdjValProd = product;
+                    System.out.println("Vert: " + product);
+                }
+            }
+        }
+        
+        // Diagonal Descending
+        for(int i = 0; i < mx.length - 3; i++) {
+            for(int j = 0; j < mx[0].length - 3; j++) {
+                int product = mx[i][j] * mx[i+1][j+1] * mx[i+2][j+2] * mx[i+3][j+3];
+                if(product > maxAdjValProd) {
+                    maxAdjValProd = product;
+                    System.out.println("DgDn: " + product);
+                }
+            }
+        }
+        
+        // Diagonal Ascending
+        for(int i = 3; i < mx.length; i++) {
+            for(int j = 0; j < mx[0].length - 3; j++) {
+                int product = mx[i][j] * mx[i-1][j+1] * mx[i-2][j+2] * mx[i-3][j+3];
+                if(product > maxAdjValProd) {
+                    maxAdjValProd = product;
+                    System.out.println("DgUp: " + product);
+                }
+            }
+        }
+        
+        return maxAdjValProd;
     }
     
     private int[][] convertSubstringsToMatrix(String[] substrings) {
