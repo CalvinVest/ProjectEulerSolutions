@@ -8,11 +8,13 @@ public class Problem0005 extends Problem {
     
     @Override
     public void printAnswer() {
-        long answer = 1;
+        long answer = 1; // storage var for final answer
         
+        //continues while an answer has yet to be found
         while(!isDivisible(answer)) answer++;
         
-        System.out.println("The smallest number divisible by number 1-20 is " + answer);
+        // answer output
+        System.out.println("The smallest number divisible by numbers 1-20 is " + answer);
     }
     
     private boolean isDivisible(long num) {
