@@ -4,7 +4,7 @@ package projecteulersolutions;
 The goal of problem 11 is to find the largest product of four
 adjacent values in the given matrix.
 Values can be adjacent up, down, left, right, and diagonally.
- */
+*/
 public class Problem0011 extends Problem {
 
     private String matrixString = 
@@ -38,15 +38,14 @@ public class Problem0011 extends Problem {
     }
     
     private int findMaxAdjValProd(int[][] mx) {
-        int maxAdjValProd = 0;
+        int maxProd = 0;
         
         // Horizontal
         for(int i = 0; i < mx.length - 3; i++) {
             for(int j = 0; j < mx[0].length; j++) {
                 int product = mx[i][j] * mx[i+1][j] * mx[i+2][j] * mx[i+3][j];
-                if(product > maxAdjValProd) {
-                    maxAdjValProd = product;
-                }
+                if(product > maxProd)
+                    maxProd = product;
             }
         }
         
@@ -54,9 +53,8 @@ public class Problem0011 extends Problem {
         for(int i = 0; i < mx.length; i++) {
             for(int j = 0; j < mx[0].length - 3; j++) {
                 int product = mx[i][j] * mx[i][j+1] * mx[i][j+2] * mx[i][j+3];
-                if(product > maxAdjValProd) {
-                    maxAdjValProd = product;
-                }
+                if(product > maxProd)
+                    maxProd = product;
             }
         }
         
@@ -64,9 +62,8 @@ public class Problem0011 extends Problem {
         for(int i = 0; i < mx.length - 3; i++) {
             for(int j = 0; j < mx[0].length - 3; j++) {
                 int product = mx[i][j] * mx[i+1][j+1] * mx[i+2][j+2] * mx[i+3][j+3];
-                if(product > maxAdjValProd) {
-                    maxAdjValProd = product;
-                }
+                if(product > maxProd)
+                    maxProd = product;
             }
         }
         
@@ -74,23 +71,21 @@ public class Problem0011 extends Problem {
         for(int i = 3; i < mx.length; i++) {
             for(int j = 0; j < mx[0].length - 3; j++) {
                 int product = mx[i][j] * mx[i-1][j+1] * mx[i-2][j+2] * mx[i-3][j+3];
-                if(product > maxAdjValProd) {
-                    maxAdjValProd = product;
-                }
+                if(product > maxProd)
+                    maxProd = product;
             }
         }
-        
-        return maxAdjValProd;
+        return maxProd;
     }
     
     private int[][] convertSubstringsToMatrix(String[] substrings) {
         int[][] matrix = new int[20][20];
-        int count = 0;
+        int substringIndex = 0;
         
         for(int i = 0; i < matrix.length; i++) {
             for(int j = 0; j < matrix[i].length; j++) {
-                matrix[i][j] = Integer.parseInt(substrings[count]);
-                count++;
+                matrix[i][j] = Integer.parseInt(substrings[substringIndex]);
+                substringIndex++;
             }
         }
         return matrix;
