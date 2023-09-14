@@ -12,12 +12,18 @@ public abstract class Problem {
     public static final String FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\";
     
     public abstract void printAnswer();
-        // If a subclass implementation has not overridden the
-        // printAnswer() function, default print indicates no
-        // solution is present.
-        //System.out.println("This problem has not yet been solved.");
     
+    /*
+    getFileName(int) returns the formatted filename for a problem
+    with the given int.
+    
+    Formats to the following pattern:
+    123 -> Problem0123.java
+    */
     public static String getFileName(int problemNumber) {
-        return String.format("Problem%04d.java", problemNumber);
+        if(problemNumber > 0 && problemNumber < 10000) {
+            return String.format("Problem%04d.java", problemNumber);
+        }
+        throw new IllegalArgumentException("Invalid problem value: " + problemNumber);
     }
 }
