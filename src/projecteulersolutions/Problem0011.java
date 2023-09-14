@@ -14,7 +14,6 @@ public class Problem0011 extends Problem {
     @Override
     public void printAnswer() {
         File matrixFile = new File(System.getProperty("user.dir") + "\\src\\projecteulersolutions\\problem0011.txt");
-        System.out.println("File path is " + matrixFile.getAbsolutePath());
         String[] matrixSubstrs = loadMatrixData(matrixFile);
         int[][] matrix = convertSubstringsToMatrix(matrixSubstrs);
 
@@ -29,7 +28,6 @@ public class Problem0011 extends Problem {
             while (matrixFileScanner.hasNext()) {
                 matrixSubstrs[index++] = matrixFileScanner.next();
             }
-            System.out.println("Successfully loaded " + index + " numbers from file.");
             return matrixSubstrs;
 
         } catch (FileNotFoundException fnfe) {
