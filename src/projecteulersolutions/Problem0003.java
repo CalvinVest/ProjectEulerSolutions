@@ -6,7 +6,7 @@ public class Problem0003 extends Problem {
     largest prime factor of 600851475143.
     */
     @Override
-    public void printAnswer() {
+    public void printSolution() {
         // foo is the number to factor out into primes.
         // foo is divided by prime factors in ascending order
         long foo = 600851475143l;

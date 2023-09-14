@@ -23,7 +23,7 @@ public class Problem0008 extends Problem {
         + "71636269561882670428252483600823257530420752963450";
     
     @Override
-    public void printAnswer() {
+    public void printSolution() {
         System.out.println("The largest product substring is " + findLargestSubstringProduct());
     }
     

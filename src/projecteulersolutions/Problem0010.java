@@ -11,7 +11,7 @@ ten million.
 public class Problem0010 extends Problem {
     
     @Override
-    public void printAnswer() {
+    public void printSolution() {
         long sum = sumSieveOfEratosthenes(sieveOfEratosthenes(2000000));
         
         

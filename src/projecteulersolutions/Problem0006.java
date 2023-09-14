@@ -16,7 +16,7 @@ well within the bounds of int.
 public class Problem0006 extends Problem {
     
     @Override
-    public void printAnswer() {
+    public void printSolution() {
         // initiate sum variables
         int sum = 0; // sum of 1 to 100
         int sumOfSquares = 0; // sum of 1^2 to 100^2

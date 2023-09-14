@@ -6,7 +6,7 @@ public class Problem0002 extends Problem {
     even-numbered Fibonacci numbers under four million.
     */
     @Override
-    public void printAnswer() {
+    public void printSolution() {
         int curr = 0; // current fibonacci number
         int last1 = 1; // first fibonacci prior number
         int last2 = 1; // second fibonacci prior number

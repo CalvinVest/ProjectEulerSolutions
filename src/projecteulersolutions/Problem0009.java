@@ -10,7 +10,7 @@ find a*b*c
 */
 public class Problem0009 extends Problem {
     @Override
-    public void printAnswer() {
+    public void printSolution() {
         int[] triplet = getPythgTripletValues();
         System.out.println("The Pythagorean Triplet is ["
             + triplet[0] + ", "
