@@ -75,8 +75,9 @@ public class ProjectEulerSolutions {
             jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printSolution");
             // Problem 0: The solution to this problem is whatever
             Date dEnd = new Date();
-            long durationSec = (dEnd.getTime() - dStart.getTime()) / 1000;
-            System.out.println("The problem took " + durationSec + " seconds to complete.");
+            long durationMS = dEnd.getTime() - dStart.getTime();
+            System.out.println("The problem took " + durationMS / 1000
+                    + " seconds (" + durationMS + "ms) to complete.");
         } else {
             System.out.println("Problem solution does not exist.");
         }
@@ -96,7 +97,7 @@ public class ProjectEulerSolutions {
             System.out.println("\n============================");
             System.out.println("Loading " + Problem.getFileName(problemNumber)); // Loading message
             System.out.println(file.exists() ? "Success" : "Failed: File does not exist.");
-            System.out.println("============================\n");
+            System.out.println("============================");
             return file.exists(); // returns existence of file as flag
         } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());
@@ -121,7 +122,7 @@ public class ProjectEulerSolutions {
                 System.out.println(pathname);
             }
         }
-        System.out.println("============================\n");
+        System.out.println("============================");
     }
 
     /*
