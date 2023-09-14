@@ -17,7 +17,7 @@ public abstract class Problem {
         // solution is present.
         //System.out.println("This problem has not yet been solved.");
     
-    public String getFileName(int problemNumber) {
-        return "";
+    public static String getFileName(int problemNumber) {
+        return String.format("Problem%04d.java", problemNumber);
     }
 }

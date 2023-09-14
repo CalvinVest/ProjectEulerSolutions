@@ -20,26 +20,15 @@ public class ProjectEulerSolutions {
         System.out.println("Welcome, select an option.");
         char userInChar;
         do {
-            System.out.println("\nQ: Quit");
-            System.out.println("S: Solve problem by number");
-            System.out.println("P: Problem List");
-            System.out.print("> ");
-            userInChar = userIn.next().toLowerCase().charAt(0);
+            userInChar = getNextUserChar(userIn);
             
             switch(userInChar) {
-                case 'q': 
-                    break;
-                case 's':
-                    printSolutionMenu(userIn);
-                    break;
-                case 'p':
-                    printProblemSolutionList();
-                    break;
-                default: System.out.println("Invalid entry, please try again.");
+                case 'q' -> System.out.println("Thank you!");
+                case 's' -> printSolutionMenu(userIn);
+                case 'p' -> printProblemSolutionList();
+                default -> System.out.println("Invalid entry, please try again.");
             }
         } while(userInChar != 'q');
-        
-        System.out.println("Thank you!");
     }
     
     /*
@@ -91,12 +80,10 @@ public class ProjectEulerSolutions {
     return true.
     */
     public static boolean existsProblem(int problemNumber) {
-        //Convert problem number sent as integer to convention Problem0000.java
-        String problemFilename = String.format("Problem%04d.java", problemNumber);
         // File object created with given problem number and convention
-        File file = new File(Problem.FILEPATH + problemFilename);
+        File file = new File(Problem.FILEPATH + Problem.getFileName(problemNumber));
         System.out.println("\n============================");
-        System.out.println("Loading " + problemFilename); // Loading message
+        System.out.println("Loading " + Problem.getFileName(problemNumber)); // Loading message
         System.out.println(file.exists() ? "Success" : "Failed: File does not exist.");
         System.out.println("============================\n");
         return file.exists(); // returns existence of file as flag
@@ -123,5 +110,13 @@ public class ProjectEulerSolutions {
             }
         }
         System.out.println("============================\n");
+    }
+    
+    private static char getNextUserChar(Scanner userIn) {
+        System.out.println("\nQ: Quit");
+        System.out.println("S: Solve problem by number");
+        System.out.println("P: Problem List");
+        System.out.print("> ");
+        return userIn.next().toLowerCase().charAt(0);
     }
 }
