@@ -1,6 +1,6 @@
 package projecteulersolutions;
 
-public class Problem0002 implements Problem {
+public class Problem0002 extends Problem {
     /*
     The goal of problem 2 is to find the sum of all
     even-numbered Fibonacci numbers under four million.

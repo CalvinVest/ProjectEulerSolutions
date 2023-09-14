@@ -94,17 +94,10 @@ public class ProjectEulerSolutions {
         //Convert problem number sent as integer to convention Problem0000.java
         String problemFilename = String.format("Problem%04d.java", problemNumber);
         // File object created with given problem number and convention
-        File file = new File(
-            Problem.FILEPATH // project directory
-            + problemFilename); // given problem solution
+        File file = new File(Problem.FILEPATH + problemFilename);
         System.out.println("\n============================");
         System.out.println("Loading " + problemFilename); // Loading message
-        
-        boolean existsFlag = file.exists();
-        if (existsFlag)
-            System.out.println("Success");
-        else
-            System.out.println("Failed: File does not exist.");
+        System.out.println(file.exists() ? "Success" : "Failed: File does not exist.");
         System.out.println("============================\n");
         return file.exists(); // returns existence of file as flag
     }

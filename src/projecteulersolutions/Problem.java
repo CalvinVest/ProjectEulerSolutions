@@ -8,13 +8,16 @@ The printAnswer() function is overridden in all subclass
 implementations of Problem.java to include actual results for
 the particular problem.
 */
-public interface Problem {
-    public final String FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\";
+public abstract class Problem {
+    public static final String FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\";
     
-    public void printAnswer();
+    public abstract void printAnswer();
         // If a subclass implementation has not overridden the
         // printAnswer() function, default print indicates no
         // solution is present.
         //System.out.println("This problem has not yet been solved.");
     
+    public String getFileName(int problemNumber) {
+        return "";
+    }
 }
