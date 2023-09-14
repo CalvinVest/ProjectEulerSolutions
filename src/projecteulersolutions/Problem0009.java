@@ -8,9 +8,9 @@ That is,
 a^2 + b^2 = c^2, a + b + c = 1000, a < b < c
 find a*b*c
 */
-public class Problem0009 implements Problem {
+public class Problem0009 extends Problem {
     @Override
-    public void printAnswer() {
+    public void printSolution() {
         int[] triplet = getPythgTripletValues();
         System.out.println("The Pythagorean Triplet is ["
             + triplet[0] + ", "

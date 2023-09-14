@@ -1,12 +1,12 @@
 package projecteulersolutions;
 
-public class Problem0002 implements Problem {
+public class Problem0002 extends Problem {
     /*
     The goal of problem 2 is to find the sum of all
     even-numbered Fibonacci numbers under four million.
     */
     @Override
-    public void printAnswer() {
+    public void printSolution() {
         int curr = 0; // current fibonacci number
         int last1 = 1; // first fibonacci prior number
         int last2 = 1; // second fibonacci prior number

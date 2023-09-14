@@ -13,10 +13,10 @@ largest number we'll be dealing with is the square of the sum of the
 first 100 natural numbers. The total value would be 5050^2 which is
 well within the bounds of int.
 */
-public class Problem0006 implements Problem {
+public class Problem0006 extends Problem {
     
     @Override
-    public void printAnswer() {
+    public void printSolution() {
         // initiate sum variables
         int sum = 0; // sum of 1 to 100
         int sumOfSquares = 0; // sum of 1^2 to 100^2

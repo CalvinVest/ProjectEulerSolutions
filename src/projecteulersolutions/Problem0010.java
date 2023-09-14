@@ -8,10 +8,10 @@ The Sieve of Eratosthenes is the most efficient way to find
 all primes smaller than a given value for values below about
 ten million.
 */
-public class Problem0010 implements Problem {
+public class Problem0010 extends Problem {
     
     @Override
-    public void printAnswer() {
+    public void printSolution() {
         long sum = sumSieveOfEratosthenes(sieveOfEratosthenes(2000000));
         
         
