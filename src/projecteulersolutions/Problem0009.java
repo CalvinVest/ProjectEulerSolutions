@@ -8,7 +8,7 @@ That is,
 a^2 + b^2 = c^2, a + b + c = 1000, a < b < c
 find a*b*c
 */
-public class Problem0009 extends Problem {
+public class Problem0009 implements Problem {
     @Override
     public void printAnswer() {
         int[] triplet = getPythgTripletValues();
