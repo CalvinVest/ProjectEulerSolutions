@@ -8,7 +8,6 @@ public class Problem0012 extends Problem {
         int step = 2;
         boolean foundSolution = false;
         while (!foundSolution) {
-            System.out.println("Triangle number: " + curr);
             if (getNumberOfDivisors(curr) > 500) {
                 System.out.println("The smallest triangular number with more than 500 divisors is " + curr);
                 foundSolution = true;
@@ -20,18 +19,18 @@ public class Problem0012 extends Problem {
     }
 
     public static int getNumberOfDivisors(int n) {
-        int ret = 1;
+        int count = 1;
 
         int factor = 2;
         while (factor <= n) {
-            int temp = 1;
+            int exp = 0;
             while (n % factor == 0) {
                 n /= factor;
-                temp++;
+                exp++;
             }
-            ret *= temp;
+            count *= exp + 1;
             factor++;
         }
-        return ret;
+        return count;
     }
 }
