@@ -44,7 +44,15 @@ public class ProjectEulerSolutions {
         System.out.println("Enter the Project Euler Problem #: ");
         System.out.print("> ");
         int userProblemNumber = userIn.nextInt();
-        invokeProblemByNumber(userProblemNumber);
+        if (isValidProblemNumber(userProblemNumber)) {
+            invokeProblemByNumber(userProblemNumber);
+        } else {
+            System.out.println("The number is not a valid problem number.");
+        }
+    }
+
+    private static boolean isValidProblemNumber(int num) {
+        return num > 0 && num < 1000;
     }
 
     /*
@@ -64,7 +72,7 @@ public class ProjectEulerSolutions {
             Date dStart = new Date();
             System.out.println("Problem " + problemNumber + ": ");
             // Problem 0: _
-            jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printAnswer");
+            jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printSolution");
             // Problem 0: The solution to this problem is whatever
             Date dEnd = new Date();
             long durationSec = (dEnd.getTime() - dStart.getTime()) / 1000;
@@ -90,8 +98,7 @@ public class ProjectEulerSolutions {
             System.out.println(file.exists() ? "Success" : "Failed: File does not exist.");
             System.out.println("============================\n");
             return file.exists(); // returns existence of file as flag
-        }
-        catch(IllegalArgumentException iae) {
+        } catch (IllegalArgumentException iae) {
             System.out.println(iae.getMessage());
             return false;
         }
@@ -101,7 +108,6 @@ public class ProjectEulerSolutions {
     /*
     printSolutionList() is a print function to display
     all problems which have a solution as a file list.
-    
      */
     public static void printSolutionList() {
         // list of strings to represent source folder contents:
