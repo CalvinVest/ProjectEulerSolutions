@@ -4,7 +4,7 @@ package projecteulersolutions;
 The goal of problem 5 is to find the smallest number
 divisible by all the natural numbers from 1 to 20.
 */
-public class Problem0005 extends Problem {
+public class Problem0005 implements Problem {
     
     @Override
     public void printAnswer() {
