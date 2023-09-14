@@ -104,14 +104,19 @@ public class ProjectEulerSolutions {
         System.out.println("\n============================");
         for(String pathname : pathnames) {
             // if file is in format of "Problem0000.java"
-            if("Problem".equals(pathname.substring(0,7)) && pathname.length() == 16) {
-                // print file name to console as existing problem solution
+            if(pathname.matches("Problem\\d\\d\\d\\d\\.java")) {
                 System.out.println(pathname);
             }
         }
         System.out.println("============================\n");
     }
     
+    /*
+    getNextUserChar(Scanner) is a scanner function to return
+    the next char input from the user.
+    This function prints a simple user menu with options
+    and gets the next input from user, sanitizes it, and returns it.
+    */
     private static char getNextUserChar(Scanner userIn) {
         System.out.println("\nQ: Quit");
         System.out.println("S: Solve problem by number");
