@@ -20,8 +20,6 @@ public abstract class Problem {
     
     Formats to the following pattern:
     123 -> Problem0123.java
-    
-    Throws IllegalArgumentException for integer values outside of the 1-9999 range
      */
     public static String getFileName(int problemNumber) {
         return String.format("Problem%04d.java", problemNumber);

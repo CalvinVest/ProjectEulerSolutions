@@ -52,7 +52,7 @@ public class ProjectEulerSolutions {
     }
 
     private static boolean isValidProblemNumber(int num) {
-        return num > 0 && num < 1000;
+        return num > 0 && num < 10000;
     }
 
     /*
