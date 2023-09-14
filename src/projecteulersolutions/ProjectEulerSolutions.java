@@ -92,14 +92,13 @@ public class ProjectEulerSolutions {
     */
     public static boolean existsProblem(int problemNumber) {
         //Convert problem number sent as integer to convention Problem0000.java
-        String problemNumberText = String.format("%04d", problemNumber);
+        String problemFilename = String.format("Problem%04d.java", problemNumber);
         // File object created with given problem number and convention
         File file = new File(
-            System.getProperty("user.dir") // user directory
-            + "\\src\\projecteulersolutions\\" // project directory
-            + "Problem" + problemNumberText + ".java"); // given problem solution
+            Problem.FILEPATH // project directory
+            + problemFilename); // given problem solution
         System.out.println("\n============================");
-        System.out.println("Loading Problem" + problemNumberText + ".java"); // Loading message
+        System.out.println("Loading " + problemFilename); // Loading message
         
         boolean existsFlag = file.exists();
         if (existsFlag)
@@ -118,20 +117,16 @@ public class ProjectEulerSolutions {
     and are listed in ascending order in this function.
     */
     public static void printProblemSolutionList() {
-        // project directory:
-        File file = new File(
-            System.getProperty("user.dir")
-            + "\\src\\projecteulersolutions");
         // list of strings to represent source folder contents:
-        String[] pathnames = file.list();
+        String[] pathnames = new File(Problem.FILEPATH).list();
         
         // print list of valid files
         System.out.println("\n============================");
-        for(String p : pathnames) {
+        for(String pathname : pathnames) {
             // if file is in format of "Problem0000.java"
-            if("Problem".equals(p.substring(0,7)) && p.length() == 16) {
+            if("Problem".equals(pathname.substring(0,7)) && pathname.length() == 16) {
                 // print file name to console as existing problem solution
-                System.out.println(p);
+                System.out.println(pathname);
             }
         }
         System.out.println("============================\n");
