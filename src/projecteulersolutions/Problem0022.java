@@ -17,11 +17,6 @@ The score of a name is its alphanumeric sum times its place in the alphabetized 
     For example, Colin is 938th in the list, so Colin's score is 53 * 938
 
 Plan:
-Import list - done
-Alphabetize list - done
-Output list for debug
-Implement alphanumeric sum function
-Implement name score function
 Sum name scores
 Print solution
  */
@@ -35,9 +30,28 @@ public class Problem0022 extends Problem {
         List<String> trimmedNames = trimNames(names);
         Collections.sort(trimmedNames);
         
-        trimmedNames.forEach(name -> System.out.println(name));
-        System.out.println("Total names: " + trimmedNames.size());
+        List<Integer> nameScores = getNameScores(trimmedNames);
         
+        
+        
+        
+        
+    }
+    
+    private List<Integer> getNameScores(List<String> names) {
+        List<Integer> nameScores = new ArrayList<>();
+        for(int i = 0; i < names.size(); i++) {
+            nameScores.add(getAlphaSum(names.get(i)) * (i + 1));
+        }
+        return nameScores;
+    }
+    
+    private int getAlphaSum(String name) {
+        int sum = 0;
+        for(int i = 0; i < name.length(); i++) {
+            sum += name.charAt(i) - 65;
+        }
+        return sum;
     }
     
     private List<String> trimNames(List<String> names) {
