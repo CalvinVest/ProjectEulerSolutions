@@ -14,30 +14,23 @@ public class Problem0018 extends Problem {
     public void printSolution() {
         
         int treeWidth = 15; // number of rows in the tree
-        System.out.println("Tree width: " + treeWidth);
         
         int[][] tree = readFileValues(treeWidth);
-        System.out.println("Tree instantiated.");
         
         int treeMaxPath = condenseRows(tree);
-        System.out.println("Rows condensed.");
         
         System.out.println("The maximum path sum is " + treeMaxPath);
     }
 
     private int[][] readFileValues(int treeWidth) {
         int[][] tree = new int[treeWidth][treeWidth];
-        System.out.println("Tree instantiated in readFileValues");
         File file = new File(Problem.FILEPATH + "problem0018.txt");
-        System.out.println("Filepath created:\n" + file.getPath());
 
         try {
             Scanner fileIn = new Scanner(file);
-            System.out.println("Scanner instantiated.");
 
             for (int i = 0; i < treeWidth; i++) {
                 for (int j = 0; j <= i; j++) {
-                    System.out.println("Inside both for loops.");
                     tree[i][j] = fileIn.nextInt();
                 }
             }
