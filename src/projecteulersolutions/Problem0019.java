@@ -13,24 +13,39 @@ public class Problem0019 extends Problem {
 
     @Override
     public void printSolution() {
-        ArrayList<Date> addDates = new ArrayList<>();
-        
-        for(int year = 1901; year <= 2000; year++) {
-            for(int month = 1; month <= 12; month++) {
-                int days = YearMonth.of(year, month).lengthOfMonth();
-                for(int day = 1; day <= days; day++) {
-                    addDates.add(new Date(year, month, day));
-                    System.out.println(year + " " + month + " " + day);
+        int year = 1901;
+        int day = 6; // first sunday in our search is 6 Jan 1901, so day = 6
+        int count = 0; // count of all first-of-month sundays
+
+        int[] firstDay = {1, 32, 60, 91, 121, 152, 182, 213, 244, 274, 305, 335};
+        int[] firstDayLeap = {1, 32, 61, 92, 122, 153, 183, 214, 245, 275, 306, 336};
+
+        while (year < 2001) {
+            if (year % 4 == 0) { // leap year
+                if (day > 366) { // advanced a year
+                    year++;
+                    day -= 366;
+                }
+                for (int i : firstDayLeap) {
+                    if (day == i) { // if the current day is the first of the month
+                        count++;
+                    }
+                }
+            } else { // not a leap year
+                if (day > 365) { // advanced a year
+                    year++;
+                    day -= 365;
+                }
+                for (int i : firstDay) {
+                    if (day == i) {
+                        count++;
+                    }
                 }
             }
+            day += 7; // advance a week
+
         }
-        int count = 0;
-        for(Date d : addDates) {
-            if(d.getDay() == 1 && d.getDate() == 1) {
-                count++;
-            }
-        }
-        
+
         System.out.println("There are " + count + " Sundays in the 20th century.");
     }
 }
