@@ -134,15 +134,37 @@ public class ProjectEulerSolutions {
     and gets the next input from user, sanitizes it, and returns it.
      */
     private static char getNextUserChar(Scanner userIn) {
-        System.out.println("\nQ: Quit");
-        System.out.println("S: Solve problem by number");
-        System.out.println("L: Problem List");
-        System.out.println("R: Update Project Readme");
-        System.out.print("> ");
+        System.out.print("\nS: Solve problem by number"
+                + "\nL: Problem List"
+                + "\nR: Update Project Readme"
+                + "\nQ: Quit"
+                + "\n> ");
         return userIn.next().toLowerCase().charAt(0);
     }
-    
+
     private static void updateReadme(Scanner userIn) {
-        
+        char userChoice = ' ';
+
+        System.out.println("\nTo edit or view project progress values, select an option:");
+        while (userChoice != 'q') {
+            System.out.println("\nP: Print all project progress values."
+                    + "\nG: Generate updated list of completed programs."
+                    + "\nE: Edit a specific value."
+                    + "\nQ: Return to main menu.");
+            userChoice = userIn.next().toLowerCase().charAt(0);
+
+            switch (userChoice) {
+                case 'p' ->
+                    System.out.println("Progress Value List");
+                case 'g' ->
+                    System.out.println("Generate Completed Programs");
+                case 'e' ->
+                    System.out.println("Edit Specific Value");
+                case 'q' ->
+                    System.out.println("Returning to Main Menu");
+                default ->
+                    System.out.println("Invalid entry, please try again");
+            }
+        }
     }
 }
