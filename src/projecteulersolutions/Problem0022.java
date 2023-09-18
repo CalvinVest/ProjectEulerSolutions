@@ -32,8 +32,9 @@ public class Problem0022 extends Problem {
         
         List<Integer> nameScores = getNameScores(trimmedNames);
         
+        int nameScoreSum = nameScores.stream().reduce(0, (a, b) -> a + b);
         
-        
+        System.out.println("The sum of the scores of all names in problem0022.txt is " + nameScoreSum);
         
         
     }
@@ -49,7 +50,7 @@ public class Problem0022 extends Problem {
     private int getAlphaSum(String name) {
         int sum = 0;
         for(int i = 0; i < name.length(); i++) {
-            sum += name.charAt(i) - 65;
+            sum += name.charAt(i) - 64;
         }
         return sum;
     }
