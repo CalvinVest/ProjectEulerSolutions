@@ -3,6 +3,7 @@ package projecteulersolutions;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,7 +18,7 @@ The score of a name is its alphanumeric sum times its place in the alphabetized 
 
 Plan:
 Import list - done
-Alphabetize list
+Alphabetize list - done
 Output list for debug
 Implement alphanumeric sum function
 Implement name score function
@@ -32,8 +33,11 @@ public class Problem0022 extends Problem {
         
         List<String> names = readNamesFromFile(namesFile);
         List<String> trimmedNames = trimNames(names);
+        Collections.sort(trimmedNames);
         
         trimmedNames.forEach(name -> System.out.println(name));
+        System.out.println("Total names: " + trimmedNames.size());
+        
     }
     
     private List<String> trimNames(List<String> names) {
