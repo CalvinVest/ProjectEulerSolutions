@@ -27,8 +27,10 @@ public class ProjectEulerSolutions {
                     System.out.println("Thank you!");
                 case 's' ->
                     printSolutionMenu(userIn);
-                case 'p' ->
+                case 'l' ->
                     printSolutionList();
+                case 'r' ->
+                    updateReadme(userIn);
                 default ->
                     System.out.println("Invalid entry, please try again.");
             }
@@ -134,8 +136,13 @@ public class ProjectEulerSolutions {
     private static char getNextUserChar(Scanner userIn) {
         System.out.println("\nQ: Quit");
         System.out.println("S: Solve problem by number");
-        System.out.println("P: Problem List");
+        System.out.println("L: Problem List");
+        System.out.println("R: Update Project Readme");
         System.out.print("> ");
         return userIn.next().toLowerCase().charAt(0);
+    }
+    
+    private static void updateReadme(Scanner userIn) {
+        
     }
 }
