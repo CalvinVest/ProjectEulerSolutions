@@ -84,7 +84,7 @@ Incomplete: ⚫</p>
         <td>39 :black_circle:</td>
     </tr>
     <tr>
-        <td>40 :orange_circle:</td>
+        <td>40 :green_circle:</td>
         <td>41 :black_circle:</td>
         <td>42 :black_circle:</td>
         <td>43 :black_circle:</td>

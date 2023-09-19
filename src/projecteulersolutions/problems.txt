@@ -37,7 +37,7 @@
 37 INCOMPLETE :black_circle:
 38 INCOMPLETE :black_circle:
 39 INCOMPLETE :black_circle:
-40 IN_PROGRESS :orange_circle:
+40 COMPLETE :green_circle:
 41 INCOMPLETE :black_circle:
 42 INCOMPLETE :black_circle:
 43 INCOMPLETE :black_circle:
