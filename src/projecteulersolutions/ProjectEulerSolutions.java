@@ -164,7 +164,7 @@ public class ProjectEulerSolutions {
                 case 'u' ->
                     ppp.setCompleteProblemsFromFiles();
                 case 'r' ->
-                    ppp.regenerateValues();
+                    ppp.regenerateValues(userIn);
                 case 'q' ->
                     System.out.println("Returning to Main Menu");
                 default ->
@@ -193,18 +193,14 @@ public class ProjectEulerSolutions {
                         + "\n4. Incomplete.");
 
                 int userProgressType = userIn.nextInt();
-                ProblemProgressPrinter.ProgressType[] types = {
-                    ProblemProgressPrinter.ProgressType.COMPLETE_NOT_ON_GITHUB,
-                    ProblemProgressPrinter.ProgressType.IN_PROGRESS,
-                    ProblemProgressPrinter.ProgressType.BROKEN,
-                    ProblemProgressPrinter.ProgressType.INCOMPLETE};
+                
 
-                if (userProgressType <= types.length) {
-                    System.out.print("Updating status to " + types[userProgressType - 1] + "\nConfirm? y/n:\n> ");
+                if (userProgressType <= ppp.TYPE.length) {
+                    System.out.print("Updating status to " + ppp.TYPE[userProgressType] + "\nConfirm? y/n:\n> ");
                     char userEditConfirm = userIn.next().toLowerCase().charAt(0);
                     switch (userEditConfirm) {
                         case 'y' -> {
-                            ppp.editProgressValue(problemNumber, types[userProgressType - 1]);
+                            ppp.editProgressValue(problemNumber, ppp.TYPE[userProgressType]);
                             System.out.println("Updated progress.");
                         }
                         case 'n' ->

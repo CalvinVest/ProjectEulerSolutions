@@ -14,50 +14,50 @@ public class ProblemProgressPrinter {
     private File file;
     private ArrayList<String> progress;
 
-    public enum ProgressType {
-        COMPLETE,
-        COMPLETE_NOT_ON_GITHUB,
-        IN_PROGRESS,
-        BROKEN,
-        INCOMPLETE
-    }
+    public final String[] TYPE = {
+        "COMPLETE",
+        "COMPLETE_NOT_ON_GITHUB",
+        "IN_PROGRESS",
+        "BROKEN",
+        "INCOMPLETE"};
 
     public ProblemProgressPrinter() {
         file = new File(FILEPATH);
+        progress = new ArrayList<>();
         try {
-            progress = readProgressFromFile(file);
+            readProgressFromFile(file);
 
         } catch (FileNotFoundException fnfe) {
             System.out.println("Failure: Progress file problems.txt does not exist.");
         }
     }
 
-    public void editProgressValue(int problemNumber, ProgressType type) {
+    public void editProgressValue(int problemNumber, String type) {
         int progressValueIndex = (problemNumber - 1) * 3;
 
         String problemString = Integer.toString(problemNumber);
         String emojiString = "";
 
         switch (type) {
-            case COMPLETE ->
+            case "COMPLETE" ->
                 emojiString = ":green_circle:";
-            case COMPLETE_NOT_ON_GITHUB ->
+            case "COMPLETE_NOT_ON_GITHUB" ->
                 emojiString = ":large_blue_circle:";
-            case IN_PROGRESS ->
+            case "IN_PROGRESS" ->
                 emojiString = ":orange_circle:";
-            case BROKEN ->
+            case "BROKEN" ->
                 emojiString = ":red_circle:";
-            case INCOMPLETE ->
+            case "INCOMPLETE" ->
                 emojiString = ":black_circle:";
         }
         setProgressValue(progressValueIndex,
                 problemString,
-                type.toString(),
+                type,
                 emojiString);
-        
+
         try {
             saveProgressToFile();
-        } catch(IOException ioe) {
+        } catch (IOException ioe) {
             System.out.println("Failed: IOException - " + ioe.getMessage());
         }
     }
@@ -78,20 +78,38 @@ public class ProblemProgressPrinter {
         System.out.println("Saved to file: " + file.getName());
     }
 
-    private ArrayList<String> readProgressFromFile(File file) throws FileNotFoundException {
+    private void readProgressFromFile(File file) throws FileNotFoundException {
         Scanner fileIn = new Scanner(file);
-        ArrayList<String> values = new ArrayList<>();
-
+        
+        progress.clear();
         while (fileIn.hasNext()) {
-            values.add(fileIn.next());
+            progress.add(fileIn.next());
         }
-
-        return values;
     }
 
-    public void regenerateValues() {
+    public void regenerateValues(Scanner userIn) {
         setAllProgressToIncomplete();
         setCompleteProblemsFromFiles();
+
+        System.out.print("Confirm overwrite? Data will be lost! y/n\n> ");
+        char userConfirmChar = userIn.next().toLowerCase().charAt(0);
+        switch (userConfirmChar) {
+            case 'y' -> {
+                try {
+                    saveProgressToFile();
+                } catch (IOException ioe) {
+                    System.out.println("Failed: IOException - " + ioe.getMessage());
+                }
+            }
+            case 'n' -> {
+                try {
+                    readProgressFromFile(file);
+                } catch (FileNotFoundException ex) {
+                    System.out.println("Failed: File " + file.getName() + " not found.");
+                }
+            }
+
+        }
     }
 
     private void setAllProgressToIncomplete() {
@@ -99,7 +117,7 @@ public class ProblemProgressPrinter {
         for (int i = 0; i < PROBLEM_COUNT * 3; i += 3) {
             int problemNumber = i / 3 + 1;
             progress.add(Integer.toString(problemNumber));
-            progress.add(ProgressType.INCOMPLETE.toString());
+            progress.add(TYPE[4]);
             progress.add(":black_circle:");
         }
     }
@@ -111,7 +129,7 @@ public class ProblemProgressPrinter {
             if (pathname.matches("Problem\\d\\d\\d\\d.java")) {
                 int problemNumber = Integer.parseInt(pathname.substring(7, 11));
                 int progressValueIndex = 3 * (problemNumber - 1);
-                progress.set(progressValueIndex + 1, ProgressType.COMPLETE.toString());
+                progress.set(progressValueIndex + 1, TYPE[0]);
                 progress.set(progressValueIndex + 2, ":green_circle:");
             }
         }

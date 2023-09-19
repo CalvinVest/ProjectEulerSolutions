@@ -849,7 +849,7 @@
 849 INCOMPLETE :black_circle:
 850 INCOMPLETE :black_circle:
 851 INCOMPLETE :black_circle:
-852 BROKEN :red_circle:
+852 INCOMPLETE :black_circle:
 853 INCOMPLETE :black_circle:
 854 INCOMPLETE :black_circle:
 855 INCOMPLETE :black_circle:
