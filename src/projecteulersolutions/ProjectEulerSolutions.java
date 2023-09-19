@@ -7,15 +7,15 @@ import java.util.Scanner; // Used for user input in main menu
 public class ProjectEulerSolutions {
 
     public static void main(String[] args) {
-        printUserMenu();
+        printMainMenu();
     }
 
     /*
-    printUserMenu() is the primary UI for this application.
+    printMainMenu() is the primary UI for this application.
     The menu contains options for showing particular solutions,
     quitting the application, and has catches for invalid inputs.
      */
-    public static void printUserMenu() {
+    public static void printMainMenu() {
         Scanner userIn = new Scanner(System.in);
         System.out.println("Welcome, select an option.");
         char userInChar;
@@ -27,8 +27,10 @@ public class ProjectEulerSolutions {
                     System.out.println("Thank you!");
                 case 's' ->
                     printSolutionMenu(userIn);
-                case 'p' ->
+                case 'l' ->
                     printSolutionList();
+                case 'r' ->
+                    printReadmeMenu(userIn);
                 default ->
                     System.out.println("Invalid entry, please try again.");
             }
@@ -132,10 +134,89 @@ public class ProjectEulerSolutions {
     and gets the next input from user, sanitizes it, and returns it.
      */
     private static char getNextUserChar(Scanner userIn) {
-        System.out.println("\nQ: Quit");
-        System.out.println("S: Solve problem by number");
-        System.out.println("P: Problem List");
-        System.out.print("> ");
+        System.out.print("\nS: Solve problem by number"
+                + "\nL: Problem List"
+                + "\nR: Update Project Readme"
+                + "\nQ: Quit"
+                + "\n> ");
         return userIn.next().toLowerCase().charAt(0);
+    }
+
+    private static void printReadmeMenu(Scanner userIn) {
+        char userChoice = ' ';
+        ProblemProgressPrinter ppp = new ProblemProgressPrinter();
+
+        System.out.println("\nTo edit or view project progress values, select an option:");
+        while (userChoice != 'q') {
+            System.out.print("\nP: Print all project progress values."
+                    + "\nE: Edit a specific value."
+                    + "\nU: Update completed programs."
+                    + "\nR: Regenerate all values."
+                    + "\nG: Generate new README.md."
+                    + "\nQ: Return to main menu."
+                    + "\n> ");
+            userChoice = userIn.next().toLowerCase().charAt(0);
+
+            switch (userChoice) {
+                case 'p' ->
+                    ppp.printProgressValues();
+                case 'e' ->
+                    printReadmeEditMenu(userIn, ppp);
+                case 'u' ->
+                    ppp.setCompleteProblemsFromFiles();
+                case 'r' ->
+                    ppp.regenerateValues(userIn);
+                case 'g' ->
+                    new ReadmeGenerator().generateReadme();
+                case 'q' ->
+                    System.out.println("Returning to Main Menu");
+                default ->
+                    System.out.println("Invalid entry, please try again");
+            }
+        }
+    }
+    
+    private static void printReadmeEditMenu(Scanner userIn, ProblemProgressPrinter ppp) {
+        System.out.print("Enter the problem number: \n> ");
+        int problemNumber = userIn.nextInt();
+        String filename = Problem.getFileName(problemNumber);
+        System.out.println(filename);
+        String status = ppp.getProblemStatus(problemNumber);
+        System.out.println("Problem Status: " + status);
+
+        System.out.print("\nEdit Status? y/n:\n> ");
+        char userEditChoice = userIn.next().toLowerCase().charAt(0);
+
+        switch (userEditChoice) {
+            case 'y' -> {
+                System.out.println("Select a progress value:"
+                        + "\n1. Complete, but not on GitHub."
+                        + "\n2. In progress."
+                        + "\n3. Broken."
+                        + "\n4. Incomplete.");
+
+                int userProgressType = userIn.nextInt();
+                
+
+                if (userProgressType <= ppp.TYPE.length) {
+                    System.out.print("Updating status to " + ppp.TYPE[userProgressType] + "\nConfirm? y/n:\n> ");
+                    char userEditConfirm = userIn.next().toLowerCase().charAt(0);
+                    switch (userEditConfirm) {
+                        case 'y' -> {
+                            ppp.editProgressValue(problemNumber, ppp.TYPE[userProgressType]);
+                            System.out.println("Updated progress.");
+                        }
+                        case 'n' ->
+                            System.out.println("Update aborted.");
+                        default ->
+                            System.out.println("Invalid entry.");
+                    }
+                }
+            }
+            case 'n' ->
+                System.out.println("Returning to progress menu.");
+            default ->
+                System.out.println("Invalid entry.");
+        }
     }
 }
