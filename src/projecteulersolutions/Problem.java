@@ -14,9 +14,7 @@ public abstract class Problem {
 
     public abstract void printSolution();
     
-    public static boolean isSolved() {
-        return false;
-    }
+    public abstract boolean isSolved();
 
     /*
     getFileName(int) returns the formatted filename for a problem
