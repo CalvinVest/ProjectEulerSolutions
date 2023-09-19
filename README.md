@@ -63,8 +63,8 @@ Incomplete: ⚫</p>
         <td>20 :green_circle:</td>
         <td>21 :green_circle:</td>
         <td>22 :green_circle:</td>
-        <td>23 :large_blue_circle:</td>
-        <td>24 :black_circle:</td>
+        <td>23 :orange_circle:</td>
+        <td>24 :large_blue_circle:</td>
         <td>25 :large_blue_circle:</td>
         <td>26 :black_circle:</td>
         <td>27 :black_circle:</td>

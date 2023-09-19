@@ -20,8 +20,8 @@
 20 COMPLETE :green_circle:
 21 COMPLETE :green_circle:
 22 COMPLETE :green_circle:
-23 COMPLETE_NOT_ON_GITHUB :large_blue_circle:
-24 INCOMPLETE :black_circle:
+23 IN_PROGRESS :orange_circle:
+24 COMPLETE_NOT_ON_GITHUB :large_blue_circle:
 25 COMPLETE_NOT_ON_GITHUB :large_blue_circle:
 26 INCOMPLETE :black_circle:
 27 INCOMPLETE :black_circle:
