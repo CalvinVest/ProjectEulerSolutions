@@ -12,7 +12,7 @@ public class ProblemProgressPrinter {
     private static final int PROBLEM_COUNT = 855;
     private static final String FILEPATH = Problem.FILEPATH + "problems.txt";
     private File file;
-    private ArrayList<String> progress;
+    private ArrayList<String> values;
 
     public final String[] TYPE = {
         "COMPLETE",
@@ -23,7 +23,7 @@ public class ProblemProgressPrinter {
 
     public ProblemProgressPrinter() {
         file = new File(FILEPATH);
-        progress = new ArrayList<>();
+        values = new ArrayList<>();
         try {
             readProgressFromFile(file);
 
@@ -36,9 +36,9 @@ public class ProblemProgressPrinter {
         int index = (problemNumber - 1) * 3;
         String problemString = Integer.toString(problemNumber);
         String emojiString = getEmojiString(type);
-        
+
         setProgressValue(index, problemString, type, emojiString);
-        
+
         try {
             saveProgressToFile();
         } catch (IOException ioe) {
@@ -63,20 +63,18 @@ public class ProblemProgressPrinter {
         };
     }
 
-    
-
     private void setProgressValue(int index, String problemNumberText, String typeString, String emojiString) {
-        progress.set(index, problemNumberText);
-        progress.set(index + 1, typeString);
-        progress.set(index + 2, emojiString);
+        values.set(index, problemNumberText);
+        values.set(index + 1, typeString);
+        values.set(index + 2, emojiString);
     }
 
     private void saveProgressToFile() throws IOException {
         FileWriter fw = new FileWriter(file);
         ReadmeGenerator rg = new ReadmeGenerator();
-        for (int i = 0; i < progress.size(); i += 3) {
-            fw.write(progress.get(i) + " " + progress.get(i + 1)
-                    + " " + progress.get(i + 2) + "\n");
+        for (int i = 0; i < values.size(); i += 3) {
+            fw.write(values.get(i) + " " + values.get(i + 1)
+                    + " " + values.get(i + 2) + "\n");
         }
         fw.close();
         System.out.println("Saved to file: " + file.getName());
@@ -85,9 +83,9 @@ public class ProblemProgressPrinter {
     private void readProgressFromFile(File file) throws FileNotFoundException {
         Scanner fileIn = new Scanner(file);
 
-        progress.clear();
+        values.clear();
         while (fileIn.hasNext()) {
-            progress.add(fileIn.next());
+            values.add(fileIn.next());
         }
     }
 
@@ -117,12 +115,12 @@ public class ProblemProgressPrinter {
     }
 
     private void setAllProgressToIncomplete() {
-        progress.clear();
+        values.clear();
         for (int i = 0; i < PROBLEM_COUNT * 3; i += 3) {
             int problemNumber = i / 3 + 1;
-            progress.add(Integer.toString(problemNumber));
-            progress.add(TYPE[4]);
-            progress.add(":black_circle:");
+            values.add(Integer.toString(problemNumber));
+            values.add(TYPE[4]);
+            values.add(getEmojiString(TYPE[4]));
         }
     }
 
@@ -132,10 +130,25 @@ public class ProblemProgressPrinter {
         for (String pathname : pathnames) {
             if (pathname.matches("Problem\\d\\d\\d\\d.java")) {
                 int problemNumber = Integer.parseInt(pathname.substring(7, 11));
+                String problemNumberText = String.format("%04d", problemNumber);
                 int progressValueIndex = 3 * (problemNumber - 1);
-                progress.set(progressValueIndex + 1, TYPE[0]);
-                progress.set(progressValueIndex + 2, ":green_circle:");
-                System.out.println("Problem " + problemNumber + " is auto-completed.");
+                String emojiString;
+                JavaClassLoader jcl = new JavaClassLoader();
+                boolean isSolved = (boolean) jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "isSolved");
+
+                int type;
+                if(isSolved) {
+                    System.out.println(pathname + " is solved.");
+                    type = 0;
+                } else {
+                    System.out.println(pathname + " is in progress.");
+                    type = 2;
+                }
+                emojiString = getEmojiString(TYPE[type]);
+
+                
+                values.set(progressValueIndex + 1, TYPE[type]);
+                values.set(progressValueIndex + 2, emojiString);
             }
         }
 
@@ -148,16 +161,16 @@ public class ProblemProgressPrinter {
 
     public String getProblemStatus(int problemNumber) {
         int progressIndex = (problemNumber - 1) * 3;
-        return progress.get(progressIndex + 1);
+        return values.get(progressIndex + 1);
     }
 
     public void printProgressValues() {
-        for (int i = 0; i < progress.size(); i += 3) {
-            System.out.println(progress.get(i) + " | " + progress.get(i + 1) + " | " + progress.get(i + 2));
+        for (int i = 0; i < values.size(); i += 3) {
+            System.out.println(values.get(i) + " | " + values.get(i + 1) + " | " + values.get(i + 2));
         }
     }
 
     public ArrayList<String> getProgressValues() {
-        return progress;
+        return values;
     }
 }

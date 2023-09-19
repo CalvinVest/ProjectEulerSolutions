@@ -38,45 +38,45 @@ Incomplete: ⚫</p>
     <tr>
         <td></td>
         <td>1 :green_circle:</td>
-        <td>2 :green_circle:</td>
-        <td>3 :green_circle:</td>
-        <td>4 :green_circle:</td>
-        <td>5 :green_circle:</td>
-        <td>6 :green_circle:</td>
-        <td>7 :green_circle:</td>
-        <td>8 :green_circle:</td>
-        <td>9 :green_circle:</td>
+        <td>2 :orange_circle:</td>
+        <td>3 :orange_circle:</td>
+        <td>4 :orange_circle:</td>
+        <td>5 :orange_circle:</td>
+        <td>6 :orange_circle:</td>
+        <td>7 :orange_circle:</td>
+        <td>8 :orange_circle:</td>
+        <td>9 :orange_circle:</td>
     </tr>
     <tr>
-        <td>10 :green_circle:</td>
-        <td>11 :green_circle:</td>
-        <td>12 :green_circle:</td>
-        <td>13 :green_circle:</td>
-        <td>14 :green_circle:</td>
-        <td>15 :green_circle:</td>
-        <td>16 :green_circle:</td>
-        <td>17 :green_circle:</td>
-        <td>18 :green_circle:</td>
-        <td>19 :green_circle:</td>
+        <td>10 :orange_circle:</td>
+        <td>11 :orange_circle:</td>
+        <td>12 :orange_circle:</td>
+        <td>13 :orange_circle:</td>
+        <td>14 :orange_circle:</td>
+        <td>15 :orange_circle:</td>
+        <td>16 :orange_circle:</td>
+        <td>17 :orange_circle:</td>
+        <td>18 :orange_circle:</td>
+        <td>19 :orange_circle:</td>
     </tr>
     <tr>
-        <td>20 :green_circle:</td>
-        <td>21 :green_circle:</td>
-        <td>22 :green_circle:</td>
-        <td>23 :green_circle:</td>
-        <td>24 :large_blue_circle:</td>
-        <td>25 :large_blue_circle:</td>
+        <td>20 :orange_circle:</td>
+        <td>21 :orange_circle:</td>
+        <td>22 :orange_circle:</td>
+        <td>23 :orange_circle:</td>
+        <td>24 :black_circle:</td>
+        <td>25 :black_circle:</td>
         <td>26 :black_circle:</td>
         <td>27 :black_circle:</td>
         <td>28 :black_circle:</td>
         <td>29 :black_circle:</td>
     </tr>
     <tr>
-        <td>30 :large_blue_circle:</td>
-        <td>31 :large_blue_circle:</td>
+        <td>30 :black_circle:</td>
+        <td>31 :black_circle:</td>
         <td>32 :black_circle:</td>
         <td>33 :black_circle:</td>
-        <td>34 :large_blue_circle:</td>
+        <td>34 :black_circle:</td>
         <td>35 :black_circle:</td>
         <td>36 :black_circle:</td>
         <td>37 :black_circle:</td>
@@ -84,25 +84,25 @@ Incomplete: ⚫</p>
         <td>39 :black_circle:</td>
     </tr>
     <tr>
-        <td>40 :green_circle:</td>
+        <td>40 :orange_circle:</td>
         <td>41 :black_circle:</td>
         <td>42 :black_circle:</td>
         <td>43 :black_circle:</td>
         <td>44 :black_circle:</td>
-        <td>45 :red_circle:</td>
+        <td>45 :black_circle:</td>
         <td>46 :black_circle:</td>
         <td>47 :black_circle:</td>
-        <td>48 :orange_circle:</td>
-        <td>49 :orange_circle:</td>
+        <td>48 :black_circle:</td>
+        <td>49 :black_circle:</td>
     </tr>
     <tr>
-        <td>50 :large_blue_circle:</td>
+        <td>50 :black_circle:</td>
         <td>51 :black_circle:</td>
         <td>52 :black_circle:</td>
         <td>53 :black_circle:</td>
         <td>54 :black_circle:</td>
         <td>55 :black_circle:</td>
-        <td>56 :large_blue_circle:</td>
+        <td>56 :black_circle:</td>
         <td>57 :black_circle:</td>
         <td>58 :black_circle:</td>
         <td>59 :black_circle:</td>
@@ -115,14 +115,14 @@ Incomplete: ⚫</p>
         <td>64 :black_circle:</td>
         <td>65 :black_circle:</td>
         <td>66 :black_circle:</td>
-        <td>67 :green_circle:</td>
+        <td>67 :orange_circle:</td>
         <td>68 :black_circle:</td>
         <td>69 :black_circle:</td>
     </tr>
     <tr>
         <td>70 :black_circle:</td>
         <td>71 :black_circle:</td>
-        <td>72 :large_blue_circle:</td>
+        <td>72 :black_circle:</td>
         <td>73 :black_circle:</td>
         <td>74 :black_circle:</td>
         <td>75 :black_circle:</td>
@@ -141,12 +141,12 @@ Incomplete: ⚫</p>
         <td>86 :black_circle:</td>
         <td>87 :black_circle:</td>
         <td>88 :black_circle:</td>
-        <td>89 :large_blue_circle:</td>
+        <td>89 :black_circle:</td>
     </tr>
     <tr>
         <td>90 :black_circle:</td>
         <td>91 :black_circle:</td>
-        <td>92 :orange_circle:</td>
+        <td>92 :black_circle:</td>
         <td>93 :black_circle:</td>
         <td>94 :black_circle:</td>
         <td>95 :black_circle:</td>
@@ -156,7 +156,7 @@ Incomplete: ⚫</p>
         <td>99 :black_circle:</td>
     </tr>
     <tr>
-        <td>100 :large_blue_circle:</td>
+        <td>100 :black_circle:</td>
         <td>101 :black_circle:</td>
         <td>102 :black_circle:</td>
         <td>103 :black_circle:</td>
@@ -282,7 +282,7 @@ Incomplete: ⚫</p>
         <td>203 :black_circle:</td>
         <td>204 :black_circle:</td>
         <td>205 :black_circle:</td>
-        <td>206 :red_circle:</td>
+        <td>206 :black_circle:</td>
         <td>207 :black_circle:</td>
         <td>208 :black_circle:</td>
         <td>209 :black_circle:</td>

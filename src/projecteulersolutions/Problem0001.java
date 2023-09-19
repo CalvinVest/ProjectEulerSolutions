@@ -1,6 +1,10 @@
 package projecteulersolutions;
 
 public class Problem0001 extends Problem {
+    
+    public static boolean isSolved() {
+        return true;
+    }
     /*
     The goal of problem 1 is to find the sum of all
     natural numbers divisible by 3 or 5 below 1000

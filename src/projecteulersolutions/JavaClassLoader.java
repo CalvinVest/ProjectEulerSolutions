@@ -17,7 +17,7 @@ This can be used to effectively run a given Euler problem's code
 based on user input.
 */
 public class JavaClassLoader extends ClassLoader {
-    public void invokeClassMethod(String className, String methodName) {
+    public Object invokeClassMethod(String className, String methodName) {
         try {
             // new ClassLoader for invocation
             ClassLoader cLoader = this.getClass().getClassLoader();
@@ -29,7 +29,7 @@ public class JavaClassLoader extends ClassLoader {
             // uses class to get the proper given method
             Method myMethod = myClass.getMethod(methodName);
             // uses instatiated class object to invoke the given method
-            myMethod.invoke(myClassObject);
+            return myMethod.invoke(myClassObject);
         } catch (ClassNotFoundException // from .loadClass();
                 | NoSuchMethodException // from .getMethod(); and .getConstructor();
                 | InstantiationException // from .newInstance();
@@ -39,5 +39,6 @@ public class JavaClassLoader extends ClassLoader {
             // this should be expanded to more granular solutions in the future
             System.out.println("Exception encountered - " + e);   
         }
+        return null;
     }
 }
