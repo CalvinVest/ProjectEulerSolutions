@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class ReadmeGenerator {
 
     public static final String INFILEPATH = System.getProperty("user.dir") + "\\README_BODY.txt";
-    public static final String OUTFILEPATH = System.getProperty("user.dir") + "\\README.txt";
+    public static final String OUTFILEPATH = System.getProperty("user.dir") + "\\README.md";
 
     private final File inFile, outFile;
     private Scanner fileIn;
@@ -55,7 +55,7 @@ public class ReadmeGenerator {
         ArrayList<String> progressValues = ppp.getProgressValues();
         int valuesPerRow = 10;
         
-        fileOut.write("<table>\n    <tr>\n<td></td>\n");
+        fileOut.write("<table>\n    <tr>\n        <td></td>\n");
         for(int i = 0; i < progressValues.size(); i+=3) {
             if(i != 0 && i % (3 * valuesPerRow) == 3 * (valuesPerRow - 1)) {
                 fileOut.write("    </tr>\n    <tr>\n");
