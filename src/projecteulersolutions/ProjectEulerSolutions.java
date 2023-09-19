@@ -191,7 +191,7 @@ public class ProjectEulerSolutions {
                     char userEditConfirm = userIn.next().toLowerCase().charAt(0);
                     switch (userEditConfirm) {
                         case 'y' -> {
-                            ppp.editProgressValue(problemNumber, ppp.TYPE[userProgressType]);
+                            ppp.setProblemStatus(problemNumber, ppp.TYPE[userProgressType]);
                             System.out.println("Updated progress.");
                         }
                         case 'n' ->

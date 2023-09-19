@@ -32,35 +32,38 @@ public class ProblemProgressPrinter {
         }
     }
 
-    public void editProgressValue(int problemNumber, String type) {
-        int progressValueIndex = (problemNumber - 1) * 3;
-
+    public void setProblemStatus(int problemNumber, String type) {
+        int index = (problemNumber - 1) * 3;
         String problemString = Integer.toString(problemNumber);
-        String emojiString = "";
-
-        switch (type) {
-            case "COMPLETE" ->
-                emojiString = ":green_circle:";
-            case "COMPLETE_NOT_ON_GITHUB" ->
-                emojiString = ":large_blue_circle:";
-            case "IN_PROGRESS" ->
-                emojiString = ":orange_circle:";
-            case "BROKEN" ->
-                emojiString = ":red_circle:";
-            case "INCOMPLETE" ->
-                emojiString = ":black_circle:";
-        }
-        setProgressValue(progressValueIndex,
-                problemString,
-                type,
-                emojiString);
-
+        String emojiString = getEmojiString(type);
+        
+        setProgressValue(index, problemString, type, emojiString);
+        
         try {
             saveProgressToFile();
         } catch (IOException ioe) {
             System.out.println("Failed: IOException - " + ioe.getMessage());
         }
     }
+
+    private String getEmojiString(String type) {
+        return switch (type) {
+            case "COMPLETE" ->
+                ":green_circle:";
+            case "COMPLETE_NOT_ON_GITHUB" ->
+                ":large_blue_circle:";
+            case "IN_PROGRESS" ->
+                ":orange_circle:";
+            case "BROKEN" ->
+                ":red_circle:";
+            case "INCOMPLETE" ->
+                ":black_circle:";
+            default ->
+                ":black_circle:";
+        };
+    }
+
+    
 
     private void setProgressValue(int index, String problemNumberText, String typeString, String emojiString) {
         progress.set(index, problemNumberText);
@@ -81,7 +84,7 @@ public class ProblemProgressPrinter {
 
     private void readProgressFromFile(File file) throws FileNotFoundException {
         Scanner fileIn = new Scanner(file);
-        
+
         progress.clear();
         while (fileIn.hasNext()) {
             progress.add(fileIn.next());
@@ -135,7 +138,7 @@ public class ProblemProgressPrinter {
                 System.out.println("Problem " + problemNumber + " is auto-completed.");
             }
         }
-        
+
         try {
             saveProgressToFile();
         } catch (IOException ioe) {
@@ -153,7 +156,7 @@ public class ProblemProgressPrinter {
             System.out.println(progress.get(i) + " | " + progress.get(i + 1) + " | " + progress.get(i + 2));
         }
     }
-    
+
     public ArrayList<String> getProgressValues() {
         return progress;
     }
