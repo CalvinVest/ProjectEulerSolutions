@@ -12,6 +12,11 @@ Values can be adjacent up, down, left, right, and diagonally.
 public class Problem0011 extends Problem {
 
     @Override
+    public boolean isSolved() {
+        return true;
+    }
+
+    @Override
     public void printSolution() {
         File matrixFile = new File(System.getProperty("user.dir") + "\\src\\projecteulersolutions\\problem0011.txt");
         String[] matrixSubstrs = loadMatrixData(matrixFile);

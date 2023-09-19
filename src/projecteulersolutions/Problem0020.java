@@ -12,6 +12,11 @@ find f(100)
 public class Problem0020 extends Problem {
 
     @Override
+    public boolean isSolved() {
+        return true;
+    }
+
+    @Override
     public void printSolution() {
         // BigInteger object to hold the value of 100!
         BigInteger factorial = getFactorial(100);
