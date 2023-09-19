@@ -131,16 +131,6 @@ public class ProjectEulerSolutions {
         System.out.println("============================");
     }
 
-    /*
-    getNextUserChar(Scanner) is a scanner function to return
-    the next char input from the user.
-    This function prints a simple user menu with options
-    and gets the next input from user, sanitizes it, and returns it.
-     */
-    private static char getNextUserChar(Scanner userIn) {
-        return userIn.next().toLowerCase().charAt(0);
-    }
-
     private static void printReadmeMenu(Scanner userIn) {
         char userChoice = ' ';
         ProblemProgressPrinter ppp = new ProblemProgressPrinter();
@@ -217,5 +207,15 @@ public class ProjectEulerSolutions {
             default ->
                 System.out.println("Invalid entry.");
         }
+    }
+    
+    /*
+    getNextUserChar(Scanner) is a scanner function to return
+    the next char input from the user.
+    This function prints a simple user menu with options
+    and gets the next input from user, sanitizes it, and returns it.
+     */
+    private static char getNextUserChar(Scanner userIn) {
+        return userIn.next().toLowerCase().charAt(0);
     }
 }
