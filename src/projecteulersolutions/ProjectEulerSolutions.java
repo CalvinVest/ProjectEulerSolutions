@@ -148,7 +148,7 @@ public class ProjectEulerSolutions {
 
             switch (userChoice) {
                 case 'p' ->
-                    ppp.printProgressValues();
+                    ppp.printStatusList();
                 case 'e' ->
                     printReadmeEditMenu(userIn, ppp);
                 case 'u' ->

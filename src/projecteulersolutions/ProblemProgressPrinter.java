@@ -116,9 +116,8 @@ public class ProblemProgressPrinter {
 
     private void setAllProgressToIncomplete() {
         values.clear();
-        for (int i = 0; i < PROBLEM_COUNT * 3; i += 3) {
-            int problemNumber = i / 3 + 1;
-            values.add(Integer.toString(problemNumber));
+        for (int i = 1; i <= PROBLEM_COUNT; i++) {
+            values.add(Integer.toString(i));
             values.add(TYPE[4]);
             values.add(getEmojiString(TYPE[4]));
         }
@@ -137,7 +136,7 @@ public class ProblemProgressPrinter {
                 boolean isSolved = (boolean) jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "isSolved");
 
                 int type;
-                if(isSolved) {
+                if (isSolved) {
                     System.out.println(pathname + " is solved.");
                     type = 0;
                 } else {
@@ -146,7 +145,6 @@ public class ProblemProgressPrinter {
                 }
                 emojiString = getEmojiString(TYPE[type]);
 
-                
                 values.set(progressValueIndex + 1, TYPE[type]);
                 values.set(progressValueIndex + 2, emojiString);
             }
@@ -164,7 +162,7 @@ public class ProblemProgressPrinter {
         return values.get(progressIndex + 1);
     }
 
-    public void printProgressValues() {
+    public void printStatusList() {
         for (int i = 0; i < values.size(); i += 3) {
             System.out.println(values.get(i) + " | " + values.get(i + 1) + " | " + values.get(i + 2));
         }
