@@ -152,6 +152,7 @@ public class ProjectEulerSolutions {
                     + "\nE: Edit a specific value."
                     + "\nU: Update completed programs."
                     + "\nR: Regenerate all values."
+                    + "\nG: Generate new README.md."
                     + "\nQ: Return to main menu."
                     + "\n> ");
             userChoice = userIn.next().toLowerCase().charAt(0);
@@ -165,6 +166,8 @@ public class ProjectEulerSolutions {
                     ppp.setCompleteProblemsFromFiles();
                 case 'r' ->
                     ppp.regenerateValues(userIn);
+                case 'g' ->
+                    new ReadmeGenerator().generateReadme();
                 case 'q' ->
                     System.out.println("Returning to Main Menu");
                 default ->

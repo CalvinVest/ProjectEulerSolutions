@@ -70,6 +70,7 @@ public class ProblemProgressPrinter {
 
     private void saveProgressToFile() throws IOException {
         FileWriter fw = new FileWriter(file);
+        ReadmeGenerator rg = new ReadmeGenerator();
         for (int i = 0; i < progress.size(); i += 3) {
             fw.write(progress.get(i) + " " + progress.get(i + 1)
                     + " " + progress.get(i + 2) + "\n");
@@ -144,5 +145,9 @@ public class ProblemProgressPrinter {
         for (int i = 0; i < progress.size(); i += 3) {
             System.out.println(progress.get(i) + " | " + progress.get(i + 1) + " | " + progress.get(i + 2));
         }
+    }
+    
+    public ArrayList<String> getProgressValues() {
+        return progress;
     }
 }
