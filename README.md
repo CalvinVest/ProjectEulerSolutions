@@ -115,7 +115,7 @@ Incomplete: ⚫</p>
         <td>64 :black_circle:</td>
         <td>65 :black_circle:</td>
         <td>66 :black_circle:</td>
-        <td>67 :orange_circle:</td>
+        <td>67 :green_circle:</td>
         <td>68 :black_circle:</td>
         <td>69 :black_circle:</td>
     </tr>
