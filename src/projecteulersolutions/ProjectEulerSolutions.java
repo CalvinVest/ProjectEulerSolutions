@@ -20,17 +20,23 @@ public class ProjectEulerSolutions {
         System.out.println("Welcome, select an option.");
         char userInChar;
         do {
+            System.out.print("\nS: Solve problem by number"
+                    + "\nL: Problem List"
+                    + "\nR: Update Project Readme"
+                    + "\nQ: Quit"
+                    + "\n> ");
             userInChar = getNextUserChar(userIn);
 
             switch (userInChar) {
-                case 'q' ->
-                    System.out.println("Thank you!");
+
                 case 's' ->
                     printSolutionMenu(userIn);
                 case 'l' ->
-                    printSolutionList();
+                    printProblemList();
                 case 'r' ->
                     printReadmeMenu(userIn);
+                case 'q' ->
+                    System.out.println("Thank you!");
                 default ->
                     System.out.println("Invalid entry, please try again.");
             }
@@ -46,15 +52,11 @@ public class ProjectEulerSolutions {
         System.out.println("Enter the Project Euler Problem #: ");
         System.out.print("> ");
         int userProblemNumber = userIn.nextInt();
-        if (isValidProblemNumber(userProblemNumber)) {
+        if (userProblemNumber > 0 && userProblemNumber < 10000) {
             invokeProblemByNumber(userProblemNumber);
         } else {
             System.out.println("The number is not a valid problem number.");
         }
-    }
-
-    private static boolean isValidProblemNumber(int num) {
-        return num > 0 && num < 10000;
     }
 
     /*
@@ -86,7 +88,7 @@ public class ProjectEulerSolutions {
     }
 
     /*
-    ifProblemExists(int) is a flag that indicates existence of
+    existsProblem(int) is a flag that indicates existence of
     a given problem number's solution.
     
     The requested problem number is sent as an integer and if the
@@ -109,10 +111,10 @@ public class ProjectEulerSolutions {
     }
 
     /*
-    printSolutionList() is a print function to display
+    printProblemList() is a print function to display
     all problems which have a solution as a file list.
      */
-    public static void printSolutionList() {
+    public static void printProblemList() {
         // list of strings to represent source folder contents:
         String[] pathnames = new File(Problem.FILEPATH).list();
 
@@ -121,7 +123,9 @@ public class ProjectEulerSolutions {
         for (String pathname : pathnames) {
             // if file is in format of "Problem0000.java"
             if (pathname.matches("Problem\\d\\d\\d\\d\\.java")) {
-                System.out.println(pathname);
+                int problemNumber = Integer.parseInt(pathname.substring(7,11));
+                String problemStatus = new ProblemProgressPrinter().getProblemStatus(problemNumber);
+                System.out.println(pathname + " - " + problemStatus);
             }
         }
         System.out.println("============================");
@@ -134,11 +138,6 @@ public class ProjectEulerSolutions {
     and gets the next input from user, sanitizes it, and returns it.
      */
     private static char getNextUserChar(Scanner userIn) {
-        System.out.print("\nS: Solve problem by number"
-                + "\nL: Problem List"
-                + "\nR: Update Project Readme"
-                + "\nQ: Quit"
-                + "\n> ");
         return userIn.next().toLowerCase().charAt(0);
     }
 
@@ -155,7 +154,7 @@ public class ProjectEulerSolutions {
                     + "\nG: Generate new README.md."
                     + "\nQ: Return to main menu."
                     + "\n> ");
-            userChoice = userIn.next().toLowerCase().charAt(0);
+            userChoice = getNextUserChar(userIn);
 
             switch (userChoice) {
                 case 'p' ->
@@ -175,7 +174,7 @@ public class ProjectEulerSolutions {
             }
         }
     }
-    
+
     private static void printReadmeEditMenu(Scanner userIn, ProblemProgressPrinter ppp) {
         System.out.print("Enter the problem number: \n> ");
         int problemNumber = userIn.nextInt();
@@ -196,7 +195,6 @@ public class ProjectEulerSolutions {
                         + "\n4. Incomplete.");
 
                 int userProgressType = userIn.nextInt();
-                
 
                 if (userProgressType <= ppp.TYPE.length) {
                     System.out.print("Updating status to " + ppp.TYPE[userProgressType] + "\nConfirm? y/n:\n> ");
@@ -212,6 +210,7 @@ public class ProjectEulerSolutions {
                             System.out.println("Invalid entry.");
                     }
                 }
+
             }
             case 'n' ->
                 System.out.println("Returning to progress menu.");
