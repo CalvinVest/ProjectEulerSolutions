@@ -132,7 +132,14 @@ public class ProblemProgressPrinter {
                 int progressValueIndex = 3 * (problemNumber - 1);
                 progress.set(progressValueIndex + 1, TYPE[0]);
                 progress.set(progressValueIndex + 2, ":green_circle:");
+                System.out.println("Problem " + problemNumber + " is auto-completed.");
             }
+        }
+        
+        try {
+            saveProgressToFile();
+        } catch (IOException ioe) {
+            System.out.println("Failed: IOException - " + ioe.getMessage());
         }
     }
 

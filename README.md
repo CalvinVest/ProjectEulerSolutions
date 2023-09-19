@@ -30,7 +30,7 @@ As time goes on I'll be making occasional edits to the core functionality of the
 
 <p>Complete: 🟢<br>
 In Progress: 🟠<br>
-Needs Revision: 🔴<br>
+Broken: 🔴<br>
 Complete but not in this project: 🔵<br>
 Incomplete: ⚫</p>
 
@@ -63,7 +63,7 @@ Incomplete: ⚫</p>
         <td>20 :green_circle:</td>
         <td>21 :green_circle:</td>
         <td>22 :green_circle:</td>
-        <td>23 :orange_circle:</td>
+        <td>23 :green_circle:</td>
         <td>24 :large_blue_circle:</td>
         <td>25 :large_blue_circle:</td>
         <td>26 :black_circle:</td>

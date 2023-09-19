@@ -30,6 +30,6 @@ As time goes on I'll be making occasional edits to the core functionality of the
 
 <p>Complete: 🟢<br>
 In Progress: 🟠<br>
-Needs Revision: 🔴<br>
+Broken: 🔴<br>
 Complete but not in this project: 🔵<br>
 Incomplete: ⚫</p>
