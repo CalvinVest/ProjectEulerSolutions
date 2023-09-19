@@ -64,7 +64,7 @@
 64 INCOMPLETE :black_circle:
 65 INCOMPLETE :black_circle:
 66 INCOMPLETE :black_circle:
-67 IN_PROGRESS :orange_circle:
+67 COMPLETE :green_circle:
 68 INCOMPLETE :black_circle:
 69 INCOMPLETE :black_circle:
 70 INCOMPLETE :black_circle:
