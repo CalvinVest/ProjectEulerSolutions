@@ -215,7 +215,9 @@ public class ProjectEulerSolutions {
     }
 
     private static void printReadmeGenerateEditMenu(Scanner userIn, ProgressWriter pw) {
-        System.out.println("Would you like to add edited values to the newly generated list? y/n\n> ");
+        System.out.print("-------------------------------------"
+                + "\nWould you like to add edited values to the newly generated list? y/n"
+                + "\n> ");
         char confirmChar = getUserChar(userIn);
         switch (confirmChar) {
             case 'y' -> {
@@ -248,13 +250,14 @@ public class ProjectEulerSolutions {
     }
 
     private static int getUserEditChoice(Scanner userIn) {
-        System.out.println("-------------------------------------"
+        System.out.print("-------------------------------------"
                 + "\nSelect a progress value:"
                 + "\n1: Complete, but not on GitHub."
                 + "\n2: In progress."
                 + "\n3: Broken."
                 + "\n4: Incomplete."
-                + "\n-------------------------------------");
+                + "\n-------------------------------------"
+                + "\n> ");
         return userIn.nextInt();
     }
 

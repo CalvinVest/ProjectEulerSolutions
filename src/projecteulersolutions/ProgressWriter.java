@@ -76,13 +76,17 @@ public class ProgressWriter {
 
     public void regenerateValues() {
         // clear values list and reset all statuses to incomplete
-        values.clear();
+
         for (int i = 1; i <= PROBLEM_COUNT; i++) {
-            values.add(Integer.toString(i));
-            values.add(TYPE[4]);
+            values.set(2 * (i - 1), Integer.toString(i));
+
+            if (!isBroken(i)) {
+                values.set(2 * (i - 1) + 1, TYPE[4]);
+            }
         }
         // all files in the project folder
         String[] pathnames = new File(Problem.FILEPATH).list();
+        System.out.println("-------------------------------------");
         // set all of the completed or in progress files based on existence of files
         for (String pathname : pathnames) {
             if (pathname.matches("^Problem\\d{4}.java$")) {
@@ -92,9 +96,13 @@ public class ProgressWriter {
                 boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "isSolved");
 
                 int type;
+
                 if (isSolved) {
                     System.out.println(pathname + " is solved.");
                     type = 0;
+                } else if (isBroken(problemNumber)) {
+                    System.out.println(pathname + " is broken.");
+                    type = 3;
                 } else {
                     System.out.println(pathname + " is in progress.");
                     type = 2;
@@ -103,7 +111,12 @@ public class ProgressWriter {
                 values.set(index + 1, TYPE[type]);
             }
         }
+        System.out.println("-------------------------------------");
         saveProgressToFile();
+    }
+
+    private boolean isBroken(int problemNumber) {
+        return values.get(2 * (problemNumber - 1) + 1).trim().equalsIgnoreCase(TYPE[3]);
     }
 
     public ArrayList<String> getValues() {
