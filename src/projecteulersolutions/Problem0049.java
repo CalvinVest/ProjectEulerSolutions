@@ -1,5 +1,7 @@
 package projecteulersolutions;
 
+import java.util.Arrays;
+
 /*
 The goal of problem 49 is to find an existing "prime permutation".
 
@@ -36,5 +38,34 @@ public class Problem0049 extends Problem {
         System.out.println("This solution has not been found yet.");
     }
     
+    private boolean isPrime(int n) {
+        for (int i = 2; i <= n / 2; i++) {
+            if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
     
+    private boolean isPermutation(int i, int j, int k) {
+        char[] x = Integer.toString(i).toCharArray();
+        char[] y = Integer.toString(j).toCharArray();
+        char[] z = Integer.toString(k).toCharArray();
+        Arrays.sort(x);
+        Arrays.sort(y);
+        Arrays.sort(z);
+        return areArraysEqual(x, y, z);
+    }
+    
+    private boolean areArraysEqual(char[] x, char[] y, char[] z) {
+        if(x.length != y.length || x.length != z.length) {
+            return false;
+        }
+        for(int i = 0; i < x.length; i++) {
+            if(!(x[i] == y[i] && x[i] == z[i])) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
