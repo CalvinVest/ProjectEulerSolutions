@@ -42,8 +42,12 @@ public class ProgressWriter {
     public void setProblemStatusesFromUserString(String userString, String type) {
         String[] strs = userString.split(",");
         for (String str : strs) {
-            int i = Integer.parseInt(str.trim());
-            setProblemStatus(i, type);
+            try {
+                int i = Integer.parseInt(str.trim());
+                setProblemStatus(i, type);
+            } catch (NumberFormatException nfe) {
+                System.out.println(str + " is not a valid number.");
+            }
         }
     }
 
