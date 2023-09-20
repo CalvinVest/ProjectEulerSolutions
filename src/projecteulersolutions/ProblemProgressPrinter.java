@@ -77,6 +77,7 @@ public class ProblemProgressPrinter {
                     + " " + values.get(i + 2) + "\n");
         }
         fw.close();
+        rg.generateReadme();
         System.out.println("Saved to file: " + file.getName());
     }
 

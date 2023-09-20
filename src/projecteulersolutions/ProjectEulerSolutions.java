@@ -96,18 +96,12 @@ public class ProjectEulerSolutions {
      */
     public static boolean existsProblem(int problemNumber) {
         // File object created with given problem number and convention
-        try {
-            File file = new File(Problem.FILEPATH + Problem.getFileName(problemNumber));
-            System.out.println("\n============================");
-            System.out.println("Loading " + Problem.getFileName(problemNumber)); // Loading message
-            System.out.println(file.exists() ? "Success" : "Failed: File does not exist.");
-            System.out.println("============================");
-            return file.exists(); // returns existence of file as flag
-        } catch (IllegalArgumentException iae) {
-            System.out.println(iae.getMessage());
-            return false;
-        }
-
+        boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
+        System.out.println("\n============================\n"
+                + "Loading " + Problem.getFileName(problemNumber) + "\n"
+                + (existsFile ? "Success\n" : "Failed: File does not exist.\n")
+                + "============================");
+        return existsFile; // returns existence of file as flag
     }
 
     /*
@@ -123,7 +117,7 @@ public class ProjectEulerSolutions {
         for (String pathname : pathnames) {
             // if file is in format of "Problem0000.java"
             if (pathname.matches("Problem\\d\\d\\d\\d\\.java")) {
-                int problemNumber = Integer.parseInt(pathname.substring(7,11));
+                int problemNumber = Integer.parseInt(pathname.substring(7, 11));
                 String problemStatus = new ProblemProgressPrinter().getProblemStatus(problemNumber);
                 System.out.println(pathname + " - " + problemStatus);
             }
@@ -166,7 +160,8 @@ public class ProjectEulerSolutions {
     }
 
     private static void printReadmeEditMenu(Scanner userIn, ProblemProgressPrinter ppp) {
-        System.out.print("Enter the problem number: \n> ");
+        System.out.print("============================\n"
+                + "Enter the problem number: \n> ");
         int problemNumber = userIn.nextInt();
         String filename = Problem.getFileName(problemNumber);
         System.out.println(filename);
@@ -174,7 +169,7 @@ public class ProjectEulerSolutions {
         System.out.println("Problem Status: " + status);
 
         System.out.print("\nEdit Status? y/n:\n> ");
-        char userEditChoice = userIn.next().toLowerCase().charAt(0);
+        char userEditChoice = getNextUserChar(userIn);
 
         switch (userEditChoice) {
             case 'y' -> {
@@ -188,7 +183,7 @@ public class ProjectEulerSolutions {
 
                 if (userProgressType <= ppp.TYPE.length) {
                     System.out.print("Updating status to " + ppp.TYPE[userProgressType] + "\nConfirm? y/n:\n> ");
-                    char userEditConfirm = userIn.next().toLowerCase().charAt(0);
+                    char userEditConfirm = getNextUserChar(userIn);
                     switch (userEditConfirm) {
                         case 'y' -> {
                             ppp.setProblemStatus(problemNumber, ppp.TYPE[userProgressType]);
@@ -208,7 +203,7 @@ public class ProjectEulerSolutions {
                 System.out.println("Invalid entry.");
         }
     }
-    
+
     /*
     getNextUserChar(Scanner) is a scanner function to return
     the next char input from the user.
