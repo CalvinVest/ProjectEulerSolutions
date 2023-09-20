@@ -30,7 +30,7 @@ public class Problem0049 extends Problem {
 
     @Override
     public boolean isSolved() {
-        return false;
+        return true;
     }
 
     @Override
