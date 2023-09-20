@@ -131,26 +131,22 @@ public class ProjectEulerSolutions {
 
         System.out.println("\nTo edit or view project progress values, select an option:");
         while (userChoice != 'q') {
-            System.out.print("\nP: Print all project progress values."
-                    + "\nE: Edit a specific value."
-                    + "\nU: Update completed programs."
-                    + "\nR: Regenerate all values."
-                    + "\nG: Generate new README.md."
+            System.out.print("\n====================================="
+                    + "\nL: List progress."
+                    + "\nE: Edit problem status."
+                    + "\nR: Regenerate all progress."
                     + "\nQ: Return to main menu."
+                    + "\n====================================="
                     + "\n> ");
             userChoice = getNextUserChar(userIn);
 
             switch (userChoice) {
-                case 'p' ->
+                case 'l' ->
                     pw.printValues();
                 case 'e' ->
                     printReadmeEditMenu(userIn, pw);
-                case 'u' ->
-                    pw.setValuesFromFiles();
                 case 'r' ->
                     pw.regenerateValues(userIn);
-                case 'g' ->
-                    new ReadmeGenerator().generateReadme();
                 case 'q' ->
                     System.out.println("Returning to Main Menu");
                 default ->
