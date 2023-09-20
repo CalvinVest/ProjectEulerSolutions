@@ -38,32 +38,32 @@ Incomplete: ⚫</p>
     <tr>
         <td></td>
         <td>1 :green_circle:</td>
-        <td>2 :orange_circle:</td>
-        <td>3 :orange_circle:</td>
-        <td>4 :orange_circle:</td>
-        <td>5 :orange_circle:</td>
-        <td>6 :orange_circle:</td>
-        <td>7 :orange_circle:</td>
-        <td>8 :orange_circle:</td>
-        <td>9 :orange_circle:</td>
+        <td>2 :green_circle:</td>
+        <td>3 :green_circle:</td>
+        <td>4 :green_circle:</td>
+        <td>5 :green_circle:</td>
+        <td>6 :green_circle:</td>
+        <td>7 :green_circle:</td>
+        <td>8 :green_circle:</td>
+        <td>9 :green_circle:</td>
     </tr>
     <tr>
-        <td>10 :orange_circle:</td>
-        <td>11 :orange_circle:</td>
-        <td>12 :orange_circle:</td>
-        <td>13 :orange_circle:</td>
-        <td>14 :orange_circle:</td>
-        <td>15 :orange_circle:</td>
-        <td>16 :orange_circle:</td>
-        <td>17 :orange_circle:</td>
-        <td>18 :orange_circle:</td>
-        <td>19 :orange_circle:</td>
+        <td>10 :green_circle:</td>
+        <td>11 :green_circle:</td>
+        <td>12 :green_circle:</td>
+        <td>13 :green_circle:</td>
+        <td>14 :green_circle:</td>
+        <td>15 :green_circle:</td>
+        <td>16 :green_circle:</td>
+        <td>17 :green_circle:</td>
+        <td>18 :green_circle:</td>
+        <td>19 :green_circle:</td>
     </tr>
     <tr>
-        <td>20 :orange_circle:</td>
-        <td>21 :orange_circle:</td>
-        <td>22 :orange_circle:</td>
-        <td>23 :orange_circle:</td>
+        <td>20 :green_circle:</td>
+        <td>21 :green_circle:</td>
+        <td>22 :green_circle:</td>
+        <td>23 :green_circle:</td>
         <td>24 :black_circle:</td>
         <td>25 :black_circle:</td>
         <td>26 :black_circle:</td>
@@ -84,7 +84,7 @@ Incomplete: ⚫</p>
         <td>39 :black_circle:</td>
     </tr>
     <tr>
-        <td>40 :orange_circle:</td>
+        <td>40 :green_circle:</td>
         <td>41 :black_circle:</td>
         <td>42 :black_circle:</td>
         <td>43 :black_circle:</td>
@@ -115,7 +115,7 @@ Incomplete: ⚫</p>
         <td>64 :black_circle:</td>
         <td>65 :black_circle:</td>
         <td>66 :black_circle:</td>
-        <td>67 :orange_circle:</td>
+        <td>67 :green_circle:</td>
         <td>68 :black_circle:</td>
         <td>69 :black_circle:</td>
     </tr>
