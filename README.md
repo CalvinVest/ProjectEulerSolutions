@@ -73,7 +73,7 @@ Incomplete: ⚫</p>
     </tr>
     <tr>
         <td>30 :orange_circle:</td>
-        <td>31 :orange_circle:</td>
+        <td>31 :green_circle:</td>
         <td>32 :black_circle:</td>
         <td>33 :black_circle:</td>
         <td>34 :orange_circle:</td>
