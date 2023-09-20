@@ -93,7 +93,7 @@ public class ProgressWriter {
         char userConfirmChar = ProjectEulerSolutions.getNextUserChar(userIn);
         switch (userConfirmChar) {
             case 'y' ->
-                setCompleteProblemsFromFiles();
+                setValuesFromFiles();
             case 'n' ->
                 System.out.println("Aborted: Operation cancelled by user.");
             default ->
@@ -102,7 +102,8 @@ public class ProgressWriter {
         }
     }
 
-    public void setCompleteProblemsFromFiles() {
+    public void setValuesFromFiles() {
+        // clear values list and reset all statuses to incomplete
         values.clear();
         for (int i = 1; i <= PROBLEM_COUNT; i++) {
             values.add(Integer.toString(i));
@@ -110,16 +111,16 @@ public class ProgressWriter {
             values.add(getEmojiString(TYPE[4]));
         }
 
+        // all files in the project folder
         String[] pathnames = new File(Problem.FILEPATH).list();
 
+        // set all of the completed or in progress files based on existence of files
         for (String pathname : pathnames) {
-            if (pathname.matches("Problem\\d\\d\\d\\d.java")) {
-                int problemNumber = Integer.parseInt(pathname.substring(7, 11));
-                String problemNumberText = String.format("%04d", problemNumber);
-                int progressValueIndex = 3 * (problemNumber - 1);
-                String emojiString;
-                JavaClassLoader jcl = new JavaClassLoader();
-                boolean isSolved = (boolean) jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "isSolved");
+            if (pathname.matches("^Problem\\d\\d\\d\\d.java$")) {
+                String problemNumberText = pathname.substring(7,11);
+                int problemNumber = Integer.parseInt(problemNumberText);
+                int index = 3 * (problemNumber - 1);
+                boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "isSolved");
 
                 int type;
                 if (isSolved) {
@@ -129,10 +130,10 @@ public class ProgressWriter {
                     System.out.println(pathname + " is in progress.");
                     type = 2;
                 }
-                emojiString = getEmojiString(TYPE[type]);
+                String emojiString = getEmojiString(TYPE[type]);
 
-                values.set(progressValueIndex + 1, TYPE[type]);
-                values.set(progressValueIndex + 2, emojiString);
+                values.set(index + 1, TYPE[type]);
+                values.set(index + 2, emojiString);
             }
         }
 
@@ -150,7 +151,7 @@ public class ProgressWriter {
 
     public void printStatusList() {
         for (int i = 0; i < values.size(); i += 3) {
-            System.out.println(values.get(i) + " | " + values.get(i + 1) + " | " + values.get(i + 2));
+            System.out.println(values.get(i) + " | " + values.get(i + 1));
         }
     }
 

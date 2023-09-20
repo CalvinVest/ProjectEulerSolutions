@@ -146,7 +146,7 @@ public class ProjectEulerSolutions {
                 case 'e' ->
                     printReadmeEditMenu(userIn, pw);
                 case 'u' ->
-                    pw.setCompleteProblemsFromFiles();
+                    pw.setValuesFromFiles();
                 case 'r' ->
                     pw.regenerateValues(userIn);
                 case 'g' ->
