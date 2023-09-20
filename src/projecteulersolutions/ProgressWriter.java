@@ -39,6 +39,14 @@ public class ProgressWriter {
         saveProgressToFile();
     }
 
+    public void setProblemStatusesFromUserString(String userString, String type) {
+        String[] strs = userString.split(",");
+        for (String str : strs) {
+            int i = Integer.parseInt(str.trim());
+            setProblemStatus(i, type);
+        }
+    }
+
     private void saveProgressToFile() {
         ReadmeGenerator rg = new ReadmeGenerator();
         try ( FileWriter fw = new FileWriter(file)) {

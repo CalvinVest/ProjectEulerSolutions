@@ -219,9 +219,25 @@ public class ProjectEulerSolutions {
         char userConfirmChar = ProjectEulerSolutions.getNextUserChar(userIn);
         switch (userConfirmChar) {
             case 'y' -> {
-                int userEditChoice = getUserEditChoice(userIn);
-                
-                
+                int userEditChoice;
+                do {
+                    System.out.println("-------------------------------------"
+                            + "\nSelect a progress value:"
+                            + "\n1: Complete, but not on GitHub."
+                            + "\n2: In progress."
+                            + "\n3: Broken."
+                            + "\n0: Finish"
+                            + "\n-------------------------------------");
+                    userEditChoice = userIn.nextInt();
+                    
+                    if(userEditChoice > 0 && userEditChoice <= 4) {
+                        userIn.nextLine();
+                        System.out.println("Status: " + pw.TYPE[userEditChoice]);
+                        System.out.print("Enter the problems, separated with a comma:\n> ");
+                        String problemStringFromUser = userIn.nextLine();
+                        pw.setProblemStatusesFromUserString(problemStringFromUser, pw.TYPE[userEditChoice]);
+                    }
+                } while (userEditChoice != 0);
             }
         }
     }
@@ -229,10 +245,10 @@ public class ProjectEulerSolutions {
     private static int getUserEditChoice(Scanner userIn) {
         System.out.println("-------------------------------------"
                 + "\nSelect a progress value:"
-                + "\n1. Complete, but not on GitHub."
-                + "\n2. In progress."
-                + "\n3. Broken."
-                + "\n4. Incomplete."
+                + "\n1: Complete, but not on GitHub."
+                + "\n2: In progress."
+                + "\n3: Broken."
+                + "\n4: Incomplete."
                 + "\n-------------------------------------");
         return userIn.nextInt();
     }
