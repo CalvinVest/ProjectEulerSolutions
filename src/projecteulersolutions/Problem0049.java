@@ -16,6 +16,13 @@ There are no arithmetic sequences made up of three
 
 What 12-digit number do you form by concatenating the three terms
 in this sequence?"
+
+Plan:
+- make isPrime function for ints
+- make isPermutation for ints
+- make main loop to go through all valid int triples
+- valid is when j = i + 3330, k = j + 3330, and i j and k are permutative
+- solution is when i != 1487 (given solution, find other)
 */
 public class Problem0049 extends Problem {
 
@@ -28,4 +35,6 @@ public class Problem0049 extends Problem {
     public void printSolution() {
         System.out.println("This solution has not been found yet.");
     }
+    
+    
 }
