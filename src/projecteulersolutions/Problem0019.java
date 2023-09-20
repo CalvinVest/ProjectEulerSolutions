@@ -7,6 +7,11 @@ first of a month during the twentieth century. (1 Jan 1901 to 31 Dec 2000)
 public class Problem0019 extends Problem {
 
     @Override
+    public boolean isSolved() {
+        return true;
+    }
+
+    @Override
     public void printSolution() {
         int year = 1901;
         int day = 6; // first sunday in our search is 6 Jan 1901, so day = 6

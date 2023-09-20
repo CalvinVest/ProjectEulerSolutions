@@ -19,6 +19,11 @@ The score of a name is its alphanumeric sum times its place in the alphabetized 
 public class Problem0022 extends Problem {
 
     @Override
+    public boolean isSolved() {
+        return true;
+    }
+
+    @Override
     public void printSolution() {
         File namesFile = new File(Problem.FILEPATH + "problem0022.txt");
         List<String> names = readNamesFromFile(namesFile);

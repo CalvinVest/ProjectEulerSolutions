@@ -11,6 +11,11 @@ of the given one hundred 50-digit numbers.
 public class Problem0013 extends Problem {
 
     @Override
+    public boolean isSolved() {
+        return true;
+    }
+
+    @Override
     public void printSolution() {
         String[] numStrings = new String[100];
 

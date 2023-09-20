@@ -9,59 +9,75 @@ import java.util.Scanner;
 
 public class ReadmeGenerator {
 
-    public static final String INFILEPATH = System.getProperty("user.dir") + "\\README_BODY.txt";
-    public static final String OUTFILEPATH = System.getProperty("user.dir") + "\\README.md";
+    private static final String READMEHEADERPATH = System.getProperty("user.dir") + "\\README_BODY.txt";
+    private static final String READMEPATH = System.getProperty("user.dir") + "\\README.md";
 
-    private final File inFile, outFile;
-    private Scanner fileIn;
-    private FileWriter fileOut;
+    private final File readmeHeaderFile, readmeFile;
+    private Scanner headerFileIn;
+    private FileWriter readmeFileOut;
 
     public ReadmeGenerator() {
-        inFile = new File(INFILEPATH);
-        outFile = new File(OUTFILEPATH);
+        readmeHeaderFile = new File(READMEHEADERPATH);
+        readmeFile = new File(READMEPATH);
         try {
-            fileIn = new Scanner(inFile);
-            fileOut = new FileWriter(outFile);
+            headerFileIn = new Scanner(readmeHeaderFile);
+            readmeFileOut = new FileWriter(readmeFile);
         } catch (FileNotFoundException ex) {
-            System.out.println("Failure: File " + inFile.getName() + " does not exist.");
+            System.out.println("Failed: " + readmeHeaderFile.getName() + " does not exist.");
         } catch (IOException ioe) {
-            System.out.println("Failure: IOException - " + ioe.getMessage());
+            System.out.println("Failed: IOException - " + ioe.getMessage());
         }
-
-        System.out.println("Readme Generator initiated.");
     }
 
     public void generateReadme() {
         try {
-            fileIn = new Scanner(inFile);
-            fileOut = new FileWriter(outFile);
-            printReadmeBodyToReadme();
-            printProgressTableToReadme();
-            fileOut.close();
+            headerFileIn = new Scanner(readmeHeaderFile);
+            readmeFileOut = new FileWriter(readmeFile);
+            printHeaderToReadme();
+            printProgressToReadme();
+            readmeFileOut.close();
+            System.out.println("Saved to file: " + readmeFile.getName());
         } catch (IOException ioe) {
-            System.out.println("Failure: File " + outFile + " does not exist.");
+            System.out.println("Failed: File " + readmeFile + " does not exist.");
         }
     }
 
-    private void printReadmeBodyToReadme() throws FileNotFoundException, IOException {
-        while(fileIn.hasNext()) {
-            fileOut.write(fileIn.nextLine() + "\n");
+    private void printHeaderToReadme() throws IOException {
+        while(headerFileIn.hasNext()) {
+            readmeFileOut.write(headerFileIn.nextLine() + "\n");
         }
-        fileOut.write("\n");
+        readmeFileOut.write("\n");
     }
     
-    private void printProgressTableToReadme() throws IOException {
-        ProblemProgressPrinter ppp = new ProblemProgressPrinter();
-        ArrayList<String> progressValues = ppp.getProgressValues();
+    private void printProgressToReadme() throws IOException {
+        ProgressWriter pw = new ProgressWriter();
+        ArrayList<String> progressValues = pw.getValues();
         int valuesPerRow = 10;
         
-        fileOut.write("<table>\n    <tr>\n        <td></td>\n");
-        for(int i = 0; i < progressValues.size(); i+=3) {
-            if(i != 0 && i % (3 * valuesPerRow) == 3 * (valuesPerRow - 1)) {
-                fileOut.write("    </tr>\n    <tr>\n");
+        readmeFileOut.write("<table>\n    <tr>\n        <td></td>\n");
+        for(int i = 0; i < progressValues.size(); i+=2) {
+            if(i != 0 && i % (2 * valuesPerRow) == 2 * (valuesPerRow - 1)) {
+                readmeFileOut.write("    </tr>\n    <tr>\n");
             }
-            fileOut.write("        <td>" + progressValues.get(i) + " " + progressValues.get(i+2) + "</td>\n");
+            readmeFileOut.write("        <td>" + progressValues.get(i) + " " + getEmojiString(progressValues.get(i+1)) + "</td>\n");
         }
-        fileOut.write("    </tr>\n</table>\n");
+        readmeFileOut.write("    </tr>\n</table>\n");
+    }
+    
+    private String getEmojiString(String type) {
+        return switch (type) {
+            case "COMPLETE" ->
+                ":green_circle:";
+            case "COMPLETE_NOT_ON_GITHUB" ->
+                ":large_blue_circle:";
+            case "IN_PROGRESS" ->
+                ":orange_circle:";
+            case "BROKEN" ->
+                ":red_circle:";
+            case "INCOMPLETE" ->
+                ":black_circle:";
+            default ->
+                ":black_circle:";
+        };
     }
 }

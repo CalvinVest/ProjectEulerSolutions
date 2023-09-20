@@ -12,6 +12,11 @@ A note for the method isAmicable, (d(a) = b && d(b) = a) -> d(d(a)) = a
 public class Problem0021 extends Problem {
 
     @Override
+    public boolean isSolved() {
+        return true;
+    }
+
+    @Override
     public void printSolution() {
         // int to hold sum of all amicable numbers
         int sumOfAmicables = 0;
@@ -35,7 +40,7 @@ public class Problem0021 extends Problem {
         && n == f(f(n))
     then
         n is amicable
-    */
+     */
     private boolean isAmicable(int n) {
         return (n != getSumOfFactors(n)) // the number is not equal to the sum of its factors
                 && (n == getSumOfFactors(getSumOfFactors(n)));
@@ -46,7 +51,7 @@ public class Problem0021 extends Problem {
     
     where n = a*b*c
     getSumOfFactors(n) = a + b + c
-    */
+     */
     private int getSumOfFactors(int n) {
         // int to hold sum of factors
         int sum = 0;

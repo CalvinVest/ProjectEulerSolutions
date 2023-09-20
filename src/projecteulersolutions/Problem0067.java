@@ -9,22 +9,27 @@ The goal of problem 67 is to find the maximum path traversal through the
 tree given in problem0067.txt
  */
 public class Problem0067 extends Problem {
-    
+
+    @Override
+    public boolean isSolved() {
+        return true;
+    }
+
     @Override
     public void printSolution() {
-         // number of rows in the tree
+        // number of rows in the tree
         int treeWidth = 100;
-        
+
         // triangular matrix of size treeWidth*treeWidth is instantiated
         // with values loaded from problem0067.txt
         int[][] tree = readFileValues(treeWidth);
-        
+
         // finds max path sum by condensing rows backward
         int treeMaxPath = condenseRows(tree);
-        
+
         System.out.println("The maximum path sum is " + treeMaxPath);
     }
-    
+
     private int[][] readFileValues(int treeWidth) {
         int[][] tree = new int[treeWidth][treeWidth];
         File file = new File(Problem.FILEPATH + "problem0067.txt");
@@ -44,7 +49,7 @@ public class Problem0067 extends Problem {
 
         return tree;
     }
-    
+
     private int condenseRows(int[][] tree) {
         // starting with the second-to-last row of the tree and going backward
         // since the row after current is referenced in the loops

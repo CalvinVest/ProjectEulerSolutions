@@ -11,18 +11,23 @@ tree given in problem0018.txt
 public class Problem0018 extends Problem {
 
     @Override
+    public boolean isSolved() {
+        return true;
+    }
+
+    @Override
     public void printSolution() {
-        
+
         // number of rows in the tree
         int treeWidth = 15;
-        
+
         // triangular matrix of size treeWidth*treeWidth is instantiated
         // with values loaded from problem0018.txt
         int[][] tree = readFileValues(treeWidth);
-        
+
         // finds max path sum by condensing rows backward
         int treeMaxPath = condenseRows(tree);
-        
+
         System.out.println("The maximum path sum is " + treeMaxPath);
     }
 

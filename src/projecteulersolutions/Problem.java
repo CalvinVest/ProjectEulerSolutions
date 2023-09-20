@@ -13,6 +13,8 @@ public abstract class Problem {
     public static final String FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\";
 
     public abstract void printSolution();
+    
+    public abstract boolean isSolved();
 
     /*
     getFileName(int) returns the formatted filename for a problem

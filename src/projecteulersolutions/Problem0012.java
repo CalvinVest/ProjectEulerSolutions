@@ -3,6 +3,11 @@ package projecteulersolutions;
 public class Problem0012 extends Problem {
 
     @Override
+    public boolean isSolved() {
+        return true;
+    }
+
+    @Override
     public void printSolution() {
         int curr = 1;
         int step = 2;
