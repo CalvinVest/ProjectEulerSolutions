@@ -142,7 +142,7 @@ public class ProjectEulerSolutions {
 
             switch (userChoice) {
                 case 'p' ->
-                    pw.printStatusList();
+                    pw.printValues();
                 case 'e' ->
                     printReadmeEditMenu(userIn, pw);
                 case 'u' ->

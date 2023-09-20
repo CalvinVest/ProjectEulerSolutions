@@ -26,7 +26,6 @@ public class ProgressWriter {
         values = new ArrayList<>();
         try {
             loadProgressFromFile(file);
-
         } catch (FileNotFoundException fnfe) {
             System.out.println("Failure: Progress file problems.txt does not exist.");
         }
@@ -35,11 +34,7 @@ public class ProgressWriter {
     public void setProblemStatus(int problemNumber, String type) {
         setProgressValue(problemNumber, type, getEmojiString(type));
 
-        try {
-            saveProgressToFile();
-        } catch (IOException ioe) {
-            System.out.println("Failed: IOException - " + ioe.getMessage());
-        }
+        saveProgressToFile();
     }
 
     private String getEmojiString(String type) {
@@ -66,14 +61,17 @@ public class ProgressWriter {
         values.set(index + 2, emojiString);
     }
 
-    private void saveProgressToFile() throws IOException {
-        FileWriter fw = new FileWriter(file);
+    private void saveProgressToFile() {
         ReadmeGenerator rg = new ReadmeGenerator();
-        for (int i = 0; i < values.size(); i += 3) {
-            fw.write(values.get(i) + " " + values.get(i + 1)
-                    + " " + values.get(i + 2) + "\n");
+        try {
+            FileWriter fw = new FileWriter(file);
+            for (int i = 0; i < values.size(); i += 3) {
+                fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
+            }
+        } catch (IOException ioe) {
+            System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
         }
-        fw.close();
+
         rg.generateReadme();
         System.out.println("Saved to file: " + file.getName());
     }
@@ -117,7 +115,7 @@ public class ProgressWriter {
         // set all of the completed or in progress files based on existence of files
         for (String pathname : pathnames) {
             if (pathname.matches("^Problem\\d\\d\\d\\d.java$")) {
-                String problemNumberText = pathname.substring(7,11);
+                String problemNumberText = pathname.substring(7, 11);
                 int problemNumber = Integer.parseInt(problemNumberText);
                 int index = 3 * (problemNumber - 1);
                 boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "isSolved");
@@ -137,11 +135,8 @@ public class ProgressWriter {
             }
         }
 
-        try {
-            saveProgressToFile();
-        } catch (IOException ioe) {
-            System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
-        }
+        saveProgressToFile();
+
     }
 
     public String getProblemStatus(int problemNumber) {
@@ -149,13 +144,13 @@ public class ProgressWriter {
         return values.get(progressIndex + 1);
     }
 
-    public void printStatusList() {
+    public void printValues() {
         for (int i = 0; i < values.size(); i += 3) {
             System.out.println(values.get(i) + " | " + values.get(i + 1));
         }
     }
 
-    public ArrayList<String> getProgressValues() {
+    public ArrayList<String> getValues() {
         return values;
     }
 }

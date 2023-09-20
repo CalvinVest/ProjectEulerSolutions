@@ -52,7 +52,7 @@ public class ReadmeGenerator {
     
     private void printProgressToReadme() throws IOException {
         ProgressWriter pw = new ProgressWriter();
-        ArrayList<String> progressValues = pw.getProgressValues();
+        ArrayList<String> progressValues = pw.getValues();
         int valuesPerRow = 10;
         
         readmeFileOut.write("<table>\n    <tr>\n        <td></td>\n");
