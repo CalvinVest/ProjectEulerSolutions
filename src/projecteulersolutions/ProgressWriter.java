@@ -15,11 +15,11 @@ public class ProgressWriter {
     private ArrayList<String> values;
 
     public final String[] TYPE = {
-        "COMPLETE",
-        "COMPLETE_NOT_ON_GITHUB",
-        "IN_PROGRESS",
-        "BROKEN",
-        "INCOMPLETE"};
+        /*0*/"COMPLETE",
+        /*1*/ "COMPLETE_NOT_ON_GITHUB",
+        /*2*/ "IN_PROGRESS",
+        /*3*/ "BROKEN",
+        /*4*/ "INCOMPLETE"};
 
     public ProgressWriter() {
         file = new File(FILEPATH);
@@ -32,40 +32,18 @@ public class ProgressWriter {
     }
 
     public void setProblemStatus(int problemNumber, String type) {
-        setProgressValue(problemNumber, type, getEmojiString(type));
+        int index = (problemNumber - 1) / 2;
+        values.set(index, Integer.toString(problemNumber));
+        values.set(index + 1, type);
 
         saveProgressToFile();
-    }
-
-    private String getEmojiString(String type) {
-        return switch (type) {
-            case "COMPLETE" ->
-                ":green_circle:";
-            case "COMPLETE_NOT_ON_GITHUB" ->
-                ":large_blue_circle:";
-            case "IN_PROGRESS" ->
-                ":orange_circle:";
-            case "BROKEN" ->
-                ":red_circle:";
-            case "INCOMPLETE" ->
-                ":black_circle:";
-            default ->
-                ":black_circle:";
-        };
-    }
-
-    private void setProgressValue(int problemNumber, String typeString, String emojiString) {
-        int index = (problemNumber - 1) / 3;
-        values.set(index, Integer.toString(problemNumber));
-        values.set(index + 1, typeString);
-        values.set(index + 2, emojiString);
     }
 
     private void saveProgressToFile() {
         ReadmeGenerator rg = new ReadmeGenerator();
         try {
             FileWriter fw = new FileWriter(file);
-            for (int i = 0; i < values.size(); i += 3) {
+            for (int i = 0; i < values.size(); i += 2) {
                 fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
             }
         } catch (IOException ioe) {
@@ -86,7 +64,6 @@ public class ProgressWriter {
     }
 
     public void regenerateValues(Scanner userIn) {
-
         System.out.print("Confirm overwrite? Data will be lost! y/n\n> ");
         char userConfirmChar = ProjectEulerSolutions.getNextUserChar(userIn);
         switch (userConfirmChar) {
@@ -96,7 +73,6 @@ public class ProgressWriter {
                 System.out.println("Aborted: Operation cancelled by user.");
             default ->
                 System.out.println("Aborted: Invalid entry.");
-
         }
     }
 
@@ -106,18 +82,15 @@ public class ProgressWriter {
         for (int i = 1; i <= PROBLEM_COUNT; i++) {
             values.add(Integer.toString(i));
             values.add(TYPE[4]);
-            values.add(getEmojiString(TYPE[4]));
         }
-
         // all files in the project folder
         String[] pathnames = new File(Problem.FILEPATH).list();
-
         // set all of the completed or in progress files based on existence of files
         for (String pathname : pathnames) {
-            if (pathname.matches("^Problem\\d\\d\\d\\d.java$")) {
+            if (pathname.matches("^Problem\\d{4}.java$")) {
                 String problemNumberText = pathname.substring(7, 11);
                 int problemNumber = Integer.parseInt(problemNumberText);
-                int index = 3 * (problemNumber - 1);
+                int index = 2 * (problemNumber - 1);
                 boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "isSolved");
 
                 int type;
@@ -128,15 +101,15 @@ public class ProgressWriter {
                     System.out.println(pathname + " is in progress.");
                     type = 2;
                 }
-                String emojiString = getEmojiString(TYPE[type]);
 
                 values.set(index + 1, TYPE[type]);
-                values.set(index + 2, emojiString);
             }
         }
-
         saveProgressToFile();
+    }
 
+    public ArrayList<String> getValues() {
+        return values;
     }
 
     public String getProblemStatus(int problemNumber) {
@@ -148,9 +121,5 @@ public class ProgressWriter {
         for (int i = 0; i < values.size(); i += 3) {
             System.out.println(values.get(i) + " | " + values.get(i + 1));
         }
-    }
-
-    public ArrayList<String> getValues() {
-        return values;
     }
 }

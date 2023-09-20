@@ -56,12 +56,29 @@ public class ReadmeGenerator {
         int valuesPerRow = 10;
         
         readmeFileOut.write("<table>\n    <tr>\n        <td></td>\n");
-        for(int i = 0; i < progressValues.size(); i+=3) {
-            if(i != 0 && i % (3 * valuesPerRow) == 3 * (valuesPerRow - 1)) {
+        for(int i = 0; i < progressValues.size(); i+=2) {
+            if(i != 0 && i % (2 * valuesPerRow) == 2 * (valuesPerRow - 1)) {
                 readmeFileOut.write("    </tr>\n    <tr>\n");
             }
-            readmeFileOut.write("        <td>" + progressValues.get(i) + " " + progressValues.get(i+2) + "</td>\n");
+            readmeFileOut.write("        <td>" + progressValues.get(i) + " " + getEmojiString(progressValues.get(i+1)) + "</td>\n");
         }
         readmeFileOut.write("    </tr>\n</table>\n");
+    }
+    
+    private String getEmojiString(String type) {
+        return switch (type) {
+            case "COMPLETE" ->
+                ":green_circle:";
+            case "COMPLETE_NOT_ON_GITHUB" ->
+                ":large_blue_circle:";
+            case "IN_PROGRESS" ->
+                ":orange_circle:";
+            case "BROKEN" ->
+                ":red_circle:";
+            case "INCOMPLETE" ->
+                ":black_circle:";
+            default ->
+                ":black_circle:";
+        };
     }
 }
