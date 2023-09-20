@@ -40,7 +40,7 @@ Incomplete: ⚫</p>
         <td>1 :green_circle:</td>
         <td>2 :green_circle:</td>
         <td>3 :green_circle:</td>
-        <td>4 :green_circle:</td>
+        <td>14 :large_blue_circle:</td>
         <td>5 :green_circle:</td>
         <td>6 :green_circle:</td>
         <td>7 :green_circle:</td>

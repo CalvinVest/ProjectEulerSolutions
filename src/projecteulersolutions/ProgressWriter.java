@@ -67,8 +67,10 @@ public class ProgressWriter {
         System.out.print("Confirm overwrite? Data will be lost! y/n\n> ");
         char userConfirmChar = ProjectEulerSolutions.getNextUserChar(userIn);
         switch (userConfirmChar) {
-            case 'y' ->
+            case 'y' -> {
                 setValuesFromFiles();
+                System.out.println("Success: All progress has been defaulted.");
+            }
             case 'n' ->
                 System.out.println("Aborted: Operation cancelled by user.");
             default ->
@@ -113,12 +115,12 @@ public class ProgressWriter {
     }
 
     public String getProblemStatus(int problemNumber) {
-        int progressIndex = (problemNumber - 1) * 3;
+        int progressIndex = (problemNumber - 1) * 2;
         return values.get(progressIndex + 1);
     }
 
     public void printValues() {
-        for (int i = 0; i < values.size(); i += 3) {
+        for (int i = 0; i < values.size(); i += 2) {
             System.out.println(values.get(i) + " | " + values.get(i + 1));
         }
     }

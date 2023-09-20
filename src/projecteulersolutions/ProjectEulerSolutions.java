@@ -20,10 +20,12 @@ public class ProjectEulerSolutions {
         System.out.println("Welcome, select an option.");
         char userInChar;
         do {
-            System.out.print("\nS: Solve problem by number"
+            System.out.print("\n-------------------------------------"
+                    + "\nS: Solve problem by number"
                     + "\nL: Problem List"
                     + "\nR: Update Project Readme"
                     + "\nQ: Quit"
+                    + "\n-------------------------------------"
                     + "\n> ");
             userInChar = getNextUserChar(userIn);
 
@@ -131,12 +133,12 @@ public class ProjectEulerSolutions {
 
         System.out.println("\nTo edit or view project progress values, select an option:");
         while (userChoice != 'q') {
-            System.out.print("\n====================================="
+            System.out.print("\n-------------------------------------"
                     + "\nL: List progress."
                     + "\nE: Edit problem status."
                     + "\nR: Regenerate all progress."
                     + "\nQ: Return to main menu."
-                    + "\n====================================="
+                    + "\n-------------------------------------"
                     + "\n> ");
             userChoice = getNextUserChar(userIn);
 
