@@ -40,7 +40,7 @@ Incomplete: ⚫</p>
         <td>1 :green_circle:</td>
         <td>2 :green_circle:</td>
         <td>3 :green_circle:</td>
-        <td>14 :large_blue_circle:</td>
+        <td>4 :green_circle:</td>
         <td>5 :green_circle:</td>
         <td>6 :green_circle:</td>
         <td>7 :green_circle:</td>
@@ -1060,7 +1060,7 @@ Incomplete: ⚫</p>
         <td>851 :black_circle:</td>
         <td>852 :black_circle:</td>
         <td>853 :black_circle:</td>
-        <td>854 :black_circle:</td>
+        <td>854 :large_blue_circle:</td>
         <td>855 :black_circle:</td>
     </tr>
 </table>

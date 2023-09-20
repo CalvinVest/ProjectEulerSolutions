@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class ProgressWriter {
 
     private static final int PROBLEM_COUNT = 855;
-    private static final String FILEPATH = Problem.FILEPATH + "problems.txt";
+    private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
     private File file;
     private ArrayList<String> values;
 
@@ -32,7 +32,7 @@ public class ProgressWriter {
     }
 
     public void setProblemStatus(int problemNumber, String type) {
-        int index = (problemNumber - 1) / 2;
+        int index = (problemNumber - 1) * 2;
         values.set(index, Integer.toString(problemNumber));
         values.set(index + 1, type);
 

@@ -128,11 +128,11 @@ public class ProjectEulerSolutions {
     }
 
     private static void printReadmeMenu(Scanner userIn) {
-        char userChoice = ' ';
+        char userChoice;
         ProgressWriter pw = new ProgressWriter();
 
         System.out.println("\nTo edit or view project progress values, select an option:");
-        while (userChoice != 'q') {
+        do {
             System.out.print("\n-------------------------------------"
                     + "\nL: List progress."
                     + "\nE: Edit problem status."
@@ -154,7 +154,7 @@ public class ProjectEulerSolutions {
                 default ->
                     System.out.println("Invalid entry, please try again");
             }
-        }
+        } while (userChoice != 'q');
     }
 
     private static void printReadmeEditMenu(Scanner userIn, ProgressWriter ppp) {
@@ -171,13 +171,8 @@ public class ProjectEulerSolutions {
 
         switch (userEditChoice) {
             case 'y' -> {
-                System.out.println("Select a progress value:"
-                        + "\n1. Complete, but not on GitHub."
-                        + "\n2. In progress."
-                        + "\n3. Broken."
-                        + "\n4. Incomplete.");
 
-                int userProgressType = userIn.nextInt();
+                int userProgressType = getUserEditChoice(userIn);
 
                 if (userProgressType <= ppp.TYPE.length) {
                     System.out.print("Updating status to " + ppp.TYPE[userProgressType] + "\nConfirm? y/n:\n> ");
@@ -185,20 +180,21 @@ public class ProjectEulerSolutions {
                     switch (userEditConfirm) {
                         case 'y' -> {
                             ppp.setProblemStatus(problemNumber, ppp.TYPE[userProgressType]);
-                            System.out.println("Updated progress.");
+                            System.out.println("Success: Status updated.");
                         }
                         case 'n' ->
-                            System.out.println("Update aborted.");
+                            System.out.println("Aborted: Operation cancelled by user.");
                         default ->
-                            System.out.println("Invalid entry.");
+                            System.out.println("Failed: Invalid entry.");
                     }
+                } else {
+                    System.out.println("Failed: Value " + userProgressType + " is out of bounds.");
                 }
-
             }
             case 'n' ->
-                System.out.println("Returning to progress menu.");
+                System.out.println("Success: Returning to progress menu.");
             default ->
-                System.out.println("Invalid entry.");
+                System.out.println("Failed: Invalid entry.");
         }
     }
 
@@ -209,12 +205,36 @@ public class ProjectEulerSolutions {
             case 'y' -> {
                 pw.regenerateValues();
                 System.out.println("Success: All progress has been defaulted.");
+                printReadmeGenerateEditMenu(userIn, pw);
             }
             case 'n' ->
                 System.out.println("Aborted: Operation cancelled by user.");
             default ->
                 System.out.println("Failed: Invalid entry.");
         }
+    }
+
+    private static void printReadmeGenerateEditMenu(Scanner userIn, ProgressWriter pw) {
+        System.out.println("Would you like to add edited values to the newly generated list? y/n\n> ");
+        char userConfirmChar = ProjectEulerSolutions.getNextUserChar(userIn);
+        switch (userConfirmChar) {
+            case 'y' -> {
+                int userEditChoice = getUserEditChoice(userIn);
+                
+                
+            }
+        }
+    }
+
+    private static int getUserEditChoice(Scanner userIn) {
+        System.out.println("-------------------------------------"
+                + "\nSelect a progress value:"
+                + "\n1. Complete, but not on GitHub."
+                + "\n2. In progress."
+                + "\n3. Broken."
+                + "\n4. Incomplete."
+                + "\n-------------------------------------");
+        return userIn.nextInt();
     }
 
     /*
