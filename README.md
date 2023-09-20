@@ -64,7 +64,7 @@ Incomplete: ⚫</p>
         <td>21 :green_circle:</td>
         <td>22 :green_circle:</td>
         <td>23 :green_circle:</td>
-        <td>24 :large_blue_circle:</td>
+        <td>24 :red_circle:</td>
         <td>25 :large_blue_circle:</td>
         <td>26 :black_circle:</td>
         <td>27 :black_circle:</td>
