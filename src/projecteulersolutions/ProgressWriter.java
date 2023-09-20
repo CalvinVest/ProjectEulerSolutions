@@ -63,22 +63,7 @@ public class ProgressWriter {
         }
     }
 
-    public void regenerateValues(Scanner userIn) {
-        System.out.print("Confirm overwrite? Data will be lost! y/n\n> ");
-        char userConfirmChar = ProjectEulerSolutions.getNextUserChar(userIn);
-        switch (userConfirmChar) {
-            case 'y' -> {
-                setValuesFromFiles();
-                System.out.println("Success: All progress has been defaulted.");
-            }
-            case 'n' ->
-                System.out.println("Aborted: Operation cancelled by user.");
-            default ->
-                System.out.println("Failed: Invalid entry.");
-        }
-    }
-
-    public void setValuesFromFiles() {
+    public void regenerateValues() {
         // clear values list and reset all statuses to incomplete
         values.clear();
         for (int i = 1; i <= PROBLEM_COUNT; i++) {

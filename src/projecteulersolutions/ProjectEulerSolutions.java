@@ -96,7 +96,7 @@ public class ProjectEulerSolutions {
     The requested problem number is sent as an integer and if the
     given problem's solution exists return true.
      */
-    public static boolean existsProblem(int problemNumber) {
+    private static boolean existsProblem(int problemNumber) {
         // File object created with given problem number and convention
         boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
         System.out.println("\n============================\n"
@@ -148,7 +148,7 @@ public class ProjectEulerSolutions {
                 case 'e' ->
                     printReadmeEditMenu(userIn, pw);
                 case 'r' ->
-                    pw.regenerateValues(userIn);
+                    printReadmeGenerateMenu(userIn, pw);
                 case 'q' ->
                     System.out.println("Returning to Main Menu");
                 default ->
@@ -199,6 +199,21 @@ public class ProjectEulerSolutions {
                 System.out.println("Returning to progress menu.");
             default ->
                 System.out.println("Invalid entry.");
+        }
+    }
+
+    private static void printReadmeGenerateMenu(Scanner userIn, ProgressWriter pw) {
+        System.out.print("Confirm overwrite? Data will be lost! y/n\n> ");
+        char userConfirmChar = ProjectEulerSolutions.getNextUserChar(userIn);
+        switch (userConfirmChar) {
+            case 'y' -> {
+                pw.regenerateValues();
+                System.out.println("Success: All progress has been defaulted.");
+            }
+            case 'n' ->
+                System.out.println("Aborted: Operation cancelled by user.");
+            default ->
+                System.out.println("Failed: Invalid entry.");
         }
     }
 
