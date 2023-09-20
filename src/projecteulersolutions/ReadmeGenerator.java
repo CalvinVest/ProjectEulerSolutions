@@ -23,9 +23,9 @@ public class ReadmeGenerator {
             headerFileIn = new Scanner(readmeHeaderFile);
             readmeFileOut = new FileWriter(readmeFile);
         } catch (FileNotFoundException ex) {
-            System.out.println("Failure: File " + readmeHeaderFile.getName() + " does not exist.");
+            System.out.println("Failed: " + readmeHeaderFile.getName() + " does not exist.");
         } catch (IOException ioe) {
-            System.out.println("Failure: IOException - " + ioe.getMessage());
+            System.out.println("Failed: IOException - " + ioe.getMessage());
         }
 
         System.out.println("Readme Generator initiated.");
@@ -39,7 +39,7 @@ public class ReadmeGenerator {
             printProgressToReadme();
             readmeFileOut.close();
         } catch (IOException ioe) {
-            System.out.println("Failure: File " + readmeFile + " does not exist.");
+            System.out.println("Failed: File " + readmeFile + " does not exist.");
         }
     }
 

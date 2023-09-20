@@ -27,7 +27,7 @@ public class ProgressWriter {
         try {
             loadProgressFromFile(file);
         } catch (FileNotFoundException fnfe) {
-            System.out.println("Failure: Progress file problems.txt does not exist.");
+            System.out.println("Failed: " + file.getName() + " does not exist.");
         }
     }
 
@@ -41,8 +41,7 @@ public class ProgressWriter {
 
     private void saveProgressToFile() {
         ReadmeGenerator rg = new ReadmeGenerator();
-        try {
-            FileWriter fw = new FileWriter(file);
+        try ( FileWriter fw = new FileWriter(file)) {
             for (int i = 0; i < values.size(); i += 2) {
                 fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
             }
@@ -73,7 +72,7 @@ public class ProgressWriter {
             case 'n' ->
                 System.out.println("Aborted: Operation cancelled by user.");
             default ->
-                System.out.println("Aborted: Invalid entry.");
+                System.out.println("Failed: Invalid entry.");
         }
     }
 
