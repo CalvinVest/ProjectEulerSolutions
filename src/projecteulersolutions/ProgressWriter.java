@@ -25,7 +25,7 @@ public class ProgressWriter {
         file = new File(FILEPATH);
         values = new ArrayList<>();
         try {
-            readProgressFromFile(file);
+            loadProgressFromFile(file);
 
         } catch (FileNotFoundException fnfe) {
             System.out.println("Failure: Progress file problems.txt does not exist.");
@@ -33,11 +33,7 @@ public class ProgressWriter {
     }
 
     public void setProblemStatus(int problemNumber, String type) {
-        int index = (problemNumber - 1) * 3;
-        String problemString = Integer.toString(problemNumber);
-        String emojiString = getEmojiString(type);
-
-        setProgressValue(index, problemString, type, emojiString);
+        setProgressValue(problemNumber, type, getEmojiString(type));
 
         try {
             saveProgressToFile();
@@ -63,8 +59,9 @@ public class ProgressWriter {
         };
     }
 
-    private void setProgressValue(int index, String problemNumberText, String typeString, String emojiString) {
-        values.set(index, problemNumberText);
+    private void setProgressValue(int problemNumber, String typeString, String emojiString) {
+        int index = (problemNumber - 1) / 3;
+        values.set(index, Integer.toString(problemNumber));
         values.set(index + 1, typeString);
         values.set(index + 2, emojiString);
     }
@@ -81,7 +78,7 @@ public class ProgressWriter {
         System.out.println("Saved to file: " + file.getName());
     }
 
-    private void readProgressFromFile(File file) throws FileNotFoundException {
+    private void loadProgressFromFile(File file) throws FileNotFoundException {
         Scanner fileIn = new Scanner(file);
 
         values.clear();
@@ -91,40 +88,28 @@ public class ProgressWriter {
     }
 
     public void regenerateValues(Scanner userIn) {
-        setAllProgressToIncomplete();
-        setCompleteProblemsFromFiles();
 
         System.out.print("Confirm overwrite? Data will be lost! y/n\n> ");
-        char userConfirmChar = userIn.next().toLowerCase().charAt(0);
+        char userConfirmChar = ProjectEulerSolutions.getNextUserChar(userIn);
         switch (userConfirmChar) {
-            case 'y' -> {
-                try {
-                    saveProgressToFile();
-                } catch (IOException ioe) {
-                    System.out.println("Failed: IOException - " + ioe.getMessage());
-                }
-            }
-            case 'n' -> {
-                try {
-                    readProgressFromFile(file);
-                } catch (FileNotFoundException ex) {
-                    System.out.println("Failed: File " + file.getName() + " not found.");
-                }
-            }
+            case 'y' ->
+                setCompleteProblemsFromFiles();
+            case 'n' ->
+                System.out.println("Aborted: Operation cancelled by user.");
+            default ->
+                System.out.println("Aborted: Invalid entry.");
 
         }
     }
 
-    private void setAllProgressToIncomplete() {
+    public void setCompleteProblemsFromFiles() {
         values.clear();
         for (int i = 1; i <= PROBLEM_COUNT; i++) {
             values.add(Integer.toString(i));
             values.add(TYPE[4]);
             values.add(getEmojiString(TYPE[4]));
         }
-    }
 
-    public void setCompleteProblemsFromFiles() {
         String[] pathnames = new File(Problem.FILEPATH).list();
 
         for (String pathname : pathnames) {
@@ -154,7 +139,7 @@ public class ProgressWriter {
         try {
             saveProgressToFile();
         } catch (IOException ioe) {
-            System.out.println("Failed: IOException - " + ioe.getMessage());
+            System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
         }
     }
 

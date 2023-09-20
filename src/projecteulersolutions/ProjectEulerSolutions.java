@@ -210,7 +210,7 @@ public class ProjectEulerSolutions {
     This function prints a simple user menu with options
     and gets the next input from user, sanitizes it, and returns it.
      */
-    private static char getNextUserChar(Scanner userIn) {
+    public static char getNextUserChar(Scanner userIn) {
         return userIn.next().toLowerCase().charAt(0);
     }
 }
