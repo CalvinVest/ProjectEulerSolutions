@@ -39,7 +39,7 @@ public class ProgressWriter {
         saveProgressToFile();
     }
 
-    public void setProblemStatusesFromUserString(String userString, String type) {
+    public void setStatusFromString(String userString, String type) {
         String[] strs = userString.split(",");
         for (String str : strs) {
             try {
@@ -61,9 +61,8 @@ public class ProgressWriter {
         } catch (IOException ioe) {
             System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
         }
-
-        rg.generateReadme();
         System.out.println("Saved to file: " + file.getName());
+        rg.generateReadme();
     }
 
     private void loadProgressFromFile(File file) throws FileNotFoundException {

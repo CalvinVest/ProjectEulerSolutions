@@ -27,8 +27,6 @@ public class ReadmeGenerator {
         } catch (IOException ioe) {
             System.out.println("Failed: IOException - " + ioe.getMessage());
         }
-
-        System.out.println("Readme Generator initiated.");
     }
 
     public void generateReadme() {
@@ -38,6 +36,7 @@ public class ReadmeGenerator {
             printHeaderToReadme();
             printProgressToReadme();
             readmeFileOut.close();
+            System.out.println("Saved to file: " + readmeFile.getName());
         } catch (IOException ioe) {
             System.out.println("Failed: File " + readmeFile + " does not exist.");
         }

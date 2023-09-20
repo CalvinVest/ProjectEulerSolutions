@@ -27,7 +27,7 @@ public class ProjectEulerSolutions {
                     + "\nQ: Quit"
                     + "\n-------------------------------------"
                     + "\n> ");
-            userInChar = getNextUserChar(userIn);
+            userInChar = getUserChar(userIn);
 
             switch (userInChar) {
 
@@ -140,7 +140,7 @@ public class ProjectEulerSolutions {
                     + "\nQ: Return to main menu."
                     + "\n-------------------------------------"
                     + "\n> ");
-            userChoice = getNextUserChar(userIn);
+            userChoice = getUserChar(userIn);
 
             switch (userChoice) {
                 case 'l' ->
@@ -167,7 +167,7 @@ public class ProjectEulerSolutions {
         System.out.println("Problem Status: " + status);
 
         System.out.print("\nEdit Status? y/n:\n> ");
-        char userEditChoice = getNextUserChar(userIn);
+        char userEditChoice = getUserChar(userIn);
 
         switch (userEditChoice) {
             case 'y' -> {
@@ -176,7 +176,7 @@ public class ProjectEulerSolutions {
 
                 if (userProgressType <= ppp.TYPE.length) {
                     System.out.print("Updating status to " + ppp.TYPE[userProgressType] + "\nConfirm? y/n:\n> ");
-                    char userEditConfirm = getNextUserChar(userIn);
+                    char userEditConfirm = getUserChar(userIn);
                     switch (userEditConfirm) {
                         case 'y' -> {
                             ppp.setProblemStatus(problemNumber, ppp.TYPE[userProgressType]);
@@ -200,7 +200,7 @@ public class ProjectEulerSolutions {
 
     private static void printReadmeGenerateMenu(Scanner userIn, ProgressWriter pw) {
         System.out.print("Confirm overwrite? Data will be lost! y/n\n> ");
-        char userConfirmChar = ProjectEulerSolutions.getNextUserChar(userIn);
+        char userConfirmChar = getUserChar(userIn);
         switch (userConfirmChar) {
             case 'y' -> {
                 pw.regenerateValues();
@@ -216,29 +216,34 @@ public class ProjectEulerSolutions {
 
     private static void printReadmeGenerateEditMenu(Scanner userIn, ProgressWriter pw) {
         System.out.println("Would you like to add edited values to the newly generated list? y/n\n> ");
-        char userConfirmChar = ProjectEulerSolutions.getNextUserChar(userIn);
-        switch (userConfirmChar) {
+        char confirmChar = getUserChar(userIn);
+        switch (confirmChar) {
             case 'y' -> {
-                int userEditChoice;
+                int status;
                 do {
-                    System.out.println("-------------------------------------"
+                    System.out.print("-------------------------------------"
                             + "\nSelect a progress value:"
                             + "\n1: Complete, but not on GitHub."
                             + "\n2: In progress."
                             + "\n3: Broken."
                             + "\n0: Finish"
-                            + "\n-------------------------------------");
-                    userEditChoice = userIn.nextInt();
-                    
-                    if(userEditChoice > 0 && userEditChoice <= 4) {
+                            + "\n-------------------------------------"
+                            + "\n> ");
+                    status = userIn.nextInt();
+
+                    if (status > 0 && status <= 4) {
                         userIn.nextLine();
-                        System.out.println("Status: " + pw.TYPE[userEditChoice]);
+                        System.out.println("Status: " + pw.TYPE[status]);
                         System.out.print("Enter the problems, separated with a comma:\n> ");
-                        String problemStringFromUser = userIn.nextLine();
-                        pw.setProblemStatusesFromUserString(problemStringFromUser, pw.TYPE[userEditChoice]);
+                        String problemsString = userIn.nextLine();
+                        pw.setStatusFromString(problemsString, pw.TYPE[status]);
                     }
-                } while (userEditChoice != 0);
+                } while (status != 0);
             }
+            case 'n' ->
+                System.out.println("No edits made to regenerated progress values.");
+            default ->
+                System.out.println("Failed: Invalid entry.");
         }
     }
 
@@ -259,7 +264,7 @@ public class ProjectEulerSolutions {
     This function prints a simple user menu with options
     and gets the next input from user, sanitizes it, and returns it.
      */
-    public static char getNextUserChar(Scanner userIn) {
+    private static char getUserChar(Scanner userIn) {
         return userIn.next().toLowerCase().charAt(0);
     }
 }
