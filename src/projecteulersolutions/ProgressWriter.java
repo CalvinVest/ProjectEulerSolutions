@@ -46,6 +46,7 @@ public class ProgressWriter {
             for (int i = 0; i < values.size(); i += 2) {
                 fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
             }
+            fw.close();
         } catch (IOException ioe) {
             System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
         }
