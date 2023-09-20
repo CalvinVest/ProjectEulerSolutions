@@ -25,7 +25,7 @@ Plan:
 - make main loop to go through all valid int triples
 - valid is when j = i + 3330, k = j + 3330, and i j and k are permutative
 - solution is when i != 1487 (given solution, find other)
-*/
+ */
 public class Problem0049 extends Problem {
 
     @Override
@@ -35,9 +35,17 @@ public class Problem0049 extends Problem {
 
     @Override
     public void printSolution() {
-        System.out.println("This solution has not been found yet.");
+        for (int i = 1000; i < 3340; i++) {
+            if (i == 1487) {
+                continue;
+            }
+            int j = i + 3330, k = i + 6660;
+            if(isPrime(i) && isPrime(j) && isPrime(k) && isPermutation(i, j, k)) {
+                System.out.printf("The concatenation of the prime permutations is %d%d%d\n", i, j, k);
+            }
+        }
     }
-    
+
     private boolean isPrime(int n) {
         for (int i = 2; i <= n / 2; i++) {
             if (n % i == 0) {
@@ -46,7 +54,7 @@ public class Problem0049 extends Problem {
         }
         return true;
     }
-    
+
     private boolean isPermutation(int i, int j, int k) {
         char[] x = Integer.toString(i).toCharArray();
         char[] y = Integer.toString(j).toCharArray();
@@ -56,13 +64,13 @@ public class Problem0049 extends Problem {
         Arrays.sort(z);
         return areArraysEqual(x, y, z);
     }
-    
+
     private boolean areArraysEqual(char[] x, char[] y, char[] z) {
-        if(x.length != y.length || x.length != z.length) {
+        if (x.length != y.length || x.length != z.length) {
             return false;
         }
-        for(int i = 0; i < x.length; i++) {
-            if(!(x[i] == y[i] && x[i] == z[i])) {
+        for (int i = 0; i < x.length; i++) {
+            if (!(x[i] == y[i] && x[i] == z[i])) {
                 return false;
             }
         }
