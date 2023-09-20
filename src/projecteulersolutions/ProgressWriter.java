@@ -105,7 +105,7 @@ public class ProgressWriter {
                     type = 3;
                 } else {
                     System.out.println(pathname + " is in progress.");
-                    type = 4;
+                    type = 2;
                 }
 
                 values.set(index + 1, TYPE[type]);

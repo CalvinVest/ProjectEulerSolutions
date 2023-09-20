@@ -65,18 +65,18 @@ Incomplete: ⚫</p>
         <td>22 :green_circle:</td>
         <td>23 :green_circle:</td>
         <td>24 :red_circle:</td>
-        <td>25 :black_circle:</td>
+        <td>25 :orange_circle:</td>
         <td>26 :black_circle:</td>
         <td>27 :black_circle:</td>
         <td>28 :black_circle:</td>
         <td>29 :black_circle:</td>
     </tr>
     <tr>
-        <td>30 :black_circle:</td>
-        <td>31 :black_circle:</td>
+        <td>30 :orange_circle:</td>
+        <td>31 :orange_circle:</td>
         <td>32 :black_circle:</td>
         <td>33 :black_circle:</td>
-        <td>34 :black_circle:</td>
+        <td>34 :orange_circle:</td>
         <td>35 :black_circle:</td>
         <td>36 :black_circle:</td>
         <td>37 :black_circle:</td>
@@ -96,13 +96,13 @@ Incomplete: ⚫</p>
         <td>49 :green_circle:</td>
     </tr>
     <tr>
-        <td>50 :black_circle:</td>
+        <td>50 :orange_circle:</td>
         <td>51 :black_circle:</td>
         <td>52 :black_circle:</td>
         <td>53 :black_circle:</td>
         <td>54 :black_circle:</td>
         <td>55 :black_circle:</td>
-        <td>56 :black_circle:</td>
+        <td>56 :orange_circle:</td>
         <td>57 :black_circle:</td>
         <td>58 :black_circle:</td>
         <td>59 :black_circle:</td>
@@ -122,7 +122,7 @@ Incomplete: ⚫</p>
     <tr>
         <td>70 :black_circle:</td>
         <td>71 :black_circle:</td>
-        <td>72 :black_circle:</td>
+        <td>72 :orange_circle:</td>
         <td>73 :black_circle:</td>
         <td>74 :black_circle:</td>
         <td>75 :black_circle:</td>
@@ -141,7 +141,7 @@ Incomplete: ⚫</p>
         <td>86 :black_circle:</td>
         <td>87 :black_circle:</td>
         <td>88 :black_circle:</td>
-        <td>89 :black_circle:</td>
+        <td>89 :orange_circle:</td>
     </tr>
     <tr>
         <td>90 :black_circle:</td>
@@ -156,7 +156,7 @@ Incomplete: ⚫</p>
         <td>99 :black_circle:</td>
     </tr>
     <tr>
-        <td>100 :black_circle:</td>
+        <td>100 :orange_circle:</td>
         <td>101 :black_circle:</td>
         <td>102 :black_circle:</td>
         <td>103 :black_circle:</td>
