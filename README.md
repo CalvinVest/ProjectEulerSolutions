@@ -1060,7 +1060,7 @@ Incomplete: ⚫</p>
         <td>851 :black_circle:</td>
         <td>852 :black_circle:</td>
         <td>853 :black_circle:</td>
-        <td>854 :red_circle:</td>
+        <td>854 :black_circle:</td>
         <td>855 :black_circle:</td>
     </tr>
 </table>
