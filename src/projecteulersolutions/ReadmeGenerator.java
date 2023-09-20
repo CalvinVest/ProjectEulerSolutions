@@ -51,8 +51,8 @@ public class ReadmeGenerator {
     }
     
     private void printProgressTableToReadme() throws IOException {
-        ProblemProgressPrinter ppp = new ProblemProgressPrinter();
-        ArrayList<String> progressValues = ppp.getProgressValues();
+        ProgressWriter pw = new ProgressWriter();
+        ArrayList<String> progressValues = pw.getProgressValues();
         int valuesPerRow = 10;
         
         fileOut.write("<table>\n    <tr>\n        <td></td>\n");

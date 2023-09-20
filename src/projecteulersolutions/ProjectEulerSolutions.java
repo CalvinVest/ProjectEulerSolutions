@@ -118,7 +118,7 @@ public class ProjectEulerSolutions {
             // if file is in format of "Problem0000.java"
             if (pathname.matches("Problem\\d\\d\\d\\d\\.java")) {
                 int problemNumber = Integer.parseInt(pathname.substring(7, 11));
-                String problemStatus = new ProblemProgressPrinter().getProblemStatus(problemNumber);
+                String problemStatus = new ProgressWriter().getProblemStatus(problemNumber);
                 System.out.println(pathname + " - " + problemStatus);
             }
         }
@@ -127,7 +127,7 @@ public class ProjectEulerSolutions {
 
     private static void printReadmeMenu(Scanner userIn) {
         char userChoice = ' ';
-        ProblemProgressPrinter ppp = new ProblemProgressPrinter();
+        ProgressWriter pw = new ProgressWriter();
 
         System.out.println("\nTo edit or view project progress values, select an option:");
         while (userChoice != 'q') {
@@ -142,13 +142,13 @@ public class ProjectEulerSolutions {
 
             switch (userChoice) {
                 case 'p' ->
-                    ppp.printStatusList();
+                    pw.printStatusList();
                 case 'e' ->
-                    printReadmeEditMenu(userIn, ppp);
+                    printReadmeEditMenu(userIn, pw);
                 case 'u' ->
-                    ppp.setCompleteProblemsFromFiles();
+                    pw.setCompleteProblemsFromFiles();
                 case 'r' ->
-                    ppp.regenerateValues(userIn);
+                    pw.regenerateValues(userIn);
                 case 'g' ->
                     new ReadmeGenerator().generateReadme();
                 case 'q' ->
@@ -159,7 +159,7 @@ public class ProjectEulerSolutions {
         }
     }
 
-    private static void printReadmeEditMenu(Scanner userIn, ProblemProgressPrinter ppp) {
+    private static void printReadmeEditMenu(Scanner userIn, ProgressWriter ppp) {
         System.out.print("============================\n"
                 + "Enter the problem number: \n> ");
         int problemNumber = userIn.nextInt();

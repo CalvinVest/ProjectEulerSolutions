@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ProblemProgressPrinter {
+public class ProgressWriter {
 
     private static final int PROBLEM_COUNT = 855;
     private static final String FILEPATH = Problem.FILEPATH + "problems.txt";
@@ -21,7 +21,7 @@ public class ProblemProgressPrinter {
         "BROKEN",
         "INCOMPLETE"};
 
-    public ProblemProgressPrinter() {
+    public ProgressWriter() {
         file = new File(FILEPATH);
         values = new ArrayList<>();
         try {
