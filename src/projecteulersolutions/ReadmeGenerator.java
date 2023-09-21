@@ -74,9 +74,9 @@ public class ReadmeGenerator {
     private void printProgressIndexToReadme(int[] typeCounts) throws IOException {
         readmeOut.write("<p>"
                 + "Complete: :green_circle: " + typeCounts[0] + "<br>\n"
-                + "In Progress: :orange_circle: " + typeCounts[1] + "<br>\n"
-                + "Broken: :red_circle: " + typeCounts[2] + "<br>\n"
-                + "Complete but not in this project: :large_blue_circle: " + typeCounts[3] + "<br>\n"
+                + "In Progress: :orange_circle: " + typeCounts[2] + "<br>\n"
+                + "Broken: :red_circle: " + typeCounts[3] + "<br>\n"
+                + "Complete but not in this project: :large_blue_circle: " + typeCounts[1] + "<br>\n"
                 + "Incomplete: :black_circle: " + typeCounts[4] + "</p>\n");
     }
 
