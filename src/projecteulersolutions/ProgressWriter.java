@@ -16,10 +16,9 @@ public class ProgressWriter {
 
     public final String[] TYPE = {
         /*0*/"COMPLETE",
-        /*1*/ "COMPLETE_NOT_ON_GITHUB",
-        /*2*/ "IN_PROGRESS",
-        /*3*/ "BROKEN",
-        /*4*/ "INCOMPLETE"};
+        /*1*/ "IN_PROGRESS",
+        /*2*/ "BROKEN",
+        /*3*/ "INCOMPLETE"};
 
     public ProgressWriter() {
         file = new File(FILEPATH);
@@ -75,48 +74,51 @@ public class ProgressWriter {
     }
 
     public void regenerateValues() {
-        // clear values list and reset all statuses to incomplete
+        System.out.println("-------------------------------------");
 
+        // clear values list and reset all statuses to incomplete
         for (int i = 1; i <= PROBLEM_COUNT; i++) {
             values.set(2 * (i - 1), Integer.toString(i));
 
             if (!isBroken(i)) {
-                values.set(2 * (i - 1) + 1, TYPE[4]);
+                values.set(2 * (i - 1) + 1, TYPE[3]);
             }
         }
         // all files in the project folder
         String[] pathnames = new File(Problem.FILEPATH).list();
-        System.out.println("-------------------------------------");
+        ArrayList<String> problems = new ArrayList<>();
         // set all of the completed or in progress files based on existence of files
         for (String pathname : pathnames) {
             if (pathname.matches("^Problem\\d{4}.java$")) {
-                String problemNumberText = pathname.substring(7, 11);
-                int problemNumber = Integer.parseInt(problemNumberText);
-                int index = 2 * (problemNumber - 1);
-                boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "isSolved");
-
-                int type;
-
-                if (isSolved) {
-                    System.out.println(pathname + " is solved.");
-                    type = 0;
-                } else if (isBroken(problemNumber)) {
-                    System.out.println(pathname + " is broken.");
-                    type = 3;
-                } else {
-                    System.out.println(pathname + " is in progress.");
-                    type = 2;
-                }
-
-                values.set(index + 1, TYPE[type]);
+                problems.add(pathname.substring(7, 11));
             }
         }
+
+        problems.forEach(problem -> {
+            int problemNumber = Integer.parseInt(problem);
+            int index = 2 * (problemNumber - 1);
+            boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problem, "isSolved");
+            int type;
+
+            if (isSolved) {
+                System.out.println(problem + " is solved.");
+                type = 0;
+            } else if (isBroken(problemNumber)) {
+                System.out.println(problem + " is broken.");
+                type = 2;
+            } else {
+                System.out.println(problem + " is in progress.");
+                type = 1;
+            }
+            values.set(index + 1, TYPE[type]);
+        });
+
         System.out.println("-------------------------------------");
         saveProgressToFile();
     }
 
     private boolean isBroken(int problemNumber) {
-        return values.get(2 * (problemNumber - 1) + 1).trim().equalsIgnoreCase(TYPE[3]);
+        return values.get(2 * (problemNumber - 1) + 1).trim().equalsIgnoreCase(TYPE[2]);
     }
 
     public ArrayList<String> getValues() {
