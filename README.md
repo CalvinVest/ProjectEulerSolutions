@@ -30,7 +30,6 @@ As time goes on I'll be making occasional edits to the core functionality of the
 <p>Complete: :green_circle: 30<br>
 In Progress: :orange_circle: 8<br>
 Broken: :red_circle: 3<br>
-Complete but not in this project: :large_blue_circle: 0<br>
 Incomplete: :black_circle: 814</p>
 <table>
     <tr>

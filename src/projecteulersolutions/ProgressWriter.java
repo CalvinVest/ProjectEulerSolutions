@@ -16,10 +16,9 @@ public class ProgressWriter {
 
     public final String[] TYPE = {
         /*0*/"COMPLETE",
-        /*1*/ "COMPLETE_NOT_ON_GITHUB",
-        /*2*/ "IN_PROGRESS",
-        /*3*/ "BROKEN",
-        /*4*/ "INCOMPLETE"};
+        /*1*/ "IN_PROGRESS",
+        /*2*/ "BROKEN",
+        /*3*/ "INCOMPLETE"};
 
     public ProgressWriter() {
         file = new File(FILEPATH);
@@ -81,7 +80,7 @@ public class ProgressWriter {
             values.set(2 * (i - 1), Integer.toString(i));
 
             if (!isBroken(i)) {
-                values.set(2 * (i - 1) + 1, TYPE[4]);
+                values.set(2 * (i - 1) + 1, TYPE[3]);
             }
         }
         // all files in the project folder
@@ -102,10 +101,10 @@ public class ProgressWriter {
                     type = 0;
                 } else if (isBroken(problemNumber)) {
                     System.out.println(pathname + " is broken.");
-                    type = 3;
+                    type = 2;
                 } else {
                     System.out.println(pathname + " is in progress.");
-                    type = 2;
+                    type = 1;
                 }
 
                 values.set(index + 1, TYPE[type]);
@@ -116,7 +115,7 @@ public class ProgressWriter {
     }
 
     private boolean isBroken(int problemNumber) {
-        return values.get(2 * (problemNumber - 1) + 1).trim().equalsIgnoreCase(TYPE[3]);
+        return values.get(2 * (problemNumber - 1) + 1).trim().equalsIgnoreCase(TYPE[2]);
     }
 
     public ArrayList<String> getValues() {
