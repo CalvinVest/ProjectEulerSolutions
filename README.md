@@ -25,15 +25,13 @@ I'm planning to continue doing Project Euler problems for a good while, so this 
 As time goes on I'll be making occasional edits to the core functionality of the program, but the majority of updates will be to add new problem solutions.</p>
 
 <h2>My Project Euler progress</h2>
-<img src="https://projecteuler.net/profile/calvinjvest.png">
 <p>Not all of my Project Euler progress is recorded here yet. There's problems I've solved whose solutions are not included in this repository, but that should change with time. Stay tuned!</p>
 
-<p>Complete: 🟢<br>
-In Progress: 🟠<br>
-Broken: 🔴<br>
-Complete but not in this project: 🔵<br>
-Incomplete: ⚫</p>
-
+<p>Complete: :green_circle:<br>
+In Progress: :orange_circle:<br>
+Broken: :red_circle:<br>
+Complete but not in this project: :large_blue_circle:<br>
+Incomplete: :black_circle:</p>
 <table>
     <tr>
         <td></td>

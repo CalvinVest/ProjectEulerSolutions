@@ -26,9 +26,3 @@ As time goes on I'll be making occasional edits to the core functionality of the
 
 <h2>My Project Euler progress</h2>
 <p>Not all of my Project Euler progress is recorded here yet. There's problems I've solved whose solutions are not included in this repository, but that should change with time. Stay tuned!</p>
-
-<p>Complete: 🟢<br>
-In Progress: 🟠<br>
-Broken: 🔴<br>
-Complete but not in this project: 🔵<br>
-Incomplete: ⚫</p>

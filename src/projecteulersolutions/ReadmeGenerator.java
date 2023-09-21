@@ -34,6 +34,7 @@ public class ReadmeGenerator {
             headerFileIn = new Scanner(readmeHeaderFile);
             readmeFileOut = new FileWriter(readmeFile);
             printHeaderToReadme();
+            printProgressIndexToReadme();
             printProgressToReadme();
             readmeFileOut.close();
             System.out.println("Saved to file: " + readmeFile.getName());
@@ -43,27 +44,35 @@ public class ReadmeGenerator {
     }
 
     private void printHeaderToReadme() throws IOException {
-        while(headerFileIn.hasNext()) {
+        while (headerFileIn.hasNext()) {
             readmeFileOut.write(headerFileIn.nextLine() + "\n");
         }
         readmeFileOut.write("\n");
     }
-    
+
+    private void printProgressIndexToReadme() throws IOException {
+        readmeFileOut.write("<p>Complete: :green_circle:<br>\n"
+                + "In Progress: :orange_circle:<br>\n"
+                + "Broken: :red_circle:<br>\n"
+                + "Complete but not in this project: :large_blue_circle:<br>\n"
+                + "Incomplete: :black_circle:</p>\n");
+    }
+
     private void printProgressToReadme() throws IOException {
         ProgressWriter pw = new ProgressWriter();
         ArrayList<String> progressValues = pw.getValues();
         int valuesPerRow = 10;
-        
+
         readmeFileOut.write("<table>\n    <tr>\n        <td></td>\n");
-        for(int i = 0; i < progressValues.size(); i+=2) {
-            if(i != 0 && i % (2 * valuesPerRow) == 2 * (valuesPerRow - 1)) {
+        for (int i = 0; i < progressValues.size(); i += 2) {
+            if (i != 0 && i % (2 * valuesPerRow) == 2 * (valuesPerRow - 1)) {
                 readmeFileOut.write("    </tr>\n    <tr>\n");
             }
-            readmeFileOut.write("        <td>" + progressValues.get(i) + " " + getEmojiString(progressValues.get(i+1)) + "</td>\n");
+            readmeFileOut.write("        <td>" + progressValues.get(i) + " " + getEmojiString(progressValues.get(i + 1)) + "</td>\n");
         }
         readmeFileOut.write("    </tr>\n</table>\n");
     }
-    
+
     private String getEmojiString(String type) {
         return switch (type) {
             case "COMPLETE" ->
