@@ -1,7 +1,6 @@
 package projecteulersolutions;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,51 +13,39 @@ public class ReadmeGenerator {
     private static final String READMEPATH = System.getProperty("user.dir") + "\\README.md";
 
     private final File headerFile, readmeFile;
-    private Scanner headerIn;
-    private FileWriter readmeOut;
 
     public ReadmeGenerator() {
         headerFile = new File(READMEHEADERPATH);
         readmeFile = new File(READMEPATH);
-        try {
-            headerIn = new Scanner(headerFile);
-            readmeOut = new FileWriter(readmeFile);
-        } catch (FileNotFoundException ex) {
-            System.out.println("Failed: " + headerFile.getName() + " does not exist.");
-        } catch (IOException ioe) {
-            System.out.println("Failed: IOException - " + ioe.getMessage());
-        }
     }
 
     public void generateReadme() {
-        try {
-            headerIn = new Scanner(headerFile);
-            readmeOut = new FileWriter(readmeFile);
-            printHeaderToReadme();
-            printProgressToReadme();
-            headerIn.close();
-            readmeOut.close();
+        try ( FileWriter readmeOut = new FileWriter(readmeFile)) {
+            printHeaderToReadme(readmeOut);
+            printProgressToReadme(readmeOut);
             System.out.println("Saved to file: " + readmeFile.getName());
         } catch (IOException ioe) {
             System.out.println("Failed: File " + readmeFile + " does not exist.");
         }
     }
 
-    private void printHeaderToReadme() throws IOException {
-        while (headerIn.hasNext()) {
-            readmeOut.write(headerIn.nextLine() + "\n");
+    private void printHeaderToReadme(FileWriter readmeOut) throws IOException {
+        try ( Scanner headerIn = new Scanner(headerFile)) {
+            while (headerIn.hasNext()) {
+                readmeOut.write(headerIn.nextLine() + "\n");
+            }
+            readmeOut.write("\n");
         }
-        readmeOut.write("\n");
     }
 
-    private void printProgressToReadme() throws IOException {
+    private void printProgressToReadme(FileWriter readmeOut) throws IOException {
         ProgressWriter pw = new ProgressWriter();
         ArrayList<String> progressValues = pw.getValues();
         int[] typeCounts = new int[pw.TYPE.length];
         for (int i = 0; i < typeCounts.length; i++) {
             typeCounts[i] = Collections.frequency(progressValues, pw.TYPE[i]);
         }
-        printProgressIndexToReadme(typeCounts);
+        printProgressIndexToReadme(readmeOut, typeCounts);
         int valuesPerRow = 10;
 
         readmeOut.write("<table>\n\t<tr>\n\t\t<td></td>\n");
@@ -71,7 +58,7 @@ public class ReadmeGenerator {
         readmeOut.write("\t</tr>\n</table>\n");
     }
 
-    private void printProgressIndexToReadme(int[] typeCounts) throws IOException {
+    private void printProgressIndexToReadme(FileWriter readmeOut, int[] typeCounts) throws IOException {
         readmeOut.write("<p>"
                 + ":green_circle: Complete: " + typeCounts[0] + "<br>\n"
                 + ":orange_circle: In Progress: " + typeCounts[1] + "<br>\n"
