@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ReadmeGenerator {
 
-    private static final String READMEHEADERPATH = System.getProperty("user.dir") + "\\README_BODY.txt";
+    private static final String READMEHEADERPATH = System.getProperty("user.dir") + "\\README_HEADER.txt";
     private static final String READMEPATH = System.getProperty("user.dir") + "\\README.md";
 
     private final File readmeHeaderFile, readmeFile;
