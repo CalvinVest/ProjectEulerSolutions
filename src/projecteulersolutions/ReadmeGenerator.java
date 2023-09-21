@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class ReadmeGenerator {
@@ -34,7 +35,6 @@ public class ReadmeGenerator {
             headerFileIn = new Scanner(readmeHeaderFile);
             readmeFileOut = new FileWriter(readmeFile);
             printHeaderToReadme();
-            printProgressIndexToReadme();
             printProgressToReadme();
             readmeFileOut.close();
             System.out.println("Saved to file: " + readmeFile.getName());
@@ -50,17 +50,17 @@ public class ReadmeGenerator {
         readmeFileOut.write("\n");
     }
 
-    private void printProgressIndexToReadme() throws IOException {
-        readmeFileOut.write("<p>Complete: :green_circle:<br>\n"
-                + "In Progress: :orange_circle:<br>\n"
-                + "Broken: :red_circle:<br>\n"
-                + "Complete but not in this project: :large_blue_circle:<br>\n"
-                + "Incomplete: :black_circle:</p>\n");
-    }
+    
 
     private void printProgressToReadme() throws IOException {
         ProgressWriter pw = new ProgressWriter();
         ArrayList<String> progressValues = pw.getValues();
+        int completeCount = Collections.frequency(progressValues, pw.TYPE[0]);
+        int completeNotOnGithubCount = Collections.frequency(progressValues, pw.TYPE[1]);
+        int inProgressCount = Collections.frequency(progressValues, pw.TYPE[2]);
+        int brokenCount = Collections.frequency(progressValues, pw.TYPE[3]);
+        int incompleteCount = Collections.frequency(progressValues, pw.TYPE[4]);
+        printProgressIndexToReadme(completeCount, completeNotOnGithubCount, inProgressCount, brokenCount, incompleteCount);
         int valuesPerRow = 10;
 
         readmeFileOut.write("<table>\n    <tr>\n        <td></td>\n");
@@ -71,6 +71,14 @@ public class ReadmeGenerator {
             readmeFileOut.write("        <td>" + progressValues.get(i) + " " + getEmojiString(progressValues.get(i + 1)) + "</td>\n");
         }
         readmeFileOut.write("    </tr>\n</table>\n");
+    }
+    
+    private void printProgressIndexToReadme(int complete, int completeNotOnGithub, int inProgress, int broken, int incomplete) throws IOException {
+        readmeFileOut.write("<p>Complete: :green_circle: " + complete + "<br>\n"
+                + "In Progress: :orange_circle: " + inProgress + "<br>\n"
+                + "Broken: :red_circle: " + broken + "<br>\n"
+                + "Complete but not in this project: :large_blue_circle: " + completeNotOnGithub + "<br>\n"
+                + "Incomplete: :black_circle: " + incomplete + "</p>\n");
     }
 
     private String getEmojiString(String type) {
