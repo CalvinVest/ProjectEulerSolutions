@@ -23,6 +23,7 @@ public class ReadmeGenerator {
         try ( FileWriter readmeOut = new FileWriter(readmeFile)) {
             printHeaderToReadme(readmeOut);
             printProgressToReadme(readmeOut);
+            readmeOut.close();
             System.out.println("Saved to file: " + readmeFile.getName());
         } catch (IOException ioe) {
             System.out.println("Failed: File " + readmeFile + " does not exist.");
@@ -35,6 +36,7 @@ public class ReadmeGenerator {
                 readmeOut.write(headerIn.nextLine() + "\n");
             }
             readmeOut.write("\n");
+            headerIn.close();
         }
     }
 
