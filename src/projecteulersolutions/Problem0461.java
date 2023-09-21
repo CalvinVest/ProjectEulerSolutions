@@ -25,18 +25,20 @@ public class Problem0461 extends Problem {
         while (myFunc(maxK, n) < Math.PI) {
             maxK++;
         }
+        System.out.println("Upper bound for " + n + " values is " + maxK);
 
         boolean[][][][] truthTable = new boolean[maxK + 1][maxK + 1][maxK + 1][maxK + 1];
 
-        for (int k0 = 0; k0 < maxK; k0++) {
-            for (int k1 = k0 + 1; k1 < maxK; k1++) {
-                for (int k2 = k1 + 1; k2 < maxK; k2++) {
-                    for (int k3 = k2 + 1; k3 < maxK; k3++) {
+        for (int k0 = 0; k0 <= maxK; k0++) {
+            System.out.printf("Calculating %4.2f%%\n", (double) 100 * k0 / maxK);
+            for (int k1 = k0 + 1; k1 <= maxK; k1++) {
+                for (int k2 = k1 + 1; k2 <= maxK; k2++) {
+                    for (int k3 = k2 + 1; k3 <= maxK; k3++) {
                         double tempPi = calcMyFunc(k0, k1, k2, k3, n);
                         boolean isSmaller = isSmallerDelta(tempPi, almostPi);
                         truthTable[k0][k1][k2][k3] = isSmaller;
-                        
-                        if(isSmaller) {
+
+                        if (isSmaller) {
                             coeffs[0] = k0;
                             coeffs[1] = k1;
                             coeffs[2] = k2;
@@ -49,7 +51,6 @@ public class Problem0461 extends Problem {
             }
         }
 
-        System.out.println("Upper bound for " + n + " values is " + maxK);
         /*
         for (int k0 = 0; k0 <= maxK; k0++) {
             System.out.println("Primary counter " + k0);
@@ -82,7 +83,6 @@ public class Problem0461 extends Problem {
             }
             almostPi += myFunc(coeffs[i], n);
         }*/
-
         System.out.println("The closest approximization of pi for n = " + n + " is "
                 + coeffs[0] + " "
                 + coeffs[1] + " "
@@ -94,7 +94,7 @@ public class Problem0461 extends Problem {
     private boolean isSmallerDelta(double queryPi, double almostPi) {
         return Math.abs(Math.PI - queryPi) < Math.abs(Math.PI - almostPi);
     }
-    
+
     private double calcMyFunc(int a, int b, int c, int d, int n) {
         return myFunc(a, n) + myFunc(b, n) + myFunc(c, n) + myFunc(d, n);
     }
