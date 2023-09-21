@@ -1,5 +1,7 @@
 package projecteulersolutions;
 
+import java.util.Arrays;
+
 /*
 Let fn(k) = e^(k/n) - 1 for k is Z > 0
 We are given f200(6) + f200(75) + f200(89) + f200(226)
@@ -16,91 +18,150 @@ public class Problem0461 extends Problem {
 
     @Override
     public void printSolution() {
-        int[] coeffs = {0, 0, 0, 0};
-        int[] solution;
-        double almostPi = 0.0;
-        int n = 200;
-        int maxK = 0;
+        int n = 10000;
+        int max = (int) (Math.log(Math.PI + 1) * n);
+        // array of all valid numbers for myFunc(i, n)
+        double[] numArr = calcNums(max, n);
+        double[] sumArr = calcSums(numArr, max);
 
-        while (myFunc(maxK, n) < Math.PI) {
-            maxK++;
-        }
-        System.out.println("Upper bound for " + n + " values is " + maxK);
+        int[] ab_cd = findSumIndeces(sumArr, Math.PI);
+        int[] a_b = findSumIndeces(numArr, sumArr[ab_cd[0]]);
+        int[] c_d = findSumIndeces(numArr, sumArr[ab_cd[1]]);
 
-        boolean[][][][] truthTable = new boolean[maxK + 1][maxK + 1][maxK + 1][maxK + 1];
+        int a = a_b[0];
+        int b = a_b[1];
+        int c = c_d[0];
+        int d = c_d[1];
 
-        for (int k0 = 0; k0 <= maxK; k0++) {
-            System.out.printf("Calculating %4.2f%%\n", (double) 100 * k0 / maxK);
-            for (int k1 = k0 + 1; k1 <= maxK; k1++) {
-                for (int k2 = k1 + 1; k2 <= maxK; k2++) {
-                    for (int k3 = k2 + 1; k3 <= maxK; k3++) {
-                        double tempPi = calcMyFunc(k0, k1, k2, k3, n);
-                        boolean isSmaller = isSmallerDelta(tempPi, almostPi);
-                        truthTable[k0][k1][k2][k3] = isSmaller;
-
-                        if (isSmaller) {
-                            coeffs[0] = k0;
-                            coeffs[1] = k1;
-                            coeffs[2] = k2;
-                            coeffs[3] = k3;
-                            almostPi = tempPi;
-                            System.out.println(k0 + " " + k1 + " " + k2 + " " + k3 + " " + almostPi);
-                        }
-                    }
-                }
-            }
-        }
-
-        /*
-        for (int k0 = 0; k0 <= maxK; k0++) {
-            System.out.println("Primary counter " + k0);
-            for (int k1 = k0 + 1; k0 + k1 <= maxK; k1++) {
-                System.out.println("Secondary counter " + k1);
-                for (int k2 = k1 + 1; k0 + k1 + k2 <= maxK; k2++) {
-                    for (int k3 = k2 + 1; k0 + k1 + k2 + k3 <= maxK; k3++) {
-                        double temp = myFunc(k0, n)
-                                + myFunc(k1, n)
-                                + myFunc(k2, n)
-                                + myFunc(k3, n);
-                        if (Math.abs(Math.PI - temp) < Math.abs(Math.PI - almostPi)) {
-                            coeffs[0] = k0;
-                            coeffs[1] = k1;
-                            coeffs[2] = k2;
-                            coeffs[3] = k3;
-                            almostPi = temp;
-                            System.out.println(k0 + " " + k1 + " " + k2 + " " + k3 + " " + almostPi);
-                        }
-                    }
-                }
-            }
-        }
-         */
- /*for (int i = 0; i < coeffs.length; i++) {
-            double delta = myFunc(coeffs[i], n);
-            while (delta < Math.PI - almostPi) {
-                coeffs[i]++;
-                delta = myFunc(coeffs[i], n);
-            }
-            almostPi += myFunc(coeffs[i], n);
-        }*/
-        System.out.println("The closest approximization of pi for n = " + n + " is "
-                + coeffs[0] + " "
-                + coeffs[1] + " "
-                + coeffs[2] + " "
-                + coeffs[3] + " for f"
-                + n + " = " + almostPi);
+        System.out.println("The closest approximation for pi with n = " + n + ":\n"
+                + "f_" + n + "(" + a + ") + "
+                + "f_" + n + "(" + b + ") + "
+                + "f_" + n + "(" + c + ") + "
+                + "f_" + n + "(" + d + ") = "
+                + calcPiSum(a, b, c, d, n) + "\n"
+                + "The solution is g(" + a + ", " + b + ", " + c + ", " + d + ") = "
+                + a + "^2 + "
+                + b + "^2 + "
+                + c + "^2 + "
+                + d + "^2 = "
+                + getSumOfSquares(new int[]{a, b, c, d}));
     }
 
-    private boolean isSmallerDelta(double queryPi, double almostPi) {
-        return Math.abs(Math.PI - queryPi) < Math.abs(Math.PI - almostPi);
+    /*
+    calcPiSum({4 ints}, n) returns the pi approximation for the given
+    four values in the form of
+    f_n(a) + f_n(b) + f_n(c) + f_n(d)
+    where f_n(x) is expFunc(x, n)
+     */
+    private double calcPiSum(int a, int b, int c, int d, int n) {
+        return expFunc(a, n) + expFunc(b, n) + expFunc(c, n) + expFunc(d, n);
     }
 
-    private double calcMyFunc(int a, int b, int c, int d, int n) {
-        return myFunc(a, n) + myFunc(b, n) + myFunc(c, n) + myFunc(d, n);
+    /*
+    calcNums returns an array of size max + 1 full of the first max
+    values of f_n(i), where i is an incrementer starting at 1 and 
+    f_n(i) is expFunc(i, n).
+     */
+    private double[] calcNums(int max, int n) {
+        double[] result = new double[max + 1];
+        for (int i = 1; i <= max; i++) {
+            result[i] = expFunc(i, n);
+        }
+        return result;
     }
 
-    private double myFunc(int k, int n) {
-        double eExp = (double) k / n;
-        return Math.pow(Math.E, eExp) - 1.0;
+    /*
+    expFunc is the f_n(x) of the problem.
+    Returns the mathematical result of e^(k/n) - 1 for a given k and n
+     */
+    private double expFunc(int k, int n) {
+        return Math.exp((double) k / n) - 1;
+    }
+
+    /*
+    calcSums(nums, max) finds and returns a sorted array of all of
+    the sums nums[i] + nums[j] for the given array nums.
+    This function does not consider any values where j >= i.
+    The sums array is triangular (since i > j) with sides
+    max and max-1, so the returned
+    sums array size is (max * (max-1)) / 2
+     */
+    private double[] calcSums(double[] nums, int max) {
+        int index = 0;
+        // result is a triangular array with width L from nested for loops
+        // so size will be (L * (L-1)) / 2. L-1 offset is because of index offset
+        // for interior loop.
+        double[] result = new double[max * (max - 1) / 2];
+        for (int i = max - 1; i >= 2; i--) {
+            for (int j = i - 2; j >= 1; j--) {
+                result[index] = nums[i] + nums[j];
+                index++;
+            }
+        }
+        Arrays.sort(result);
+        return result;
+    }
+
+    /*
+    findSumIndeces(array, num) finds the indeces of the two values
+    in the array that sum to the given sum value the closest.
+     */
+    private int[] findSumIndeces(double[] arr, double sum) {
+        double diff = Double.MAX_VALUE;
+        int u = getUpperBoundIndex(arr, sum);
+        int l = 0;
+        int[] result = new int[2];
+        while (l < u) {
+            // diffTemp is the difference between the sum of the 
+            //current values and the given sum
+            double diffTemp = sum - (arr[l] + arr[u]);
+            // if the given pair sum closer to the given sum
+            if (Math.abs(diffTemp) < diff) {
+                // new closest difference is set
+                diff = Math.abs(diffTemp);
+                // lower index is recorded
+                result[0] = l;
+                // upper index is recorded
+                result[1] = u;
+            }
+            if (diffTemp < 0) { // found sum was too large
+                u--; // decrease upper bound
+            } else if (diffTemp > 0) { // found sum was too small
+                l++; // increase lower bound
+            } else { // found sum was correct
+                break; // found upper and lower values
+            }
+        }
+        return result; // return upper and lower value
+    }
+
+    /*
+    getUpperBound returns the index of a given array that is the
+    largest value less than the given number
+     */
+    private int getUpperBoundIndex(double[] arr, double num) {
+        int low = 0;
+        int high = arr.length;
+        while (low < high) {
+            int mid = (low + high) / 2;
+            if (arr[mid] <= num) {
+                low = mid + 1;
+            } else {
+                high = mid;
+            }
+        }
+        return low - 1;
+    }
+
+    /*
+    getSumOfSquares is the g(x) for this problem.
+    Returns for a given array the sum of the squares of all its values
+     */
+    private int getSumOfSquares(int[] arr) {
+        int sum = 0;
+        for (int n : arr) {
+            sum += n * n;
+        }
+        return sum;
     }
 }
