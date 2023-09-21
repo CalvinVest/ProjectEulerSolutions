@@ -74,8 +74,9 @@ public class ProgressWriter {
     }
 
     public void regenerateValues() {
-        // clear values list and reset all statuses to incomplete
+        System.out.println("-------------------------------------");
 
+        // clear values list and reset all statuses to incomplete
         for (int i = 1; i <= PROBLEM_COUNT; i++) {
             values.set(2 * (i - 1), Integer.toString(i));
 
@@ -85,31 +86,33 @@ public class ProgressWriter {
         }
         // all files in the project folder
         String[] pathnames = new File(Problem.FILEPATH).list();
-        System.out.println("-------------------------------------");
+        ArrayList<String> problems = new ArrayList<>();
         // set all of the completed or in progress files based on existence of files
         for (String pathname : pathnames) {
             if (pathname.matches("^Problem\\d{4}.java$")) {
-                String problemNumberText = pathname.substring(7, 11);
-                int problemNumber = Integer.parseInt(problemNumberText);
-                int index = 2 * (problemNumber - 1);
-                boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "isSolved");
-
-                int type;
-
-                if (isSolved) {
-                    System.out.println(pathname + " is solved.");
-                    type = 0;
-                } else if (isBroken(problemNumber)) {
-                    System.out.println(pathname + " is broken.");
-                    type = 2;
-                } else {
-                    System.out.println(pathname + " is in progress.");
-                    type = 1;
-                }
-
-                values.set(index + 1, TYPE[type]);
+                problems.add(pathname.substring(7, 11));
             }
         }
+
+        problems.forEach(problem -> {
+            int problemNumber = Integer.parseInt(problem);
+            int index = 2 * (problemNumber - 1);
+            boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problem, "isSolved");
+            int type;
+
+            if (isSolved) {
+                System.out.println(problem + " is solved.");
+                type = 0;
+            } else if (isBroken(problemNumber)) {
+                System.out.println(problem + " is broken.");
+                type = 2;
+            } else {
+                System.out.println(problem + " is in progress.");
+                type = 1;
+            }
+            values.set(index + 1, TYPE[type]);
+        });
+
         System.out.println("-------------------------------------");
         saveProgressToFile();
     }
