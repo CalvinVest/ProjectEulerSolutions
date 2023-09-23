@@ -14,11 +14,12 @@ public class Problem0030 extends Problem {
 
     @Override
     public boolean isSolved() {
-        return false;
+        return true;
     }
 
     @Override
     public void printSolution() {
+        // sum val to hold sum of all found fifth power digit values
         int sum = 0;
         // upper bound 354294 is taken from the understanding that
         // the upper bound can have at most 6 digits of all 9s.
@@ -26,6 +27,7 @@ public class Problem0030 extends Problem {
         // 6 * 9^5 or 354294.
         for (int i = 2; i < 354294; i++) {
             if (isFifthPowerDigitValue(i)) {
+                // add valid value to sum of fifth power digit values
                 sum += i;
             }
         }
@@ -33,6 +35,13 @@ public class Problem0030 extends Problem {
         System.out.println("The sum of all fifth power digit values is " + sum);
     }
 
+    /*
+    isFifthPowerDigitValue(int) returns true if the given int value
+    is a sum of the fifth power of its digits.
+    
+    For example,
+    return 1234 == 1^5 + 2^5 + 3^5 + 4^5;
+    */
     private boolean isFifthPowerDigitValue(int n) {
         int temp = n;
         int sum = 0;
