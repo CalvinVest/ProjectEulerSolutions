@@ -29,17 +29,20 @@ public class Problem0031 extends Problem {
         int twopence = 2;
         int onepence = 1;
 
+        // two pounds
         for (int i = 0; i <= total / twopound; i++) {
             int sum = i * twopound;
             if (sum > total) {
                 break;
             }
+            // one pound
             for (int j = 0; j <= total / onepound; j++) {
                 sum = i * twopound
                         + j * onepound;
                 if (sum > total) {
                     break;
                 }
+                // fifty pence
                 for (int k = 0; k <= total / fiftypence; k++) {
                     sum = i * twopound
                             + j * onepound
@@ -47,6 +50,7 @@ public class Problem0031 extends Problem {
                     if (sum > total) {
                         break;
                     }
+                    // twenty pence
                     for (int l = 0; l <= total / twentypence; l++) {
                         sum = i * twopound
                                 + j * onepound
@@ -55,6 +59,7 @@ public class Problem0031 extends Problem {
                         if (sum > total) {
                             break;
                         }
+                        // ten pence
                         for (int m = 0; m <= total / tenpence; m++) {
                             sum = i * twopound
                                     + j * onepound
@@ -64,6 +69,7 @@ public class Problem0031 extends Problem {
                             if (sum > total) {
                                 break;
                             }
+                            // five pence
                             for (int n = 0; n <= total / fivepence; n++) {
                                 sum = i * twopound
                                         + j * onepound
@@ -74,6 +80,7 @@ public class Problem0031 extends Problem {
                                 if (sum > total) {
                                     break;
                                 }
+                                // two pence
                                 for (int r = 0; r <= total / twopence; r++) {
                                     sum = i * twopound
                                             + j * onepound
@@ -85,6 +92,7 @@ public class Problem0031 extends Problem {
                                     if (sum > total) {
                                         break;
                                     }
+                                    // one pence
                                     for (int p = 0; p <= total / onepence; p++) {
                                         sum = i * twopound
                                                 + j * onepound
@@ -94,11 +102,11 @@ public class Problem0031 extends Problem {
                                                 + n * fivepence
                                                 + r * twopence
                                                 + p * onepence;
-                                        if (sum == total) {
-                                            count++;
-                                        }
                                         if (sum > total) {
                                             break;
+                                        }
+                                        if (sum == total) {
+                                            count++;
                                         }
                                     }
                                 }
@@ -107,7 +115,6 @@ public class Problem0031 extends Problem {
                     }
                 }
             }
-
         }
         System.out.println("2 British Pounds can be expressed with coins in " + count + " unique ways.");
     }
