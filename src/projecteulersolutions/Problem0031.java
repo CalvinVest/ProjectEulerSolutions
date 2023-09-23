@@ -19,25 +19,86 @@ public class Problem0031 extends Problem {
         // brute force solution
         int count = 0;
 
-        int a = 1;
-        int b = 2;
-        int c = 5;
-        int d = 10;
-        int e = 20;
-        int f = 50;
-        int g = 100;
-        int h = 200;
+        int total = 200;
+        int twopound = 200;
+        int onepound = 100;
+        int fiftypence = 50;
+        int twentypence = 20;
+        int tenpence = 10;
+        int fivepence = 5;
+        int twopence = 2;
+        int onepence = 1;
 
-        for (int i = 0; i <= 200; i++) {
-            for (int j = 0; j <= 100; j++) {
-                for (int k = 0; k <= 40; k++) {
-                    for (int l = 0; l <= 20; l++) {
-                        for (int m = 0; m <= 10; m++) {
-                            for (int n = 0; n <= 4; n++) {
-                                for (int r = 0; r <= 2; r++) {
-                                    for (int p = 0; p <= 1; p++) {
-                                        if (i * a + j * b + k * c + l * d + m * e + n * f + r * g + p * h == 200) {
+        for (int i = 0; i <= total / twopound; i++) {
+            int sum = i * twopound;
+            if (sum > total) {
+                break;
+            }
+            for (int j = 0; j <= total / onepound; j++) {
+                sum = i * twopound
+                        + j * onepound;
+                if (sum > total) {
+                    break;
+                }
+                for (int k = 0; k <= total / fiftypence; k++) {
+                    sum = i * twopound
+                            + j * onepound
+                            + k * fiftypence;
+                    if (sum > total) {
+                        break;
+                    }
+                    for (int l = 0; l <= total / twentypence; l++) {
+                        sum = i * twopound
+                                + j * onepound
+                                + k * fiftypence
+                                + l * twentypence;
+                        if (sum > total) {
+                            break;
+                        }
+                        for (int m = 0; m <= total / tenpence; m++) {
+                            sum = i * twopound
+                                    + j * onepound
+                                    + k * fiftypence
+                                    + l * twentypence
+                                    + m * tenpence;
+                            if (sum > total) {
+                                break;
+                            }
+                            for (int n = 0; n <= total / fivepence; n++) {
+                                sum = i * twopound
+                                        + j * onepound
+                                        + k * fiftypence
+                                        + l * twentypence
+                                        + m * tenpence
+                                        + n * fivepence;
+                                if (sum > total) {
+                                    break;
+                                }
+                                for (int r = 0; r <= total / twopence; r++) {
+                                    sum = i * twopound
+                                            + j * onepound
+                                            + k * fiftypence
+                                            + l * twentypence
+                                            + m * tenpence
+                                            + n * fivepence
+                                            + r * twopence;
+                                    if (sum > total) {
+                                        break;
+                                    }
+                                    for (int p = 0; p <= total / onepence; p++) {
+                                        sum = i * twopound
+                                                + j * onepound
+                                                + k * fiftypence
+                                                + l * twentypence
+                                                + m * tenpence
+                                                + n * fivepence
+                                                + r * twopence
+                                                + p * onepence;
+                                        if (sum == total) {
                                             count++;
+                                        }
+                                        if (sum > total) {
+                                            break;
                                         }
                                     }
                                 }
