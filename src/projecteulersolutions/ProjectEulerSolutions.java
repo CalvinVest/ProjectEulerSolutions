@@ -30,7 +30,6 @@ public class ProjectEulerSolutions {
             userInChar = getUserChar(userIn);
 
             switch (userInChar) {
-
                 case 's' ->
                     printSolutionMenu(userIn);
                 case 'l' ->
@@ -51,8 +50,8 @@ public class ProjectEulerSolutions {
     based on the user input obtained in this function.
      */
     public static void printSolutionMenu(Scanner userIn) {
-        System.out.println("Enter the Project Euler Problem #: ");
-        System.out.print("> ");
+        System.out.print("Enter the Project Euler Problem #: "
+                + "\n> ");
         int userProblemNumber = userIn.nextInt();
         if (userProblemNumber > 0 && userProblemNumber < 10000) {
             invokeProblemByNumber(userProblemNumber);
@@ -99,10 +98,10 @@ public class ProjectEulerSolutions {
     private static boolean existsProblem(int problemNumber) {
         // File object created with given problem number and convention
         boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
-        System.out.println("\n============================\n"
-                + "Loading " + Problem.getFileName(problemNumber) + "\n"
-                + (existsFile ? "Success\n" : "Failed: File does not exist.\n")
-                + "============================");
+        System.out.println("\n============================"
+                + "\nLoading " + Problem.getFileName(problemNumber)
+                + (existsFile ? "\nSuccess" : "\nFailed: File does not exist.")
+                + "\n============================");
         return existsFile; // returns existence of file as flag
     }
 
@@ -181,7 +180,6 @@ public class ProjectEulerSolutions {
 
         switch (userEditChoice) {
             case 'y' -> {
-
                 int userProgressType = getUserEditChoice(userIn);
 
                 if (userProgressType <= pw.TYPE.length) {
