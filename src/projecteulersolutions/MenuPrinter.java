@@ -16,15 +16,8 @@ public class MenuPrinter {
         System.out.println("Welcome, select an option.");
 
         char userInChar;
-
         do {
-            System.out.print("\n-------------------------------------"
-                    + "\nS: Solve problem by number"
-                    + "\nL: Problem List"
-                    + "\nR: Update Project Readme"
-                    + "\nQ: Quit"
-                    + "\n-------------------------------------"
-                    + "\n> ");
+            printMainMenuOptions();
 
             userInChar = getUserChar();
 
@@ -33,8 +26,8 @@ public class MenuPrinter {
                     printSolutionMenu();
                 case 'l' ->
                     printProblemList();
-                case 'r' ->
-                    printReadmeMenu();
+                case 'v' ->
+                    printProgressMenu();
                 case 'q' ->
                     System.out.println("Thank you!");
                 default ->
@@ -47,10 +40,10 @@ public class MenuPrinter {
         System.out.print("Enter the Project Euler Problem #: "
                 + "\n> ");
         int userProblemNumber = userIn.nextInt();
-        if (userProblemNumber > 0 && userProblemNumber < 10000) {
+        if (userProblemNumber > 0 && userProblemNumber <= ProgressWriter.PROBLEM_COUNT) {
             invokeProblemByNumber(userProblemNumber);
         } else {
-            System.out.println("The number is not a valid problem number.");
+            System.out.println("Failed: The number is not a valid problem number.");
         }
     }
 
@@ -58,7 +51,7 @@ public class MenuPrinter {
         String problemNumberText = String.format("%04d", problemNumber);
         //Initiates new classloader to invoke the problem itself
         JavaClassLoader jcl = new JavaClassLoader();
-        if (existsProblem(problemNumber)) { // proceeds if problem solution exists
+        if (ProgressWriter.existsProblemFile(problemNumber)) { // proceeds if problem solution exists
             Date dStart = new Date();
             System.out.println("Problem " + problemNumber + ": ");
             // Problem 0: _
@@ -71,16 +64,6 @@ public class MenuPrinter {
         } else {
             System.out.println("Problem solution does not exist.");
         }
-    }
-
-    private boolean existsProblem(int problemNumber) {
-        // File object created with given problem number and convention
-        boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
-        System.out.println("\n============================"
-                + "\nLoading " + Problem.getFileName(problemNumber)
-                + (existsFile ? "\nSuccess" : "\nFailed: File does not exist.")
-                + "\n============================");
-        return existsFile; // returns existence of file as flag
     }
 
     private void printProblemList() {
@@ -110,28 +93,22 @@ public class MenuPrinter {
         System.out.println("============================");
     }
 
-    private void printReadmeMenu() {
+    private void printProgressMenu() {
         char userChoice;
         ProgressWriter pw = new ProgressWriter();
 
         System.out.println("\nTo edit or view project progress values, select an option:");
         do {
-            System.out.print("-------------------------------------"
-                    + "\nL: List progress."
-                    + "\nE: Edit problem status."
-                    + "\nR: Regenerate all progress."
-                    + "\nQ: Return to main menu."
-                    + "\n-------------------------------------"
-                    + "\n> ");
-            userChoice = getUserChar();
+            printProgressMenuOptions();
 
+            userChoice = getUserChar();
             switch (userChoice) {
                 case 'l' ->
                     pw.printValues();
                 case 'e' ->
-                    printReadmeEditMenu(pw);
+                    editStatus(pw);
                 case 'r' ->
-                    printReadmeGenerateMenu(pw);
+                    regenerateProgress(pw);
                 case 'q' ->
                     System.out.println("Returning to Main Menu");
                 default ->
@@ -140,33 +117,31 @@ public class MenuPrinter {
         } while (userChoice != 'q');
     }
 
-    private void printReadmeEditMenu(ProgressWriter pw) {
+    private void editStatus(ProgressWriter pw) {
         System.out.print("============================\n"
                 + "Enter the problem number: \n> ");
         int problemNumber = userIn.nextInt();
-        String filename = Problem.getFileName(problemNumber);
-        String status = pw.getProblemStatus(problemNumber);
-        System.out.print(filename
-                + "\nProblem Status: " + status
+        System.out.print(Problem.getFileName(problemNumber)
+                + "\nProblem Status: " + pw.getProblemStatus(problemNumber)
                 + "\nEdit Status? y/n:"
                 + "\n> ");
 
-        char userEditChoice = getUserChar();
-        switch (userEditChoice) {
+        switch (getUserChar()) {
             case 'y' -> {
-                int userProgressType = getUserEditChoice();
+                printEditMenuOptions();
+                int progressType = userIn.nextInt();
 
-                if (userProgressType == 0) {
+                if (progressType == 0) {
                     break;
                 }
 
-                if (userProgressType <= pw.TYPE.length) {
-                    System.out.print("Updating status to " + pw.TYPE[userProgressType]
+                if (progressType <= pw.TYPE.length) {
+                    System.out.print("Updating status to " + pw.TYPE[progressType]
                             + "\nConfirm? y/n:"
                             + "\n> ");
                     switch (getUserChar()) {
                         case 'y' -> {
-                            pw.setProblemStatus(problemNumber, pw.TYPE[userProgressType]);
+                            pw.setProblemStatus(problemNumber, pw.TYPE[progressType]);
                             System.out.println("Success: Status updated.");
                         }
                         case 'n' ->
@@ -175,7 +150,7 @@ public class MenuPrinter {
                             System.out.println("Failed: Invalid entry.");
                     }
                 } else {
-                    System.out.println("Failed: Value " + userProgressType + " is out of bounds.");
+                    System.out.println("Failed: Value " + progressType + " is out of bounds.");
                 }
             }
             case 'n' ->
@@ -185,14 +160,12 @@ public class MenuPrinter {
         }
     }
 
-    private void printReadmeGenerateMenu(ProgressWriter pw) {
-        System.out.print("Confirm overwrite? Data will be lost! y/n\n> ");
-        char userConfirmChar = getUserChar();
-        switch (userConfirmChar) {
+    private void regenerateProgress(ProgressWriter pw) {
+        System.out.print("Confirm regenerate? Data will be lost! y/n\n> ");
+        switch (getUserChar()) {
             case 'y' -> {
                 pw.regenerateValues();
                 System.out.println("Success: All progress has been defaulted.");
-                printReadmeGenerateEditMenu(pw);
             }
             case 'n' ->
                 System.out.println("Aborted: Operation cancelled by user.");
@@ -201,35 +174,31 @@ public class MenuPrinter {
         }
     }
 
-    private void printReadmeGenerateEditMenu(ProgressWriter pw) {
-        System.out.print("-------------------------------------"
-                + "\nWould you like to add edited values to the newly generated list? y/n"
-                + "\n> ");
-        char confirmChar = getUserChar();
-        switch (confirmChar) {
-            case 'y' -> {
-                int status;
-                do {
-                    status = getUserEditChoice();
-
-                    if (status > 0 && status < 4) {
-                        userIn.nextLine();
-                        System.out.print("Status: " + pw.TYPE[status]
-                                + "\nEnter the problems, separated with a comma:"
-                                + "\n> ");
-                        String problemsString = userIn.nextLine();
-                        pw.setStatusFromString(problemsString, pw.TYPE[status]);
-                    }
-                } while (status != 0);
-            }
-            case 'n' ->
-                System.out.println("Aborted: No edits made to regenerated progress values.");
-            default ->
-                System.out.println("Failed: Invalid entry.");
-        }
+    private char getUserChar() {
+        return userIn.next().toLowerCase().charAt(0);
     }
 
-    private int getUserEditChoice() {
+    private void printMainMenuOptions() {
+        System.out.print("\n-------------------------------------"
+                + "\nS: Solve problem by number"
+                + "\nL: Problem List"
+                + "\nV: View Progress"
+                + "\nQ: Quit"
+                + "\n-------------------------------------"
+                + "\n> ");
+    }
+
+    private void printProgressMenuOptions() {
+        System.out.print("-------------------------------------"
+                + "\nL: List progress."
+                + "\nE: Edit problem status."
+                + "\nR: Regenerate all progress."
+                + "\nQ: Return to main menu."
+                + "\n-------------------------------------"
+                + "\n> ");
+    }
+
+    private void printEditMenuOptions() {
         System.out.print("-------------------------------------"
                 + "\nSelect a progress value:"
                 + "\n1: In progress."
@@ -238,10 +207,5 @@ public class MenuPrinter {
                 + "\n0: Escape"
                 + "\n-------------------------------------"
                 + "\n> ");
-        return userIn.nextInt();
-    }
-
-    private char getUserChar() {
-        return userIn.next().toLowerCase().charAt(0);
     }
 }

@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class ProgressWriter {
 
-    private static final int PROBLEM_COUNT = 855;
+    public static final int PROBLEM_COUNT = 855;
     private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
     private File file;
     private ArrayList<String> values;
@@ -149,5 +149,14 @@ public class ProgressWriter {
         for (int i = 0; i < values.size(); i += 2) {
             System.out.println(values.get(i) + " | " + values.get(i + 1));
         }
+    }
+    
+    public static boolean existsProblemFile(int problemNumber) {
+        boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
+        System.out.println("\n============================"
+                + "\nLoading " + Problem.getFileName(problemNumber)
+                + (existsFile ? "\nSuccess" : "\nFailed: File does not exist.")
+                + "\n============================");
+        return existsFile; // returns existence of file as flag
     }
 }
