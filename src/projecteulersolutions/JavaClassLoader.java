@@ -15,8 +15,9 @@ object and its method to run at users request.
 
 This can be used to effectively run a given Euler problem's code
 based on user input.
-*/
+ */
 public class JavaClassLoader extends ClassLoader {
+
     public Object invokeClassMethod(String className, String methodName) {
         try {
             // new ClassLoader for invocation
@@ -37,7 +38,7 @@ public class JavaClassLoader extends ClassLoader {
                 | InvocationTargetException e) { // from .newInstance(); and .invoke(Object);
             // basic exception printing
             // this should be expanded to more granular solutions in the future
-            System.out.println("Exception encountered - " + e);   
+            System.out.println("Exception encountered - " + e);
         }
         return null;
     }

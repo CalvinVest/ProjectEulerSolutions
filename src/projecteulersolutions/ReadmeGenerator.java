@@ -53,7 +53,7 @@ public class ReadmeGenerator {
 
         readmeOut.write("<table>\n\t<tr>\n\t\t<td></td>\n");
         for (int i = 0; i < progressValues.size(); i += 2) {
-            if (i != 0 && i % (2 * valuesPerRow) == 2 * (valuesPerRow -1)) {
+            if (i != 0 && i % (2 * valuesPerRow) == 2 * (valuesPerRow - 1)) {
                 readmeOut.write("\t</tr>\n\t<tr>\n");
             }
             readmeOut.write("\t\t<td>" + progressValues.get(i) + " " + getEmojiString(progressValues.get(i + 1)) + "</td>\n");
