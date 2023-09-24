@@ -193,7 +193,7 @@ public class MenuPrinter {
                     + "\n> ");
             switch (getUserChar()) {
                 case 'y' -> {
-                    pw.setProblemStatus(problemNumber, pw.TYPE[progressType]);
+                    pw.setProblemStatus(problemNumber, progressType);
                     System.out.println("Success: Status updated.");
                 }
                 case 'n' ->
@@ -212,7 +212,7 @@ public class MenuPrinter {
     problems to incomplete, then generates in progress and complete
     problems based on the existence of the problem file and the return
     of Problem0000.isSolved() respectively.
-    */
+     */
     private void regenerateProgress(ProgressWriter pw) {
         System.out.print("Confirm regenerate? Data will be lost! y/n\n> ");
         switch (getUserChar()) {
@@ -240,7 +240,7 @@ public class MenuPrinter {
     printMainMenuOptions is a print function to display the options for
     the main menu, including solving a particular problem, listing all
     available problem solutions, and viewing project progress.
-    */
+     */
     private void printMainMenuOptions() {
         System.out.print("\n-------------------------------------"
                 + "\nS: Solve problem by number"
@@ -255,7 +255,7 @@ public class MenuPrinter {
     printProgressMenuOptions is a print function to display the options
     for the progress menu, including listing all progress values,
     viewing/editing problem status, and regenerating project progress.
-    */
+     */
     private void printProgressMenuOptions() {
         System.out.print("-------------------------------------"
                 + "\nL: List progress."
@@ -274,7 +274,7 @@ public class MenuPrinter {
     The final option is specifically "Escape" because in one
     implementation it is a "cancel" function and in another it is "confirm"
     Escape was the most generic verbiage for this mixed purpose.
-    */
+     */
     private void printEditMenuOptions() {
         System.out.print("-------------------------------------"
                 + "\nSelect a progress value:"

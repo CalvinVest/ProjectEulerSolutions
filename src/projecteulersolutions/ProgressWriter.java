@@ -30,29 +30,25 @@ public class ProgressWriter {
         }
     }
 
-    public void setProblemStatus(int problemNumber, String type) {
+    /*
+    setProblemStatus sets the given problemNumber to the given
+    status type.
+     */
+    public void setProblemStatus(int problemNumber, int type) {
         int index = (problemNumber - 1) * 2;
         values.set(index, Integer.toString(problemNumber));
-        values.set(index + 1, type);
+        values.set(index + 1, TYPE[type]);
 
         saveProgressToFile();
     }
 
-    public void setStatusFromString(String userString, String type) {
-        String[] strs = userString.split(",");
-        for (String str : strs) {
-            try {
-                int i = Integer.parseInt(str.trim());
-                setProblemStatus(i, type);
-            } catch (NumberFormatException nfe) {
-                System.out.println(str + " is not a valid number.");
-            }
-        }
-    }
-
+    /*
+    saveProgressToFile saves all statuses to the progress.txt file and
+    generates a new readme file from the updated progress file.
+     */
     private void saveProgressToFile() {
         ReadmeGenerator rg = new ReadmeGenerator();
-        try (FileWriter fw = new FileWriter(file)) {
+        try ( FileWriter fw = new FileWriter(file)) {
             for (int i = 0; i < values.size(); i += 2) {
                 fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
             }
@@ -64,6 +60,9 @@ public class ProgressWriter {
         rg.generateReadme();
     }
 
+    /*
+    loadProgressFromFile loads all statuses from the progress.txt file.
+     */
     private void loadProgressFromFile(File file) throws FileNotFoundException {
         Scanner fileIn = new Scanner(file);
 
@@ -73,6 +72,12 @@ public class ProgressWriter {
         }
     }
 
+    /*
+    regenerateValues regenerates all statuses by first setting all
+    non-broken problems to incomplete, then generating in progress and
+    complete problems by checking for the existence of the problem file
+    and state of the Problem0000.isSolved method respectively.
+     */
     public void regenerateValues() {
         System.out.println("-------------------------------------");
 
@@ -117,40 +122,56 @@ public class ProgressWriter {
         saveProgressToFile();
     }
 
+    /*
+    isBroken returns if a given problem number's status is set to broken.
+     */
     private boolean isBroken(int problemNumber) {
         return values.get(2 * (problemNumber - 1) + 1).trim().equalsIgnoreCase(TYPE[2]);
     }
 
+    /*
+    getValues returns the arraylist of problem numbers and their statuses
+    as the arraylist values.
+     */
     public ArrayList<String> getValues() {
         return values;
     }
 
+    /*
+    getProblemStatus returns the status of a given problem number.
+     */
     public String getProblemStatus(int problemNumber) {
         int progressIndex = (problemNumber - 1) * 2;
         return values.get(progressIndex + 1);
     }
 
+    /*
+    getProblemTypeNum returns the status of a given problem number as
+    its index in TYPE[].
+     */
     public int getProblemTypeNum(int problemNumber) {
-        switch (getProblemStatus(problemNumber)) {
-            case "COMPLETE":
-                return 0;
-            case "IN_PROGRESS":
-                return 1;
-            case "BROKEN":
-                return 2;
-            case "INCOMPLETE":
-                return 3;
-            default:
-                return 3;
-        }
+        return switch (getProblemStatus(problemNumber)) {
+            case "COMPLETE" ->
+                0;
+            case "IN_PROGRESS" ->
+                1;
+            case "BROKEN" ->
+                2;
+            default ->
+                3;
+        };
     }
 
+    /*
+    printValues prints the problem number and status of all available
+    problem files.
+     */
     public void printValues() {
         for (int i = 0; i < values.size(); i += 2) {
             System.out.println(values.get(i) + " | " + values.get(i + 1));
         }
     }
-    
+
     /*
     existsProblemFile(int) is a flag that indicates existence of
     a given problem number's solution file.
