@@ -1,18 +1,12 @@
 package projecteulersolutions;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ProgressWriter {
 
     public static final int PROBLEM_COUNT = 855;
-    private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
-    private File file;
-    private ArrayList<String> values;
+    private final ProgressFileWriter pfw;
+    private final ArrayList<String> values;
 
     public final String[] TYPE = {
         /*0*/"COMPLETE",
@@ -21,13 +15,8 @@ public class ProgressWriter {
         /*3*/ "INCOMPLETE"};
 
     public ProgressWriter() {
-        file = new File(FILEPATH);
-        values = new ArrayList<>();
-        try {
-            loadProgressFromFile(file);
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("Failed: " + file.getName() + " does not exist.");
-        }
+        pfw = new ProgressFileWriter();
+        values = pfw.getProgress();
     }
 
     /*
@@ -39,37 +28,7 @@ public class ProgressWriter {
         values.set(index, Integer.toString(problemNumber));
         values.set(index + 1, TYPE[type]);
 
-        saveProgressToFile();
-    }
-
-    /*
-    saveProgressToFile saves all statuses to the progress.txt file and
-    generates a new readme file from the updated progress file.
-     */
-    private void saveProgressToFile() {
-        ReadmeGenerator rg = new ReadmeGenerator();
-        try ( FileWriter fw = new FileWriter(file)) {
-            for (int i = 0; i < values.size(); i += 2) {
-                fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
-            }
-            fw.close();
-        } catch (IOException ioe) {
-            System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
-        }
-        System.out.println("Saved to file: " + file.getName());
-        rg.generateReadme();
-    }
-
-    /*
-    loadProgressFromFile loads all statuses from the progress.txt file.
-     */
-    private void loadProgressFromFile(File file) throws FileNotFoundException {
-        Scanner fileIn = new Scanner(file);
-
-        values.clear();
-        while (fileIn.hasNext()) {
-            values.add(fileIn.next());
-        }
+        pfw.setProgress(values);
     }
 
     /*
@@ -90,7 +49,7 @@ public class ProgressWriter {
             }
         }
         // all files in the project folder
-        String[] pathnames = new File(Problem.FILEPATH).list();
+        String[] pathnames = Problem.getProblemFiles();
         ArrayList<String> problems = new ArrayList<>();
         // set all of the completed or in progress files based on existence of files
         for (String pathname : pathnames) {
@@ -119,7 +78,7 @@ public class ProgressWriter {
         });
 
         System.out.println("-------------------------------------");
-        saveProgressToFile();
+        pfw.setProgress(values);
     }
 
     /*
@@ -170,21 +129,5 @@ public class ProgressWriter {
         for (int i = 0; i < values.size(); i += 2) {
             System.out.println(values.get(i) + " | " + values.get(i + 1));
         }
-    }
-
-    /*
-    existsProblemFile(int) is a flag that indicates existence of
-    a given problem number's solution file.
-    
-    The requested problem number is sent as an integer and if the
-    given problem's solution exists return true.
-     */
-    public static boolean existsProblemFile(int problemNumber) {
-        boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
-        System.out.println("\n============================"
-                + "\nLoading " + Problem.getFileName(problemNumber)
-                + (existsFile ? "\nSuccess" : "\nFailed: File does not exist.")
-                + "\n============================");
-        return existsFile; // returns existence of file as flag
     }
 }

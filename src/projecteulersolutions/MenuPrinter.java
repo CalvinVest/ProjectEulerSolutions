@@ -76,7 +76,7 @@ public class MenuPrinter {
         String problemNumberText = String.format("%04d", problemNumber);
         //Initiates new classloader to invoke the problem itself
         JavaClassLoader jcl = new JavaClassLoader();
-        if (ProgressWriter.existsProblemFile(problemNumber)) { // proceeds if problem solution exists
+        if (existsProblemFile(problemNumber)) { // proceeds if problem solution exists
             Date dStart = new Date();
             System.out.println("Problem " + problemNumber + ": ");
             // Problem 0: _
@@ -294,5 +294,21 @@ public class MenuPrinter {
                 + "\n0: Escape"
                 + "\n-------------------------------------"
                 + "\n> ");
+    }
+
+    /*
+    existsProblemFile(int) is a flag that indicates existence of
+    a given problem number's solution file.
+    
+    The requested problem number is sent as an integer and if the
+    given problem's solution exists return true.
+     */
+    public static boolean existsProblemFile(int problemNumber) {
+        boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
+        System.out.println("\n============================"
+                + "\nLoading " + Problem.getFileName(problemNumber)
+                + (existsFile ? "\nSuccess" : "\nFailed: File does not exist.")
+                + "\n============================");
+        return existsFile; // returns existence of file as flag
     }
 }
