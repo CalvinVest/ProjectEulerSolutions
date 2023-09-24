@@ -43,6 +43,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>7 :green_circle:</td>
 		<td>8 :green_circle:</td>
 		<td>9 :green_circle:</td>
+	</tr>
+	<tr>
 		<td>10 :green_circle:</td>
 		<td>11 :green_circle:</td>
 		<td>12 :green_circle:</td>
@@ -53,6 +55,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>17 :green_circle:</td>
 		<td>18 :green_circle:</td>
 		<td>19 :green_circle:</td>
+	</tr>
+	<tr>
 		<td>20 :green_circle:</td>
 		<td>21 :green_circle:</td>
 		<td>22 :green_circle:</td>
@@ -63,6 +67,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>27 :black_circle:</td>
 		<td>28 :black_circle:</td>
 		<td>29 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>30 :green_circle:</td>
 		<td>31 :green_circle:</td>
 		<td>32 :black_circle:</td>
@@ -73,6 +79,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>37 :black_circle:</td>
 		<td>38 :black_circle:</td>
 		<td>39 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>40 :green_circle:</td>
 		<td>41 :black_circle:</td>
 		<td>42 :black_circle:</td>
@@ -83,6 +91,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>47 :black_circle:</td>
 		<td>48 :green_circle:</td>
 		<td>49 :green_circle:</td>
+	</tr>
+	<tr>
 		<td>50 :orange_circle:</td>
 		<td>51 :black_circle:</td>
 		<td>52 :black_circle:</td>
@@ -93,6 +103,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>57 :black_circle:</td>
 		<td>58 :black_circle:</td>
 		<td>59 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>60 :black_circle:</td>
 		<td>61 :black_circle:</td>
 		<td>62 :black_circle:</td>
@@ -103,6 +115,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>67 :green_circle:</td>
 		<td>68 :black_circle:</td>
 		<td>69 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>70 :black_circle:</td>
 		<td>71 :black_circle:</td>
 		<td>72 :orange_circle:</td>
@@ -113,6 +127,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>77 :black_circle:</td>
 		<td>78 :black_circle:</td>
 		<td>79 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>80 :black_circle:</td>
 		<td>81 :black_circle:</td>
 		<td>82 :black_circle:</td>
@@ -123,6 +139,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>87 :black_circle:</td>
 		<td>88 :black_circle:</td>
 		<td>89 :orange_circle:</td>
+	</tr>
+	<tr>
 		<td>90 :black_circle:</td>
 		<td>91 :black_circle:</td>
 		<td>92 :green_circle:</td>
@@ -133,6 +151,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>97 :black_circle:</td>
 		<td>98 :black_circle:</td>
 		<td>99 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>100 :orange_circle:</td>
 		<td>101 :black_circle:</td>
 		<td>102 :black_circle:</td>
@@ -143,6 +163,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>107 :black_circle:</td>
 		<td>108 :black_circle:</td>
 		<td>109 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>110 :black_circle:</td>
 		<td>111 :black_circle:</td>
 		<td>112 :black_circle:</td>
@@ -153,6 +175,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>117 :black_circle:</td>
 		<td>118 :black_circle:</td>
 		<td>119 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>120 :black_circle:</td>
 		<td>121 :black_circle:</td>
 		<td>122 :black_circle:</td>
@@ -163,6 +187,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>127 :black_circle:</td>
 		<td>128 :black_circle:</td>
 		<td>129 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>130 :black_circle:</td>
 		<td>131 :black_circle:</td>
 		<td>132 :black_circle:</td>
@@ -173,6 +199,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>137 :black_circle:</td>
 		<td>138 :black_circle:</td>
 		<td>139 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>140 :black_circle:</td>
 		<td>141 :black_circle:</td>
 		<td>142 :black_circle:</td>
@@ -183,6 +211,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>147 :black_circle:</td>
 		<td>148 :black_circle:</td>
 		<td>149 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>150 :black_circle:</td>
 		<td>151 :black_circle:</td>
 		<td>152 :black_circle:</td>
@@ -193,6 +223,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>157 :black_circle:</td>
 		<td>158 :black_circle:</td>
 		<td>159 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>160 :black_circle:</td>
 		<td>161 :black_circle:</td>
 		<td>162 :black_circle:</td>
@@ -203,6 +235,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>167 :black_circle:</td>
 		<td>168 :black_circle:</td>
 		<td>169 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>170 :black_circle:</td>
 		<td>171 :black_circle:</td>
 		<td>172 :black_circle:</td>
@@ -213,6 +247,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>177 :black_circle:</td>
 		<td>178 :black_circle:</td>
 		<td>179 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>180 :black_circle:</td>
 		<td>181 :black_circle:</td>
 		<td>182 :black_circle:</td>
@@ -223,6 +259,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>187 :black_circle:</td>
 		<td>188 :black_circle:</td>
 		<td>189 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>190 :black_circle:</td>
 		<td>191 :black_circle:</td>
 		<td>192 :black_circle:</td>
@@ -233,6 +271,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>197 :black_circle:</td>
 		<td>198 :black_circle:</td>
 		<td>199 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>200 :black_circle:</td>
 		<td>201 :black_circle:</td>
 		<td>202 :black_circle:</td>
@@ -243,6 +283,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>207 :black_circle:</td>
 		<td>208 :black_circle:</td>
 		<td>209 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>210 :black_circle:</td>
 		<td>211 :black_circle:</td>
 		<td>212 :black_circle:</td>
@@ -253,6 +295,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>217 :black_circle:</td>
 		<td>218 :black_circle:</td>
 		<td>219 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>220 :black_circle:</td>
 		<td>221 :black_circle:</td>
 		<td>222 :black_circle:</td>
@@ -263,6 +307,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>227 :black_circle:</td>
 		<td>228 :black_circle:</td>
 		<td>229 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>230 :black_circle:</td>
 		<td>231 :black_circle:</td>
 		<td>232 :black_circle:</td>
@@ -273,6 +319,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>237 :black_circle:</td>
 		<td>238 :black_circle:</td>
 		<td>239 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>240 :black_circle:</td>
 		<td>241 :black_circle:</td>
 		<td>242 :black_circle:</td>
@@ -283,6 +331,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>247 :black_circle:</td>
 		<td>248 :black_circle:</td>
 		<td>249 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>250 :black_circle:</td>
 		<td>251 :black_circle:</td>
 		<td>252 :black_circle:</td>
@@ -293,6 +343,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>257 :black_circle:</td>
 		<td>258 :black_circle:</td>
 		<td>259 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>260 :black_circle:</td>
 		<td>261 :black_circle:</td>
 		<td>262 :black_circle:</td>
@@ -303,6 +355,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>267 :black_circle:</td>
 		<td>268 :black_circle:</td>
 		<td>269 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>270 :black_circle:</td>
 		<td>271 :black_circle:</td>
 		<td>272 :black_circle:</td>
@@ -313,6 +367,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>277 :black_circle:</td>
 		<td>278 :black_circle:</td>
 		<td>279 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>280 :black_circle:</td>
 		<td>281 :black_circle:</td>
 		<td>282 :black_circle:</td>
@@ -323,6 +379,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>287 :black_circle:</td>
 		<td>288 :black_circle:</td>
 		<td>289 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>290 :black_circle:</td>
 		<td>291 :black_circle:</td>
 		<td>292 :black_circle:</td>
@@ -333,6 +391,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>297 :black_circle:</td>
 		<td>298 :black_circle:</td>
 		<td>299 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>300 :black_circle:</td>
 		<td>301 :black_circle:</td>
 		<td>302 :black_circle:</td>
@@ -343,6 +403,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>307 :black_circle:</td>
 		<td>308 :black_circle:</td>
 		<td>309 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>310 :black_circle:</td>
 		<td>311 :black_circle:</td>
 		<td>312 :black_circle:</td>
@@ -353,6 +415,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>317 :black_circle:</td>
 		<td>318 :black_circle:</td>
 		<td>319 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>320 :black_circle:</td>
 		<td>321 :black_circle:</td>
 		<td>322 :black_circle:</td>
@@ -363,6 +427,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>327 :black_circle:</td>
 		<td>328 :black_circle:</td>
 		<td>329 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>330 :black_circle:</td>
 		<td>331 :black_circle:</td>
 		<td>332 :black_circle:</td>
@@ -373,6 +439,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>337 :black_circle:</td>
 		<td>338 :black_circle:</td>
 		<td>339 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>340 :black_circle:</td>
 		<td>341 :black_circle:</td>
 		<td>342 :black_circle:</td>
@@ -383,6 +451,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>347 :black_circle:</td>
 		<td>348 :black_circle:</td>
 		<td>349 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>350 :black_circle:</td>
 		<td>351 :black_circle:</td>
 		<td>352 :black_circle:</td>
@@ -393,6 +463,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>357 :black_circle:</td>
 		<td>358 :black_circle:</td>
 		<td>359 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>360 :black_circle:</td>
 		<td>361 :black_circle:</td>
 		<td>362 :black_circle:</td>
@@ -403,6 +475,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>367 :black_circle:</td>
 		<td>368 :black_circle:</td>
 		<td>369 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>370 :black_circle:</td>
 		<td>371 :black_circle:</td>
 		<td>372 :black_circle:</td>
@@ -413,6 +487,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>377 :black_circle:</td>
 		<td>378 :black_circle:</td>
 		<td>379 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>380 :black_circle:</td>
 		<td>381 :black_circle:</td>
 		<td>382 :black_circle:</td>
@@ -423,6 +499,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>387 :black_circle:</td>
 		<td>388 :black_circle:</td>
 		<td>389 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>390 :black_circle:</td>
 		<td>391 :black_circle:</td>
 		<td>392 :black_circle:</td>
@@ -433,6 +511,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>397 :black_circle:</td>
 		<td>398 :black_circle:</td>
 		<td>399 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>400 :black_circle:</td>
 		<td>401 :black_circle:</td>
 		<td>402 :black_circle:</td>
@@ -443,6 +523,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>407 :black_circle:</td>
 		<td>408 :black_circle:</td>
 		<td>409 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>410 :black_circle:</td>
 		<td>411 :black_circle:</td>
 		<td>412 :black_circle:</td>
@@ -453,6 +535,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>417 :black_circle:</td>
 		<td>418 :black_circle:</td>
 		<td>419 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>420 :black_circle:</td>
 		<td>421 :black_circle:</td>
 		<td>422 :black_circle:</td>
@@ -463,6 +547,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>427 :black_circle:</td>
 		<td>428 :black_circle:</td>
 		<td>429 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>430 :black_circle:</td>
 		<td>431 :black_circle:</td>
 		<td>432 :black_circle:</td>
@@ -473,6 +559,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>437 :black_circle:</td>
 		<td>438 :black_circle:</td>
 		<td>439 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>440 :black_circle:</td>
 		<td>441 :black_circle:</td>
 		<td>442 :black_circle:</td>
@@ -483,6 +571,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>447 :black_circle:</td>
 		<td>448 :black_circle:</td>
 		<td>449 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>450 :black_circle:</td>
 		<td>451 :black_circle:</td>
 		<td>452 :black_circle:</td>
@@ -493,6 +583,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>457 :black_circle:</td>
 		<td>458 :black_circle:</td>
 		<td>459 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>460 :black_circle:</td>
 		<td>461 :green_circle:</td>
 		<td>462 :black_circle:</td>
@@ -503,6 +595,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>467 :black_circle:</td>
 		<td>468 :black_circle:</td>
 		<td>469 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>470 :black_circle:</td>
 		<td>471 :black_circle:</td>
 		<td>472 :black_circle:</td>
@@ -513,6 +607,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>477 :black_circle:</td>
 		<td>478 :black_circle:</td>
 		<td>479 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>480 :black_circle:</td>
 		<td>481 :black_circle:</td>
 		<td>482 :black_circle:</td>
@@ -523,6 +619,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>487 :black_circle:</td>
 		<td>488 :black_circle:</td>
 		<td>489 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>490 :black_circle:</td>
 		<td>491 :black_circle:</td>
 		<td>492 :black_circle:</td>
@@ -533,6 +631,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>497 :black_circle:</td>
 		<td>498 :black_circle:</td>
 		<td>499 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>500 :black_circle:</td>
 		<td>501 :black_circle:</td>
 		<td>502 :black_circle:</td>
@@ -543,6 +643,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>507 :black_circle:</td>
 		<td>508 :black_circle:</td>
 		<td>509 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>510 :black_circle:</td>
 		<td>511 :black_circle:</td>
 		<td>512 :black_circle:</td>
@@ -553,6 +655,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>517 :black_circle:</td>
 		<td>518 :black_circle:</td>
 		<td>519 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>520 :black_circle:</td>
 		<td>521 :black_circle:</td>
 		<td>522 :black_circle:</td>
@@ -563,6 +667,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>527 :black_circle:</td>
 		<td>528 :black_circle:</td>
 		<td>529 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>530 :black_circle:</td>
 		<td>531 :black_circle:</td>
 		<td>532 :black_circle:</td>
@@ -573,6 +679,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>537 :black_circle:</td>
 		<td>538 :black_circle:</td>
 		<td>539 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>540 :black_circle:</td>
 		<td>541 :black_circle:</td>
 		<td>542 :black_circle:</td>
@@ -583,6 +691,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>547 :black_circle:</td>
 		<td>548 :black_circle:</td>
 		<td>549 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>550 :black_circle:</td>
 		<td>551 :black_circle:</td>
 		<td>552 :black_circle:</td>
@@ -593,6 +703,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>557 :black_circle:</td>
 		<td>558 :black_circle:</td>
 		<td>559 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>560 :black_circle:</td>
 		<td>561 :black_circle:</td>
 		<td>562 :black_circle:</td>
@@ -603,6 +715,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>567 :black_circle:</td>
 		<td>568 :black_circle:</td>
 		<td>569 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>570 :black_circle:</td>
 		<td>571 :black_circle:</td>
 		<td>572 :black_circle:</td>
@@ -613,6 +727,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>577 :black_circle:</td>
 		<td>578 :black_circle:</td>
 		<td>579 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>580 :black_circle:</td>
 		<td>581 :black_circle:</td>
 		<td>582 :black_circle:</td>
@@ -623,6 +739,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>587 :black_circle:</td>
 		<td>588 :black_circle:</td>
 		<td>589 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>590 :black_circle:</td>
 		<td>591 :black_circle:</td>
 		<td>592 :black_circle:</td>
@@ -633,6 +751,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>597 :black_circle:</td>
 		<td>598 :black_circle:</td>
 		<td>599 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>600 :black_circle:</td>
 		<td>601 :black_circle:</td>
 		<td>602 :black_circle:</td>
@@ -643,6 +763,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>607 :black_circle:</td>
 		<td>608 :black_circle:</td>
 		<td>609 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>610 :black_circle:</td>
 		<td>611 :black_circle:</td>
 		<td>612 :black_circle:</td>
@@ -653,6 +775,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>617 :black_circle:</td>
 		<td>618 :black_circle:</td>
 		<td>619 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>620 :black_circle:</td>
 		<td>621 :black_circle:</td>
 		<td>622 :black_circle:</td>
@@ -663,6 +787,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>627 :black_circle:</td>
 		<td>628 :black_circle:</td>
 		<td>629 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>630 :black_circle:</td>
 		<td>631 :black_circle:</td>
 		<td>632 :black_circle:</td>
@@ -673,6 +799,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>637 :black_circle:</td>
 		<td>638 :black_circle:</td>
 		<td>639 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>640 :black_circle:</td>
 		<td>641 :black_circle:</td>
 		<td>642 :black_circle:</td>
@@ -683,6 +811,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>647 :black_circle:</td>
 		<td>648 :black_circle:</td>
 		<td>649 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>650 :black_circle:</td>
 		<td>651 :black_circle:</td>
 		<td>652 :black_circle:</td>
@@ -693,6 +823,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>657 :black_circle:</td>
 		<td>658 :black_circle:</td>
 		<td>659 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>660 :black_circle:</td>
 		<td>661 :black_circle:</td>
 		<td>662 :black_circle:</td>
@@ -703,6 +835,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>667 :black_circle:</td>
 		<td>668 :black_circle:</td>
 		<td>669 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>670 :black_circle:</td>
 		<td>671 :black_circle:</td>
 		<td>672 :black_circle:</td>
@@ -713,6 +847,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>677 :black_circle:</td>
 		<td>678 :black_circle:</td>
 		<td>679 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>680 :black_circle:</td>
 		<td>681 :black_circle:</td>
 		<td>682 :black_circle:</td>
@@ -723,6 +859,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>687 :black_circle:</td>
 		<td>688 :black_circle:</td>
 		<td>689 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>690 :black_circle:</td>
 		<td>691 :black_circle:</td>
 		<td>692 :black_circle:</td>
@@ -733,6 +871,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>697 :black_circle:</td>
 		<td>698 :black_circle:</td>
 		<td>699 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>700 :black_circle:</td>
 		<td>701 :black_circle:</td>
 		<td>702 :black_circle:</td>
@@ -743,6 +883,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>707 :black_circle:</td>
 		<td>708 :black_circle:</td>
 		<td>709 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>710 :black_circle:</td>
 		<td>711 :black_circle:</td>
 		<td>712 :black_circle:</td>
@@ -753,6 +895,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>717 :black_circle:</td>
 		<td>718 :black_circle:</td>
 		<td>719 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>720 :black_circle:</td>
 		<td>721 :black_circle:</td>
 		<td>722 :black_circle:</td>
@@ -763,6 +907,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>727 :black_circle:</td>
 		<td>728 :black_circle:</td>
 		<td>729 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>730 :black_circle:</td>
 		<td>731 :black_circle:</td>
 		<td>732 :black_circle:</td>
@@ -773,6 +919,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>737 :black_circle:</td>
 		<td>738 :black_circle:</td>
 		<td>739 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>740 :black_circle:</td>
 		<td>741 :black_circle:</td>
 		<td>742 :black_circle:</td>
@@ -783,6 +931,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>747 :black_circle:</td>
 		<td>748 :black_circle:</td>
 		<td>749 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>750 :black_circle:</td>
 		<td>751 :black_circle:</td>
 		<td>752 :black_circle:</td>
@@ -793,6 +943,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>757 :black_circle:</td>
 		<td>758 :black_circle:</td>
 		<td>759 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>760 :black_circle:</td>
 		<td>761 :black_circle:</td>
 		<td>762 :black_circle:</td>
@@ -803,6 +955,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>767 :black_circle:</td>
 		<td>768 :black_circle:</td>
 		<td>769 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>770 :black_circle:</td>
 		<td>771 :black_circle:</td>
 		<td>772 :black_circle:</td>
@@ -813,6 +967,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>777 :black_circle:</td>
 		<td>778 :black_circle:</td>
 		<td>779 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>780 :black_circle:</td>
 		<td>781 :black_circle:</td>
 		<td>782 :black_circle:</td>
@@ -823,6 +979,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>787 :black_circle:</td>
 		<td>788 :black_circle:</td>
 		<td>789 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>790 :black_circle:</td>
 		<td>791 :black_circle:</td>
 		<td>792 :black_circle:</td>
@@ -833,6 +991,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>797 :black_circle:</td>
 		<td>798 :black_circle:</td>
 		<td>799 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>800 :black_circle:</td>
 		<td>801 :black_circle:</td>
 		<td>802 :black_circle:</td>
@@ -843,6 +1003,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>807 :black_circle:</td>
 		<td>808 :black_circle:</td>
 		<td>809 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>810 :black_circle:</td>
 		<td>811 :black_circle:</td>
 		<td>812 :black_circle:</td>
@@ -853,6 +1015,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>817 :black_circle:</td>
 		<td>818 :black_circle:</td>
 		<td>819 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>820 :black_circle:</td>
 		<td>821 :black_circle:</td>
 		<td>822 :black_circle:</td>
@@ -863,6 +1027,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>827 :black_circle:</td>
 		<td>828 :black_circle:</td>
 		<td>829 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>830 :black_circle:</td>
 		<td>831 :black_circle:</td>
 		<td>832 :black_circle:</td>
@@ -873,6 +1039,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>837 :black_circle:</td>
 		<td>838 :black_circle:</td>
 		<td>839 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>840 :black_circle:</td>
 		<td>841 :black_circle:</td>
 		<td>842 :black_circle:</td>
@@ -883,6 +1051,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>847 :black_circle:</td>
 		<td>848 :black_circle:</td>
 		<td>849 :black_circle:</td>
+	</tr>
+	<tr>
 		<td>850 :black_circle:</td>
 		<td>851 :black_circle:</td>
 		<td>852 :black_circle:</td>
