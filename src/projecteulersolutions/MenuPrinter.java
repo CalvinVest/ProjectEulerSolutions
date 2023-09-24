@@ -1,6 +1,7 @@
 package projecteulersolutions;
 
 import java.io.File;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -119,6 +120,15 @@ public class MenuPrinter {
             }
         }
         System.out.println("============================");
+        
+        int[] typeCounts = new int[new ProgressWriter().TYPE.length];
+        for (int i = 0; i < typeCounts.length; i++) {
+            typeCounts[i] = Collections.frequency(new ProgressWriter().getValues(), new ProgressWriter().TYPE[i]);
+        }
+        System.out.println("Total Complete: " + typeCounts[0]);
+        System.out.println("Total In Progress: " + typeCounts[1]);
+        System.out.println("Total Broken: " + typeCounts[2]);
+        System.out.println("Total Incomplete: " + typeCounts[3]);
     }
 
     /*
