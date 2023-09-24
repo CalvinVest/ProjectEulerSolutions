@@ -96,6 +96,7 @@ public class MenuPrinter {
     all problems which have a solution as a file list.
      */
     private void printProblemList() {
+        ProgressWriter pw = new ProgressWriter();
         // list of strings to represent source folder contents:
         String[] pathnames = new File(Problem.FILEPATH).list();
 
@@ -106,7 +107,7 @@ public class MenuPrinter {
             if (pathname.matches("Problem\\d{4}.java")) {
                 int problemNumber = Integer.parseInt(pathname.substring(7, 11));
                 String problemStatus;
-                switch (new ProgressWriter().getProblemTypeNum(problemNumber)) {
+                switch (pw.getProblemTypeNum(problemNumber)) {
                     case 0 ->
                         problemStatus = "Complete";
                     case 1 ->
@@ -120,15 +121,14 @@ public class MenuPrinter {
             }
         }
         System.out.println("============================");
-        
-        int[] typeCounts = new int[new ProgressWriter().TYPE.length];
+
+        int[] typeCounts = new int[pw.TYPE.length];
         for (int i = 0; i < typeCounts.length; i++) {
-            typeCounts[i] = Collections.frequency(new ProgressWriter().getValues(), new ProgressWriter().TYPE[i]);
+            typeCounts[i] = Collections.frequency(pw.getValues(), pw.TYPE[i]);
         }
-        System.out.println("Total Complete: " + typeCounts[0]);
-        System.out.println("Total In Progress: " + typeCounts[1]);
-        System.out.println("Total Broken: " + typeCounts[2]);
-        System.out.println("Total Incomplete: " + typeCounts[3]);
+        System.out.println("Total Complete: " + typeCounts[0]
+                + "\nTotal In Progress: " + typeCounts[1]
+                + "\nTotal Broken: " + typeCounts[2]);
     }
 
     /*
