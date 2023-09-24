@@ -105,8 +105,8 @@ public class MenuPrinter {
             switch (userChoice) {
                 case 'l' ->
                     pw.printValues();
-                case 'e' ->
-                    editStatus(pw);
+                case 'v' ->
+                    viewStatus(pw);
                 case 'r' ->
                     regenerateProgress(pw);
                 case 'q' ->
@@ -117,7 +117,7 @@ public class MenuPrinter {
         } while (userChoice != 'q');
     }
 
-    private void editStatus(ProgressWriter pw) {
+    private void viewStatus(ProgressWriter pw) {
         System.out.print("============================\n"
                 + "Enter the problem number: \n> ");
         int problemNumber = userIn.nextInt();
@@ -127,36 +127,39 @@ public class MenuPrinter {
                 + "\n> ");
 
         switch (getUserChar()) {
-            case 'y' -> {
-                printEditMenuOptions();
-                int progressType = userIn.nextInt();
-
-                if (progressType == 0) {
-                    break;
-                }
-
-                if (progressType <= pw.TYPE.length) {
-                    System.out.print("Updating status to " + pw.TYPE[progressType]
-                            + "\nConfirm? y/n:"
-                            + "\n> ");
-                    switch (getUserChar()) {
-                        case 'y' -> {
-                            pw.setProblemStatus(problemNumber, pw.TYPE[progressType]);
-                            System.out.println("Success: Status updated.");
-                        }
-                        case 'n' ->
-                            System.out.println("Aborted: Operation cancelled by user.");
-                        default ->
-                            System.out.println("Failed: Invalid entry.");
-                    }
-                } else {
-                    System.out.println("Failed: Value " + progressType + " is out of bounds.");
-                }
-            }
+            case 'y' ->
+                editStatus(pw, problemNumber);
             case 'n' ->
                 System.out.println("Success: Returning to progress menu.");
             default ->
                 System.out.println("Failed: Invalid entry.");
+        }
+    }
+
+    private void editStatus(ProgressWriter pw, int problemNumber) {
+        printEditMenuOptions();
+        int progressType = userIn.nextInt();
+
+        if (progressType == 0) {
+            return;
+        }
+
+        if (progressType <= pw.TYPE.length) {
+            System.out.print("Updating status to " + pw.TYPE[progressType]
+                    + "\nConfirm? y/n:"
+                    + "\n> ");
+            switch (getUserChar()) {
+                case 'y' -> {
+                    pw.setProblemStatus(problemNumber, pw.TYPE[progressType]);
+                    System.out.println("Success: Status updated.");
+                }
+                case 'n' ->
+                    System.out.println("Aborted: Operation cancelled by user.");
+                default ->
+                    System.out.println("Failed: Invalid entry.");
+            }
+        } else {
+            System.out.println("Failed: Value " + progressType + " is out of bounds.");
         }
     }
 
@@ -191,7 +194,7 @@ public class MenuPrinter {
     private void printProgressMenuOptions() {
         System.out.print("-------------------------------------"
                 + "\nL: List progress."
-                + "\nE: Edit problem status."
+                + "\nV: View problem status."
                 + "\nR: Regenerate all progress."
                 + "\nQ: Return to main menu."
                 + "\n-------------------------------------"
