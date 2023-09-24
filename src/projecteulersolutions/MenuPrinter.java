@@ -13,10 +13,14 @@ public class MenuPrinter {
     }
 
     /*
-    printMainMenu() is the primary UI for this application.
+    printMainMenu is the primary UI for this application.
     The menu contains options for showing particular solutions,
     listing all solutions, showing project progress, and provides simple
     invalid entry catching
+    
+    printMainMenu is the only public method in MenuPrinter and is the
+    only point of access for external calls. All other methods are called
+    through printMainMenu.
      */
     public void printMainMenu() {
         System.out.println("Welcome, select an option.");
@@ -43,7 +47,7 @@ public class MenuPrinter {
     }
 
     /*
-    printSolutionMenu(Scanner) is a menu function for executing a
+    printSolutionMenu is a menu function for executing a
     problem solution. This function calls invokeProblemByNumber()
     to execute the particular solution based on the user input.
      */
@@ -224,9 +228,8 @@ public class MenuPrinter {
     }
 
     /*
-    getUserChar() is a scanner function to return
-    the next char input from the user.
-    This function prints a simple user menu with options
+    getUserChar is a scanner function to return the next char input
+    from the user. This function prints a simple user menu with options
     and gets the next input from user, sanitizes it, and returns it.
      */
     private char getUserChar() {
@@ -268,8 +271,8 @@ public class MenuPrinter {
     for the edit progress menu, including a list of all potential
     problem statuses, as well as an escape option.
     
-    The final option is specifically "Escape" because in one implementation
-    it is a "cancel" function and in another it is "confirm"
+    The final option is specifically "Escape" because in one
+    implementation it is a "cancel" function and in another it is "confirm"
     Escape was the most generic verbiage for this mixed purpose.
     */
     private void printEditMenuOptions() {
