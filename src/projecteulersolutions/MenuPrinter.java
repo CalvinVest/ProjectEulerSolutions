@@ -257,7 +257,7 @@ public class MenuPrinter {
     viewing/editing problem status, and regenerating project progress.
      */
     private void printProgressMenuOptions() {
-        System.out.print("-------------------------------------"
+        System.out.print("\n-------------------------------------"
                 + "\nL: List progress."
                 + "\nV: View problem status."
                 + "\nR: Regenerate all progress."
