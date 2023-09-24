@@ -5,7 +5,8 @@ import java.util.ArrayList;
 public class ProgressWriter {
 
     public static final int PROBLEM_COUNT = 855;
-    private final ProgressFileWriter pfw;
+    private final ProgressFileReader reader;
+    private final ProgressFileWriter writer;
     private final ArrayList<String> values;
 
     public final String[] TYPE = {
@@ -15,8 +16,9 @@ public class ProgressWriter {
         /*3*/ "INCOMPLETE"};
 
     public ProgressWriter() {
-        pfw = new ProgressFileWriter();
-        values = pfw.getProgress();
+        reader = new ProgressFileReader();
+        writer = new ProgressFileWriter();
+        values = reader.getProgress();
     }
 
     /*
@@ -28,7 +30,7 @@ public class ProgressWriter {
         values.set(index, Integer.toString(problemNumber));
         values.set(index + 1, TYPE[type]);
 
-        pfw.setProgress(values);
+        writer.setProgress(values);
     }
 
     /*
@@ -78,7 +80,7 @@ public class ProgressWriter {
         });
 
         System.out.println("-------------------------------------");
-        pfw.setProgress(values);
+        writer.setProgress(values);
     }
 
     /*
