@@ -6,12 +6,18 @@ import java.util.Scanner;
 
 public class MenuPrinter {
 
-    private Scanner userIn;
+    private final Scanner userIn;
 
     public MenuPrinter() {
         userIn = new Scanner(System.in);
     }
 
+    /*
+    printMainMenu() is the primary UI for this application.
+    The menu contains options for showing particular solutions,
+    listing all solutions, showing project progress, and provides simple
+    invalid entry catching
+     */
     public void printMainMenu() {
         System.out.println("Welcome, select an option.");
 
@@ -36,6 +42,11 @@ public class MenuPrinter {
         } while (userInChar != 'q');
     }
 
+    /*
+    printSolutionMenu(Scanner) prints the UI for executing a problem solution.
+    this function calls invokeProblemByNumber() to execute the particular solution
+    based on the user input obtained within this function.
+     */
     private void printSolutionMenu() {
         System.out.print("Enter the Project Euler Problem #: "
                 + "\n> ");
@@ -47,6 +58,15 @@ public class MenuPrinter {
         }
     }
 
+    /*
+    invokeProblemByNumber executes the particular problem
+    requested by the user by taking the problem number as an input
+    and invokes the printSolution method of the particular problem.
+    
+    The existence of the particular class is verified by ifProblemExists(int)
+    and all exceptions related to the classloader are handled within
+    JavaClassLoader.
+     */
     private void invokeProblemByNumber(int problemNumber) {
         String problemNumberText = String.format("%04d", problemNumber);
         //Initiates new classloader to invoke the problem itself
@@ -66,6 +86,10 @@ public class MenuPrinter {
         }
     }
 
+    /*
+    printProblemList() is a print function to display
+    all problems which have a solution as a file list.
+     */
     private void printProblemList() {
         // list of strings to represent source folder contents:
         String[] pathnames = new File(Problem.FILEPATH).list();
@@ -144,7 +168,7 @@ public class MenuPrinter {
             return;
         }
 
-        if (progressType <= pw.TYPE.length) {
+        if (progressType < pw.TYPE.length) {
             System.out.print("Updating status to " + pw.TYPE[progressType]
                     + "\nConfirm? y/n:"
                     + "\n> ");
@@ -177,6 +201,12 @@ public class MenuPrinter {
         }
     }
 
+    /*
+    getUserChar() is a scanner function to return
+    the next char input from the user.
+    This function prints a simple user menu with options
+    and gets the next input from user, sanitizes it, and returns it.
+     */
     private char getUserChar() {
         return userIn.next().toLowerCase().charAt(0);
     }

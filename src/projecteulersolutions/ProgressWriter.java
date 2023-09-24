@@ -151,6 +151,13 @@ public class ProgressWriter {
         }
     }
     
+    /*
+    existsProblemFile(int) is a flag that indicates existence of
+    a given problem number's solution file.
+    
+    The requested problem number is sent as an integer and if the
+    given problem's solution exists return true.
+     */
     public static boolean existsProblemFile(int problemNumber) {
         boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
         System.out.println("\n============================"
