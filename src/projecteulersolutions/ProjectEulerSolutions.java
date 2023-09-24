@@ -118,10 +118,20 @@ public class ProjectEulerSolutions {
         System.out.println("\n============================");
         for (String pathname : pathnames) {
             // if file is in format of "Problem0000.java"
-            if (pathname.matches("Problem\\d\\d\\d\\d\\.java")) {
+            if (pathname.matches("Problem\\d{4}.java")) {
                 int problemNumber = Integer.parseInt(pathname.substring(7, 11));
-                String problemStatus = new ProgressWriter().getProblemStatus(problemNumber);
-                System.out.println(pathname + " - " + problemStatus);
+                String problemStatus;
+                switch (new ProgressWriter().getProblemTypeNum(problemNumber)) {
+                    case 0 ->
+                        problemStatus = "Complete";
+                    case 1 ->
+                        problemStatus = "In Progress";
+                    case 2 ->
+                        problemStatus = "Broken";
+                    default ->
+                        problemStatus = "Incomplete";
+                }
+                System.out.println("Problem " + problemNumber + " - " + problemStatus);
             }
         }
         System.out.println("============================");
@@ -133,7 +143,7 @@ public class ProjectEulerSolutions {
 
         System.out.println("\nTo edit or view project progress values, select an option:");
         do {
-            System.out.print("\n-------------------------------------"
+            System.out.print("-------------------------------------"
                     + "\nL: List progress."
                     + "\nE: Edit problem status."
                     + "\nR: Regenerate all progress."
@@ -157,16 +167,16 @@ public class ProjectEulerSolutions {
         } while (userChoice != 'q');
     }
 
-    private static void printReadmeEditMenu(Scanner userIn, ProgressWriter ppp) {
+    private static void printReadmeEditMenu(Scanner userIn, ProgressWriter pw) {
         System.out.print("============================\n"
                 + "Enter the problem number: \n> ");
         int problemNumber = userIn.nextInt();
         String filename = Problem.getFileName(problemNumber);
         System.out.println(filename);
-        String status = ppp.getProblemStatus(problemNumber);
-        System.out.println("Problem Status: " + status);
-
-        System.out.print("\nEdit Status? y/n:\n> ");
+        String status = pw.getProblemStatus(problemNumber);
+        System.out.print("Problem Status: " + status
+                + "\nEdit Status? y/n:"
+                + "\n> ");
         char userEditChoice = getUserChar(userIn);
 
         switch (userEditChoice) {
@@ -174,12 +184,14 @@ public class ProjectEulerSolutions {
 
                 int userProgressType = getUserEditChoice(userIn);
 
-                if (userProgressType <= ppp.TYPE.length) {
-                    System.out.print("Updating status to " + ppp.TYPE[userProgressType] + "\nConfirm? y/n:\n> ");
+                if (userProgressType <= pw.TYPE.length) {
+                    System.out.print("Updating status to " + pw.TYPE[userProgressType]
+                            + "\nConfirm? y/n:"
+                            + "\n> ");
                     char userEditConfirm = getUserChar(userIn);
                     switch (userEditConfirm) {
                         case 'y' -> {
-                            ppp.setProblemStatus(problemNumber, ppp.TYPE[userProgressType]);
+                            pw.setProblemStatus(problemNumber, pw.TYPE[userProgressType]);
                             System.out.println("Success: Status updated.");
                         }
                         case 'n' ->
@@ -225,25 +237,26 @@ public class ProjectEulerSolutions {
                 do {
                     System.out.print("-------------------------------------"
                             + "\nSelect a progress value:"
-                            + "\n1: Complete, but not on GitHub."
-                            + "\n2: In progress."
-                            + "\n3: Broken."
+                            + "\n1: In progress"
+                            + "\n2: Broken"
+                            + "\n3: Incomplete"
                             + "\n0: Finish"
                             + "\n-------------------------------------"
                             + "\n> ");
                     status = userIn.nextInt();
 
-                    if (status > 0 && status <= 4) {
+                    if (status > 0 && status < 4) {
                         userIn.nextLine();
-                        System.out.println("Status: " + pw.TYPE[status]);
-                        System.out.print("Enter the problems, separated with a comma:\n> ");
+                        System.out.print("Status: " + pw.TYPE[status]
+                                + "\nEnter the problems, separated with a comma:"
+                                + "\n> ");
                         String problemsString = userIn.nextLine();
                         pw.setStatusFromString(problemsString, pw.TYPE[status]);
                     }
                 } while (status != 0);
             }
             case 'n' ->
-                System.out.println("No edits made to regenerated progress values.");
+                System.out.println("Aborted: No edits made to regenerated progress values.");
             default ->
                 System.out.println("Failed: Invalid entry.");
         }
@@ -252,10 +265,9 @@ public class ProjectEulerSolutions {
     private static int getUserEditChoice(Scanner userIn) {
         System.out.print("-------------------------------------"
                 + "\nSelect a progress value:"
-                + "\n1: Complete, but not on GitHub."
-                + "\n2: In progress."
-                + "\n3: Broken."
-                + "\n4: Incomplete."
+                + "\n1: In progress."
+                + "\n2: Broken."
+                + "\n3: Incomplete."
                 + "\n-------------------------------------"
                 + "\n> ");
         return userIn.nextInt();

@@ -52,7 +52,7 @@ public class ProgressWriter {
 
     private void saveProgressToFile() {
         ReadmeGenerator rg = new ReadmeGenerator();
-        try ( FileWriter fw = new FileWriter(file)) {
+        try (FileWriter fw = new FileWriter(file)) {
             for (int i = 0; i < values.size(); i += 2) {
                 fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
             }
@@ -128,6 +128,21 @@ public class ProgressWriter {
     public String getProblemStatus(int problemNumber) {
         int progressIndex = (problemNumber - 1) * 2;
         return values.get(progressIndex + 1);
+    }
+
+    public int getProblemTypeNum(int problemNumber) {
+        switch (getProblemStatus(problemNumber)) {
+            case "COMPLETE":
+                return 0;
+            case "IN_PROGRESS":
+                return 1;
+            case "BROKEN":
+                return 2;
+            case "INCOMPLETE":
+                return 3;
+            default:
+                return 3;
+        }
     }
 
     public void printValues() {
