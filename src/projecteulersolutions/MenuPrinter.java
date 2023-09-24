@@ -43,9 +43,9 @@ public class MenuPrinter {
     }
 
     /*
-    printSolutionMenu(Scanner) prints the UI for executing a problem solution.
-    this function calls invokeProblemByNumber() to execute the particular solution
-    based on the user input obtained within this function.
+    printSolutionMenu(Scanner) is a menu function for executing a
+    problem solution. This function calls invokeProblemByNumber()
+    to execute the particular solution based on the user input.
      */
     private void printSolutionMenu() {
         System.out.print("Enter the Project Euler Problem #: "
@@ -87,7 +87,7 @@ public class MenuPrinter {
     }
 
     /*
-    printProblemList() is a print function to display
+    printProblemList is a print function to display
     all problems which have a solution as a file list.
      */
     private void printProblemList() {
@@ -117,6 +117,12 @@ public class MenuPrinter {
         System.out.println("============================");
     }
 
+    /*
+    printProgressMenu is a menu function that prints its options and,
+    based on a user input, executes a function related to project progress.
+    This includes printing progress values, viewing/editing the status of
+    a problem status, and regenerating progress values.
+     */
     private void printProgressMenu() {
         char userChoice;
         ProgressWriter pw = new ProgressWriter();
@@ -141,6 +147,11 @@ public class MenuPrinter {
         } while (userChoice != 'q');
     }
 
+    /*
+    viewStatus is a menu function that prints the status of a problem
+    number from user input and gives the option to edit the status of
+    that problem.
+     */
     private void viewStatus(ProgressWriter pw) {
         System.out.print("============================\n"
                 + "Enter the problem number: \n> ");
@@ -160,6 +171,10 @@ public class MenuPrinter {
         }
     }
 
+    /*
+    editStatus is a menu function that updates the status of the given
+    problem number and sets it to a status from user input.
+     */
     private void editStatus(ProgressWriter pw, int problemNumber) {
         printEditMenuOptions();
         int progressType = userIn.nextInt();
@@ -187,6 +202,13 @@ public class MenuPrinter {
         }
     }
 
+    /*
+    regenerateProgress will, upon user confirmation, regenerate all
+    progress values for the project. This process sets all nonbroken
+    problems to incomplete, then generates in progress and complete
+    problems based on the existence of the problem file and the return
+    of Problem0000.isSolved() respectively.
+    */
     private void regenerateProgress(ProgressWriter pw) {
         System.out.print("Confirm regenerate? Data will be lost! y/n\n> ");
         switch (getUserChar()) {
@@ -211,6 +233,11 @@ public class MenuPrinter {
         return userIn.next().toLowerCase().charAt(0);
     }
 
+    /*
+    printMainMenuOptions is a print function to display the options for
+    the main menu, including solving a particular problem, listing all
+    available problem solutions, and viewing project progress.
+    */
     private void printMainMenuOptions() {
         System.out.print("\n-------------------------------------"
                 + "\nS: Solve problem by number"
@@ -221,6 +248,11 @@ public class MenuPrinter {
                 + "\n> ");
     }
 
+    /*
+    printProgressMenuOptions is a print function to display the options
+    for the progress menu, including listing all progress values,
+    viewing/editing problem status, and regenerating project progress.
+    */
     private void printProgressMenuOptions() {
         System.out.print("-------------------------------------"
                 + "\nL: List progress."
@@ -231,6 +263,15 @@ public class MenuPrinter {
                 + "\n> ");
     }
 
+    /*
+    printEditMenuOptions is a print function that displays the options
+    for the edit progress menu, including a list of all potential
+    problem statuses, as well as an escape option.
+    
+    The final option is specifically "Escape" because in one implementation
+    it is a "cancel" function and in another it is "confirm"
+    Escape was the most generic verbiage for this mixed purpose.
+    */
     private void printEditMenuOptions() {
         System.out.print("-------------------------------------"
                 + "\nSelect a progress value:"
