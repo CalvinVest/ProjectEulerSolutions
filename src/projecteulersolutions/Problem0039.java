@@ -10,13 +10,13 @@ public class Problem0039 extends Problem {
 
     @Override
     public boolean isSolved() {
-        return false;
+        return true;
     }
 
     @Override
     public void printSolution() {
         // max p is largest allowable perimeter
-        int maxP = 120;
+        int maxP = 1000;
         
         // array to hold count of instances of pythagorean triple sum
         // where the index is the sum of the pythagorean triple
