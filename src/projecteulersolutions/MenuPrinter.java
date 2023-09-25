@@ -321,6 +321,7 @@ public class MenuPrinter {
                 + Problem.getFileName(problemNumber)
                 + (existsFile ? "\nSuccess" : "\nFailed: File does not exist.")
                 + """
+                  
                 ============================
                 """
         );
