@@ -1,5 +1,8 @@
 package projecteulersolutions;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 /*
 The goal of problem 32 is to find the sum of all products whose
 multiplicand/multiplier/product can be written as a 1 through 9
@@ -22,6 +25,47 @@ public class Problem0032 extends Problem {
 
     @Override
     public void printSolution() {
-        System.out.println("This problem has not been solved.");
+        ArrayList<Integer> listOfProducts = new ArrayList<>();
+        int sum = 0;
+
+        /*
+        In establishing upper bounds:
+        The smallest five digit number 10000 is made
+        by multiplying 100 * 100
+        100 * 100 = 10000; 11 digits
+        20 * 500 = 10000; 10 digits
+        5 * 2000 = 10000; 10 digits
+        Any product of at most 10000 is a valid candidate.
+        */
+        for (int i = 1; i <= 10000; i++) {
+            System.out.println(i);
+            for (int j = i; i*j <= 10000; j++) {
+                if (isPandigitalIdentity(i, j, i * j)) {
+                    System.out.println(i + " * " + j + " = " + i*j);
+                    if (!listOfProducts.contains(i * j)) {
+                        listOfProducts.add(i * j);
+                        sum += i * j;
+                    }
+                }
+            }
+        }
+        
+        System.out.println("The sum of all pandigital products is " + sum);
+    }
+
+    private boolean isPandigitalIdentity(int m1, int m2, int p) {
+        String str = Integer.toString(m1)
+                + Integer.toString(m2)
+                + Integer.toString(p);
+        ArrayList<Character> charList = new ArrayList<>();
+        for (char c : str.toCharArray()) {
+            charList.add(c);
+        }
+        Collections.sort(charList);
+        String matchStr = "";
+        for (int i = 0; i < charList.size(); i++) {
+            matchStr += charList.get(i).toString();
+        }
+        return matchStr.matches("123456789");
     }
 }
