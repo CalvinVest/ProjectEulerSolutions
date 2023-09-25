@@ -22,48 +22,63 @@ public class Problem0045 extends Problem {
     public void printSolution() {
         System.out.println(calcTriPentaHexaNum() + " is triangular, pentagonal, and hexagonal.");
     }
-    
+
     private long calcTriPentaHexaNum() {
-        boolean isFound = false;
         // since the given example is T285 = 40755 we start at triIndex 286.
         int triIndex = 286;
-        
-        while(!isFound) {
+
+        // advances until the next pentagonal and hexagonal triangle number is found
+        while (true) {
+            // generate triangle number
             long triNum = triangle(triIndex);
-            if(isPentagonal(triNum) && isHexagonal(triNum)) {
+            //check if triangle number is pentagonal and hexagonal
+            if (isPentagonal(triNum) && isHexagonal(triNum)) {
+                // answer is found
                 return triNum;
             }
             triIndex++;
         }
-        return 0;
     }
-    
+
+    /*
+    isPentagonal checks if the given long is a pentagonal number by generating
+    all pentagonal numbers until it is discovered the given long is a pentagonal
+    number or the generated pentagonal numbers are greater than the given long
+     */
     private boolean isPentagonal(long n) {
-        for(int i = 0; pentagon(i) <= n; i++) {
-            if(pentagon(i) == n) {
-                return true;
-            }
-        }
-        return false;
-    }
-    
-    private boolean isHexagonal(long n) {
-        for(int i = 0; hexagon(i) <= n; i++) {
-            if(hexagon(i) == n) {
+        for (int i = 0; pentagon(i) <= n; i++) {
+            if (pentagon(i) == n) {
                 return true;
             }
         }
         return false;
     }
 
+    /*
+    isHexagonal checks if the given long is a hexagonal number by generating
+    all hexagonal numbers until it is discovered the given long is a hexagonal
+    number or the generated hexagonal numbers are greater than the given long
+     */
+    private boolean isHexagonal(long n) {
+        for (int i = 0; hexagon(i) <= n; i++) {
+            if (hexagon(i) == n) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    //Triangle Tn = n(n+1)/2      1, 3, 6, 10, 15, ...
     private long triangle(int n) {
         return (long) n * (n + 1) / 2;
     }
 
+    //Pentagonal Pn = n(3n-1)/2   1, 5, 12, 22, 35, ...
     private long pentagon(int n) {
         return (long) n * (3 * n - 1) / 2;
     }
 
+    //Hexagonal Hn = n(2n-1)      1, 6, 15, 28, 45, ...
     private long hexagon(int n) {
         return (long) n * (2 * n - 1);
     }
