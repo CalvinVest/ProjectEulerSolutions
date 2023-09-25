@@ -20,7 +20,40 @@ public class Problem0045 extends Problem {
 
     @Override
     public void printSolution() {
-        System.out.println("This problem is currently in progress.");
+        System.out.println(calcTriPentaHexaNum() + " is triangular, pentagonal, and hexagonal.");
+    }
+    
+    private long calcTriPentaHexaNum() {
+        boolean isFound = false;
+        // since the given example is T285 = 40755 we start at triIndex 286.
+        int triIndex = 286;
+        
+        while(!isFound) {
+            long triNum = triangle(triIndex);
+            if(isPentagonal(triNum) && isHexagonal(triNum)) {
+                return triNum;
+            }
+            triIndex++;
+        }
+        return 0;
+    }
+    
+    private boolean isPentagonal(long n) {
+        for(int i = 0; pentagon(i) <= n; i++) {
+            if(pentagon(i) == n) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private boolean isHexagonal(long n) {
+        for(int i = 0; hexagon(i) <= n; i++) {
+            if(hexagon(i) == n) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private long triangle(int n) {
