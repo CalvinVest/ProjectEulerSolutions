@@ -14,7 +14,7 @@ public class Problem0024 extends Problem {
 
     @Override
     public boolean isSolved() {
-        return false;
+        return true;
     }
 
     @Override
@@ -27,6 +27,13 @@ public class Problem0024 extends Problem {
         }
     }
 
+    /*
+    getNthPermutationRecursive returns the recursive result of n permutations of the given str
+    
+    The method used here is factoradic in order to save the time required to calculate
+    up to n permutations. This method instead calculates a single nth permutation
+    using factorial decomposition.
+     */
     private String getNthPermutationRecursive(char[] str, int n) {
         if (str.length == 1) {
             // the last remaining char is returned to break recursion
@@ -57,6 +64,9 @@ public class Problem0024 extends Problem {
         return currentChar + getNthPermutationRecursive(newStr, remainder);
     }
 
+    /*
+    getFactorial recursively returns the factorial of the given n
+    */
     private int getFactorial(int n) {
         if (n <= 1) {
             return 1;
