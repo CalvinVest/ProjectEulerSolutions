@@ -35,13 +35,18 @@ public class Problem0032 extends Problem {
         100 * 100 = 10000; 11 digits
         20 * 500 = 10000; 10 digits
         5 * 2000 = 10000; 10 digits
-        Any product of at most 10000 is a valid candidate.
-        */
-        for (int i = 1; i <= 10000; i++) {
+        upper bound for i * j can be 10000.
+        Anything larger would be too many digits for isPandigitalIdentity
+        
+        let i = 100:
+        i * j = 100 * 100 = 10000; 11 digits;
+        upper bound for i can be 100.
+         */
+        for (int i = 1; i <= 100; i++) {
             System.out.println(i);
-            for (int j = i; i*j <= 10000; j++) {
+            for (int j = i; i * j <= 10000; j++) {
                 if (isPandigitalIdentity(i, j, i * j)) {
-                    System.out.println(i + " * " + j + " = " + i*j);
+                    System.out.println(i + " * " + j + " = " + i * j);
                     if (!listOfProducts.contains(i * j)) {
                         listOfProducts.add(i * j);
                         sum += i * j;
@@ -49,14 +54,16 @@ public class Problem0032 extends Problem {
                 }
             }
         }
-        
+
         System.out.println("The sum of all pandigital products is " + sum);
     }
 
+    /*
+    isPandigitalIdentity returns true if the identity
+    m1 * m2 = p contains all digits 1-9 once.
+     */
     private boolean isPandigitalIdentity(int m1, int m2, int p) {
-        String str = Integer.toString(m1)
-                + Integer.toString(m2)
-                + Integer.toString(p);
+        String str = "" + m1 + m2 + p;
         ArrayList<Character> charList = new ArrayList<>();
         for (char c : str.toCharArray()) {
             charList.add(c);
