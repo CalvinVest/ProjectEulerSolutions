@@ -47,7 +47,8 @@ public class ReadmeGenerator {
         for (int i = 0; i < typeCounts.length; i++) {
             typeCounts[i] = Collections.frequency(progressValues, pw.TYPE[i]);
         }
-        printProgressIndexToReadme(readmeOut, typeCounts);
+        String progressIndex = getProgressIndex(typeCounts);
+        readmeOut.write(progressIndex);
         int valuesPerRow = 10;
 
         readmeOut.write("<table>\n\t<tr>\n\t\t<td></td>\n");
@@ -60,12 +61,12 @@ public class ReadmeGenerator {
         readmeOut.write("\t</tr>\n</table>\n");
     }
 
-    private void printProgressIndexToReadme(FileWriter readmeOut, int[] typeCounts) throws IOException {
-        readmeOut.write("<p>"
+    private String getProgressIndex(int[] typeCounts) {
+        return "<p>"
                 + ":green_circle: Complete: " + typeCounts[0] + "<br>\n"
                 + ":orange_circle: In Progress: " + typeCounts[1] + "<br>\n"
                 + ":red_circle: Broken: " + typeCounts[2] + "<br>\n"
-                + ":black_circle: Incomplete: " + typeCounts[3] + "</p>\n");
+                + ":black_circle: Incomplete: " + typeCounts[3] + "</p>\n";
     }
 
     private String getEmojiString(String type) {
@@ -76,8 +77,6 @@ public class ReadmeGenerator {
                 ":orange_circle:";
             case "BROKEN" ->
                 ":red_circle:";
-            case "INCOMPLETE" ->
-                ":black_circle:";
             default ->
                 ":black_circle:";
         };

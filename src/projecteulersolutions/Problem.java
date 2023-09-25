@@ -1,5 +1,7 @@
 package projecteulersolutions;
 
+import java.io.File;
+
 /*
 Problem.java is an abstract class that provides a single print
 function and is the superclass to all Project Euler problems.
@@ -13,7 +15,7 @@ public abstract class Problem {
     public static final String FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\";
 
     public abstract void printSolution();
-    
+
     public abstract boolean isSolved();
 
     /*
@@ -25,5 +27,9 @@ public abstract class Problem {
      */
     public static String getFileName(int problemNumber) {
         return String.format("Problem%04d.java", problemNumber);
+    }
+
+    public static String[] getProblemFiles() {
+        return new File(Problem.FILEPATH).list();
     }
 }

@@ -1,18 +1,13 @@
 package projecteulersolutions;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ProgressWriter {
 
-    private static final int PROBLEM_COUNT = 855;
-    private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
-    private File file;
-    private ArrayList<String> values;
+    public static final int PROBLEM_COUNT = 855;
+    private final ProgressFileReader reader;
+    private final ProgressFileWriter writer;
+    private final ArrayList<String> values;
 
     public final String[] TYPE = {
         /*0*/"COMPLETE",
@@ -21,58 +16,29 @@ public class ProgressWriter {
         /*3*/ "INCOMPLETE"};
 
     public ProgressWriter() {
-        file = new File(FILEPATH);
-        values = new ArrayList<>();
-        try {
-            loadProgressFromFile(file);
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("Failed: " + file.getName() + " does not exist.");
-        }
+        reader = new ProgressFileReader();
+        writer = new ProgressFileWriter();
+        values = reader.getProgress();
     }
 
-    public void setProblemStatus(int problemNumber, String type) {
+    /*
+    setProblemStatus sets the given problemNumber to the given
+    status type.
+     */
+    public void setProblemStatus(int problemNumber, int type) {
         int index = (problemNumber - 1) * 2;
         values.set(index, Integer.toString(problemNumber));
-        values.set(index + 1, type);
+        values.set(index + 1, TYPE[type]);
 
-        saveProgressToFile();
+        writer.setProgress(values);
     }
 
-    public void setStatusFromString(String userString, String type) {
-        String[] strs = userString.split(",");
-        for (String str : strs) {
-            try {
-                int i = Integer.parseInt(str.trim());
-                setProblemStatus(i, type);
-            } catch (NumberFormatException nfe) {
-                System.out.println(str + " is not a valid number.");
-            }
-        }
-    }
-
-    private void saveProgressToFile() {
-        ReadmeGenerator rg = new ReadmeGenerator();
-        try ( FileWriter fw = new FileWriter(file)) {
-            for (int i = 0; i < values.size(); i += 2) {
-                fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
-            }
-            fw.close();
-        } catch (IOException ioe) {
-            System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
-        }
-        System.out.println("Saved to file: " + file.getName());
-        rg.generateReadme();
-    }
-
-    private void loadProgressFromFile(File file) throws FileNotFoundException {
-        Scanner fileIn = new Scanner(file);
-
-        values.clear();
-        while (fileIn.hasNext()) {
-            values.add(fileIn.next());
-        }
-    }
-
+    /*
+    regenerateValues regenerates all statuses by first setting all
+    non-broken problems to incomplete, then generating in progress and
+    complete problems by checking for the existence of the problem file
+    and state of the Problem0000.isSolved method respectively.
+     */
     public void regenerateValues() {
         System.out.println("-------------------------------------");
 
@@ -85,7 +51,7 @@ public class ProgressWriter {
             }
         }
         // all files in the project folder
-        String[] pathnames = new File(Problem.FILEPATH).list();
+        String[] pathnames = Problem.getProblemFiles();
         ArrayList<String> problems = new ArrayList<>();
         // set all of the completed or in progress files based on existence of files
         for (String pathname : pathnames) {
@@ -114,22 +80,53 @@ public class ProgressWriter {
         });
 
         System.out.println("-------------------------------------");
-        saveProgressToFile();
+        writer.setProgress(values);
     }
 
+    /*
+    isBroken returns if a given problem number's status is set to broken.
+     */
     private boolean isBroken(int problemNumber) {
         return values.get(2 * (problemNumber - 1) + 1).trim().equalsIgnoreCase(TYPE[2]);
     }
 
+    /*
+    getValues returns the arraylist of problem numbers and their statuses
+    as the arraylist values.
+     */
     public ArrayList<String> getValues() {
         return values;
     }
 
+    /*
+    getProblemStatus returns the status of a given problem number.
+     */
     public String getProblemStatus(int problemNumber) {
         int progressIndex = (problemNumber - 1) * 2;
         return values.get(progressIndex + 1);
     }
 
+    /*
+    getProblemTypeNum returns the status of a given problem number as
+    its index in TYPE[].
+     */
+    public int getProblemTypeNum(int problemNumber) {
+        return switch (getProblemStatus(problemNumber)) {
+            case "COMPLETE" ->
+                0;
+            case "IN_PROGRESS" ->
+                1;
+            case "BROKEN" ->
+                2;
+            default ->
+                3;
+        };
+    }
+
+    /*
+    printValues prints the problem number and status of all available
+    problem files.
+     */
     public void printValues() {
         for (int i = 0; i < values.size(); i += 2) {
             System.out.println(values.get(i) + " | " + values.get(i + 1));

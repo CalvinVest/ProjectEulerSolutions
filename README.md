@@ -29,8 +29,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 
 <p>:green_circle: Complete: 33<br>
 :orange_circle: In Progress: 6<br>
-:red_circle: Broken: 3<br>
-:black_circle: Incomplete: 813</p>
+:red_circle: Broken: 1<br>
+:black_circle: Incomplete: 815</p>
 <table>
 	<tr>
 		<td></td>
@@ -86,7 +86,7 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>42 :black_circle:</td>
 		<td>43 :black_circle:</td>
 		<td>44 :black_circle:</td>
-		<td>45 :red_circle:</td>
+		<td>45 :black_circle:</td>
 		<td>46 :black_circle:</td>
 		<td>47 :black_circle:</td>
 		<td>48 :green_circle:</td>
@@ -279,7 +279,7 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>203 :black_circle:</td>
 		<td>204 :black_circle:</td>
 		<td>205 :black_circle:</td>
-		<td>206 :red_circle:</td>
+		<td>206 :black_circle:</td>
 		<td>207 :black_circle:</td>
 		<td>208 :black_circle:</td>
 		<td>209 :black_circle:</td>
