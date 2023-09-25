@@ -9,6 +9,9 @@ f(145) = 1! + 4! + 5! = 1 + 24 + 120 = 145
 145 is a factorial digit value.
 
 Find the sum of all factorial digit values.
+
+This problem is VERY similar to problem 30, and much of the process and
+documentation for this problem was taken from my solution for that problem.
  */
 public class Problem0034 extends Problem {
     
