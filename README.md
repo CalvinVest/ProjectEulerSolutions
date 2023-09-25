@@ -27,8 +27,8 @@ As time goes on I'll be making occasional edits to the core functionality of the
 <h2>My Project Euler progress</h2>
 <p>Not all of my Project Euler progress is recorded here yet. There's problems I've solved whose solutions are not included in this repository, but that should change with time. Stay tuned!</p>
 
-<p>:green_circle: Complete: 39<br>
-:orange_circle: In Progress: 5<br>
+<p>:green_circle: Complete: 40<br>
+:orange_circle: In Progress: 4<br>
 :red_circle: Broken: 0<br>
 :black_circle: Incomplete: 811</p>
 <table>
@@ -93,7 +93,7 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>49 :green_circle:</td>
 	</tr>
 	<tr>
-		<td>50 :orange_circle:</td>
+		<td>50 :green_circle:</td>
 		<td>51 :black_circle:</td>
 		<td>52 :black_circle:</td>
 		<td>53 :black_circle:</td>
