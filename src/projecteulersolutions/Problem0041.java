@@ -27,10 +27,10 @@ public class Problem0041 extends Problem {
     
     Therefore, we're just left with 7-digit numbers between 1234567 and 7654321.
     Our result is somewhere within these bounds.
-    */
+     */
     private static final int LOWER_BOUND = 1234567;
     private static final int UPPER_BOUND = 7654321;
-    
+
     @Override
     public boolean isSolved() {
         return false;
@@ -42,14 +42,14 @@ public class Problem0041 extends Problem {
         Since we're looking for the LARGEST pandigital prime, we can start at
         the upper bound and work downwards, breaking when the first (and largest)
         result is found.
-        */
-        for(int i = UPPER_BOUND; i >= LOWER_BOUND; i--) {
+         */
+        for (int i = UPPER_BOUND; i >= LOWER_BOUND; i--) {
             /*
             This checks if the number is pandigital and prime for EVERY number.
             I was trying to find a more efficient method but really this is the
             most straightfoward for the given problem.
-            */
-            if(isPandigital(i) && isPrime(i)) {
+             */
+            if (isPandigital(i) && isPrime(i)) {
                 System.out.println("The largest pandigital prime is " + i);
                 break;
             }
@@ -104,17 +104,5 @@ public class Problem0041 extends Problem {
             }
         }
         return false;
-    }
-
-    private boolean charArraysEqual(char[] a, char[] b) {
-        if (a.length != b.length) {
-            return false;
-        }
-        for (int i = 0; i < a.length; i++) {
-            if (a[i] != b[i]) {
-                return false;
-            }
-        }
-        return true;
     }
 }
