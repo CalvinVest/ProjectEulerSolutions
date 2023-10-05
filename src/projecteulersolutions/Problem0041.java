@@ -1,7 +1,6 @@
 package projecteulersolutions;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 
 /*
 The goal of problem 41 is to find the largest n-digit pandigital prime
@@ -28,26 +27,47 @@ public class Problem0041 extends Problem {
     }
 
     private boolean isPandigital(int n) {
-        String str = "" + n;
-        ArrayList<Character> digits = new ArrayList<>();
-        for (char c : str.toCharArray()) {
-            digits.add(c);
+        int length = getLengthOfInt(n);
+        char[] digits = new char[length];
+        int temp = n;
+        for (int i = length - 1; i >= 0; i--) {
+            int d = temp % 10;
+            temp /= 10;
+            digits[i] = (char) (d + 48);
         }
-        Collections.sort(digits);
-        String newStr = "";
-        for (int i = 0; i < digits.size(); i++) {
-            newStr += digits.get(i).toString();
+        Arrays.sort(digits);
+        char[] matchArr = new char[length];
+        for (int i = 0; i < digits.length; i++) {
+            matchArr[i] = (char) (i + 1 + 48);
         }
-        String matchStr = "";
-        for (int i = 0; i < digits.size(); i++) {
-            matchStr += i + 1;
-        }
-        return newStr.matches(matchStr);
+        return charArraysEqual(digits, matchArr);
     }
 
     private boolean isPrime(int n) {
         for (int i = 2; i <= n / 2; i++) {
             if (n % i == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private int getLengthOfInt(int n) {
+        int length = 0;
+        long temp = 1;
+        while (temp <= n) {
+            length++;
+            temp *= 10;
+        }
+        return length;
+    }
+    
+    private boolean charArraysEqual(char[] a, char[] b) {
+        if(a.length != b.length) {
+            return false;
+        }
+        for(int i = 0; i < a.length; i++) {
+            if(a[i] != b[i]) {
                 return false;
             }
         }
