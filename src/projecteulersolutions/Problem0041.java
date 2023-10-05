@@ -28,19 +28,13 @@ public class Problem0041 extends Problem {
 
     private boolean isPandigital(int n) {
         int length = getLengthOfInt(n);
-        char[] digits = new char[length];
-        int temp = n;
-        for (int i = length - 1; i >= 0; i--) {
-            int d = temp % 10;
-            temp /= 10;
-            digits[i] = (char) (d + 48);
+        int[] digitArr = getDigitArray(n);
+        for (int i = 0; i < length; i++) {
+            if (!containsDigit(digitArr, i + 1)) {
+                return false;
+            }
         }
-        Arrays.sort(digits);
-        char[] matchArr = new char[length];
-        for (int i = 0; i < digits.length; i++) {
-            matchArr[i] = (char) (i + 1 + 48);
-        }
-        return charArraysEqual(digits, matchArr);
+        return true;
     }
 
     private boolean isPrime(int n) {
@@ -61,13 +55,33 @@ public class Problem0041 extends Problem {
         }
         return length;
     }
-    
+
+    private int[] getDigitArray(int n) {
+        int length = getLengthOfInt(n);
+        int[] arr = new int[length];
+        int temp = n;
+        for (int i = length - 1; i >= 0; i--) {
+            arr[i] = temp % 10;
+            temp /= 10;
+        }
+        return arr;
+    }
+
+    private boolean containsDigit(int[] arr, int d) {
+        for (int i : arr) {
+            if (i == d) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     private boolean charArraysEqual(char[] a, char[] b) {
-        if(a.length != b.length) {
+        if (a.length != b.length) {
             return false;
         }
-        for(int i = 0; i < a.length; i++) {
-            if(a[i] != b[i]) {
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != b[i]) {
                 return false;
             }
         }
