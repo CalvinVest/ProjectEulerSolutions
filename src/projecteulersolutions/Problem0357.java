@@ -10,6 +10,8 @@ Find the sum of all positive integers n not exceeding 100,000,000
 such that for every divisor d of n, d + n/d is prime.
  */
 public class Problem0357 extends Problem {
+    
+    private static final int UPPER_BOUND = 100000000;
 
     @Override
     public boolean isSolved() {
@@ -20,29 +22,18 @@ public class Problem0357 extends Problem {
     public void printSolution() {
         long sum = 0l;
 
-        for (int i = 4; i <= 100000000; i++) {
-            if (i % 100000 == 0) {
-                System.out.println(i + " =======================================");
+        for (int i = 4; i <= UPPER_BOUND; i++) {
+            if(i % (UPPER_BOUND / 10000) == 0) {
+                System.out.printf("Calculating: %5.2f%% (%d/%d)\n"
+                        + "Sum: %d\n", (double) i / UPPER_BOUND * 100,  i, UPPER_BOUND, sum);
             }
             if (!isPrime(i) && hasAllPrimeCofactorSums(i)) {
                 sum += i;
+                //System.out.println("New sum is " + sum);
             }
         }
 
         System.out.println("The sum of all numbers with all prime cofactor sums below 100000000 is " + sum);
-        // need to loop through all values
-        // for(int i = 1; i <= 100000000; i++) {
-
-        // for each number that may be a factor within given value
-        // for(int j = 2; j <= (int) Math.sqrt(i); j++) {
-        // is it a divisor?
-        // if(i % j == 0) {
-        // if so is the divisor plus cofactor prime?
-        // if(isPrime(j + i/j)
-        // if it isn't then this number isn't valid, break
-        // if(!isPrime(j + i/j)) {
-        // if it is then continue through the loop for each divisor
-        // go through all divisors for the number, then do it again
     }
 
     /*
@@ -51,15 +42,19 @@ public class Problem0357 extends Problem {
      */
     private boolean hasAllPrimeCofactorSums(int n) {
         for (int i = 2; i <= n / 2; i++) {
-
-            if (n % i == 0) {
-                if (!isPrime(i + n / i)) {
-                    return false;
-                }
+            if (n % i == 0 && !isPrimeCofactorSum(i, n)) {
+                return false;
             }
         }
         //System.out.println(n + " has all prime cofactor sums.");
         return true;
+    }
+
+    private boolean isPrimeCofactorSum(int i, int n) {
+        if (n % i == 0) {
+            return isPrime(i + n / i);
+        }
+        return false;
     }
 
     private boolean isPrime(int n) {
