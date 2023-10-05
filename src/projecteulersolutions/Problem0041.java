@@ -56,40 +56,74 @@ public class Problem0041 extends Problem {
         }
     }
 
+    /*
+    isPandigital(int) returns if the given int is pandigital.
+    A number is pandigital if the digits contain all integers up to the length
+    of the number. e.g. 4231 or 52431 or 958746312
+     */
     private boolean isPandigital(int n) {
+        // length of the given int in digits
         int length = getLengthOfInt(n);
+        // array to hold the values of the digits
         int[] digitArr = getDigitArray(n);
+        // for every number in the pandigital of the same length
         for (int i = 0; i < length; i++) {
+            // does the digit array contain the particular digit
+            // if not return false
             if (!containsDigit(digitArr, i + 1)) {
                 return false;
             }
         }
+        // else the given number is pandigital since the array of all digit values
+        // contains every digit 1<=n<=length.
         return true;
     }
 
+    /*
+    isPrime(int) returns if the given int is prime.
+    A prime number is only evenly divisible by 1 and itself.
+     */
     private boolean isPrime(int n) {
+        // for every number from 2 halfway to n
         for (int i = 2; i <= n / 2; i++) {
+            // if n can be divided by i, not prime
             if (n % i == 0) {
                 return false;
             }
         }
+        // else number is prime, return true
         return true;
     }
 
+    /*
+    getLengthOfInt(int) returns the length in digits of the given int.
+     */
     private int getLengthOfInt(int n) {
+        // holder int for length of number
         int length = 0;
+        // temp value to indicate size in digits of given int
         long temp = 1;
+        // multiply the temp value by 10 each loop and increment length counter
         while (temp <= n) {
             length++;
             temp *= 10;
         }
+        // return the length counter
         return length;
     }
 
+    /*
+    getDigitArray(int) returns a given int as an array of its digits.
+     */
     private int[] getDigitArray(int n) {
+        // length of array used for array size and for loop
         int length = getLengthOfInt(n);
+        // array to hold digits
         int[] arr = new int[length];
         int temp = n;
+        // add the given digit to the array, starting at least significant index
+        // of the array to match the fact that the digit finding algorithm works
+        // smallest to largest
         for (int i = length - 1; i >= 0; i--) {
             arr[i] = temp % 10;
             temp /= 10;
@@ -97,12 +131,17 @@ public class Problem0041 extends Problem {
         return arr;
     }
 
+    /*
+    containsDigit(int[], int) returns if the given array contains the given int
+    */
     private boolean containsDigit(int[] arr, int d) {
         for (int i : arr) {
+            // if the given int matches any value of the array return true
             if (i == d) {
                 return true;
             }
         }
+        // array does not contain value, return false
         return false;
     }
 }
