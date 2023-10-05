@@ -1,7 +1,5 @@
 package projecteulersolutions;
 
-import java.util.Arrays;
-
 /*
 The goal of problem 41 is to find the largest n-digit pandigital prime
 that exists. An n-digit pandigital number makes use of all the digits
@@ -10,6 +8,28 @@ For example, 2143 is a 4-digit pandigital number.
  */
 public class Problem0041 extends Problem {
 
+    /*
+    When establishing an upper bound for this problem, I can assert that since the
+    greatest pandigital number is 987654321, the upper bound is at most this value.
+    However, every 9-digit pandigital number intrinsically has a digital sum of
+    9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45.
+    
+    It is understood that any integer with a digital sum divisible by 3 is itself
+    divisible by 3. Hence, for any given 9-digit pandigital number, it is not prime.
+    
+    Actually, any 9-, 8-, 6-, 5-, 3-, and 2-digit pandigital number will not be
+    prime for this same reason.
+    The only 1-digit pandigital number is 1, which is not prime.
+    
+    This means that our bounds can be narrowed to be only 4- and 7-digit pandigital
+    numbers. The simplest way to work only within these bounds for the sake of
+    efficiency would be to establish two loops to go through each range of values.
+    */
+    private static final int smallLower = 1234;
+    private static final int smallUpper = 4321;
+    private static final int largeLower = 1234567;
+    private static final int largeUpper = 7654321;
+    
     @Override
     public boolean isSolved() {
         return false;
@@ -18,8 +38,17 @@ public class Problem0041 extends Problem {
     @Override
     public void printSolution() {
         int largest = 0;
-        for (int i = 2; i < 10000000; i++) {
+        /*
+        Both for loops are added for each set of bounds.
+        The values are [1234, 4321] U [1234567, 7654321].
+        */
+        for (int i = smallLower; i <= smallUpper; i++) {
             if (isPandigital(i) && isPrime(i)) {
+                largest = i;
+            }
+        }
+        for(int i = largeLower; i <= largeUpper; i++) {
+            if(isPandigital(i) && isPrime(i)) {
                 largest = i;
             }
         }
