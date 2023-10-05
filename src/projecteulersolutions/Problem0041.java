@@ -22,13 +22,14 @@ public class Problem0041 extends Problem {
     The only 1-digit pandigital number is 1, which is not prime.
     
     This means that our bounds can be narrowed to be only 4- and 7-digit pandigital
-    numbers. The simplest way to work only within these bounds for the sake of
-    efficiency would be to establish two loops to go through each range of values.
+    numbers. Since we're looking for the LARGEST pandigital prime, the 4- digit
+    numbers can be ommitted for convenience's sake.
+    
+    Therefore, we're just left with 7-digit numbers between 1234567 and 7654321.
+    Our result is somewhere within these bounds.
     */
-    private static final int smallLower = 1234;
-    private static final int smallUpper = 4321;
-    private static final int largeLower = 1234567;
-    private static final int largeUpper = 7654321;
+    private static final int LOWER_BOUND = 1234567;
+    private static final int UPPER_BOUND = 7654321;
     
     @Override
     public boolean isSolved() {
@@ -37,22 +38,22 @@ public class Problem0041 extends Problem {
 
     @Override
     public void printSolution() {
-        int largest = 0;
         /*
-        Both for loops are added for each set of bounds.
-        The values are [1234, 4321] U [1234567, 7654321].
+        Since we're looking for the LARGEST pandigital prime, we can start at
+        the upper bound and work downwards, breaking when the first (and largest)
+        result is found.
         */
-        for (int i = smallLower; i <= smallUpper; i++) {
-            if (isPandigital(i) && isPrime(i)) {
-                largest = i;
-            }
-        }
-        for(int i = largeLower; i <= largeUpper; i++) {
+        for(int i = UPPER_BOUND; i >= LOWER_BOUND; i--) {
+            /*
+            This checks if the number is pandigital and prime for EVERY number.
+            I was trying to find a more efficient method but really this is the
+            most straightfoward for the given problem.
+            */
             if(isPandigital(i) && isPrime(i)) {
-                largest = i;
+                System.out.println("The largest pandigital prime is " + i);
+                break;
             }
         }
-        System.out.println("The largest pandigital prime is " + largest);
     }
 
     private boolean isPandigital(int n) {
