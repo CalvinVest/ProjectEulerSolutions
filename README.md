@@ -78,7 +78,7 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>36 :black_circle:</td>
 		<td>37 :black_circle:</td>
 		<td>38 :black_circle:</td>
-		<td>39 :black_circle:</td>
+		<td>39 :green_circle:</td>
 	</tr>
 	<tr>
 		<td>40 :green_circle:</td>
@@ -86,14 +86,14 @@ As time goes on I'll be making occasional edits to the core functionality of the
 		<td>42 :black_circle:</td>
 		<td>43 :black_circle:</td>
 		<td>44 :black_circle:</td>
-		<td>45 :black_circle:</td>
+		<td>45 :green_circle:</td>
 		<td>46 :black_circle:</td>
 		<td>47 :black_circle:</td>
 		<td>48 :green_circle:</td>
 		<td>49 :green_circle:</td>
 	</tr>
 	<tr>
-		<td>50 :orange_circle:</td>
+		<td>50 :green_circle:</td>
 		<td>51 :black_circle:</td>
 		<td>52 :black_circle:</td>
 		<td>53 :black_circle:</td>

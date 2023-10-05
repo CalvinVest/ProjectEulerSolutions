@@ -53,8 +53,9 @@ public class MenuPrinter {
     to execute the particular solution based on the user input.
      */
     private void printSolutionMenu() {
-        System.out.print("Enter the Project Euler Problem #: "
-                + "\n> ");
+        System.out.print("""
+                         Enter the Project Euler Problem #: 
+                         > """);
         int userProblemNumber = userIn.nextInt();
         if (userProblemNumber > 0 && userProblemNumber <= ProgressWriter.PROBLEM_COUNT) {
             invokeProblemByNumber(userProblemNumber);
@@ -167,8 +168,10 @@ public class MenuPrinter {
     that problem.
      */
     private void viewStatus(ProgressWriter pw) {
-        System.out.print("============================\n"
-                + "Enter the problem number: \n> ");
+        System.out.print("""
+                         ============================
+                         Enter the problem number: 
+                         > """);
         int problemNumber = userIn.nextInt();
         System.out.print(Problem.getFileName(problemNumber)
                 + "\nProblem Status: " + pw.getProblemStatus(problemNumber)
@@ -252,13 +255,15 @@ public class MenuPrinter {
     available problem solutions, and viewing project progress.
      */
     private void printMainMenuOptions() {
-        System.out.print("\n-------------------------------------"
-                + "\nS: Solve problem by number"
-                + "\nL: Problem List"
-                + "\nV: View Progress"
-                + "\nQ: Quit"
-                + "\n-------------------------------------"
-                + "\n> ");
+        System.out.print("""
+                         
+                         -------------------------------------
+                         S: Solve problem by number
+                         L: Problem List
+                         V: View Progress
+                         Q: Quit
+                         -------------------------------------
+                         > """);
     }
 
     /*
@@ -267,13 +272,15 @@ public class MenuPrinter {
     viewing/editing problem status, and regenerating project progress.
      */
     private void printProgressMenuOptions() {
-        System.out.print("\n-------------------------------------"
-                + "\nL: List progress."
-                + "\nV: View problem status."
-                + "\nR: Regenerate all progress."
-                + "\nQ: Return to main menu."
-                + "\n-------------------------------------"
-                + "\n> ");
+        System.out.print("""
+                         
+                         -------------------------------------
+                         L: List progress.
+                         V: View problem status.
+                         R: Regenerate all progress.
+                         Q: Return to main menu.
+                         -------------------------------------
+                         > """);
     }
 
     /*
@@ -286,14 +293,16 @@ public class MenuPrinter {
     Escape was the most generic verbiage for this mixed purpose.
      */
     private void printEditMenuOptions() {
-        System.out.print("-------------------------------------"
-                + "\nSelect a progress value:"
-                + "\n1: In progress."
-                + "\n2: Broken."
-                + "\n3: Incomplete."
-                + "\n0: Escape"
-                + "\n-------------------------------------"
-                + "\n> ");
+        System.out.print("""
+                         
+                         -------------------------------------
+                         Select a progress value:
+                         1: In progress.
+                         2: Broken.
+                         3: Incomplete.
+                         0: Escape
+                         -------------------------------------
+                         > """);
     }
 
     /*
@@ -305,10 +314,17 @@ public class MenuPrinter {
      */
     public static boolean existsProblemFile(int problemNumber) {
         boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
-        System.out.println("\n============================"
-                + "\nLoading " + Problem.getFileName(problemNumber)
+        System.out.print("""
+                           
+                           ============================
+                           Loading """
+                + Problem.getFileName(problemNumber)
                 + (existsFile ? "\nSuccess" : "\nFailed: File does not exist.")
-                + "\n============================");
+                + """
+                  
+                ============================
+                """
+        );
         return existsFile; // returns existence of file as flag
     }
 }
