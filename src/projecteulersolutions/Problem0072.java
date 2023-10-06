@@ -15,9 +15,11 @@ It can be seen there are 21 elements in this set.
 
 How many elements would be contained in the set of reduced proper fractions for
 d <= 1,000,000?
-*/
+ */
 public class Problem0072 extends Problem {
-    
+
+    private static final int UPPER_BOUND = 1000000;
+
     /*
     For this problem, my brief roadmap is:
     - Go through all 1 million denominators.
@@ -26,14 +28,47 @@ public class Problem0072 extends Problem {
     - If a given numerator and denominator GCF is 1, then increment count
     - The count is the desired result.
     - Count is likely to be very large. million * million = 1E12.
-    */
+     */
     @Override
     public boolean isSolved() {
         return false;
     }
-    
+
     @Override
     public void printSolution() {
-        System.out.println("This problem has not been solved yet.");
+        long countReducedProper = 0l;
+        boolean[][] sieveMatrix = generateSieve();
+
+        for (int d = 2; d <= UPPER_BOUND; d++) {
+            for (int n = 1; n < d; n++) {
+                if (sieveMatrix[n][d]) {
+                    countReducedProper++;
+                }
+            }
+        }
+
+        System.out.println("There are " + countReducedProper + " reduced proper fractions for d <= " + UPPER_BOUND);
+    }
+
+    private boolean[][] generateSieve() {
+        boolean[][] sieve = new boolean[UPPER_BOUND + 1][UPPER_BOUND + 1];
+        
+        for(int i = 0; i < sieve.length; i++) {
+            for(int j = 0; j < sieve[0].length; j++) {
+                sieve[i][j] = isReducedProper(i,j);
+            }
+        }
+        
+        return sieve;
+    }
+
+    private boolean isReducedProper(int n, int d) {
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0 && d % i == 0) {
+                return false;
+            }
+        }
+        System.out.println(n + "/" + d + " is reduced proper.");
+        return true;
     }
 }
