@@ -10,8 +10,10 @@ Find the sum of all positive integers n not exceeding 100,000,000
 such that for every divisor d of n, d + n/d is prime.
  */
 public class Problem0357 extends Problem {
-    
-    private static final int UPPER_BOUND = 100000000;
+
+    private static final int LIMIT = (int) Math.pow(10, 8);
+
+    private boolean[] sieve;
 
     @Override
     public boolean isSolved() {
@@ -20,49 +22,49 @@ public class Problem0357 extends Problem {
 
     @Override
     public void printSolution() {
+        sieve = sieveOfEratosthenes(LIMIT + 1);
         long sum = 0l;
 
-        for (int i = 4; i <= UPPER_BOUND; i++) {
-            if(i % (UPPER_BOUND / 10000) == 0) {
-                System.out.printf("Calculating: %5.2f%% (%d/%d)\n"
-                        + "Sum: %d\n", (double) i / UPPER_BOUND * 100,  i, UPPER_BOUND, sum);
-            }
-            if (!isPrime(i) && hasAllPrimeCofactorSums(i)) {
-                sum += i;
-                //System.out.println("New sum is " + sum);
+        for (int n = 0; n <= LIMIT; n++) {
+            if (sieve[n + 1] && isPrimeCofactorSum(n)) {
+                sum += n;
             }
         }
-
-        System.out.println("The sum of all numbers with all prime cofactor sums below 100000000 is " + sum);
+        System.out.println("The sum of all integers below 100 million whose cofactor sums are entirely prime is " + sum);
     }
 
-    /*
-    hasAllPrimeCofactorSums(int) returns if a given ints divisors are all prime
-    such that for every divisor d of n, d + n/d is prime.
-     */
-    private boolean hasAllPrimeCofactorSums(int n) {
-        for (int i = 2; i <= n / 2; i++) {
-            if (n % i == 0 && !isPrimeCofactorSum(i, n)) {
+    private boolean isPrimeCofactorSum(int n) {
+        for (int i = 1; i <= (int) Math.sqrt(n); i++) {
+            // if the value is a factor of the given int but i + n/i is not prime
+            // then the value is not a prime cofactor sum
+            if (n % i == 0 && !sieve[i + n / i]) {
                 return false;
             }
         }
-        //System.out.println(n + " has all prime cofactor sums.");
+        // else all factors make prime cofactor sums, return true
         return true;
     }
 
-    private boolean isPrimeCofactorSum(int i, int n) {
-        if (n % i == 0) {
-            return isPrime(i + n / i);
+    public static boolean[] sieveOfEratosthenes(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Negative array size");
         }
-        return false;
-    }
+        boolean[] sieve = new boolean[n + 1];
+        if (n >= 2) {
+            sieve[2] = true;
+        }
+        for (int i = 3; i <= n; i += 2) {
+            sieve[i] = true;
+        }
 
-    private boolean isPrime(int n) {
-        for (int i = 2; i <= n / 2; i++) {
-            if (n % i == 0) {
-                return false;
+        for (int i = 3, end = (int) Math.sqrt(n); i <= end; i += 2) {
+            if (sieve[i]) {
+                int increment = 2 * i;
+                for (int j = i * i; j <= n; j += increment) {
+                    sieve[j] = false;
+                }
             }
         }
-        return true;
+        return sieve;
     }
 }
