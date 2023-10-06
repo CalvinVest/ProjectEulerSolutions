@@ -1,5 +1,7 @@
 package projecteulersolutions;
 
+import java.math.BigInteger;
+
 /*
 The goal of problem 56:
 
@@ -18,6 +20,33 @@ public class Problem0056 extends Problem {
     
     @Override
     public void printSolution() {
-        System.out.println("This problem has not been solved yet.");
+        int maxSum = 0;
+        
+        for(int i = 2; i < 100; i++) {
+            for(int j = 1; j < 100; j++) {
+                BigInteger num = getBigIntPow(i, j);
+                int digitSum = getBigIntDigitSum(num);
+                if (digitSum > maxSum) {
+                    maxSum = digitSum;
+                }
+            }
+        }
+        System.out.println("The largest digital sum of two two-digit powers is " + maxSum);
+    }
+    
+    private BigInteger getBigIntPow(int a, int b) {
+        BigInteger bigA = new BigInteger(Integer.toString(a));
+        return bigA.pow(b);
+    }
+    
+    private int getBigIntDigitSum(BigInteger n) {
+        int sum = 0;
+        int curr = 0;
+        while(!"0".equals(n.toString())) {
+            curr = n.mod(BigInteger.TEN).intValue();
+            sum += curr;
+            n = n.divide(BigInteger.TEN);
+        }
+        return sum;
     }
 }
