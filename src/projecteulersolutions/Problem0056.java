@@ -15,7 +15,7 @@ public class Problem0056 extends Problem {
 
     @Override
     public boolean isSolved() {
-        return false;
+        return true;
     }
 
     @Override
@@ -27,8 +27,7 @@ public class Problem0056 extends Problem {
                 if (i % 10 == 0 || j % 10 == 0) {
                     continue;
                 }
-                BigInteger num = getBigIntPow(i, j);
-                int digitSum = getBigIntDigitSum(num);
+                int digitSum = getBigIntDigitSum(getBigIntPow(i, j));
                 if (digitSum > maxSum) {
                     maxSum = digitSum;
                 }
@@ -44,10 +43,8 @@ public class Problem0056 extends Problem {
 
     private int getBigIntDigitSum(BigInteger n) {
         int sum = 0;
-        int curr = 0;
-        while (!"0".equals(n.toString())) {
-            curr = n.mod(BigInteger.TEN).intValue();
-            sum += curr;
+        while (!n.toString().equals("0")) {
+            sum += n.mod(BigInteger.TEN).intValue();
             n = n.divide(BigInteger.TEN);
         }
         return sum;
