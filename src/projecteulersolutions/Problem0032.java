@@ -1,7 +1,6 @@
 package projecteulersolutions;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /*
 The goal of problem 32 is to find the sum of all products whose
@@ -45,7 +44,12 @@ public class Problem0032 extends Problem {
         for (int i = 1; i <= 100; i++) {
             System.out.println(i);
             for (int j = i; i * j <= 10000; j++) {
-                if (isPandigitalIdentity(i, j, i * j)) {
+                String str = "" + i + j + (i * j);
+                if (str.length() != 9) {
+                    continue;
+                }
+                int parsedInt = Integer.parseInt(str);
+                if (EulerMath.isPandigital(parsedInt)) {
                     System.out.println(i + " * " + j + " = " + i * j);
                     if (!listOfProducts.contains(i * j)) {
                         listOfProducts.add(i * j);
@@ -56,23 +60,5 @@ public class Problem0032 extends Problem {
         }
 
         System.out.println("The sum of all pandigital products is " + sum);
-    }
-
-    /*
-    isPandigitalIdentity returns true if the identity
-    m1 * m2 = p contains all digits 1-9 once.
-     */
-    private boolean isPandigitalIdentity(int m1, int m2, int p) {
-        String str = "" + m1 + m2 + p;
-        ArrayList<Character> charList = new ArrayList<>();
-        for (char c : str.toCharArray()) {
-            charList.add(c);
-        }
-        Collections.sort(charList);
-        String matchStr = "";
-        for (int i = 0; i < charList.size(); i++) {
-            matchStr += charList.get(i).toString();
-        }
-        return matchStr.matches("123456789");
     }
 }
