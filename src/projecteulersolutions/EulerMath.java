@@ -69,18 +69,18 @@ public interface EulerMath {
         return factorial;
     }
 
-    private static int[] getDigitArray(int n) {
+    private static int[] getDigitArray(long n) {
         int length = EulerMath.getDigitCount(n);
         int[] arr = new int[length];
-        int temp = n;
+        long temp = n;
         for (int i = length - 1; i >= 0; i--) {
-            arr[i] = temp % 10;
+            arr[i] = (int) (temp % 10);
             temp /= 10;
         }
         return arr;
     }
 
-    public static int getDigitCount(int n) {
+    public static int getDigitCount(long n) {
         int count = 0;
         while (n > 0) {
             count++;
@@ -89,7 +89,7 @@ public interface EulerMath {
         return count;
     }
 
-    public static int getDigitProduct(int n) {
+    public static int getDigitProduct(long n) {
         int product = 1;
         while (n > 0) {
             product *= n % 10;
@@ -98,7 +98,7 @@ public interface EulerMath {
         return product;
     }
 
-    public static int getDigitSum(int n) {
+    public static int getDigitSum(long n) {
         int sum = 0;
         while (n > 0) {
             sum += n % 10;
