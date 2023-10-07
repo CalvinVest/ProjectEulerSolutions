@@ -40,19 +40,13 @@ public class Problem0049 extends Problem {
                 continue;
             }
             int j = i + 3330, k = i + 6660;
-            if(isPrime(i) && isPrime(j) && isPrime(k) && isPermutation(i, j, k)) {
+            if (EulerMath.isPrime(i)
+                    && EulerMath.isPrime(j)
+                    && EulerMath.isPrime(k)
+                    && isPermutation(i, j, k)) {
                 System.out.printf("The concatenation of the prime permutations is %d%d%d\n", i, j, k);
             }
         }
-    }
-
-    private boolean isPrime(int n) {
-        for (int i = 2; i <= n / 2; i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 
     private boolean isPermutation(int i, int j, int k) {

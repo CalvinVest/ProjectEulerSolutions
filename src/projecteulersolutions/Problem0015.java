@@ -27,14 +27,9 @@ public class Problem0015 extends Problem {
     @Override
     public void printSolution() {
         int latticeWidth = 20;
-        double solution = calcFactorial(latticeWidth * 2) / calcFactorial(latticeWidth) / calcFactorial(latticeWidth);
+        double solution = EulerMath.getFactorial(latticeWidth * 2)
+                / EulerMath.getFactorial(latticeWidth)
+                / EulerMath.getFactorial(latticeWidth);
         System.out.println("The number of paths in a 20x20 lattice is " + (long) solution);
-    }
-
-    private double calcFactorial(int num) {
-        if (num <= 1) {
-            return 1;
-        }
-        return num * calcFactorial(num - 1);
     }
 }

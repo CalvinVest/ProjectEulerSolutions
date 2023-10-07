@@ -39,7 +39,7 @@ public class Problem0024 extends Problem {
             // the last remaining char is returned to break recursion
             return Character.toString(str[0]);
         }
-        int factorial = getFactorial(str.length - 1);
+        int factorial = (int) EulerMath.getFactorial(str.length - 1);
         // the number of times the current factorial divides into the given n
         int dividend = n / factorial;
         // the remainder from the above division
@@ -62,15 +62,5 @@ public class Problem0024 extends Problem {
         // recursively adds all characters to the return string
         // in correct order for given permutation count
         return currentChar + getNthPermutationRecursive(newStr, remainder);
-    }
-
-    /*
-    getFactorial recursively returns the factorial of the given n
-    */
-    private int getFactorial(int n) {
-        if (n <= 1) {
-            return 1;
-        }
-        return n * getFactorial(n - 1);
     }
 }
