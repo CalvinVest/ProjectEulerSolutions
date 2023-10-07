@@ -24,18 +24,13 @@ public class Problem0025 extends Problem {
 
         while (digitCount < 1000) {
             curr = last1.add(last2);
-            index++;            
-            digitCount = countDigits(curr);
-            
-            
+            index++;
+            digitCount = curr.toString().length();
+
             last2 = last1;
             last1 = curr;
         }
-        
-        System.out.println("The index of the first Fibonacci number that contains 1000 digits is " + index);
-    }
 
-    private int countDigits(BigInteger num) {
-        return num.toString().length();
+        System.out.println("The index of the first Fibonacci number that contains 1000 digits is " + index);
     }
 }

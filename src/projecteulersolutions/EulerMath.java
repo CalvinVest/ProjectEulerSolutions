@@ -48,12 +48,39 @@ public interface EulerMath {
         }
         return true;
     }
-    
+
     public static int getNextPrime(int n) {
         int nextPrime = n + 1;
-        while(!isPrime(nextPrime)) {
+        while (!isPrime(nextPrime)) {
             nextPrime++;
         }
         return nextPrime;
+    }
+
+    public static int getDigitCount(int n) {
+        int count = 0;
+        while (n > 0) {
+            count++;
+            n /= 10;
+        }
+        return count;
+    }
+
+    public static int getDigitSum(int n) {
+        int sum = 0;
+        while (n > 0) {
+            sum += n % 10;
+            n /= 10;
+        }
+        return sum;
+    }
+
+    public static int getDigitProduct(int n) {
+        int product = 1;
+        while (n > 0) {
+            product *= n % 10;
+            n /= 10;
+        }
+        return product;
     }
 }

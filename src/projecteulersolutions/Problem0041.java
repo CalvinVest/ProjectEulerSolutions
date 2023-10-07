@@ -64,7 +64,7 @@ public class Problem0041 extends Problem {
      */
     private boolean isPandigital(int n) {
         // length of the given int in digits
-        int length = getLengthOfInt(n);
+        int length = EulerMath.getDigitCount(n);
         // array to hold the values of the digits
         int[] digitArr = getDigitArray(n);
         // for every number in the pandigital of the same length
@@ -81,28 +81,11 @@ public class Problem0041 extends Problem {
     }
 
     /*
-    getLengthOfInt(int) returns the length in digits of the given int.
-     */
-    private int getLengthOfInt(int n) {
-        // holder int for length of number
-        int length = 0;
-        // temp value to indicate size in digits of given int
-        long temp = 1;
-        // multiply the temp value by 10 each loop and increment length counter
-        while (temp <= n) {
-            length++;
-            temp *= 10;
-        }
-        // return the length counter
-        return length;
-    }
-
-    /*
     getDigitArray(int) returns a given int as an array of its digits.
      */
     private int[] getDigitArray(int n) {
         // length of array used for array size and for loop
-        int length = getLengthOfInt(n);
+        int length = EulerMath.getDigitCount(n);
         // array to hold digits
         int[] arr = new int[length];
         int temp = n;
