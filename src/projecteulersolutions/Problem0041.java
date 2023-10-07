@@ -50,7 +50,7 @@ public class Problem0041 extends Problem {
             I was trying to find a more efficient method but really this is the
             most straightfoward for the given problem.
              */
-            if (isPandigital(i) && isPrime(i)) {
+            if (isPandigital(i) && EulerMath.isPrime(i)) {
                 System.out.println("The largest pandigital prime is " + i);
                 break;
             }
@@ -77,22 +77,6 @@ public class Problem0041 extends Problem {
         }
         // else the given number is pandigital since the array of all digit values
         // contains every digit 1<=n<=length.
-        return true;
-    }
-
-    /*
-    isPrime(int) returns if the given int is prime.
-    A prime number is only evenly divisible by 1 and itself.
-     */
-    private boolean isPrime(int n) {
-        // for every number from 2 halfway to n
-        for (int i = 2; i <= n / 2; i++) {
-            // if n can be divided by i, not prime
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        // else number is prime, return true
         return true;
     }
 
