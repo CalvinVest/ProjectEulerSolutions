@@ -48,4 +48,12 @@ public interface EulerMath {
         }
         return true;
     }
+    
+    public static int getNextPrime(int n) {
+        int nextPrime = n + 1;
+        while(!isPrime(nextPrime)) {
+            nextPrime++;
+        }
+        return nextPrime;
+    }
 }
