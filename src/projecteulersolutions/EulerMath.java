@@ -44,6 +44,10 @@ public interface EulerMath {
         return true;
     }
 
+    public static boolean isPythagorean(int a, int b, int c) {
+        return a * a + b * b == c * c;
+    }
+
     public static int getBigIntDigitCount(BigInteger n) {
         return n.toString().length();
     }
