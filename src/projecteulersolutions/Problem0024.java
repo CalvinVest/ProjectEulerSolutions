@@ -39,7 +39,7 @@ public class Problem0024 extends Problem {
             // the last remaining char is returned to break recursion
             return Character.toString(str[0]);
         }
-        int factorial = (int) EulerMath.factorial(str.length - 1);
+        int factorial = (int) EulerMath.getFactorial(str.length - 1);
         // the number of times the current factorial divides into the given n
         int dividend = n / factorial;
         // the remainder from the above division

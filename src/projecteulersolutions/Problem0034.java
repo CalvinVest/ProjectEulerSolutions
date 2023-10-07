@@ -66,7 +66,7 @@ public class Problem0034 extends Problem {
         int temp = n;
         int sum = 0;
         while (temp > 0) {
-            sum += EulerMath.factorial(temp % 10);
+            sum += EulerMath.getFactorial(temp % 10);
             temp /= 10;
         }
         return sum == n;

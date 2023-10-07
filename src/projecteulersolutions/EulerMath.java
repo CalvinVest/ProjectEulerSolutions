@@ -14,22 +14,6 @@ will not have any issues with instantiation.
  */
 public interface EulerMath {
 
-    public static BigInteger bigFactorial(int n) {
-        BigInteger factorial = BigInteger.ONE;
-
-        for (int i = 2; i <= n; i++) {
-            factorial = factorial.multiply(BigInteger.valueOf(i));
-        }
-        return factorial;
-    }
-
-    public static double factorial(int num) {
-        if (num <= 1) {
-            return 1;
-        }
-        return num * factorial(num - 1);
-    }
-    
     public static boolean isPandigital(int n) {
         int length = EulerMath.getDigitCount(n);
         int[] digitArr = getDigitArray(n);
@@ -39,26 +23,6 @@ public interface EulerMath {
             }
         }
         return true;
-    }
-    
-    private static int[] getDigitArray(int n) {
-        int length = EulerMath.getDigitCount(n);
-        int[] arr = new int[length];
-        int temp = n;
-        for (int i = length - 1; i >= 0; i--) {
-            arr[i] = temp % 10;
-            temp /= 10;
-        }
-        return arr;
-    }
-    
-    private static boolean containsInt(int[] arr, int d) {
-        for (int i : arr) {
-            if (i == d) {
-                return true;
-            }
-        }
-        return false;
     }
 
     public static boolean isPrime(int n) {
@@ -80,12 +44,36 @@ public interface EulerMath {
         return true;
     }
 
-    public static int getNextPrime(int n) {
-        int nextPrime = n + 1;
-        while (!isPrime(nextPrime)) {
-            nextPrime++;
+    public static int getBigIntDigitCount(BigInteger n) {
+        return n.toString().length();
+    }
+
+    public static int getBigIntDigitSum(BigInteger n) {
+        int sum = 0;
+        for (String str : n.toString().split("")) {
+            sum += Integer.parseInt(str);
         }
-        return nextPrime;
+        return sum;
+    }
+
+    public static BigInteger getBigIntFactorial(int n) {
+        BigInteger factorial = BigInteger.ONE;
+
+        for (int i = 2; i <= n; i++) {
+            factorial = factorial.multiply(BigInteger.valueOf(i));
+        }
+        return factorial;
+    }
+
+    private static int[] getDigitArray(int n) {
+        int length = EulerMath.getDigitCount(n);
+        int[] arr = new int[length];
+        int temp = n;
+        for (int i = length - 1; i >= 0; i--) {
+            arr[i] = temp % 10;
+            temp /= 10;
+        }
+        return arr;
     }
 
     public static int getDigitCount(int n) {
@@ -97,6 +85,15 @@ public interface EulerMath {
         return count;
     }
 
+    public static int getDigitProduct(int n) {
+        int product = 1;
+        while (n > 0) {
+            product *= n % 10;
+            n /= 10;
+        }
+        return product;
+    }
+
     public static int getDigitSum(int n) {
         int sum = 0;
         while (n > 0) {
@@ -106,12 +103,27 @@ public interface EulerMath {
         return sum;
     }
 
-    public static int getDigitProduct(int n) {
-        int product = 1;
-        while (n > 0) {
-            product *= n % 10;
-            n /= 10;
+    public static double getFactorial(int num) {
+        if (num <= 1) {
+            return 1;
         }
-        return product;
+        return num * getFactorial(num - 1);
+    }
+
+    public static int getNextPrime(int n) {
+        int nextPrime = n + 1;
+        while (!isPrime(nextPrime)) {
+            nextPrime++;
+        }
+        return nextPrime;
+    }
+
+    private static boolean containsInt(int[] arr, int d) {
+        for (int i : arr) {
+            if (i == d) {
+                return true;
+            }
+        }
+        return false;
     }
 }
