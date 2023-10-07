@@ -14,7 +14,7 @@ This problem is VERY similar to problem 30, and much of the process and
 documentation for this problem was taken from my solution for that problem.
  */
 public class Problem0034 extends Problem {
-    
+
     /*
     The upper bound for this problem's loop can be found by first evaluating how
     many digits the bound will be. As we know the largest calculated value for any
@@ -34,51 +34,41 @@ public class Problem0034 extends Problem {
     The upper bound is 7 digits.
     We can further reduce the upper bound by understanding the maximum value obtainable
     within 7 digits is 7 * 9!, which is 2540160. This is the upper bound.
-    */
+     */
     private static final int UPPER_BOUND = 2540160;
-    
+
     @Override
     public boolean isSolved() {
         return true;
     }
-    
+
     @Override
     public void printSolution() {
         int sum = 0;
-        
-        for(int i = 3; i <= UPPER_BOUND; i++) {
-            if(isFactorialDigitValue(i)) {
+
+        for (int i = 3; i <= UPPER_BOUND; i++) {
+            if (isFactorialDigitValue(i)) {
                 sum += i;
             }
         }
-        
+
         System.out.println("The sum of all factorial digit sums is " + sum);
     }
-    
+
     /*
     isFactorialDigitValue(int) returns true if the given int value
     is a sum of the factorial of its digits.
     
     For example,
     return 1234 == 1! + 2! + 3! + 4!;
-    */
+     */
     private boolean isFactorialDigitValue(int n) {
         int temp = n;
         int sum = 0;
         while (temp > 0) {
-            sum += getFactorial(temp % 10);
+            sum += EulerMath.factorial(temp % 10);
             temp /= 10;
         }
         return sum == n;
-    }
-    
-    /*
-    getFactorial recursively returns the factorial of the given n
-    */
-    private int getFactorial(int n) {
-        if (n <= 1) {
-            return 1;
-        }
-        return n * getFactorial(n - 1);
     }
 }

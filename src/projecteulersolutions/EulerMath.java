@@ -1,5 +1,7 @@
 package projecteulersolutions;
 
+import java.math.BigInteger;
+
 /*
 EulerMath is my own homebrew calculator to assist in solving
 Project Euler problems by building a collection of useful mathematical
@@ -11,6 +13,22 @@ constructor and making the class final. Interfaces can have static classes, and
 will not have any issues with instantiation.
  */
 public interface EulerMath {
+
+    public static BigInteger bigFactorial(int n) {
+        BigInteger factorial = BigInteger.ONE;
+
+        for (int i = 2; i <= n; i++) {
+            factorial = factorial.multiply(BigInteger.valueOf(i));
+        }
+        return factorial;
+    }
+
+    public static double factorial(int num) {
+        if (num <= 1) {
+            return 1;
+        }
+        return num * factorial(num - 1);
+    }
 
     public static boolean isPrime(int n) {
         if (n < 2) {

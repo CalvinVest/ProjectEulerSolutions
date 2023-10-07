@@ -19,22 +19,10 @@ public class Problem0020 extends Problem {
     @Override
     public void printSolution() {
         // BigInteger object to hold the value of 100!
-        BigInteger factorial = getFactorial(100);
+        BigInteger factorial = EulerMath.bigFactorial(100);
         // int value to hold the sum of the digits of 100!
         int digitSum = sumDigits(factorial);
         System.out.println("The sum of the digits of (100)! is " + digitSum);
-    }
-
-    // getFactorial(int n) returns the factorial value n! as a BigInteger
-    private BigInteger getFactorial(int n) {
-        BigInteger factorial = BigInteger.ONE;
-
-        // for all values i = 2 to n, multiply factorial by i
-        for (int i = 2; i <= n; i++) {
-            factorial = factorial.multiply(BigInteger.valueOf(i));
-        }
-
-        return factorial;
     }
 
     private int sumDigits(BigInteger n) {
