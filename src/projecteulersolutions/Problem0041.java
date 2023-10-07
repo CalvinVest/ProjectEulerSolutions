@@ -50,66 +50,10 @@ public class Problem0041 extends Problem {
             I was trying to find a more efficient method but really this is the
             most straightfoward for the given problem.
              */
-            if (isPandigital(i) && EulerMath.isPrime(i)) {
+            if (EulerMath.isPandigital(i) && EulerMath.isPrime(i)) {
                 System.out.println("The largest pandigital prime is " + i);
                 break;
             }
         }
-    }
-
-    /*
-    isPandigital(int) returns if the given int is pandigital.
-    A number is pandigital if the digits contain all integers up to the length
-    of the number. e.g. 4231 or 52431 or 958746312
-     */
-    private boolean isPandigital(int n) {
-        // length of the given int in digits
-        int length = EulerMath.getDigitCount(n);
-        // array to hold the values of the digits
-        int[] digitArr = getDigitArray(n);
-        // for every number in the pandigital of the same length
-        for (int i = 0; i < length; i++) {
-            // does the digit array contain the particular digit
-            // if not return false
-            if (!containsDigit(digitArr, i + 1)) {
-                return false;
-            }
-        }
-        // else the given number is pandigital since the array of all digit values
-        // contains every digit 1<=n<=length.
-        return true;
-    }
-
-    /*
-    getDigitArray(int) returns a given int as an array of its digits.
-     */
-    private int[] getDigitArray(int n) {
-        // length of array used for array size and for loop
-        int length = EulerMath.getDigitCount(n);
-        // array to hold digits
-        int[] arr = new int[length];
-        int temp = n;
-        // add the given digit to the array, starting at least significant index
-        // of the array to match the fact that the digit finding algorithm works
-        // smallest to largest
-        for (int i = length - 1; i >= 0; i--) {
-            arr[i] = temp % 10;
-            temp /= 10;
-        }
-        return arr;
-    }
-
-    /*
-    containsDigit(int[], int) returns if the given array contains the given int
-     */
-    private boolean containsDigit(int[] arr, int d) {
-        for (int i : arr) {
-            // if the given int matches any value of the array return true
-            if (i == d) {
-                return true;
-            }
-        }
-        // array does not contain value, return false
-        return false;
     }
 }

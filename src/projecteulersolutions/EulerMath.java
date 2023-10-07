@@ -29,6 +29,37 @@ public interface EulerMath {
         }
         return num * factorial(num - 1);
     }
+    
+    public static boolean isPandigital(int n) {
+        int length = EulerMath.getDigitCount(n);
+        int[] digitArr = getDigitArray(n);
+        for (int i = 0; i < length; i++) {
+            if (!containsInt(digitArr, i + 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private static int[] getDigitArray(int n) {
+        int length = EulerMath.getDigitCount(n);
+        int[] arr = new int[length];
+        int temp = n;
+        for (int i = length - 1; i >= 0; i--) {
+            arr[i] = temp % 10;
+            temp /= 10;
+        }
+        return arr;
+    }
+    
+    private static boolean containsInt(int[] arr, int d) {
+        for (int i : arr) {
+            if (i == d) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     public static boolean isPrime(int n) {
         if (n < 2) {
