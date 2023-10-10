@@ -19,8 +19,6 @@ produces the maximum number of primes for consecutive values of n, starting with
  */
 public class Problem0027 extends Problem {
 
-    private static final int LIMIT = 1000;
-
     @Override
     public boolean isSolved() {
         return false;
@@ -30,26 +28,37 @@ public class Problem0027 extends Problem {
     public void printSolution() {
         int maxCount = 0;
         int maxProd = 0;
-        for (int a = -1 * LIMIT + 1; a < LIMIT; a++) {
-            for (int b = -1 * LIMIT; b <= LIMIT; b++) {
+        // for |a| < 1000 and |b| <= 1000
+        for (int a = -999; a < 1000; a++) {
+            for (int b = -1000; b <= 1000; b++) {
+                // count tracks the number of consecutive primes
                 int count = 0;
+                // n is the variable for the quadratic formula and increments
                 int n = 0;
+                // the first value is 0*0 + a*0 + b = b.
                 int curr = b;
 
+                // while the quadratic results are prime
                 while (EulerMath.isPrime(curr)) {
+                    // increment count of consecutive primes
                     count++;
-                    
+
+                    // increment quadratic variable
                     n++;
+                    // recalculate new curr value
                     curr = n * n + a * n + b;
                 }
-                
-                if(count > maxCount) {
+
+                // if new max consecutive primes is found
+                if (count > maxCount) {
+                    // redefine max consecutive primes
                     maxCount = count;
+                    // save product of coefficients, this is the result.
                     maxProd = a * b;
                 }
             }
         }
-        
+
         System.out.println("The product of the coefficients of the longest quadratic prime chain is " + maxProd);
     }
 }
