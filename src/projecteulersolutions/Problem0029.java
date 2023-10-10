@@ -1,5 +1,9 @@
 package projecteulersolutions;
 
+import java.math.BigInteger;
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 Consider all integer combinations of a^b for 2 <= a <= 5 and 2 <= b <= 5:
 2^2 = 4     2^3 = 8     2^4 = 16    2^5 = 32
@@ -22,6 +26,18 @@ public class Problem0029 extends Problem {
     
     @Override
     public void printSolution() {
+        List<String> list = new ArrayList<>();
         
+        for(int a = 2; a <= 100; a++) {
+            for(int b = 2; b <= 100; b++) {
+                BigInteger curr = EulerMath.getBigIntPow(a, b);
+                if(!list.contains(curr.toString())) {
+                    list.add(curr.toString());
+                }
+            }
+        }
+        
+        System.out.println("The number of distinct values of a^b for "
+        + "|a| < 100 and |b| <= 100 is " + list.size());
     }
 }
