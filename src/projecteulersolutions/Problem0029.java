@@ -26,17 +26,22 @@ public class Problem0029 extends Problem {
     
     @Override
     public void printSolution() {
+        // list to store all distinct values of a^b
         List<String> list = new ArrayList<>();
         
+        // for 2 <= a,b <= 100
         for(int a = 2; a <= 100; a++) {
             for(int b = 2; b <= 100; b++) {
+                // get a^b
                 BigInteger curr = EulerMath.getBigIntPow(a, b);
+                // if a^b is not in the list, add it
                 if(!list.contains(curr.toString())) {
                     list.add(curr.toString());
                 }
             }
         }
         
+        // uses size of a^b list for count
         System.out.println("The number of distinct values of a^b for "
         + "|a| < 100 and |b| <= 100 is " + list.size());
     }
