@@ -114,6 +114,15 @@ public interface EulerMath {
         return num * getFactorial(num - 1);
     }
 
+    public static int getGCF(int num1, int num2) {
+        while (num2 != 0) {
+            int temp = num2;
+            num2 = num1 % num2;
+            num1 = temp;
+        }
+        return num1;
+    }
+
     public static int getNextPrime(int n) {
         int nextPrime = n + 1;
         while (!isPrime(nextPrime)) {

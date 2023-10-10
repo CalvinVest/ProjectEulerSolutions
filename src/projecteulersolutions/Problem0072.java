@@ -18,7 +18,7 @@ d <= 1,000,000?
  */
 public class Problem0072 extends Problem {
 
-    private static final int UPPER_BOUND = 1000000;
+    private static final int UPPER_BOUND = 10000;
 
     /*
     For this problem, my brief roadmap is:
@@ -36,7 +36,24 @@ public class Problem0072 extends Problem {
 
     @Override
     public void printSolution() {
-        long countReducedProper = 0l;
+        long count = 0;
+
+        for (int denom = 2; denom <= UPPER_BOUND; denom++) {
+            if (EulerMath.isPrime(denom)) {
+                count += denom - 1;
+                continue;
+            }
+            for (int numer = 1; numer < denom; numer++) {
+                if (EulerMath.getGCF(numer, denom) == 1) {
+                    count++;
+                    //System.out.println(count + ": " + numer + "/" + denom);
+                }
+            }
+        }
+
+        System.out.println("The number of reduced proper fractions for denominator <= " + UPPER_BOUND + " is " + count);
+
+        /*long countReducedProper = 0l;
         boolean[][] sieveMatrix = generateSieve();
 
         for (int d = 2; d <= UPPER_BOUND; d++) {
@@ -47,10 +64,10 @@ public class Problem0072 extends Problem {
             }
         }
 
-        System.out.println("There are " + countReducedProper + " reduced proper fractions for d <= " + UPPER_BOUND);
+        System.out.println("There are " + countReducedProper + " reduced proper fractions for d <= " + UPPER_BOUND);*/
     }
 
-    private boolean[][] generateSieve() {
+    /*private boolean[][] generateSieve() {
         boolean[][] sieve = new boolean[UPPER_BOUND + 1][UPPER_BOUND + 1];
         
         for(int i = 0; i < sieve.length; i++) {
@@ -60,8 +77,9 @@ public class Problem0072 extends Problem {
         }
         
         return sieve;
-    }
+    }*/
 
+ /*
     private boolean isReducedProper(int n, int d) {
         for (int i = 2; i < n; i++) {
             if (n % i == 0 && d % i == 0) {
@@ -70,5 +88,5 @@ public class Problem0072 extends Problem {
         }
         System.out.println(n + "/" + d + " is reduced proper.");
         return true;
-    }
+    }*/
 }
