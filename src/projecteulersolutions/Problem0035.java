@@ -26,16 +26,22 @@ public class Problem0035 extends Problem {
 
     @Override
     public void printSolution() {
+        // boolean array where prime indeces are true
         boolean[] sieve = sieveOfEratosthenes(LIMIT);
 
+        // for all prime indeces of the sieve
         for (int i = 0; i < sieve.length; i++) {
             if (sieve[i]) {
+                // if the given prime is not circular set to false
                 if (!isCircularPrime(i)) {
                     sieve[i] = false;
                 }
             }
         }
+        // the resulting sieve array after this loop only shows true for circular
+        // prime values instead of all primes
 
+        // count of circular primes
         int count = 0;
         for (boolean b : sieve) {
             if (b) {
@@ -44,7 +50,6 @@ public class Problem0035 extends Problem {
         }
 
         System.out.println("The number of circular primes below one million is " + count);
-
     }
 
     private boolean[] sieveOfEratosthenes(int n) {
@@ -63,29 +68,48 @@ public class Problem0035 extends Problem {
         return truthArray;
     }
 
+    /*
+    isCircularPrime(int) returns whether the given
+    number is prime for all rotations of the given number.
+     */
     private boolean isCircularPrime(int n) {
+        // all rotations in an array
         int[] rotations = getRotations(n);
 
+        // for each rotation
         for (int rotation : rotations) {
+            // if a given rotation is not prime, then the number is not a circular prime
             if (!EulerMath.isPrime(rotation)) {
                 return false;
             }
         }
+        // all rotations are prime, number is a circular prime
         return true;
     }
 
+    /*
+    getRotations(int) returns all rotations of the given int
+    e.g. for the input n = 159
+    the function returns 159, 915, 591
+     */
     private int[] getRotations(int n) {
+        // int length
         int digitCount = EulerMath.getDigitCount(n);
+        // for a given x-digit number, mod is 10^(x-1)
         int mod = (int) Math.pow(10, digitCount - 1);
         int[] rotations = new int[digitCount];
 
+        // for all digits of the given int
         for (int i = 0; i < digitCount; i++) {
+            // stores rotation
             rotations[i] = n;
+            // gets first digit for digit shift
             int firstDigit = n / mod;
-            int left = ((n * 10) + firstDigit) - (firstDigit * mod * 10);
-            n = left;
+            // shifts all digits
+            int nextRotation = ((n * 10) + firstDigit) - (firstDigit * mod * 10);
+            // sets n to next rotation
+            n = nextRotation;
         }
-
         return rotations;
     }
 }
