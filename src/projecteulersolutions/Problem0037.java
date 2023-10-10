@@ -27,8 +27,9 @@ public class Problem0037 extends Problem {
 
         while (found < COUNT_VALID) {
             if (EulerMath.isPrime(i)) {
+                // if the number is a truncatable prime in both directions, add
+                // num to sum and increment count of found numbers.
                 if (isPrimeLTR(i) && isPrimeRTL(i)) {
-                    System.out.println(i + " is a bidirectional truncatable prime - " + found);
                     sum += i;
                     found++;
                 }
@@ -39,27 +40,40 @@ public class Problem0037 extends Problem {
         System.out.println("The sum of all truncatable primes is " + sum);
     }
 
+    // isPrimeLTR truncates digits starting at the most significant and checks
+    // that each iteration while the number is a positive integer is a prime number.
     private boolean isPrimeLTR(int num) {
+        // gets 10^(num length - 1) as our modulo
         int mod = (int) Math.pow(10, EulerMath.getDigitCount(num) - 1);
+        // truncates most significant digit
         int curr = num % mod;
 
+        // while still positive integer
         while (curr > 0) {
+            // if not prime, return false. not truncatable prime
             if (!EulerMath.isPrime(curr)) {
                 return false;
             }
+            // reduces modulo by one digit and truncates next most significant digit
             mod /= 10;
             curr %= mod;
         }
         return true;
     }
 
+    // isPrimeRTL truncates digits starting at the least significant and checks
+    // that each iteration while the number is a positive integer is a prime number.
     private boolean isPrimeRTL(int num) {
+        // truncates least significant digit
         int curr = num /= 10;
 
+        // while still positive integer
         while (curr > 0) {
+            // if not prime, return false. not truncatable prime
             if (!EulerMath.isPrime(curr)) {
                 return false;
             }
+            // truncates least significant digit
             curr /= 10;
         }
         return true;
