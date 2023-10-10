@@ -15,16 +15,27 @@ public class Problem0089 extends Problem {
     @Override
     public void printSolution() {
         File file = new File(Problem.FILEPATH + "problem0089.txt");
-        
-        try{
+
+        try {
             Scanner fileIn = new Scanner(file);
-            
-            while(fileIn.hasNext()) {
-                String nextInStr = fileIn.next();
+            int sumSaved = 0;
+
+            while (fileIn.hasNext()) {
+                String currRoman = fileIn.next();
+
+                int num = romanToNum(currRoman);
+                String convertedRoman = numToRoman(num);
+
+                int diffLength = currRoman.length() - convertedRoman.length();
+
+                if (diffLength > 0) {
+                    sumSaved += diffLength;
+                }
             }
-            
             fileIn.close();
-        } catch(FileNotFoundException fnfe) {
+
+            System.out.println("The total number of characters saved by converting all numerals is " + sumSaved);
+        } catch (FileNotFoundException fnfe) {
             System.out.println("Failed: File " + file.getName() + " not found.");
         }
     }
