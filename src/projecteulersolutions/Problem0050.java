@@ -40,50 +40,22 @@ public class Problem0050 extends Problem {
         sum = currPrime + nextPrime + primeAfterThat...n times
         if currPrime * n > upperBound, this sum would not be valid
          */
-        for (int i = starterPrime; i < upperBound / maxSteps; i = getNextPrime(i)) {
+        for (int i = starterPrime; i < upperBound / maxSteps; i = EulerMath.getNextPrime(i)) {
             int currPrime = i;
             int sum = currPrime;
             int steps = 1;
 
             while (sum < upperBound) {
-                if (steps > maxSteps && isPrime(sum)) {
+                if (steps > maxSteps && EulerMath.isPrime(sum)) {
                     maxSteps = steps;
                     longestPrimeSum = sum;
                 }
-                currPrime = getNextPrime(currPrime);
+                currPrime = EulerMath.getNextPrime(currPrime);
                 sum += currPrime;
                 steps++;
             }
         }
 
         System.out.println("The largest prime sum of consecutive primes below one million is " + longestPrimeSum);
-    }
-
-    /*
-    getNextPrime returns the next prime after the given int
-    */
-    private int getNextPrime(int n) {
-        int nextPrime = n + 1;
-        while (!isPrime(nextPrime)) {
-            nextPrime++;
-        }
-        return nextPrime;
-    }
-
-    /*
-    isPrime returns if the given int is prime.
-    
-    This method includes n <= 1 invalid value catching by returning false
-    */
-    private boolean isPrime(int n) {
-        if (n <= 1) {
-            return false;
-        }
-        for (int i = 2; i <= n / 2; i++) {
-            if (n % i == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }

@@ -17,7 +17,7 @@ public class Problem0039 extends Problem {
     public void printSolution() {
         // max p is largest allowable perimeter
         int maxP = 1000;
-        
+
         // array to hold count of instances of pythagorean triple sum
         // where the index is the sum of the pythagorean triple
         // + 1 offset to account for a, b <= maxP 
@@ -29,7 +29,7 @@ public class Problem0039 extends Problem {
             for (int b = a; a + b <= maxP; b++) {
                 // c^2 = a^2 + b^2 
                 int c = (int) Math.sqrt(a * a + b * b);
-                if (isPythagorean(a, b, c) && a + b + c <= maxP) {
+                if (EulerMath.isPythagorean(a, b, c) && a + b + c <= maxP) {
                     int p = a + b + c;
                     perimeterCount[p]++;
                 }
@@ -62,13 +62,5 @@ public class Problem0039 extends Problem {
         // array value. This returns the index, not the actual max value
         // itself.
         return maxIndex;
-    }
-
-    /*
-    returns if the int triple a, b, c is pythagorean in the form
-    a^2 + b^2 = c^2
-     */
-    private boolean isPythagorean(int a, int b, int c) {
-        return a * a + b * b == c * c;
     }
 }
