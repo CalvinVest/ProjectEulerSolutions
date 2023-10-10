@@ -122,6 +122,46 @@ public interface EulerMath {
         return nextPrime;
     }
 
+    public static int getTotientCount(int n) {
+        if (n <= 0) {
+            return 0;
+        }
+        int count = 1;
+
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                count *= i - 1;
+                n /= i;
+                while (n % i == 0) {
+                    count *= i;
+                    n /= i;
+                }
+            }
+        }
+        if (n != 1) {
+            count *= n - 1;
+        }
+        return count;
+    }
+    
+    public static int[] getTotientArray(int n) {
+        if(n < 0) {
+            return new int[] {0};
+        }
+        int[] result = new int [n+1];
+        for(int i = 0; i <= n; i++) {
+            result[i] = i;
+        }
+        for(int i = 2; i <= n; i++) {
+            if(result[i] == i) {
+                for(int j = i; j <= n; j+=i) {
+                    result[j] -= result[j]/i;
+                }
+            }
+        }
+        return result;
+    }
+
     private static boolean containsInt(int[] arr, int d) {
         for (int i : arr) {
             if (i == d) {
