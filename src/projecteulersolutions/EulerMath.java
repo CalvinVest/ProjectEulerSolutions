@@ -68,6 +68,10 @@ public interface EulerMath {
         }
         return factorial;
     }
+    
+    public static BigInteger getBigIntPow(int a, int b) {
+        return BigInteger.valueOf(a).pow(b);
+    }
 
     private static int[] getDigitArray(long n) {
         int length = EulerMath.getDigitCount(n);
