@@ -114,21 +114,52 @@ public interface EulerMath {
         return num * getFactorial(num - 1);
     }
 
-    public static int getGCF(int num1, int num2) {
-        while (num2 != 0) {
-            int temp = num2;
-            num2 = num1 % num2;
-            num1 = temp;
-        }
-        return num1;
-    }
-
     public static int getNextPrime(int n) {
         int nextPrime = n + 1;
         while (!isPrime(nextPrime)) {
             nextPrime++;
         }
         return nextPrime;
+    }
+
+    public static int getTotientCount(int n) {
+        if (n <= 0) {
+            return 0;
+        }
+        int count = 1;
+
+        for (int i = 2; i <= Math.sqrt(n); i++) {
+            if (n % i == 0) {
+                count *= i - 1;
+                n /= i;
+                while (n % i == 0) {
+                    count *= i;
+                    n /= i;
+                }
+            }
+        }
+        if (n != 1) {
+            count *= n - 1;
+        }
+        return count;
+    }
+    
+    public static int[] getTotientArray(int n) {
+        if(n < 0) {
+            return new int[] {0};
+        }
+        int[] result = new int [n+1];
+        for(int i = 0; i <= n; i++) {
+            result[i] = i;
+        }
+        for(int i = 2; i <= n; i++) {
+            if(result[i] == i) {
+                for(int j = i; j <= n; j+=i) {
+                    result[j] -= result[j]/i;
+                }
+            }
+        }
+        return result;
     }
 
     private static boolean containsInt(int[] arr, int d) {
