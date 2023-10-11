@@ -8,16 +8,34 @@ It can be seen that P4 + P7 = 22 + 70 = 92 = P8. However, their difference,
 
 Find the pair of pentagonal numbers, Pj and Pk, for which their sum and difference
 are pentagonal and D = |Pk - Pj| is minimised; what is the value of D?
-*/
+ */
 public class Problem0044 extends Problem {
-    
+
     @Override
     public boolean isSolved() {
         return false;
     }
-    
+
     @Override
     public void printSolution() {
+        int D = 0;
+        int pj, pk;
         
+        for(int j = 1; j < 100; j++) {
+            for(int k = j; k < 100; k++) {
+                pj = getPentagon(j);
+                pk = getPentagon(k);
+                int newD = (int) Math.abs(pj - pk);
+                if(newD < D) {
+                    D = newD;
+                }
+            }
+        }
+        
+        System.out.println("The smallest difference between the pentagonal pair is " + D);
+    }
+
+    private int getPentagon(int n) {
+        return n * (3 * n - 1) / 2;
     }
 }
