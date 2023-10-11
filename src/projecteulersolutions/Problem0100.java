@@ -14,6 +14,9 @@ determine the number of blue discs that the box would contain.
  */
 public class Problem0100 extends Problem {
 
+    private static final double LIMIT = 1E12;
+    private static final double TARGET = 0.5;
+
     @Override
     public boolean isSolved() {
         return false;
@@ -51,6 +54,41 @@ public class Problem0100 extends Problem {
      */
     @Override
     public void printSolution() {
+        double blue = Math.sqrt(0.5) * LIMIT;
+        double error = getError(getProbDrawTwoBlue(blue, LIMIT), TARGET);
+        int inc = 0;
+
+        double leftError = getError(getProbDrawTwoBlue(blue - 1, LIMIT), TARGET);
+        double rightError = getError(getProbDrawTwoBlue(blue + 1, LIMIT), TARGET);
+
+        if (leftError < error) {
+            inc = -1;
+        } else if (rightError < error) {
+            inc = 1;
+        }
+
+        boolean isFound = (inc == 0);
+        while (!isFound) {
+            double newBlue = blue + inc;
+            double newProb = getProbDrawTwoBlue(newBlue, LIMIT);
+            double newError = getError(newProb, TARGET);
+            if(newError > error) {
+                isFound = true;
+            } else {
+                blue = newBlue;
+                error = newError;
+            }
+        }
         
+        blue = Math.round(blue);
+        System.out.printf("The ideal number of blue marbles is %.0f\n", blue);
+    }
+
+    private double getProbDrawTwoBlue(double blue, double total) {
+        return blue * (blue - 1) / total / (total - 1);
+    }
+
+    private double getError(double prob, double target) {
+        return Math.abs(prob - target);
     }
 }
