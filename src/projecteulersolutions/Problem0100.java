@@ -14,7 +14,7 @@ determine the number of blue discs that the box would contain.
  */
 public class Problem0100 extends Problem {
 
-    private static final double MIN_T = 1E12;
+    private static final double MIN_T = 100;
 
     @Override
     public boolean isSolved() {
