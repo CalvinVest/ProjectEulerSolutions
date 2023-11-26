@@ -24,26 +24,36 @@ public class Problem0044 extends Problem {
     }
     
     private String getPentPairSolution() {
+        // list to hold pentagon numbers
         ArrayList<Integer> pentList = new java.util.ArrayList<>();
         
+        // for loop for every positive int, gets cut short with solution
         for(int i = 1; i > 0; i++) {
+            // generate newest pentagon number
             int currPent = getPentagon(i);
+            // for every already-found pentagon number in the list
             for(int p : pentList) {
                 int diff = Math.abs(currPent - p);
+                // if the sum and difference of the two considered pentagon numbers are themselves pentagonal
                 if(isPentagonal(Math.abs(currPent + p)) && isPentagonal(diff)) {
+                    // the difference of the two considered pentagon numbers is the solution
                     return p + " and " + currPent + " are a pentagonal pair.\nThe difference is " + diff + ".";
                 }
             }
+            // solution not yet found, add current pentagon number to list and repeat
             pentList.add(currPent);
         }
+        // technically only reachable if loop iterator i overflows
         return "The solution was not found.";
     }
 
     private int getPentagon(int n) {
+        // f(n) = n(3n-1)/2
         return n * (3 * n - 1) / 2;
     }
 
     private boolean isPentagonal(int p) {
+        // n = (1 + sqrt(1 + 24[f(n)])/6
         return (1.0 + Math.sqrt(1 + 24 * p)) % 6 == 0;
     }
 }
