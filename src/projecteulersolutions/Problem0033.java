@@ -40,12 +40,17 @@ public class Problem0033 extends Problem {
                 if (b == 0 || d == 0) {
                     continue;
                 }
-                boolean isSol = a == c ? b * dnm == d * num : a == d ? b * dnm == c * num : b == c ? a * dnm == b * num : b == d ? a * dnm == c * num : false;
+                boolean isSol = (a == c) ? (b * dnm == d * num) : (a == d) ? (b * dnm == c * num) : (b == c) ? (a * dnm == d * num) : (b == d) ? (a * dnm == c * num) : false;
 
                 if (isSol) {
                     System.out.println(num + "/" + dnm + " = " + (double) num / (double) dnm);
+                    solNum *= num;
+                    solDnm *= dnm;
+                    
                 }
             }
         }
+        int gcd = EulerMath.getGCD(solNum, solDnm);
+        System.out.println("Product of solution fractions is " + solNum/gcd + "/" + solDnm/gcd);
     }
 }
