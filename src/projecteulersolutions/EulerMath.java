@@ -68,7 +68,7 @@ public interface EulerMath {
         }
         return factorial;
     }
-    
+
     public static BigInteger getBigIntPow(int a, int b) {
         return BigInteger.valueOf(a).pow(b);
     }
@@ -118,6 +118,22 @@ public interface EulerMath {
         return num * getFactorial(num - 1);
     }
 
+    public static int getGCD(int a, int b) {
+        if (b > a) {
+            int t = a;
+            a = b;
+            b = t;
+        }
+
+        while (b != 0) {
+            int t = b;
+            b = a % b;
+            a = t;
+        }
+
+        return a;
+    }
+
     public static int getNextPrime(int n) {
         int nextPrime = n + 1;
         while (!isPrime(nextPrime)) {
@@ -147,19 +163,19 @@ public interface EulerMath {
         }
         return count;
     }
-    
+
     public static int[] getTotientArray(int n) {
-        if(n < 0) {
-            return new int[] {0};
+        if (n < 0) {
+            return new int[]{0};
         }
-        int[] result = new int [n+1];
-        for(int i = 0; i <= n; i++) {
+        int[] result = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
             result[i] = i;
         }
-        for(int i = 2; i <= n; i++) {
-            if(result[i] == i) {
-                for(int j = i; j <= n; j+=i) {
-                    result[j] -= result[j]/i;
+        for (int i = 2; i <= n; i++) {
+            if (result[i] == i) {
+                for (int j = i; j <= n; j += i) {
+                    result[j] -= result[j] / i;
                 }
             }
         }
