@@ -28,6 +28,6 @@ public class Problem0028 extends Problem {
                 clock = 0;
             }
         }
-        System.out.println("The sum of the number spiral diagonals for a " + MAX + "x" + MAX + " spiral is " + sum);
+        System.out.println("The sum of the diagonals for a " + MAX + "x" + MAX + " spiral matrix is " + sum);
     }
 }
