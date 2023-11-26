@@ -22,35 +22,34 @@ public class Problem0033 extends Problem {
 
     @Override
     public void printSolution() {
-        /*
-        In all cases, numerator is less than denominator, and 10 <= num,den < 100
-        
-        For each valid case, 10 <= n,d < 100, n < d
-        Check if the n,d pair fit the case given in the problem intro.
-        Make sure, if they're valid, that the solution is not trivial.
-        Remember the solution is the product of all four solutions.
-        Return solution is lowest terms, print denominator
-         */
 
         int solNum = 1, solDnm = 1;
 
+        // for denominator vals 11 to 99
         for (int dnm = 11; dnm < 100; dnm++) {
+            // for numerator vals 10 to 98
+            // all fractions 10/11 to 98/99
             for (int num = 10; num < dnm; num++) {
+                // fraction is in the form ab/cd
                 int a = num / 10, b = num % 10, c = dnm / 10, d = dnm % 10;
+                // if fraction is in form a0/c0 solution is trivial, skip it
                 if (b == 0 || d == 0) {
                     continue;
                 }
+                // if a num and dnm digit are similar, see if the fraction of the
+                // remaining digits equals the original fraction. if so, a solution
+                // fraction has been found
                 boolean isSol = (a == c) ? (b * dnm == d * num) : (a == d) ? (b * dnm == c * num) : (b == c) ? (a * dnm == d * num) : (b == d) ? (a * dnm == c * num) : false;
 
                 if (isSol) {
                     System.out.println(num + "/" + dnm + " = " + (double) num / (double) dnm);
                     solNum *= num;
                     solDnm *= dnm;
-                    
                 }
             }
         }
+        // find GCD of solution fraction parts to simplify to smallest terms
         int gcd = EulerMath.getGCD(solNum, solDnm);
-        System.out.println("Product of solution fractions is " + solNum/gcd + "/" + solDnm/gcd);
+        System.out.println("Product of solution fractions is " + solNum / gcd + "/" + solDnm / gcd);
     }
 }
