@@ -37,18 +37,13 @@ public class Problem0033 extends Problem {
         for (int dnm = 11; dnm < 100; dnm++) {
             for (int num = 10; num < dnm; num++) {
                 int a = num / 10, b = num % 10, c = dnm / 10, d = dnm % 10;
-                if (b == d && b == 0) {
+                if (b == 0 || d == 0) {
                     continue;
                 }
-                double fracVal = (double) num / (double) dnm;
+                boolean isSol = a == c ? b * dnm == d * num : a == d ? b * dnm == c * num : b == c ? a * dnm == b * num : b == d ? a * dnm == c * num : false;
 
-                boolean ac = a == c, ad = a == d, bc = b == c, bd = b == d;
-                
-                if((ac && (double)b / (double)d == fracVal) ||
-                        (ad && (double)b / (double)c == fracVal) ||
-                        (bc && (double)a / (double)d == fracVal) ||
-                        (bd && (double)a / (double)c == fracVal)) {
-                    System.out.println(num + "/" + dnm + " = " + fracVal);
+                if (isSol) {
+                    System.out.println(num + "/" + dnm + " = " + (double) num / (double) dnm);
                 }
             }
         }
