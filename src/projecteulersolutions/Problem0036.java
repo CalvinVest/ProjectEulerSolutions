@@ -17,6 +17,17 @@ public class Problem0036 extends Problem {
 
     @Override
     public void printSolution() {
+        long sum = 0l;
 
+        for (int i = 0; i < 1E6; i++) {
+            String binStr = Integer.toBinaryString(i);
+
+            if (EulerMath.isPalindrome(Integer.toString(i)) && EulerMath.isPalindrome(binStr)) {
+                sum += i;
+                System.out.println(i + " (" + binStr + ") is palindromic in base 2 and base 10.");
+            }
+        }
+
+        System.out.println("The sum of all integers less than one million which are palindromic in base 2 and base 10 is " + sum);
     }
 }
