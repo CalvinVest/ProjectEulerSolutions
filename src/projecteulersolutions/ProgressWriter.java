@@ -33,13 +33,13 @@ public class ProgressWriter {
 
         saveProgressToFile(values);
     }
-    
+
     /*
     saveProgressToFile takes the progress data for all problems and saves the
     data to progress.txt
-    */
+     */
     public void saveProgressToFile(ArrayList<String> values) {
-        try ( FileWriter fw = new FileWriter(file)) {
+        try (FileWriter fw = new FileWriter(file)) {
             for (int i = 0; i < values.size(); i += 2) {
                 fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
             }
@@ -77,17 +77,19 @@ public class ProgressWriter {
         for (int i = 0; i < problems.size(); i++) {
             var problem = problems.get(i);
             int problemNumber = Integer.parseInt(problem);
+            // index of the given problem number
             int index = 2 * (problemNumber - 1);
+
+            // bool flag of if problem is solved or not. Existing problems are
+            // either solved or in progress. Incomplete problems do not have a
+            // class file
             boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problem, "isSolved");
             int type = isSolved ? 0 : 1;
-
-            System.out.println(problem + (isSolved ? " is solved." : " is in progress."));
-            if (isSolved) {
-                System.out.println(problem + " is solved.");
-            } else {
-                System.out.println(problem + " is in progress.");
-            }
+            // sets problem type
             values.set(index + 1, TYPE[type]);
+
+            // print problem status
+            System.out.println(problem + (isSolved ? " is solved." : " is in progress."));
         }
         System.out.println("-------------------------------------");
 
