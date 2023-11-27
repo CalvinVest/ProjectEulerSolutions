@@ -17,8 +17,11 @@ d7d8d9 = 728 is divisible by 13
 d8d9d10 = 289 is divisible by 17
 
 Find the sum of all 0 to 9 pandigital numbers with this property.
-*/
+ */
 public class Problem0043 extends Problem {
+
+    public static final long LOWER_BOUND = 1023456789L;
+    public static final long UPPER_BOUND = 9876543210L;
 
     @Override
     public boolean isSolved() {
@@ -27,6 +30,62 @@ public class Problem0043 extends Problem {
 
     @Override
     public void printSolution() {
+        long sum = 0;
+        String pandigital = "0123456789";
 
+        while (pandigital != null) {
+            if (isDivisibleSubstrings(pandigital)) {
+                sum += Long.parseLong(pandigital);
+            }
+
+            pandigital = nextPermutation(pandigital);
+        }
+
+        System.out.println("The sum of all 0 to 9 pandigital numbers with prime substrings is " + sum);
+    }
+
+    private static boolean isDivisibleSubstrings(String pandigital) {
+        int[] primes = {2, 3, 5, 7, 11, 13, 17};
+        for (int i = 0; i < primes.length; i++) {
+            int num = Integer.parseInt(pandigital.substring(i + 1, i + 4));
+            if (num % primes[i] != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private static String nextPermutation(String str) {
+        char[] array = str.toCharArray();
+        int i = array.length - 1;
+        while (i > 0 && array[i - 1] >= array[i]) {
+            i--;
+        }
+
+        if (i <= 0) {
+            return null; // No more permutations
+        }
+
+        int j = array.length - 1;
+        while (array[j] <= array[i - 1]) {
+            j--;
+        }
+
+        // Swap the elements at positions i-1 and j
+        char temp = array[i - 1];
+        array[i - 1] = array[j];
+        array[j] = temp;
+
+        // Reverse the suffix
+        j = array.length - 1;
+        while (i < j) {
+            temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+            i++;
+            j--;
+        }
+
+        return new String(array);
     }
 }
