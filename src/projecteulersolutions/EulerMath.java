@@ -60,6 +60,15 @@ public interface EulerMath {
         return a * a + b * b == c * c;
     }
 
+    public static boolean isTriangle(int n) {
+        int x = 0;
+        int step = 1;
+        while(x < n) {
+            x += step++;
+        }
+        return x == n;
+    }
+
     public static int getBigIntDigitCount(BigInteger n) {
         return n.toString().length();
     }
