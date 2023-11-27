@@ -45,19 +45,27 @@ public class Problem0043 extends Problem {
     }
 
     private static boolean isDivisibleSubstrings(String pandigital) {
+        // array of primes for divisibility
         int[] primes = {2, 3, 5, 7, 11, 13, 17};
+        // for each prime in the aforementioned array
         for (int i = 0; i < primes.length; i++) {
+            // split the number into its respective substrings for division
             int num = Integer.parseInt(pandigital.substring(i + 1, i + 4));
+            // if the numbers are not appropriately divisible return false
             if (num % primes[i] != 0) {
                 return false;
             }
         }
+        // all substrings are appropriately divisible, return true
         return true;
     }
 
     private static String nextPermutation(String str) {
+        // array of characters for permutating
         char[] array = str.toCharArray();
+        // start at last index
         int i = array.length - 1;
+        // find correct place for index i based on comparison of neighboring indeces
         while (i > 0 && array[i - 1] >= array[i]) {
             i--;
         }
