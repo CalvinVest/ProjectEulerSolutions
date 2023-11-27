@@ -28,29 +28,41 @@ public class Problem0046 extends Problem {
     }
 
     private int findGoldbachException() {
-        int n = 3;
+        // start with first composite odd number
+        int n = 9;
         boolean found = false;
 
+        // while a solution has not been found
         while (!found) {
+            // incrememnts to next odd number as long as the current value is prime
+            // we are only interested in looking at composite odd numbers
             while (EulerMath.isPrime(n)) {
                 n += 2;
             }
+            // if the current value is not the sum of a prime and twice a square
             if (!isSumOfPrimeAndTwiceSquare(n)) {
+                // this is the solution value - return it
                 return n;
             }
+            // move to next odd number
             n += 2;
         }
+        // no solution found
         return 0;
     }
 
     private boolean isSumOfPrimeAndTwiceSquare(int n) {
+        // for all prime numbers, ascending
         for (int i = 2; i < n; i = EulerMath.getNextPrime(i)) {
+            // for all integers for which the square is less than the given value
             for (int j = 1; j * j < n; j++) {
+                // if the given value is the sum of a prime and twice a square
                 if (i + 2 * j * j == n) {
                     return true;
                 }
             }
         }
+        // number is not the sum of a prime and twice a square - this is the solution
         return false;
     }
 }
