@@ -59,6 +59,10 @@ public interface EulerMath {
     public static boolean isPythagorean(int a, int b, int c) {
         return a * a + b * b == c * c;
     }
+    
+    public static boolean isTriangle(int n) {
+        return (Math.sqrt(1 + 8 * n) - 1) / 2 == 0;
+    }
 
     public static int getBigIntDigitCount(BigInteger n) {
         return n.toString().length();
