@@ -29,7 +29,6 @@ As time goes on I'll be making occasional edits to the core functionality of the
 
 <p>:green_circle: Complete: 57<br>
 :orange_circle: In Progress: 1<br>
-:red_circle: Broken: 0<br>
 :black_circle: Incomplete: 797</p>
 <table>
 	<tr>

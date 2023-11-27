@@ -12,8 +12,7 @@ public class ProgressWriter {
     public final String[] TYPE = {
         /*0*/"COMPLETE",
         /*1*/ "IN_PROGRESS",
-        /*2*/ "BROKEN",
-        /*3*/ "INCOMPLETE"};
+        /*2*/ "INCOMPLETE"};
 
     public ProgressWriter() {
         reader = new ProgressFileReader();
@@ -45,10 +44,6 @@ public class ProgressWriter {
         // clear values list and reset all statuses to incomplete
         for (int i = 1; i <= PROBLEM_COUNT; i++) {
             values.set(2 * (i - 1), Integer.toString(i));
-
-            if (!isBroken(i)) {
-                values.set(2 * (i - 1) + 1, TYPE[3]);
-            }
         }
         // all files in the project folder
         String[] pathnames = Problem.getProblemFiles();
@@ -60,34 +55,24 @@ public class ProgressWriter {
             }
         }
 
-        problems.forEach(problem -> {
+        for (int i = 0; i < problems.size(); i++) {
+            var problem = problems.get(i);
             int problemNumber = Integer.parseInt(problem);
             int index = 2 * (problemNumber - 1);
             boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problem, "isSolved");
-            int type;
+            int type = isSolved ? 0 : 1;
 
+            System.out.println(problem + (isSolved ? " is solved." : " is in progress."));
             if (isSolved) {
                 System.out.println(problem + " is solved.");
-                type = 0;
-            } else if (isBroken(problemNumber)) {
-                System.out.println(problem + " is broken.");
-                type = 2;
             } else {
                 System.out.println(problem + " is in progress.");
-                type = 1;
             }
             values.set(index + 1, TYPE[type]);
-        });
-
+        }
         System.out.println("-------------------------------------");
-        writer.setProgress(values);
-    }
 
-    /*
-    isBroken returns if a given problem number's status is set to broken.
-     */
-    private boolean isBroken(int problemNumber) {
-        return values.get(2 * (problemNumber - 1) + 1).trim().equalsIgnoreCase(TYPE[2]);
+        writer.setProgress(values);
     }
 
     /*
@@ -116,10 +101,8 @@ public class ProgressWriter {
                 0;
             case "IN_PROGRESS" ->
                 1;
-            case "BROKEN" ->
-                2;
             default ->
-                3;
+                2;
         };
     }
 
