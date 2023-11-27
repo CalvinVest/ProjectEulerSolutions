@@ -41,6 +41,8 @@ public class Problem0047 extends Problem {
     }
 
     private boolean isConsecutiveDistinctPrimes(int n) {
+        // returns true iff the given value and the next three all have 4 or more
+        // distinct prime factors. This is the goal of problem 47
         return countDistinctPrimeFactors(n) >= 4
                 && countDistinctPrimeFactors(n + 1) >= 4
                 && countDistinctPrimeFactors(n + 2) >= 4
@@ -48,9 +50,15 @@ public class Problem0047 extends Problem {
     }
 
     private static int countDistinctPrimeFactors(int n) {
+        // holds count of distinct prime factors
         int count = 0;
+        // for all values below n inclusive, only interested in prime numbers that
+        // are factors of n
         for (int i = 2; i <= n; i++) {
+            // if the current prime number is a factor of n
             if (n % i == 0 && EulerMath.isPrime(i)) {
+                // increment count and divide n by the prime factor as many times
+                // as it is contained within n
                 count++;
                 while (n % i == 0) {
                     n /= i;
