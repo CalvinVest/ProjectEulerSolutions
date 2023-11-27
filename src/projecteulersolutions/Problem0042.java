@@ -29,18 +29,20 @@ public class Problem0042 extends Problem {
 
     @Override
     public void printSolution() {
+        // count of triangle words
         int count = 0;
+        // loads name file and list of words from it, trimming unecessary text
         File namesFile = new File(Problem.FILEPATH + "problem0042.txt");
         List<String> words = readWordsFromFile(namesFile);
 
+        // for every word in the list
         for (int i = 0; i < words.size(); i++) {
+            // get alphanumeric value of word
             int wordVal = getAlphaSum(words.get(i));
-            System.out.print(words.get(i) + " has a value of " + wordVal);
+            // if word value is triangular, increment the count of triangle words
             if (EulerMath.isTriangle(wordVal)) {
                 count++;
-                System.out.print(" -- TRIANGLE");
             }
-            System.out.println();
         }
 
         System.out.println(count + " words in the list are triangle words.");
@@ -61,10 +63,10 @@ public class Problem0042 extends Problem {
         return words;
     }
 
-    private int getAlphaSum(String name) {
+    private int getAlphaSum(String word) {
         int sum = 0;
-        for (int i = 0; i < name.length(); i++) {
-            sum += name.charAt(i) - 64;
+        for (int i = 0; i < word.length(); i++) {
+            sum += word.charAt(i) - 64;
         }
         return sum;
     }
