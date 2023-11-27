@@ -94,7 +94,7 @@ public interface EulerMath {
         return BigInteger.valueOf(a).pow(b);
     }
 
-    private static int[] getDigitArray(long n) {
+    public static int[] getDigitArray(long n) {
         int length = EulerMath.getDigitCount(n);
         int[] arr = new int[length];
         long temp = n;
@@ -203,7 +203,7 @@ public interface EulerMath {
         return result;
     }
 
-    private static boolean containsInt(int[] arr, int d) {
+    public static boolean containsInt(int[] arr, int d) {
         for (int i : arr) {
             if (i == d) {
                 return true;
