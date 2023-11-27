@@ -24,6 +24,33 @@ public class Problem0046 extends Problem {
 
     @Override
     public void printSolution() {
+        System.out.println("The smallest composite that satisfies this problem is " + findGoldbachException());
+    }
 
+    private int findGoldbachException() {
+        int n = 3;
+        boolean found = false;
+
+        while (!found) {
+            while (EulerMath.isPrime(n)) {
+                n += 2;
+            }
+            if (!isSumOfPrimeAndTwiceSquare(n)) {
+                return n;
+            }
+            n += 2;
+        }
+        return 0;
+    }
+
+    private boolean isSumOfPrimeAndTwiceSquare(int n) {
+        for (int i = 2; i < n; i = EulerMath.getNextPrime(i)) {
+            for (int j = 1; j * j < n; j++) {
+                if (i + 2 * j * j == n) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }
