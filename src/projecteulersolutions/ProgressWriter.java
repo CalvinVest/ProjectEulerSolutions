@@ -1,13 +1,16 @@
 package projecteulersolutions;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProgressWriter {
 
     public static final int PROBLEM_COUNT = 855;
-    private final ProgressFileReader reader;
-    private final ProgressFileWriter writer;
     private final ArrayList<String> values;
+    private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
+    private final File file;
 
     public final String[] TYPE = {
         /*0*/"COMPLETE",
@@ -15,9 +18,8 @@ public class ProgressWriter {
         /*2*/ "INCOMPLETE"};
 
     public ProgressWriter() {
-        reader = new ProgressFileReader();
-        writer = new ProgressFileWriter();
-        values = reader.getProgress();
+        file = new File(FILEPATH);
+        values = new ProgressFileReader().getProgress();
     }
 
     /*
@@ -29,7 +31,24 @@ public class ProgressWriter {
         values.set(index, Integer.toString(problemNumber));
         values.set(index + 1, TYPE[type]);
 
-        writer.setProgress(values);
+        saveProgressToFile(values);
+    }
+    
+    /*
+    saveProgressToFile takes the progress data for all problems and saves the
+    data to progress.txt
+    */
+    public void saveProgressToFile(ArrayList<String> values) {
+        try ( FileWriter fw = new FileWriter(file)) {
+            for (int i = 0; i < values.size(); i += 2) {
+                fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
+            }
+            fw.close();
+        } catch (IOException ioe) {
+            System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
+        }
+        System.out.println("Saved to file: " + file.getName());
+        new ReadmeGenerator().generateReadme();
     }
 
     /*
@@ -72,7 +91,7 @@ public class ProgressWriter {
         }
         System.out.println("-------------------------------------");
 
-        writer.setProgress(values);
+        saveProgressToFile(values);
     }
 
     /*
