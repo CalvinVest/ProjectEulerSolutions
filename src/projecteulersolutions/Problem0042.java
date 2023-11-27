@@ -33,12 +33,15 @@ public class Problem0042 extends Problem {
         File namesFile = new File(Problem.FILEPATH + "problem0042.txt");
         List<String> words = readWordsFromFile(namesFile);
 
-        words.forEach(word -> {
-            int wordVal = getAlphaSum(word);
-            /*if(EulerMath.isTriangle(wordVal)) {
+        for (int i = 0; i < words.size(); i++) {
+            int wordVal = getAlphaSum(words.get(i));
+            System.out.print(words.get(i) + " has a value of " + wordVal);
+            if (EulerMath.isTriangle(wordVal)) {
                 count++;
-            }*/
-        });
+                System.out.print(" -- TRIANGLE");
+            }
+            System.out.println();
+        }
 
         System.out.println(count + " words in the list are triangle words.");
     }
