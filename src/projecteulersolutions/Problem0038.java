@@ -24,6 +24,30 @@ public class Problem0038 extends Problem {
 
     @Override
     public void printSolution() {
-
+        
+        int largestPan = 0;
+        
+        for(int i = 1; i < 1000000; i++) {
+            for(int j = 2; j <= 9; j++) {
+                String concatStr = getConcatProdStr(i, j);
+                if(concatStr.length() != 9) {
+                    continue;
+                }
+                int concatNum = Integer.parseInt(concatStr);
+                if(EulerMath.isPandigital(concatNum) && concatNum > largestPan) {
+                    largestPan = concatNum;
+                }
+            }
+        }
+        
+        System.out.println("The largest concatenated pandigital number is " + largestPan);
+    }
+    
+    private String getConcatProdStr(int n, int iter) {
+        String concatStr = "";
+        for(int i = 1; i <= iter; i++) {
+            concatStr += (i * n) + "";
+        }
+        return concatStr;
     }
 }
