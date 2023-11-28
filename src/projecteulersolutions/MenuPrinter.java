@@ -7,6 +7,12 @@ import java.util.Scanner;
 
 public class MenuPrinter {
 
+    private static final int MENU_WIDTH = 47;
+
+    private static final String TOP_BORDER = "\u2554" + "\u2550".repeat(MENU_WIDTH - 1) + "\u2557\n";
+    private static final String MID_BORDER = "\u2560" + "\u2550".repeat(MENU_WIDTH - 1) + "\u2563\n";
+    private static final String BOT_BORDER = "\u255a" + "\u2550".repeat(MENU_WIDTH - 1) + "\u255d\n";
+
     private final Scanner userIn;
 
     public MenuPrinter() {
@@ -24,14 +30,12 @@ public class MenuPrinter {
     through printMainMenu.
      */
     public void printMainMenu() {
-        System.out.println("Welcome, select an option.");
-
         char userChoice;
         do {
             printMainMenuOptions();
 
             userChoice = userIn.next().toLowerCase().charAt(0);
-        userIn.nextLine();
+            userIn.nextLine();
 
             switch (userChoice) {
                 case 's' ->
@@ -107,7 +111,7 @@ public class MenuPrinter {
         String[] pathnames = new File(Problem.FILEPATH).list();
 
         // print list of valid files
-        System.out.println("\n============================");
+        System.out.println("\u2550".repeat(MENU_WIDTH + 1));
         for (String pathname : pathnames) {
             // if file is in format of "Problem0000.java"
             if (pathname.matches("Problem\\d{4}.java")) {
@@ -124,7 +128,7 @@ public class MenuPrinter {
                 System.out.println("Problem " + problemNumber + " - " + problemStatus);
             }
         }
-        System.out.println("============================");
+        System.out.println("\u2550".repeat(MENU_WIDTH + 1));
 
         int[] typeCounts = new int[pw.TYPE.length];
         for (int i = 0; i < typeCounts.length; i++) {
@@ -178,9 +182,9 @@ public class MenuPrinter {
     that problem.
      */
     private void viewStatus(ProgressWriter pw) {
-        System.out.print("============================"
-                + "Enter the problem number: "
-                + "> ");
+        System.out.print("\u2550".repeat(MENU_WIDTH + 1)
+                + "\nEnter the problem number:"
+                + "\n> ");
         int problemNumber = userIn.nextInt();
         userIn.nextLine();
         System.out.print(Problem.getFileName(problemNumber)
@@ -265,12 +269,14 @@ public class MenuPrinter {
     available problem solutions, and viewing project progress.
      */
     private void printMainMenuOptions() {
-        System.out.print("\n+----------------------------+\n"
-                + String.format("%-" + 29 + "s", "| S: Solve problem by number") + "|\n"
-                + String.format("%-" + 29 + "s", "| L: Problem List") + "|\n"
-                + String.format("%-" + 29 + "s", "| V: View Progress") + "|\n"
-                + String.format("%-" + 29 + "s", "| Q: Quit") + "|\n"
-                + "+----------------------------+\n> ");
+        System.out.print(TOP_BORDER
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Welcome! Please choose an option.") + "\u2551\n"
+                + MID_BORDER
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 S: Solve problem by number") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 L: Problem List") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 V: View Progress") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Q: Quit") + "\u2551\n"
+                + BOT_BORDER + "> ");
     }
 
     /*
@@ -279,12 +285,12 @@ public class MenuPrinter {
     viewing/editing problem status, and regenerating project progress.
      */
     private void printProgressMenuOptions() {
-        System.out.print("\n+----------------------------+\n"
-                + String.format("%-" + 29 + "s", "| L: List progress.") + "|\n"
-                + String.format("%-" + 29 + "s", "| V: View problem status.") + "|\n"
-                + String.format("%-" + 29 + "s", "| R: Regenerate all progress.") + "|\n"
-                + String.format("%-" + 29 + "s", "| Q: Return to main menu.") + "|\n"
-                + "+----------------------------+\n> ");
+        System.out.print(TOP_BORDER
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 L: List progress.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 V: View problem status.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 R: Regenerate all progress.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Q: Return to main menu.") + "\u2551\n"
+                + BOT_BORDER + "> ");
     }
 
     /*
@@ -297,12 +303,12 @@ public class MenuPrinter {
     Escape was the most generic verbiage for this mixed purpose.
      */
     private void printEditMenuOptions() {
-        System.out.print("\n+----------------------------+\n"
-                + String.format("%-" + 29 + "s", "Select a progress value:") + "|\n"
-                + String.format("%-" + 29 + "s", "1: In progress.") + "|\n"
-                + String.format("%-" + 29 + "s", "3: Incomplete.") + "|\n"
-                + String.format("%-" + 29 + "s", "0: Escape") + "|\n"
-                + "+----------------------------+\n> ");
+        System.out.print(TOP_BORDER
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Select a progress value:") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 1: In progress.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 3: Incomplete.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 0: Escape") + "\u2551\n"
+                + BOT_BORDER + "> ");
     }
 
     /*
@@ -314,11 +320,10 @@ public class MenuPrinter {
      */
     public static boolean existsProblemFile(int problemNumber) {
         boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
-        System.out.print("\n+----------------------------+\n"
-                + String.format("%-" + 29 + "s", "| Loading " + Problem.getFileName(problemNumber)) + "|\n"
-                + String.format("%-" + 29 + "s", (existsFile ? "| Success" : "| Failed: File does not exist.")) + "|\n"
-                + "+----------------------------+\n"
-        );
+        System.out.print(TOP_BORDER
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Loading " + Problem.getFileName(problemNumber)) + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", (existsFile ? "\u2551 Success" : "\u2551 Failed: File does not exist.")) + "\u2551\n"
+                + BOT_BORDER);
         return existsFile; // returns existence of file as flag
     }
 }
