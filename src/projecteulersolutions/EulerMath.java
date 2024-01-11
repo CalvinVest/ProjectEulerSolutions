@@ -14,6 +14,18 @@ will not have any issues with instantiation.
  */
 public interface EulerMath {
 
+    public static boolean isPalindrome(String str) {
+        str = str.toLowerCase();
+
+        int length = str.length();
+        for (int i = 0; i < length / 2; i++) {
+            if (str.charAt(i) != str.charAt(length - i - 1)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static boolean isPandigital(int n) {
         int length = EulerMath.getDigitCount(n);
         int[] digitArr = getDigitArray(n);
@@ -48,6 +60,15 @@ public interface EulerMath {
         return a * a + b * b == c * c;
     }
 
+    public static boolean isTriangle(int n) {
+        int x = 0;
+        int step = 1;
+        while(x < n) {
+            x += step++;
+        }
+        return x == n;
+    }
+
     public static int getBigIntDigitCount(BigInteger n) {
         return n.toString().length();
     }
@@ -68,12 +89,12 @@ public interface EulerMath {
         }
         return factorial;
     }
-    
+
     public static BigInteger getBigIntPow(int a, int b) {
         return BigInteger.valueOf(a).pow(b);
     }
 
-    private static int[] getDigitArray(long n) {
+    public static int[] getDigitArray(long n) {
         int length = EulerMath.getDigitCount(n);
         int[] arr = new int[length];
         long temp = n;
@@ -118,6 +139,22 @@ public interface EulerMath {
         return num * getFactorial(num - 1);
     }
 
+    public static int getGCD(int a, int b) {
+        if (b > a) {
+            int t = a;
+            a = b;
+            b = t;
+        }
+
+        while (b != 0) {
+            int t = b;
+            b = a % b;
+            a = t;
+        }
+
+        return a;
+    }
+
     public static int getNextPrime(int n) {
         int nextPrime = n + 1;
         while (!isPrime(nextPrime)) {
@@ -147,26 +184,26 @@ public interface EulerMath {
         }
         return count;
     }
-    
+
     public static int[] getTotientArray(int n) {
-        if(n < 0) {
-            return new int[] {0};
+        if (n < 0) {
+            return new int[]{0};
         }
-        int[] result = new int [n+1];
-        for(int i = 0; i <= n; i++) {
+        int[] result = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
             result[i] = i;
         }
-        for(int i = 2; i <= n; i++) {
-            if(result[i] == i) {
-                for(int j = i; j <= n; j+=i) {
-                    result[j] -= result[j]/i;
+        for (int i = 2; i <= n; i++) {
+            if (result[i] == i) {
+                for (int j = i; j <= n; j += i) {
+                    result[j] -= result[j] / i;
                 }
             }
         }
         return result;
     }
 
-    private static boolean containsInt(int[] arr, int d) {
+    public static boolean containsInt(int[] arr, int d) {
         for (int i : arr) {
             if (i == d) {
                 return true;

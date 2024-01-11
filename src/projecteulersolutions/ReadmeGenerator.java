@@ -65,8 +65,7 @@ public class ReadmeGenerator {
         return "<p>"
                 + ":green_circle: Complete: " + typeCounts[0] + "<br>\n"
                 + ":orange_circle: In Progress: " + typeCounts[1] + "<br>\n"
-                + ":red_circle: Broken: " + typeCounts[2] + "<br>\n"
-                + ":black_circle: Incomplete: " + typeCounts[3] + "</p>\n";
+                + ":black_circle: Incomplete: " + typeCounts[2] + "</p>\n";
     }
 
     private String getEmojiString(String type) {
@@ -75,8 +74,6 @@ public class ReadmeGenerator {
                 ":green_circle:";
             case "IN_PROGRESS" ->
                 ":orange_circle:";
-            case "BROKEN" ->
-                ":red_circle:";
             default ->
                 ":black_circle:";
         };

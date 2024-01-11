@@ -7,6 +7,12 @@ import java.util.Scanner;
 
 public class MenuPrinter {
 
+    private static final int MENU_WIDTH = 47;
+
+    private static final String TOP_BORDER = "\u2554" + "\u2550".repeat(MENU_WIDTH - 1) + "\u2557\n";
+    private static final String MID_BORDER = "\u2560" + "\u2550".repeat(MENU_WIDTH - 1) + "\u2563\n";
+    private static final String BOT_BORDER = "\u255a" + "\u2550".repeat(MENU_WIDTH - 1) + "\u255d\n";
+
     private final Scanner userIn;
 
     public MenuPrinter() {
@@ -24,15 +30,15 @@ public class MenuPrinter {
     through printMainMenu.
      */
     public void printMainMenu() {
-        System.out.println("Welcome, select an option.");
-
-        char userInChar;
+        char userChoice;
         do {
             printMainMenuOptions();
 
-            userInChar = getUserChar();
+            userChoice = userIn.next().toLowerCase().charAt(0);
+            userIn.nextLine();
+            System.out.println();
 
-            switch (userInChar) {
+            switch (userChoice) {
                 case 's' ->
                     printSolutionMenu();
                 case 'l' ->
@@ -44,7 +50,7 @@ public class MenuPrinter {
                 default ->
                     System.out.println("Invalid entry, please try again.");
             }
-        } while (userInChar != 'q');
+        } while (userChoice != 'q');
     }
 
     /*
@@ -53,10 +59,9 @@ public class MenuPrinter {
     to execute the particular solution based on the user input.
      */
     private void printSolutionMenu() {
-        System.out.print("""
-                         Enter the Project Euler Problem #: 
-                         > """);
+        System.out.print("Enter the Project Euler Problem #:\n> ");
         int userProblemNumber = userIn.nextInt();
+        userIn.nextLine();
         if (userProblemNumber > 0 && userProblemNumber <= ProgressWriter.PROBLEM_COUNT) {
             invokeProblemByNumber(userProblemNumber);
         } else {
@@ -79,10 +84,10 @@ public class MenuPrinter {
         JavaClassLoader jcl = new JavaClassLoader();
         if (existsProblemFile(problemNumber)) { // proceeds if problem solution exists
             Date dStart = new Date();
-            System.out.println("Problem " + problemNumber + ": ");
-            // Problem 0: _
+
+            System.out.print("Problem " + problemNumber + ": Calculating...");
             jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printSolution");
-            // Problem 0: The solution to this problem is whatever
+
             Date dEnd = new Date();
             long durationMS = dEnd.getTime() - dStart.getTime();
             System.out.println("The problem took " + durationMS / 1000
@@ -90,6 +95,9 @@ public class MenuPrinter {
         } else {
             System.out.println("Problem solution does not exist.");
         }
+
+        System.out.print("\nPress Enter to continue...");
+        userIn.nextLine();
     }
 
     /*
@@ -102,7 +110,7 @@ public class MenuPrinter {
         String[] pathnames = new File(Problem.FILEPATH).list();
 
         // print list of valid files
-        System.out.println("\n============================");
+        System.out.println("\u2550".repeat(MENU_WIDTH + 1));
         for (String pathname : pathnames) {
             // if file is in format of "Problem0000.java"
             if (pathname.matches("Problem\\d{4}.java")) {
@@ -113,23 +121,20 @@ public class MenuPrinter {
                         problemStatus = "Complete";
                     case 1 ->
                         problemStatus = "In Progress";
-                    case 2 ->
-                        problemStatus = "Broken";
                     default ->
                         problemStatus = "Incomplete";
                 }
                 System.out.println("Problem " + problemNumber + " - " + problemStatus);
             }
         }
-        System.out.println("============================");
+        System.out.println("\u2550".repeat(MENU_WIDTH + 1));
 
         int[] typeCounts = new int[pw.TYPE.length];
         for (int i = 0; i < typeCounts.length; i++) {
             typeCounts[i] = Collections.frequency(pw.getValues(), pw.TYPE[i]);
         }
         System.out.println("Total Complete: " + typeCounts[0]
-                + "\nTotal In Progress: " + typeCounts[1]
-                + "\nTotal Broken: " + typeCounts[2]);
+                + "\nTotal In Progress: " + typeCounts[1]);
     }
 
     /*
@@ -142,14 +147,20 @@ public class MenuPrinter {
         char userChoice;
         ProgressWriter pw = new ProgressWriter();
 
-        System.out.println("\nTo edit or view project progress values, select an option:");
+        System.out.println("To edit or view project progress values, select an option:");
         do {
+            /*
+            Options:
+            L: List all problem progress statuses.
+            V: View status of particular problem.
+            R: Regenerate all problem progress values.
+            Q: Return to main menu.
+             */
             printProgressMenuOptions();
 
-            userChoice = getUserChar();
+            userChoice = userIn.next().toLowerCase().charAt(0);
+            userIn.nextLine();
             switch (userChoice) {
-                case 'l' ->
-                    pw.printValues();
                 case 'v' ->
                     viewStatus(pw);
                 case 'r' ->
@@ -168,21 +179,25 @@ public class MenuPrinter {
     that problem.
      */
     private void viewStatus(ProgressWriter pw) {
-        System.out.print("""
-                         ============================
-                         Enter the problem number: 
-                         > """);
+        System.out.print("\u2550".repeat(MENU_WIDTH + 1)
+                + "\nEnter the problem number:"
+                + "\n> ");
         int problemNumber = userIn.nextInt();
+        userIn.nextLine();
         System.out.print(Problem.getFileName(problemNumber)
                 + "\nProblem Status: " + pw.getProblemStatus(problemNumber)
                 + "\nEdit Status? y/n:"
                 + "\n> ");
 
-        switch (getUserChar()) {
+        // This switch allows the user to confirm they'd like to edit a problem
+        // status before the changes are written
+        char userChoice = userIn.next().toLowerCase().charAt(0);
+        userIn.nextLine();
+        switch (userChoice) {
             case 'y' ->
                 editStatus(pw, problemNumber);
             case 'n' ->
-                System.out.println("Success: Returning to progress menu.");
+                System.out.println("Aborted: Operation cancelled by user.");
             default ->
                 System.out.println("Failed: Invalid entry.");
         }
@@ -195,6 +210,7 @@ public class MenuPrinter {
     private void editStatus(ProgressWriter pw, int problemNumber) {
         printEditMenuOptions();
         int progressType = userIn.nextInt();
+        userIn.nextLine();
 
         if (progressType == 0) {
             return;
@@ -204,7 +220,9 @@ public class MenuPrinter {
             System.out.print("Updating status to " + pw.TYPE[progressType]
                     + "\nConfirm? y/n:"
                     + "\n> ");
-            switch (getUserChar()) {
+            char userChoice = userIn.next().toLowerCase().charAt(0);
+            userIn.nextLine();
+            switch (userChoice) {
                 case 'y' -> {
                     pw.setProblemStatus(problemNumber, progressType);
                     System.out.println("Success: Status updated.");
@@ -228,7 +246,9 @@ public class MenuPrinter {
      */
     private void regenerateProgress(ProgressWriter pw) {
         System.out.print("Confirm regenerate? Data will be lost! y/n\n> ");
-        switch (getUserChar()) {
+        char userChoice = userIn.next().toLowerCase().charAt(0);
+        userIn.nextLine();
+        switch (userChoice) {
             case 'y' -> {
                 pw.regenerateValues();
                 System.out.println("Success: All progress has been defaulted.");
@@ -241,29 +261,19 @@ public class MenuPrinter {
     }
 
     /*
-    getUserChar is a scanner function to return the next char input
-    from the user. This function prints a simple user menu with options
-    and gets the next input from user, sanitizes it, and returns it.
-     */
-    private char getUserChar() {
-        return userIn.next().toLowerCase().charAt(0);
-    }
-
-    /*
     printMainMenuOptions is a print function to display the options for
     the main menu, including solving a particular problem, listing all
     available problem solutions, and viewing project progress.
      */
     private void printMainMenuOptions() {
-        System.out.print("""
-                         
-                         -------------------------------------
-                         S: Solve problem by number
-                         L: Problem List
-                         V: View Progress
-                         Q: Quit
-                         -------------------------------------
-                         > """);
+        System.out.print(TOP_BORDER
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Welcome! Please choose an option.") + "\u2551\n"
+                + MID_BORDER
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 S: Solve problem by number") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 L: Problem List") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 V: View Progress") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Q: Quit") + "\u2551\n"
+                + BOT_BORDER + "> ");
     }
 
     /*
@@ -272,15 +282,11 @@ public class MenuPrinter {
     viewing/editing problem status, and regenerating project progress.
      */
     private void printProgressMenuOptions() {
-        System.out.print("""
-                         
-                         -------------------------------------
-                         L: List progress.
-                         V: View problem status.
-                         R: Regenerate all progress.
-                         Q: Return to main menu.
-                         -------------------------------------
-                         > """);
+        System.out.print(TOP_BORDER
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 V: View problem status.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 R: Regenerate all progress.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Q: Return to main menu.") + "\u2551\n"
+                + BOT_BORDER + "> ");
     }
 
     /*
@@ -293,16 +299,12 @@ public class MenuPrinter {
     Escape was the most generic verbiage for this mixed purpose.
      */
     private void printEditMenuOptions() {
-        System.out.print("""
-                         
-                         -------------------------------------
-                         Select a progress value:
-                         1: In progress.
-                         2: Broken.
-                         3: Incomplete.
-                         0: Escape
-                         -------------------------------------
-                         > """);
+        System.out.print(TOP_BORDER
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Select a progress value:") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 1: In progress.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 3: Incomplete.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 0: Escape") + "\u2551\n"
+                + BOT_BORDER + "> ");
     }
 
     /*
@@ -314,17 +316,10 @@ public class MenuPrinter {
      */
     public static boolean existsProblemFile(int problemNumber) {
         boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
-        System.out.print("""
-                           
-                           ============================
-                           Loading """
-                + Problem.getFileName(problemNumber)
-                + (existsFile ? "\nSuccess" : "\nFailed: File does not exist.")
-                + """
-                  
-                ============================
-                """
-        );
+        System.out.print(TOP_BORDER
+                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Loading " + Problem.getFileName(problemNumber)) + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", (existsFile ? "\u2551 Success" : "\u2551 Failed: File does not exist.")) + "\u2551\n"
+                + BOT_BORDER);
         return existsFile; // returns existence of file as flag
     }
 }
