@@ -1,24 +1,25 @@
 package projecteulersolutions;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class ProgressWriter {
 
     public static final int PROBLEM_COUNT = 855;
-    private final ProgressFileReader reader;
-    private final ProgressFileWriter writer;
     private final ArrayList<String> values;
+    private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
+    private final File file;
 
     public final String[] TYPE = {
         /*0*/"COMPLETE",
         /*1*/ "IN_PROGRESS",
-        /*2*/ "BROKEN",
-        /*3*/ "INCOMPLETE"};
+        /*2*/ "INCOMPLETE"};
 
     public ProgressWriter() {
-        reader = new ProgressFileReader();
-        writer = new ProgressFileWriter();
-        values = reader.getProgress();
+        file = new File(FILEPATH);
+        values = new ProgressFileReader().getProgress();
     }
 
     /*
@@ -30,7 +31,24 @@ public class ProgressWriter {
         values.set(index, Integer.toString(problemNumber));
         values.set(index + 1, TYPE[type]);
 
-        writer.setProgress(values);
+        saveProgressToFile(values);
+    }
+
+    /*
+    saveProgressToFile takes the progress data for all problems and saves the
+    data to progress.txt
+     */
+    public void saveProgressToFile(ArrayList<String> values) {
+        try (FileWriter fw = new FileWriter(file)) {
+            for (int i = 0; i < values.size(); i += 2) {
+                fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
+            }
+            fw.close();
+        } catch (IOException ioe) {
+            System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
+        }
+        System.out.println("Saved to file: " + file.getName());
+        new ReadmeGenerator().generateReadme();
     }
 
     /*
@@ -45,10 +63,6 @@ public class ProgressWriter {
         // clear values list and reset all statuses to incomplete
         for (int i = 1; i <= PROBLEM_COUNT; i++) {
             values.set(2 * (i - 1), Integer.toString(i));
-
-            if (!isBroken(i)) {
-                values.set(2 * (i - 1) + 1, TYPE[3]);
-            }
         }
         // all files in the project folder
         String[] pathnames = Problem.getProblemFiles();
@@ -60,34 +74,26 @@ public class ProgressWriter {
             }
         }
 
-        problems.forEach(problem -> {
+        for (int i = 0; i < problems.size(); i++) {
+            var problem = problems.get(i);
             int problemNumber = Integer.parseInt(problem);
+            // index of the given problem number
             int index = 2 * (problemNumber - 1);
+
+            // bool flag of if problem is solved or not. Existing problems are
+            // either solved or in progress. Incomplete problems do not have a
+            // class file
             boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problem, "isSolved");
-            int type;
-
-            if (isSolved) {
-                System.out.println(problem + " is solved.");
-                type = 0;
-            } else if (isBroken(problemNumber)) {
-                System.out.println(problem + " is broken.");
-                type = 2;
-            } else {
-                System.out.println(problem + " is in progress.");
-                type = 1;
-            }
+            int type = isSolved ? 0 : 1;
+            // sets problem type
             values.set(index + 1, TYPE[type]);
-        });
 
+            // print problem status
+            System.out.println(problem + (isSolved ? " is solved." : " is in progress."));
+        }
         System.out.println("-------------------------------------");
-        writer.setProgress(values);
-    }
 
-    /*
-    isBroken returns if a given problem number's status is set to broken.
-     */
-    private boolean isBroken(int problemNumber) {
-        return values.get(2 * (problemNumber - 1) + 1).trim().equalsIgnoreCase(TYPE[2]);
+        saveProgressToFile(values);
     }
 
     /*
@@ -116,20 +122,8 @@ public class ProgressWriter {
                 0;
             case "IN_PROGRESS" ->
                 1;
-            case "BROKEN" ->
-                2;
             default ->
-                3;
+                2;
         };
-    }
-
-    /*
-    printValues prints the problem number and status of all available
-    problem files.
-     */
-    public void printValues() {
-        for (int i = 0; i < values.size(); i += 2) {
-            System.out.println(values.get(i) + " | " + values.get(i + 1));
-        }
     }
 }
