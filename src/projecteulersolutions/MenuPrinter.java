@@ -36,6 +36,7 @@ public class MenuPrinter {
 
             userChoice = userIn.next().toLowerCase().charAt(0);
             userIn.nextLine();
+            System.out.println();
 
             switch (userChoice) {
                 case 's' ->
@@ -58,9 +59,7 @@ public class MenuPrinter {
     to execute the particular solution based on the user input.
      */
     private void printSolutionMenu() {
-        System.out.print("""
-                         Enter the Project Euler Problem #: 
-                         > """);
+        System.out.print("Enter the Project Euler Problem #:\n> ");
         int userProblemNumber = userIn.nextInt();
         userIn.nextLine();
         if (userProblemNumber > 0 && userProblemNumber <= ProgressWriter.PROBLEM_COUNT) {
@@ -148,7 +147,7 @@ public class MenuPrinter {
         char userChoice;
         ProgressWriter pw = new ProgressWriter();
 
-        System.out.println("\nTo edit or view project progress values, select an option:");
+        System.out.println("To edit or view project progress values, select an option:");
         do {
             /*
             Options:
@@ -162,8 +161,6 @@ public class MenuPrinter {
             userChoice = userIn.next().toLowerCase().charAt(0);
             userIn.nextLine();
             switch (userChoice) {
-                case 'l' ->
-                    pw.printValues();
                 case 'v' ->
                     viewStatus(pw);
                 case 'r' ->
@@ -286,7 +283,6 @@ public class MenuPrinter {
      */
     private void printProgressMenuOptions() {
         System.out.print(TOP_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 L: List progress.") + "\u2551\n"
                 + String.format("%-" + MENU_WIDTH + "s", "\u2551 V: View problem status.") + "\u2551\n"
                 + String.format("%-" + MENU_WIDTH + "s", "\u2551 R: Regenerate all progress.") + "\u2551\n"
                 + String.format("%-" + MENU_WIDTH + "s", "\u2551 Q: Return to main menu.") + "\u2551\n"
