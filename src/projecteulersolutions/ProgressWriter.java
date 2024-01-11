@@ -126,14 +126,4 @@ public class ProgressWriter {
                 2;
         };
     }
-
-    /*
-    printValues prints the problem number and status of all available
-    problem files.
-     */
-    public void printValues() {
-        for (int i = 0; i < values.size(); i += 2) {
-            System.out.println(values.get(i) + " | " + values.get(i + 1));
-        }
-    }
 }
