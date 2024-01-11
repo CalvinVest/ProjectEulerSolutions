@@ -23,63 +23,46 @@ public class Problem0100 extends Problem {
 
     @Override
     public void printSolution() {
-        var solution = new Problem0100Solution();
+        /*
+        The simplest method for finding a fitting solution to this problem seems
+        to me to be calculating every case where the probability Pbb is 1/2, and
+        progressing iteratively until a solution of t > 1E12 is found.
+         */
+
+        long b = 15l;
+        long t = 21l;
 
         /*
-        For MIN_T = 120:
-        60 <= b < 120
-        When b = 60: 120 <= t < 120
-        When b = 119: 120 <= t < 238
-        Area of solution range is right triangle with right angle side lengths 59 and 118.
-        Area of solution is found formulaically as (MIN_T/2 - 1) * (MIN_T - 1) / 2
+        From the formula
         
-        For MIN_T = 1E12:
-        5E11 <= b < 1E12 - 1
-        When b = 5E11: 1E12 <= t < 1E12
-        When b = 1E12 - 1: 1E12 <= t < 2E12 - 2
-        Area of solution is (MIN_T/2 - 1) * (MIN_T - 1) / 2 = (5E11 - 1) * (1E12 - 1) / 2
+        b/t + (b-1)/(t-1) = 1/2
         
-        For a given value of MIN_T, the number of potential operations is approx. 2.5E23
+        we can solve for a relation between b and t such that the successive values
+        for each can be calculated easily. See:
+        
+        2b^2 - 2b = t^2 - t
+        
+        b_n+1 = 3*b_n + 2*t_n - 2
+        t_n+1 = 4*b_n + 3*t_n - 3
+        
+        So now the next value for both B and T when Pbb = 1/2 can be easily
+        calculated.
          */
-        for (double b = MIN_T / 2; b < MIN_T; b++) {
-            for (double t = MIN_T; t < 2 * b; t++) {
-                if (calcPickBTwice(b, t) < 0.5) {
-                    break;
-                }
-
-                if (isPerfectPbb(b, t)) {
-                    solution = new Problem0100Solution(t, b, true);
-                }
-            }
+        while (t < 1e12) {
+            long currB = b;
+            long currT = t;
+            b = nextB(currB, currT);
+            t = nextT(currB, currT);
         }
-        System.out.println(solution.getAnswerString());
+
+        System.out.println("The probability Pbb is 1/2 when t = " + t + " and b = " + b + ".");
     }
 
-    private boolean isPerfectPbb(double b, double t) {
-        return calcPickBTwice(b, t) == 0.5;
+    private long nextB(long b, long t) {
+        return 3 * b + 2 * t - 2;
     }
 
-    private double calcPickBTwice(double b, double t) {
-        return b * (b - 1) / t / (t - 1);
-    }
-
-    private class Problem0100Solution {
-
-        private boolean found;
-        private double t, b;
-
-        public Problem0100Solution(double t, double b, boolean found) {
-            this.t = t;
-            this.b = b;
-            this.found = found;
-        }
-
-        public Problem0100Solution() {
-            this(0, 0, false);
-        }
-
-        public String getAnswerString() {
-            return found ? String.format("The solution is:\n%.0f Total\n%.0f Blue\n%.0f Red", t, b, t - b) : String.format("There is not a fitting solution for T = %.0f", t);
-        }
+    private long nextT(long b, long t) {
+        return 4 * b + 3 * t - 3;
     }
 }
