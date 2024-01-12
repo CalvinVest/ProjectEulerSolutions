@@ -82,21 +82,33 @@ public class MenuPrinter {
         String problemNumberText = String.format("%04d", problemNumber);
         //Initiates new classloader to invoke the problem itself
         JavaClassLoader jcl = new JavaClassLoader();
-        if (existsProblemFile(problemNumber)) { // proceeds if problem solution exists
-            Date dStart = new Date();
+        try {
+            if (existsProblemFile(problemNumber)) { // proceeds if problem solution exists
+                System.out.println("Problem " + problemNumber);
+                Thread.sleep(500);
 
-            System.out.print("Problem " + problemNumber + ": Calculating...");
-            jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printSolution");
+                System.out.println("Calculating...");
+                Thread.sleep(500);
 
-            Date dEnd = new Date();
-            long durationMS = dEnd.getTime() - dStart.getTime();
-            System.out.println("The problem took " + durationMS / 1000
-                    + " seconds (" + durationMS + "ms) to complete.");
-        } else {
-            System.out.println("Problem solution does not exist.");
+                Date dStart = new Date();
+                jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printSolution");
+                Date dEnd = new Date();
+                long durationMS = dEnd.getTime() - dStart.getTime();
+                Thread.sleep(500);
+
+                System.out.println("The problem took " + durationMS / 1000
+                        + " seconds (" + durationMS + "ms) to complete.");
+                Thread.sleep(500);
+            } else {
+                System.out.println("Problem solution does not exist.");
+            }
+
+            System.out.print("\nPress Enter to continue...");
+
+        } catch (InterruptedException ex) {
+            System.out.println(ex.getMessage());
         }
 
-        System.out.print("\nPress Enter to continue...");
         userIn.nextLine();
     }
 
