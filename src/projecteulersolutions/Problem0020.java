@@ -21,7 +21,15 @@ public class Problem0020 extends Problem {
         // BigInteger object to hold the value of 100!
         BigInteger factorial = EulerMath.getBigIntFactorial(100);
         // int value to hold the sum of the digits of 100!
-        int digitSum = EulerMath.getBigIntDigitSum(factorial);
+        int digitSum = getBigIntDigitSum(factorial);
         System.out.println("The sum of the digits of (100)! is " + digitSum);
+    }
+    
+    private int getBigIntDigitSum(BigInteger n) {
+        int sum = 0;
+        for (String str : n.toString().split("")) {
+            sum += Integer.parseInt(str);
+        }
+        return sum;
     }
 }

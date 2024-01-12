@@ -73,14 +73,6 @@ public interface EulerMath {
         return n.toString().length();
     }
 
-    public static int getBigIntDigitSum(BigInteger n) {
-        int sum = 0;
-        for (String str : n.toString().split("")) {
-            sum += Integer.parseInt(str);
-        }
-        return sum;
-    }
-
     public static BigInteger getBigIntFactorial(int n) {
         BigInteger factorial = BigInteger.ONE;
 
