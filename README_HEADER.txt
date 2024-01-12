@@ -23,9 +23,15 @@ I enjoy solving Project Euler's problems and this project is a great way for me 
 I'd like to keep adding problem solutions as time goes on. There's no particular deadlines on this project since it's just a hobby but I'd like to have 100 problems completed by the end of Q2 2024.
 
 ## Version History
+### Version 0.0.2
+<ul>
+  <li>12 Jan 2024</li>
+  <li>Added Patchnotes page</li>
+</ul>
 ### Version 0.0.1
 <ul>
   <li>11 Jan 2024</li>
   <li>58 Problems Completed</li>
   <li>Complete functional console UI</li>
+  <li>First official alpha release</li>
 </ul>
