@@ -31,13 +31,12 @@ public class EulerWriter {
     }
 
     /*
-    setProblemStatus sets the given problemNumber to the given
-    status type.
+    setProblemStatus sets the given problemNumber to the given status.
      */
-    public void setProblemStatus(int problemNumber, int type) {
+    public void setProblemStatus(int problemNumber, int status) {
         int index = (problemNumber - 1) * 2;
         values.set(index, Integer.toString(problemNumber));
-        values.set(index + 1, STATUS[type]);
+        values.set(index + 1, STATUS[status]);
 
         saveProgressToFile(values);
     }
@@ -92,9 +91,9 @@ public class EulerWriter {
             // either solved or in progress. Incomplete problems do not have a
             // class file
             boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problem, "isSolved");
-            int type = isSolved ? 0 : 1;
-            // sets problem type
-            values.set(index + 1, STATUS[type]);
+            int status = isSolved ? 0 : 1;
+            // sets problem status
+            values.set(index + 1, STATUS[status]);
 
             // print problem status
             System.out.println(problem + (isSolved ? " is solved." : " is in progress."));
@@ -121,10 +120,10 @@ public class EulerWriter {
     }
 
     /*
-    getProblemTypeNum returns the status of a given problem number as
+    getProblemStatusNum returns the status of a given problem number as
     its index in STATUS[].
      */
-    public int getProblemTypeNum(int problemNumber) {
+    public int getProblemStatusNum(int problemNumber) {
         return switch (getProblemStatus(problemNumber)) {
             case "COMPLETE" ->
                 0;
@@ -159,11 +158,11 @@ public class EulerWriter {
     private void printProgressToReadme(FileWriter readmeOut) throws IOException {
         EulerWriter pw = new EulerWriter();
         ArrayList<String> progressValues = pw.getValues();
-        int[] typeCounts = new int[pw.STATUS.length];
-        for (int i = 0; i < typeCounts.length; i++) {
-            typeCounts[i] = Collections.frequency(progressValues, pw.STATUS[i]);
+        int[] statusCounts = new int[pw.STATUS.length];
+        for (int i = 0; i < statusCounts.length; i++) {
+            statusCounts[i] = Collections.frequency(progressValues, pw.STATUS[i]);
         }
-        String progressIndex = getProgressIndex(typeCounts);
+        String progressIndex = getProgressIndex(statusCounts);
         readmeOut.write(progressIndex);
         int valuesPerRow = 10;
 
@@ -177,21 +176,20 @@ public class EulerWriter {
         readmeOut.write("\t</tr>\n</table>\n");
     }
 
-    private String getProgressIndex(int[] typeCounts) {
-        return "<p>"
-                + ":green_circle: Complete: " + typeCounts[0] + "<br>\n"
-                + ":orange_circle: In Progress: " + typeCounts[1] + "<br>\n"
-                + ":black_circle: Incomplete: " + typeCounts[2] + "</p>\n";
+    private String getProgressIndex(int[] statusCounts) {
+        return ":green_circle: Complete: " + statusCounts[0]
+                + "\n:small_orange_diamond: In Progress: " + statusCounts[1]
+                + "\n:heavy_multiplication_x: Incomplete: " + statusCounts[2] + "\n";
     }
 
-    private String getEmojiString(String type) {
-        return switch (type) {
+    private String getEmojiString(String status) {
+        return switch (status) {
             case "COMPLETE" ->
                 ":green_circle:";
             case "IN_PROGRESS" ->
-                ":orange_circle:";
+                ":small_orange_diamond:";
             default ->
-                ":black_circle:";
+                ":heavy_multiplication_x:";
         };
     }
 }
