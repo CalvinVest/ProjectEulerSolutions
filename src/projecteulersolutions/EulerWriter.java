@@ -177,19 +177,19 @@ public class EulerWriter {
     }
 
     private String getProgressIndex(int[] statusCounts) {
-        return ":green_circle: Complete: " + statusCounts[0]
-                + "\n:orange_circle: In Progress: " + statusCounts[1]
-                + "\n:black_circle: Incomplete: " + statusCounts[2] + "\n";
+        return ":heavy_check_mark: Complete: " + statusCounts[0]
+                + "\n:small_orange_diamond: In Progress: " + statusCounts[1]
+                + "\n:heavy_multiplication_x: Incomplete: " + statusCounts[2] + "\n";
     }
 
     private String getEmojiString(String status) {
         return switch (status) {
             case "COMPLETE" ->
-                ":green_circle:";
+                ":heavy_check_mark:";
             case "IN_PROGRESS" ->
-                ":orange_circle:";
+                ":small_orange_diamond:";
             default ->
-                ":black_circle:";
+                ":heavy_multiplication_x:";
         };
     }
 }
