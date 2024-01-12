@@ -7,27 +7,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class ProgressWriter {
-    
-    private static final String READMEHEADERPATH = System.getProperty("user.dir") + "\\README_HEADER.txt";
-    private static final String READMEPATH = System.getProperty("user.dir") + "\\README.md";
+public class EulerWriter {
 
-    public static final int PROBLEM_COUNT = 855;
+    private static final String README_HEADER_PATH = System.getProperty("user.dir") + "\\README_HEADER.txt";
+    private static final String README_PATH = System.getProperty("user.dir") + "\\README.md";
+    private static final String PROGRESS_PATH = Problem.FILEPATH + "progress.txt";
+
+    protected static final int PROBLEM_COUNT = 855;
+
     private final ArrayList<String> values;
-    private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
-    private final File file;
-    private final File headerFile, readmeFile;
+    private final File progressOutFile, headerInFile, readmeOutFile;
 
     public final String[] TYPE = {
         /*0*/"COMPLETE",
         /*1*/ "IN_PROGRESS",
         /*2*/ "INCOMPLETE"};
 
-    public ProgressWriter() {
-        file = new File(FILEPATH);
-        values = new ProgressFileReader().getProgress();
-        headerFile = new File(READMEHEADERPATH);
-        readmeFile = new File(READMEPATH);
+    public EulerWriter() {
+        values = new EulerReader().getProgress();
+        progressOutFile = new File(PROGRESS_PATH);
+        headerInFile = new File(README_HEADER_PATH);
+        readmeOutFile = new File(README_PATH);
     }
 
     /*
@@ -47,7 +47,7 @@ public class ProgressWriter {
     data to progress.txt
      */
     public void saveProgressToFile(ArrayList<String> values) {
-        try (FileWriter fw = new FileWriter(file)) {
+        try (FileWriter fw = new FileWriter(progressOutFile)) {
             for (int i = 0; i < values.size(); i += 2) {
                 fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
             }
@@ -55,7 +55,7 @@ public class ProgressWriter {
         } catch (IOException ioe) {
             System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
         }
-        System.out.println("Saved to file: " + file.getName());
+        System.out.println("Saved to file: " + progressOutFile.getName());
         generateReadme();
     }
 
@@ -134,20 +134,20 @@ public class ProgressWriter {
                 2;
         };
     }
-    
+
     public void generateReadme() {
-        try ( FileWriter readmeOut = new FileWriter(readmeFile)) {
+        try (FileWriter readmeOut = new FileWriter(readmeOutFile)) {
             printHeaderToReadme(readmeOut);
             printProgressToReadme(readmeOut);
             readmeOut.close();
-            System.out.println("Saved to file: " + readmeFile.getName());
+            System.out.println("Saved to file: " + readmeOutFile.getName());
         } catch (IOException ioe) {
-            System.out.println("Failed: File " + readmeFile + " does not exist.");
+            System.out.println("Failed: File " + readmeOutFile + " does not exist.");
         }
     }
-    
+
     private void printHeaderToReadme(FileWriter readmeOut) throws IOException {
-        try ( Scanner headerIn = new Scanner(headerFile)) {
+        try (Scanner headerIn = new Scanner(headerInFile)) {
             while (headerIn.hasNext()) {
                 readmeOut.write(headerIn.nextLine() + "\n");
             }
@@ -157,7 +157,7 @@ public class ProgressWriter {
     }
 
     private void printProgressToReadme(FileWriter readmeOut) throws IOException {
-        ProgressWriter pw = new ProgressWriter();
+        EulerWriter pw = new EulerWriter();
         ArrayList<String> progressValues = pw.getValues();
         int[] typeCounts = new int[pw.TYPE.length];
         for (int i = 0; i < typeCounts.length; i++) {
@@ -176,7 +176,7 @@ public class ProgressWriter {
         }
         readmeOut.write("\t</tr>\n</table>\n");
     }
-    
+
     private String getProgressIndex(int[] typeCounts) {
         return "<p>"
                 + ":green_circle: Complete: " + typeCounts[0] + "<br>\n"

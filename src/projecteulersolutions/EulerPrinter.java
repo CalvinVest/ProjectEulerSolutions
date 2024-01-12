@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.Scanner;
 
-public class MenuPrinter {
+public class EulerPrinter {
 
     private static final int MENU_WIDTH = 47;
 
@@ -15,7 +15,7 @@ public class MenuPrinter {
 
     private final Scanner userIn;
 
-    public MenuPrinter() {
+    public EulerPrinter() {
         userIn = new Scanner(System.in);
     }
 
@@ -25,7 +25,7 @@ public class MenuPrinter {
     listing all solutions, showing project progress, and provides simple
     invalid entry catching
     
-    printMainMenu is the only public method in MenuPrinter and is the
+    printMainMenu is the only public method in EulerPrinter and is the
     only point of access for external calls. All other methods are called
     through printMainMenu.
      */
@@ -62,7 +62,7 @@ public class MenuPrinter {
         System.out.print("Enter the Project Euler Problem #:\n> ");
         int userProblemNumber = userIn.nextInt();
         userIn.nextLine();
-        if (userProblemNumber > 0 && userProblemNumber <= ProgressWriter.PROBLEM_COUNT) {
+        if (userProblemNumber > 0 && userProblemNumber <= EulerWriter.PROBLEM_COUNT) {
             invokeProblemByNumber(userProblemNumber);
         } else {
             System.out.println("Failed: The number is not a valid problem number.");
@@ -117,7 +117,7 @@ public class MenuPrinter {
     all problems which have a solution as a file list.
      */
     private void printProblemList() {
-        ProgressWriter pw = new ProgressWriter();
+        EulerWriter pw = new EulerWriter();
         // list of strings to represent source folder contents:
         String[] pathnames = new File(Problem.FILEPATH).list();
 
@@ -157,7 +157,7 @@ public class MenuPrinter {
      */
     private void printProgressMenu() {
         char userChoice;
-        ProgressWriter pw = new ProgressWriter();
+        EulerWriter pw = new EulerWriter();
 
         System.out.println("To edit or view project progress values, select an option:");
         do {
@@ -190,7 +190,7 @@ public class MenuPrinter {
     number from user input and gives the option to edit the status of
     that problem.
      */
-    private void viewStatus(ProgressWriter pw) {
+    private void viewStatus(EulerWriter pw) {
         System.out.print("\u2550".repeat(MENU_WIDTH + 1)
                 + "\nEnter the problem number:"
                 + "\n> ");
@@ -219,7 +219,7 @@ public class MenuPrinter {
     editStatus is a menu function that updates the status of the given
     problem number and sets it to a status from user input.
      */
-    private void editStatus(ProgressWriter pw, int problemNumber) {
+    private void editStatus(EulerWriter pw, int problemNumber) {
         printEditMenuOptions();
         int progressType = userIn.nextInt();
         userIn.nextLine();
@@ -256,7 +256,7 @@ public class MenuPrinter {
     problems based on the existence of the problem file and the return
     of Problem0000.isSolved() respectively.
      */
-    private void regenerateProgress(ProgressWriter pw) {
+    private void regenerateProgress(EulerWriter pw) {
         System.out.print("Confirm regenerate? Data will be lost! y/n\n> ");
         char userChoice = userIn.next().toLowerCase().charAt(0);
         userIn.nextLine();
