@@ -5,12 +5,12 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ProgressFileReader {
+public class EulerReader {
 
     private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
     private final File file;
 
-    public ProgressFileReader() {
+    public EulerReader() {
         file = new File(FILEPATH);
     }
 

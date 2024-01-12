@@ -40,7 +40,7 @@ public class Problem0042 extends Problem {
             // get alphanumeric value of word
             int wordVal = getAlphaSum(words.get(i));
             // if word value is triangular, increment the count of triangle words
-            if (EulerMath.isTriangle(wordVal)) {
+            if (isTriangle(wordVal)) {
                 count++;
             }
         }
@@ -69,5 +69,14 @@ public class Problem0042 extends Problem {
             sum += word.charAt(i) - 64;
         }
         return sum;
+    }
+
+    private boolean isTriangle(int n) {
+        int x = 0;
+        int step = 1;
+        while (x < n) {
+            x += step++;
+        }
+        return x == n;
     }
 }

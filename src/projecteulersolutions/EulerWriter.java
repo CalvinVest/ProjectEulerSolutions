@@ -4,22 +4,30 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Scanner;
 
-public class ProgressWriter {
+public class EulerWriter {
 
-    public static final int PROBLEM_COUNT = 855;
+    private static final String README_HEADER_PATH = System.getProperty("user.dir") + "\\README_HEADER.txt";
+    private static final String README_PATH = System.getProperty("user.dir") + "\\README.md";
+    private static final String PROGRESS_PATH = Problem.FILEPATH + "progress.txt";
+
+    protected static final int PROBLEM_COUNT = 855;
+
     private final ArrayList<String> values;
-    private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
-    private final File file;
+    private final File progressOutFile, headerInFile, readmeOutFile;
 
-    public final String[] TYPE = {
+    public final String[] STATUS = {
         /*0*/"COMPLETE",
         /*1*/ "IN_PROGRESS",
         /*2*/ "INCOMPLETE"};
 
-    public ProgressWriter() {
-        file = new File(FILEPATH);
-        values = new ProgressFileReader().getProgress();
+    public EulerWriter() {
+        values = new EulerReader().getProgress();
+        progressOutFile = new File(PROGRESS_PATH);
+        headerInFile = new File(README_HEADER_PATH);
+        readmeOutFile = new File(README_PATH);
     }
 
     /*
@@ -29,7 +37,7 @@ public class ProgressWriter {
     public void setProblemStatus(int problemNumber, int type) {
         int index = (problemNumber - 1) * 2;
         values.set(index, Integer.toString(problemNumber));
-        values.set(index + 1, TYPE[type]);
+        values.set(index + 1, STATUS[type]);
 
         saveProgressToFile(values);
     }
@@ -39,7 +47,7 @@ public class ProgressWriter {
     data to progress.txt
      */
     public void saveProgressToFile(ArrayList<String> values) {
-        try (FileWriter fw = new FileWriter(file)) {
+        try (FileWriter fw = new FileWriter(progressOutFile)) {
             for (int i = 0; i < values.size(); i += 2) {
                 fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
             }
@@ -47,8 +55,8 @@ public class ProgressWriter {
         } catch (IOException ioe) {
             System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
         }
-        System.out.println("Saved to file: " + file.getName());
-        new ReadmeGenerator().generateReadme();
+        System.out.println("Saved to file: " + progressOutFile.getName());
+        generateReadme();
     }
 
     /*
@@ -86,7 +94,7 @@ public class ProgressWriter {
             boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problem, "isSolved");
             int type = isSolved ? 0 : 1;
             // sets problem type
-            values.set(index + 1, TYPE[type]);
+            values.set(index + 1, STATUS[type]);
 
             // print problem status
             System.out.println(problem + (isSolved ? " is solved." : " is in progress."));
@@ -114,7 +122,7 @@ public class ProgressWriter {
 
     /*
     getProblemTypeNum returns the status of a given problem number as
-    its index in TYPE[].
+    its index in STATUS[].
      */
     public int getProblemTypeNum(int problemNumber) {
         return switch (getProblemStatus(problemNumber)) {
@@ -124,6 +132,66 @@ public class ProgressWriter {
                 1;
             default ->
                 2;
+        };
+    }
+
+    public void generateReadme() {
+        try (FileWriter readmeOut = new FileWriter(readmeOutFile)) {
+            printHeaderToReadme(readmeOut);
+            printProgressToReadme(readmeOut);
+            readmeOut.close();
+            System.out.println("Saved to file: " + readmeOutFile.getName());
+        } catch (IOException ioe) {
+            System.out.println("Failed: File " + readmeOutFile + " does not exist.");
+        }
+    }
+
+    private void printHeaderToReadme(FileWriter readmeOut) throws IOException {
+        try (Scanner headerIn = new Scanner(headerInFile)) {
+            while (headerIn.hasNext()) {
+                readmeOut.write(headerIn.nextLine() + "\n");
+            }
+            readmeOut.write("\n");
+            headerIn.close();
+        }
+    }
+
+    private void printProgressToReadme(FileWriter readmeOut) throws IOException {
+        EulerWriter pw = new EulerWriter();
+        ArrayList<String> progressValues = pw.getValues();
+        int[] typeCounts = new int[pw.STATUS.length];
+        for (int i = 0; i < typeCounts.length; i++) {
+            typeCounts[i] = Collections.frequency(progressValues, pw.STATUS[i]);
+        }
+        String progressIndex = getProgressIndex(typeCounts);
+        readmeOut.write(progressIndex);
+        int valuesPerRow = 10;
+
+        readmeOut.write("<table>\n\t<tr>\n\t\t<td></td>\n");
+        for (int i = 0; i < progressValues.size(); i += 2) {
+            if (i != 0 && i % (2 * valuesPerRow) == 2 * (valuesPerRow - 1)) {
+                readmeOut.write("\t</tr>\n\t<tr>\n");
+            }
+            readmeOut.write("\t\t<td>" + progressValues.get(i) + " " + getEmojiString(progressValues.get(i + 1)) + "</td>\n");
+        }
+        readmeOut.write("\t</tr>\n</table>\n");
+    }
+
+    private String getProgressIndex(int[] typeCounts) {
+        return "<p>"
+                + ":green_circle: Complete: " + typeCounts[0] + "<br>\n"
+                + ":orange_circle: In Progress: " + typeCounts[1] + "<br>\n"
+                + ":black_circle: Incomplete: " + typeCounts[2] + "</p>\n";
+    }
+
+    private String getEmojiString(String type) {
+        return switch (type) {
+            case "COMPLETE" ->
+                ":green_circle:";
+            case "IN_PROGRESS" ->
+                ":orange_circle:";
+            default ->
+                ":black_circle:";
         };
     }
 }
