@@ -60,28 +60,6 @@ public interface EulerMath {
         return a * a + b * b == c * c;
     }
 
-    public static boolean isTriangle(int n) {
-        int x = 0;
-        int step = 1;
-        while (x < n) {
-            x += step++;
-        }
-        return x == n;
-    }
-
-    public static int getBigIntDigitCount(BigInteger n) {
-        return n.toString().length();
-    }
-
-    public static BigInteger getBigIntFactorial(int n) {
-        BigInteger factorial = BigInteger.ONE;
-
-        for (int i = 2; i <= n; i++) {
-            factorial = factorial.multiply(BigInteger.valueOf(i));
-        }
-        return factorial;
-    }
-
     public static BigInteger getBigIntPow(int a, int b) {
         return BigInteger.valueOf(a).pow(b);
     }
