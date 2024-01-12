@@ -12,6 +12,17 @@ will not have any issues with instantiation.
  */
 public interface EulerMath {
 
+    //==================================================
+    // BOOLEAN CALCULATIONS
+    // Methods which return whether a provided value has
+    // the specified characteristic.
+    //==================================================
+    //==============================
+    // isPalindrome
+    //==============================
+    // Return whether the provided
+    // String is palindromic
+    //==============================
     public static boolean isPalindrome(String str) {
         str = str.toLowerCase();
 
@@ -24,6 +35,15 @@ public interface EulerMath {
         return true;
     }
 
+    //==============================
+    // isPandigital
+    //==============================
+    // Return whether the provided
+    // integer is pandigital.
+    // Helper methods:
+    // getDigitArray(long)
+    // containsInt(int[], int)
+    //==============================
     public static boolean isPandigital(int n) {
         int length = EulerMath.getDigitCount(n);
         int[] digitArr = getDigitArray(n);
@@ -35,6 +55,9 @@ public interface EulerMath {
         return true;
     }
 
+    //====================
+    // getDigitArray
+    //====================
     private static int[] getDigitArray(long n) {
         int length = EulerMath.getDigitCount(n);
         int[] arr = new int[length];
@@ -46,6 +69,9 @@ public interface EulerMath {
         return arr;
     }
 
+    //====================
+    // containsInt
+    //====================
     private static boolean containsInt(int[] arr, int d) {
         for (int i : arr) {
             if (i == d) {
@@ -55,6 +81,12 @@ public interface EulerMath {
         return false;
     }
 
+    //==============================
+    // isPrime
+    //==============================
+    // Returns whether the provided
+    // integer is prime.
+    //==============================
     public static boolean isPrime(int n) {
         if (n < 2) {
             return false;
@@ -74,10 +106,31 @@ public interface EulerMath {
         return true;
     }
 
+    //==============================
+    // isPythagorean
+    //==============================
+    // Returns whether the provided
+    // integers form a Pythagorean
+    // triplet.
+    //==============================
     public static boolean isPythagorean(int a, int b, int c) {
         return a * a + b * b == c * c;
     }
 
+    //==================================================
+    // CALCULATION GETTER METHODS
+    //==================================================
+    // These methods return a calculated value determined
+    // by provided values of various data types and
+    // preestablished algorithms, formulas, patterns,
+    // and mathematical principles
+    //==================================================
+    //==============================
+    // getDigitCount
+    //==============================
+    // Returns the number of digits
+    // of a provided long
+    //==============================
     public static int getDigitCount(long n) {
         int count = 0;
         while (n > 0) {
@@ -87,6 +140,12 @@ public interface EulerMath {
         return count;
     }
 
+    //==============================
+    // getFactorial
+    //==============================
+    // Returns the factorial of a
+    // provided int as a double
+    //==============================
     public static double getFactorial(int num) {
         if (num <= 1) {
             return 1;
@@ -94,6 +153,13 @@ public interface EulerMath {
         return num * getFactorial(num - 1);
     }
 
+    //==============================
+    // getGCD
+    //==============================
+    // Returns the greatest common
+    // denominator of two provided
+    // integer values.
+    //==============================
     public static int getGCD(int a, int b) {
         if (b > a) {
             int t = a;
@@ -110,6 +176,13 @@ public interface EulerMath {
         return a;
     }
 
+    //==============================
+    // getNextPrime
+    //==============================
+    // Returns the next-encountered
+    // prime integer, ascending from
+    // the provided integer.
+    //==============================
     public static int getNextPrime(int n) {
         int nextPrime = n + 1;
         while (!isPrime(nextPrime)) {
