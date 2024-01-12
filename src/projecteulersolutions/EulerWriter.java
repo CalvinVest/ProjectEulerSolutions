@@ -178,10 +178,9 @@ public class EulerWriter {
     }
 
     private String getProgressIndex(int[] typeCounts) {
-        return "<p>"
-                + ":green_circle: Complete: " + typeCounts[0] + "<br>\n"
-                + ":orange_circle: In Progress: " + typeCounts[1] + "<br>\n"
-                + ":black_circle: Incomplete: " + typeCounts[2] + "</p>\n";
+        return ":green_circle: Complete: " + typeCounts[0]
+                + "\n:orange_circle: In Progress: " + typeCounts[1]
+                + "\n:black_circle: Incomplete: " + typeCounts[2] + "\n";
     }
 
     private String getEmojiString(String type) {
