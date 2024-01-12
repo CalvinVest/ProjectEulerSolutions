@@ -127,7 +127,7 @@ public class EulerPrinter {
             if (pathname.matches("Problem\\d{4}.java")) {
                 int problemNumber = Integer.parseInt(pathname.substring(7, 11));
                 String problemStatus;
-                switch (writer.getProblemTypeNum(problemNumber)) {
+                switch (writer.getProblemStatusNum(problemNumber)) {
                     case 0 ->
                         problemStatus = "Complete";
                     case 1 ->
