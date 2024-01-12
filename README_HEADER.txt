@@ -27,6 +27,7 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
 <ul>
   <li>12 Jan 2024</li>
   <li>Added Patchnotes page</li>
+  <li>Adds 12 WIP Problems</li>
 </ul>
 
 ### Version 0.0.1
