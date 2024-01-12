@@ -34,13 +34,12 @@ public class EulerPrinter {
         do {
             printMainMenuOptions();
 
-            userChoice = userIn.next().toLowerCase().charAt(0);
-            userIn.nextLine();
+            userChoice = userIn.nextLine().toLowerCase().charAt(0);
             System.out.println();
 
             switch (userChoice) {
                 case 's' ->
-                    printSolutionMenu();
+                    printSolveProblem();
                 case 'l' ->
                     printProblemList();
                 case 'v' ->
@@ -58,7 +57,7 @@ public class EulerPrinter {
     problem solution. This function calls invokeProblemByNumber()
     to execute the particular solution based on the user input.
      */
-    private void printSolutionMenu() {
+    private void printSolveProblem() {
         System.out.print("Enter the Project Euler Problem #:\n> ");
         int userProblemNumber = userIn.nextInt();
         userIn.nextLine();
@@ -117,7 +116,7 @@ public class EulerPrinter {
     all problems which have a solution as a file list.
      */
     private void printProblemList() {
-        EulerWriter pw = new EulerWriter();
+        EulerWriter writer = new EulerWriter();
         // list of strings to represent source folder contents:
         String[] pathnames = new File(Problem.FILEPATH).list();
 
@@ -128,7 +127,7 @@ public class EulerPrinter {
             if (pathname.matches("Problem\\d{4}.java")) {
                 int problemNumber = Integer.parseInt(pathname.substring(7, 11));
                 String problemStatus;
-                switch (pw.getProblemTypeNum(problemNumber)) {
+                switch (writer.getProblemTypeNum(problemNumber)) {
                     case 0 ->
                         problemStatus = "Complete";
                     case 1 ->
@@ -141,12 +140,12 @@ public class EulerPrinter {
         }
         System.out.println("\u2550".repeat(MENU_WIDTH + 1));
 
-        int[] typeCounts = new int[pw.TYPE.length];
-        for (int i = 0; i < typeCounts.length; i++) {
-            typeCounts[i] = Collections.frequency(pw.getValues(), pw.TYPE[i]);
+        int[] problemStatusCounts = new int[writer.STATUS.length];
+        for (int i = 0; i < problemStatusCounts.length; i++) {
+            problemStatusCounts[i] = Collections.frequency(writer.getValues(), writer.STATUS[i]);
         }
-        System.out.println("Total Complete: " + typeCounts[0]
-                + "\nTotal In Progress: " + typeCounts[1]);
+        System.out.println("Total Complete: " + problemStatusCounts[0]
+                + "\nTotal In Progress: " + problemStatusCounts[1]);
     }
 
     /*
@@ -157,7 +156,7 @@ public class EulerPrinter {
      */
     private void printProgressMenu() {
         char userChoice;
-        EulerWriter pw = new EulerWriter();
+        EulerWriter writer = new EulerWriter();
 
         System.out.println("To edit or view project progress values, select an option:");
         do {
@@ -170,13 +169,12 @@ public class EulerPrinter {
              */
             printProgressMenuOptions();
 
-            userChoice = userIn.next().toLowerCase().charAt(0);
-            userIn.nextLine();
+            userChoice = userIn.nextLine().toLowerCase().charAt(0);
             switch (userChoice) {
                 case 'v' ->
-                    viewStatus(pw);
+                    printProblemStatus(writer);
                 case 'r' ->
-                    regenerateProgress(pw);
+                    printRegenProgress(writer);
                 case 'q' ->
                     System.out.println("Returning to Main Menu");
                 default ->
@@ -190,14 +188,14 @@ public class EulerPrinter {
     number from user input and gives the option to edit the status of
     that problem.
      */
-    private void viewStatus(EulerWriter pw) {
+    private void printProblemStatus(EulerWriter writer) {
         System.out.print("\u2550".repeat(MENU_WIDTH + 1)
                 + "\nEnter the problem number:"
                 + "\n> ");
         int problemNumber = userIn.nextInt();
         userIn.nextLine();
         System.out.print(Problem.getFileName(problemNumber)
-                + "\nProblem Status: " + pw.getProblemStatus(problemNumber)
+                + "\nProblem Status: " + writer.getProblemStatus(problemNumber)
                 + "\nEdit Status? y/n:"
                 + "\n> ");
 
@@ -207,7 +205,7 @@ public class EulerPrinter {
         userIn.nextLine();
         switch (userChoice) {
             case 'y' ->
-                editStatus(pw, problemNumber);
+                printEditProblemStatus(writer, problemNumber);
             case 'n' ->
                 System.out.println("Aborted: Operation cancelled by user.");
             default ->
@@ -219,24 +217,23 @@ public class EulerPrinter {
     editStatus is a menu function that updates the status of the given
     problem number and sets it to a status from user input.
      */
-    private void editStatus(EulerWriter pw, int problemNumber) {
+    private void printEditProblemStatus(EulerWriter writer, int problemNumber) {
         printEditMenuOptions();
-        int progressType = userIn.nextInt();
+        int status = userIn.nextInt();
         userIn.nextLine();
 
-        if (progressType == 0) {
+        if (status == 0) {
             return;
         }
 
-        if (progressType < pw.TYPE.length) {
-            System.out.print("Updating status to " + pw.TYPE[progressType]
+        if (status < writer.STATUS.length) {
+            System.out.print("Updating status to " + writer.STATUS[status]
                     + "\nConfirm? y/n:"
                     + "\n> ");
-            char userChoice = userIn.next().toLowerCase().charAt(0);
-            userIn.nextLine();
+            char userChoice = userIn.nextLine().toLowerCase().charAt(0);
             switch (userChoice) {
                 case 'y' -> {
-                    pw.setProblemStatus(problemNumber, progressType);
+                    writer.setProblemStatus(problemNumber, status);
                     System.out.println("Success: Status updated.");
                 }
                 case 'n' ->
@@ -245,7 +242,7 @@ public class EulerPrinter {
                     System.out.println("Failed: Invalid entry.");
             }
         } else {
-            System.out.println("Failed: Value " + progressType + " is out of bounds.");
+            System.out.println("Failed: Value " + status + " is out of bounds.");
         }
     }
 
@@ -256,13 +253,12 @@ public class EulerPrinter {
     problems based on the existence of the problem file and the return
     of Problem0000.isSolved() respectively.
      */
-    private void regenerateProgress(EulerWriter pw) {
+    private void printRegenProgress(EulerWriter writer) {
         System.out.print("Confirm regenerate? Data will be lost! y/n\n> ");
-        char userChoice = userIn.next().toLowerCase().charAt(0);
-        userIn.nextLine();
+        char userChoice = userIn.nextLine().toLowerCase().charAt(0);
         switch (userChoice) {
             case 'y' -> {
-                pw.regenerateValues();
+                writer.regenerateValues();
                 System.out.println("Success: All progress has been defaulted.");
             }
             case 'n' ->

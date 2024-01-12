@@ -18,7 +18,7 @@ public class EulerWriter {
     private final ArrayList<String> values;
     private final File progressOutFile, headerInFile, readmeOutFile;
 
-    public final String[] TYPE = {
+    public final String[] STATUS = {
         /*0*/"COMPLETE",
         /*1*/ "IN_PROGRESS",
         /*2*/ "INCOMPLETE"};
@@ -37,7 +37,7 @@ public class EulerWriter {
     public void setProblemStatus(int problemNumber, int type) {
         int index = (problemNumber - 1) * 2;
         values.set(index, Integer.toString(problemNumber));
-        values.set(index + 1, TYPE[type]);
+        values.set(index + 1, STATUS[type]);
 
         saveProgressToFile(values);
     }
@@ -94,7 +94,7 @@ public class EulerWriter {
             boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problem, "isSolved");
             int type = isSolved ? 0 : 1;
             // sets problem type
-            values.set(index + 1, TYPE[type]);
+            values.set(index + 1, STATUS[type]);
 
             // print problem status
             System.out.println(problem + (isSolved ? " is solved." : " is in progress."));
@@ -122,7 +122,7 @@ public class EulerWriter {
 
     /*
     getProblemTypeNum returns the status of a given problem number as
-    its index in TYPE[].
+    its index in STATUS[].
      */
     public int getProblemTypeNum(int problemNumber) {
         return switch (getProblemStatus(problemNumber)) {
@@ -159,9 +159,9 @@ public class EulerWriter {
     private void printProgressToReadme(FileWriter readmeOut) throws IOException {
         EulerWriter pw = new EulerWriter();
         ArrayList<String> progressValues = pw.getValues();
-        int[] typeCounts = new int[pw.TYPE.length];
+        int[] typeCounts = new int[pw.STATUS.length];
         for (int i = 0; i < typeCounts.length; i++) {
-            typeCounts[i] = Collections.frequency(progressValues, pw.TYPE[i]);
+            typeCounts[i] = Collections.frequency(progressValues, pw.STATUS[i]);
         }
         String progressIndex = getProgressIndex(typeCounts);
         readmeOut.write(progressIndex);
