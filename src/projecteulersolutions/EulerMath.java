@@ -63,7 +63,7 @@ public interface EulerMath {
     public static boolean isTriangle(int n) {
         int x = 0;
         int step = 1;
-        while(x < n) {
+        while (x < n) {
             x += step++;
         }
         return x == n;
@@ -114,24 +114,6 @@ public interface EulerMath {
         return count;
     }
 
-    public static int getDigitProduct(long n) {
-        int product = 1;
-        while (n > 0) {
-            product *= n % 10;
-            n /= 10;
-        }
-        return product;
-    }
-
-    public static int getDigitSum(long n) {
-        int sum = 0;
-        while (n > 0) {
-            sum += n % 10;
-            n /= 10;
-        }
-        return sum;
-    }
-
     public static double getFactorial(int num) {
         if (num <= 1) {
             return 1;
@@ -161,28 +143,6 @@ public interface EulerMath {
             nextPrime++;
         }
         return nextPrime;
-    }
-
-    public static int getTotientCount(int n) {
-        if (n <= 0) {
-            return 0;
-        }
-        int count = 1;
-
-        for (int i = 2; i <= Math.sqrt(n); i++) {
-            if (n % i == 0) {
-                count *= i - 1;
-                n /= i;
-                while (n % i == 0) {
-                    count *= i;
-                    n /= i;
-                }
-            }
-        }
-        if (n != 1) {
-            count *= n - 1;
-        }
-        return count;
     }
 
     public static int[] getTotientArray(int n) {
