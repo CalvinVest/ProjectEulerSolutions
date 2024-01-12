@@ -46,6 +46,15 @@ public interface EulerMath {
         return arr;
     }
 
+    private static boolean containsInt(int[] arr, int d) {
+        for (int i : arr) {
+            if (i == d) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public static boolean isPrime(int n) {
         if (n < 2) {
             return false;
@@ -107,14 +116,5 @@ public interface EulerMath {
             nextPrime++;
         }
         return nextPrime;
-    }
-
-    public static boolean containsInt(int[] arr, int d) {
-        for (int i : arr) {
-            if (i == d) {
-                return true;
-            }
-        }
-        return false;
     }
 }
