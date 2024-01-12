@@ -42,8 +42,8 @@ public class Problem0100 extends Problem {
         
         2b^2 - 2b = t^2 - t
         
-        b_n+1 = 3*b_n + 2*t_n - 2
-        t_n+1 = 4*b_n + 3*t_n - 3
+        b[n+1] = 3*b[n] + 2*t[n] - 2
+        t[n+1] = 4*b[n] + 3*t[n] - 3
         
         So now the next value for both B and T when Pbb = 1/2 can be easily
         calculated.
@@ -55,7 +55,7 @@ public class Problem0100 extends Problem {
             t = nextT(currB, currT);
         }
 
-        System.out.println("The probability Pbb is 1/2 when t = " + t + " and b = " + b + ".");
+        System.out.println("The probability P_bb is 1/2 when t = " + t + " (>= 1E12) and b = " + b + ".");
     }
 
     private long nextB(long b, long t) {
