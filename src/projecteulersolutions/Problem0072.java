@@ -39,12 +39,30 @@ public class Problem0072 extends Problem {
         long count = 0;
 
         // totient array, where totients[i] = totient(i).
-        int[] totients = EulerMath.getTotientArray(UPPER_BOUND);
+        int[] totients = getTotientArray(UPPER_BOUND);
 
         // for all denominators, add totient(denominator) to count
         for (int i = 2; i < totients.length; i++) {
             count += totients[i];
         }
         System.out.println("The number of reduced proper fractions for denominator <= " + UPPER_BOUND + " is " + count);
+    }
+    
+    private int[] getTotientArray(int n) {
+        if (n < 0) {
+            return new int[]{0};
+        }
+        int[] result = new int[n + 1];
+        for (int i = 0; i <= n; i++) {
+            result[i] = i;
+        }
+        for (int i = 2; i <= n; i++) {
+            if (result[i] == i) {
+                for (int j = i; j <= n; j += i) {
+                    result[j] -= result[j] / i;
+                }
+            }
+        }
+        return result;
     }
 }

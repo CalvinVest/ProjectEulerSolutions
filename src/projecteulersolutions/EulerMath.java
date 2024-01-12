@@ -1,7 +1,5 @@
 package projecteulersolutions;
 
-import java.math.BigInteger;
-
 /*
 EulerMath is my own homebrew calculator to assist in solving
 Project Euler problems by building a collection of useful mathematical
@@ -37,6 +35,17 @@ public interface EulerMath {
         return true;
     }
 
+    private static int[] getDigitArray(long n) {
+        int length = EulerMath.getDigitCount(n);
+        int[] arr = new int[length];
+        long temp = n;
+        for (int i = length - 1; i >= 0; i--) {
+            arr[i] = (int) (temp % 10);
+            temp /= 10;
+        }
+        return arr;
+    }
+
     public static boolean isPrime(int n) {
         if (n < 2) {
             return false;
@@ -58,21 +67,6 @@ public interface EulerMath {
 
     public static boolean isPythagorean(int a, int b, int c) {
         return a * a + b * b == c * c;
-    }
-
-    public static BigInteger getBigIntPow(int a, int b) {
-        return BigInteger.valueOf(a).pow(b);
-    }
-
-    public static int[] getDigitArray(long n) {
-        int length = EulerMath.getDigitCount(n);
-        int[] arr = new int[length];
-        long temp = n;
-        for (int i = length - 1; i >= 0; i--) {
-            arr[i] = (int) (temp % 10);
-            temp /= 10;
-        }
-        return arr;
     }
 
     public static int getDigitCount(long n) {
@@ -113,24 +107,6 @@ public interface EulerMath {
             nextPrime++;
         }
         return nextPrime;
-    }
-
-    public static int[] getTotientArray(int n) {
-        if (n < 0) {
-            return new int[]{0};
-        }
-        int[] result = new int[n + 1];
-        for (int i = 0; i <= n; i++) {
-            result[i] = i;
-        }
-        for (int i = 2; i <= n; i++) {
-            if (result[i] == i) {
-                for (int j = i; j <= n; j += i) {
-                    result[j] -= result[j] / i;
-                }
-            }
-        }
-        return result;
     }
 
     public static boolean containsInt(int[] arr, int d) {
