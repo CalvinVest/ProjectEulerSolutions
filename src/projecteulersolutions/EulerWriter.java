@@ -34,9 +34,9 @@ public class EulerWriter {
     setProblemStatus sets the given problemNumber to the given status.
      */
     public void setProblemStatus(int problemNumber, int status) {
-        int index = (problemNumber - 1) * 2;
-        values.set(index, Integer.toString(problemNumber));
-        values.set(index + 1, STATUS[status]);
+        int problemIndex = (problemNumber - 1) * 2;
+        values.set(problemIndex, Integer.toString(problemNumber));
+        values.set(problemIndex + 1, STATUS[status]);
 
         saveProgressToFile(values);
     }
@@ -46,11 +46,11 @@ public class EulerWriter {
     data to progress.txt
      */
     public void saveProgressToFile(ArrayList<String> values) {
-        try (FileWriter fw = new FileWriter(progressOutFile)) {
+        try (FileWriter writer = new FileWriter(progressOutFile)) {
             for (int i = 0; i < values.size(); i += 2) {
-                fw.write(values.get(i) + " " + values.get(i + 1) + "\n");
+                writer.write(values.get(i) + " " + values.get(i + 1) + "\n");
             }
-            fw.close();
+            writer.close();
         } catch (IOException ioe) {
             System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
         }
@@ -135,10 +135,10 @@ public class EulerWriter {
     }
 
     public void generateReadme() {
-        try (FileWriter readmeOut = new FileWriter(readmeOutFile)) {
-            printHeaderToReadme(readmeOut);
-            printProgressToReadme(readmeOut);
-            readmeOut.close();
+        try (FileWriter readmeFileOut = new FileWriter(readmeOutFile)) {
+            printHeaderToReadme(readmeFileOut);
+            printProgressToReadme(readmeFileOut);
+            readmeFileOut.close();
             System.out.println("Saved to file: " + readmeOutFile.getName());
         } catch (IOException ioe) {
             System.out.println("Failed: File " + readmeOutFile + " does not exist.");
@@ -146,24 +146,24 @@ public class EulerWriter {
     }
 
     private void printHeaderToReadme(FileWriter readmeOut) throws IOException {
-        try (Scanner headerIn = new Scanner(headerInFile)) {
-            while (headerIn.hasNext()) {
-                readmeOut.write(headerIn.nextLine() + "\n");
+        try (Scanner headerFileIn = new Scanner(headerInFile)) {
+            while (headerFileIn.hasNext()) {
+                readmeOut.write(headerFileIn.nextLine() + "\n");
             }
             readmeOut.write("\n");
-            headerIn.close();
+            headerFileIn.close();
         }
     }
 
     private void printProgressToReadme(FileWriter readmeOut) throws IOException {
-        EulerWriter pw = new EulerWriter();
-        ArrayList<String> progressValues = pw.getValues();
-        int[] statusCounts = new int[pw.STATUS.length];
+        EulerWriter writer = new EulerWriter();
+        ArrayList<String> progressValues = writer.getValues();
+        int[] statusCounts = new int[writer.STATUS.length];
         for (int i = 0; i < statusCounts.length; i++) {
-            statusCounts[i] = Collections.frequency(progressValues, pw.STATUS[i]);
+            statusCounts[i] = Collections.frequency(progressValues, writer.STATUS[i]);
         }
-        String progressIndex = getProgressIndex(statusCounts);
-        readmeOut.write(progressIndex);
+        String statusCountsString = getStatusCountsString(statusCounts);
+        readmeOut.write(statusCountsString);
         int valuesPerRow = 10;
 
         readmeOut.write("<table>\n\t<tr>\n\t\t<td></td>\n");
@@ -176,7 +176,7 @@ public class EulerWriter {
         readmeOut.write("\t</tr>\n</table>\n");
     }
 
-    private String getProgressIndex(int[] statusCounts) {
+    private String getStatusCountsString(int[] statusCounts) {
         return ":green_circle: Complete: " + statusCounts[0]
                 + "\n:small_orange_diamond: In Progress: " + statusCounts[1]
                 + "\n:heavy_multiplication_x: Incomplete: " + statusCounts[2] + "\n";

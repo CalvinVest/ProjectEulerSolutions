@@ -5,12 +5,12 @@ An all-in-one java project for solving and navigating solutions for Project Eule
 This site contains spoilers. Please close this page if you wish to solve the included Project Euler programs yourself.
 
 ## What is Project Euler?
-<a href="https://www.projecteuler.net">Project Euler</a> is a collection of math and programming problems, at all difficulties.
+<a href="https://www.projecteuler.net">Project Euler</a> is an active online archive of math and programming challenges inspired by the works of mathemetician Leonhard Euler.
 These problems allow the user to grow their own understanding of mathematical processes and programming techniques.
-The problems are given as a mathematical problem with a single numerical response. It is up to the user to determine how they will find the answer.
+Problems are usually formatted to accept a single numerical response, either the result of a complex calculation or some unique chain of numbers indicative of a correct solution.
 
 ## Why'd I do this?
-I started this project a few years ago as a small hobby program. I was able to apply my mathematical knowledge as I was learning Java programming.
+I started this project a few years ago as a small hobby program. It gave me the chance to work on my hobby programming proficiency in Java, and keep my math skills sharp as well.
 I enjoy solving Project Euler's problems and this project is a great way for me to
 <ul>
   <li>Expand my OOP knowledge</li>
@@ -19,13 +19,25 @@ I enjoy solving Project Euler's problems and this project is a great way for me 
   <li>Maintain consistent progress by breaking the project up into small additions with every problem</li>
 </ul>
 
-## What's the vision?
-Going forward, I'd like to keep expanding this project.
-I'm planning to continue doing Project Euler problems for a good while, so this project is a great way to keep myself involved.
-As time goes on I'll be making occasional edits to the core functionality of the program, but the majority of updates will be to add new problem solutions.
+## Future Plans
+I'd like to keep adding problem solutions as time goes on. There's no particular deadlines on this project since it's just a hobby but I'd like to have 100 problems completed by the end of Q2 2024.
 
-## My Project Euler progress
-Not all of my Project Euler progress is recorded here yet. There's problems I've solved whose solutions are not included in this repository, but that should change with time. Stay tuned!
+## Version History
+### Version 0.0.2
+<ul>
+  <li>12 Jan 2024</li>
+  <li>Added Patchnotes page</li>
+</ul>
+
+### Version 0.0.1
+<ul>
+  <li>11 Jan 2024</li>
+  <li>58 Problems Completed</li>
+  <li>Complete functional console UI</li>
+  <li>First official alpha release</li>
+</ul>
+
+## Problem Status
 
 :green_circle: Complete: 58
 :small_orange_diamond: In Progress: 0
