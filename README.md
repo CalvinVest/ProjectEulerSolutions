@@ -28,6 +28,7 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
   <li>12 Jan 2024</li>
   <li>Added Patchnotes page</li>
 </ul>
+
 ### Version 0.0.1
 <ul>
   <li>11 Jan 2024</li>
@@ -35,6 +36,8 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
   <li>Complete functional console UI</li>
   <li>First official alpha release</li>
 </ul>
+
+## Problem Status
 
 :green_circle: Complete: 58
 :small_orange_diamond: In Progress: 0
