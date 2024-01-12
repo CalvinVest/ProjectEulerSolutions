@@ -27,78 +27,78 @@ As time goes on I'll be making occasional edits to the core functionality of the
 ## My Project Euler progress
 Not all of my Project Euler progress is recorded here yet. There's problems I've solved whose solutions are not included in this repository, but that should change with time. Stay tuned!
 
-:heavy_check_mark: Complete: 58
+:green_circle: Complete: 58
 :small_orange_diamond: In Progress: 0
 :heavy_multiplication_x: Incomplete: 797
 <table>
 	<tr>
 		<td></td>
-		<td>1 :heavy_check_mark:</td>
-		<td>2 :heavy_check_mark:</td>
-		<td>3 :heavy_check_mark:</td>
-		<td>4 :heavy_check_mark:</td>
-		<td>5 :heavy_check_mark:</td>
-		<td>6 :heavy_check_mark:</td>
-		<td>7 :heavy_check_mark:</td>
-		<td>8 :heavy_check_mark:</td>
-		<td>9 :heavy_check_mark:</td>
+		<td>1 :green_circle:</td>
+		<td>2 :green_circle:</td>
+		<td>3 :green_circle:</td>
+		<td>4 :green_circle:</td>
+		<td>5 :green_circle:</td>
+		<td>6 :green_circle:</td>
+		<td>7 :green_circle:</td>
+		<td>8 :green_circle:</td>
+		<td>9 :green_circle:</td>
 	</tr>
 	<tr>
-		<td>10 :heavy_check_mark:</td>
-		<td>11 :heavy_check_mark:</td>
-		<td>12 :heavy_check_mark:</td>
-		<td>13 :heavy_check_mark:</td>
-		<td>14 :heavy_check_mark:</td>
-		<td>15 :heavy_check_mark:</td>
-		<td>16 :heavy_check_mark:</td>
-		<td>17 :heavy_check_mark:</td>
-		<td>18 :heavy_check_mark:</td>
-		<td>19 :heavy_check_mark:</td>
+		<td>10 :green_circle:</td>
+		<td>11 :green_circle:</td>
+		<td>12 :green_circle:</td>
+		<td>13 :green_circle:</td>
+		<td>14 :green_circle:</td>
+		<td>15 :green_circle:</td>
+		<td>16 :green_circle:</td>
+		<td>17 :green_circle:</td>
+		<td>18 :green_circle:</td>
+		<td>19 :green_circle:</td>
 	</tr>
 	<tr>
-		<td>20 :heavy_check_mark:</td>
-		<td>21 :heavy_check_mark:</td>
-		<td>22 :heavy_check_mark:</td>
-		<td>23 :heavy_check_mark:</td>
-		<td>24 :heavy_check_mark:</td>
-		<td>25 :heavy_check_mark:</td>
-		<td>26 :heavy_check_mark:</td>
-		<td>27 :heavy_check_mark:</td>
-		<td>28 :heavy_check_mark:</td>
-		<td>29 :heavy_check_mark:</td>
+		<td>20 :green_circle:</td>
+		<td>21 :green_circle:</td>
+		<td>22 :green_circle:</td>
+		<td>23 :green_circle:</td>
+		<td>24 :green_circle:</td>
+		<td>25 :green_circle:</td>
+		<td>26 :green_circle:</td>
+		<td>27 :green_circle:</td>
+		<td>28 :green_circle:</td>
+		<td>29 :green_circle:</td>
 	</tr>
 	<tr>
-		<td>30 :heavy_check_mark:</td>
-		<td>31 :heavy_check_mark:</td>
-		<td>32 :heavy_check_mark:</td>
-		<td>33 :heavy_check_mark:</td>
-		<td>34 :heavy_check_mark:</td>
-		<td>35 :heavy_check_mark:</td>
-		<td>36 :heavy_check_mark:</td>
-		<td>37 :heavy_check_mark:</td>
-		<td>38 :heavy_check_mark:</td>
-		<td>39 :heavy_check_mark:</td>
+		<td>30 :green_circle:</td>
+		<td>31 :green_circle:</td>
+		<td>32 :green_circle:</td>
+		<td>33 :green_circle:</td>
+		<td>34 :green_circle:</td>
+		<td>35 :green_circle:</td>
+		<td>36 :green_circle:</td>
+		<td>37 :green_circle:</td>
+		<td>38 :green_circle:</td>
+		<td>39 :green_circle:</td>
 	</tr>
 	<tr>
-		<td>40 :heavy_check_mark:</td>
-		<td>41 :heavy_check_mark:</td>
-		<td>42 :heavy_check_mark:</td>
-		<td>43 :heavy_check_mark:</td>
-		<td>44 :heavy_check_mark:</td>
-		<td>45 :heavy_check_mark:</td>
-		<td>46 :heavy_check_mark:</td>
-		<td>47 :heavy_check_mark:</td>
-		<td>48 :heavy_check_mark:</td>
-		<td>49 :heavy_check_mark:</td>
+		<td>40 :green_circle:</td>
+		<td>41 :green_circle:</td>
+		<td>42 :green_circle:</td>
+		<td>43 :green_circle:</td>
+		<td>44 :green_circle:</td>
+		<td>45 :green_circle:</td>
+		<td>46 :green_circle:</td>
+		<td>47 :green_circle:</td>
+		<td>48 :green_circle:</td>
+		<td>49 :green_circle:</td>
 	</tr>
 	<tr>
-		<td>50 :heavy_check_mark:</td>
+		<td>50 :green_circle:</td>
 		<td>51 :heavy_multiplication_x:</td>
 		<td>52 :heavy_multiplication_x:</td>
 		<td>53 :heavy_multiplication_x:</td>
 		<td>54 :heavy_multiplication_x:</td>
 		<td>55 :heavy_multiplication_x:</td>
-		<td>56 :heavy_check_mark:</td>
+		<td>56 :green_circle:</td>
 		<td>57 :heavy_multiplication_x:</td>
 		<td>58 :heavy_multiplication_x:</td>
 		<td>59 :heavy_multiplication_x:</td>
@@ -111,14 +111,14 @@ Not all of my Project Euler progress is recorded here yet. There's problems I've
 		<td>64 :heavy_multiplication_x:</td>
 		<td>65 :heavy_multiplication_x:</td>
 		<td>66 :heavy_multiplication_x:</td>
-		<td>67 :heavy_check_mark:</td>
+		<td>67 :green_circle:</td>
 		<td>68 :heavy_multiplication_x:</td>
 		<td>69 :heavy_multiplication_x:</td>
 	</tr>
 	<tr>
 		<td>70 :heavy_multiplication_x:</td>
 		<td>71 :heavy_multiplication_x:</td>
-		<td>72 :heavy_check_mark:</td>
+		<td>72 :green_circle:</td>
 		<td>73 :heavy_multiplication_x:</td>
 		<td>74 :heavy_multiplication_x:</td>
 		<td>75 :heavy_multiplication_x:</td>
@@ -137,12 +137,12 @@ Not all of my Project Euler progress is recorded here yet. There's problems I've
 		<td>86 :heavy_multiplication_x:</td>
 		<td>87 :heavy_multiplication_x:</td>
 		<td>88 :heavy_multiplication_x:</td>
-		<td>89 :heavy_check_mark:</td>
+		<td>89 :green_circle:</td>
 	</tr>
 	<tr>
 		<td>90 :heavy_multiplication_x:</td>
 		<td>91 :heavy_multiplication_x:</td>
-		<td>92 :heavy_check_mark:</td>
+		<td>92 :green_circle:</td>
 		<td>93 :heavy_multiplication_x:</td>
 		<td>94 :heavy_multiplication_x:</td>
 		<td>95 :heavy_multiplication_x:</td>
@@ -152,7 +152,7 @@ Not all of my Project Euler progress is recorded here yet. There's problems I've
 		<td>99 :heavy_multiplication_x:</td>
 	</tr>
 	<tr>
-		<td>100 :heavy_check_mark:</td>
+		<td>100 :green_circle:</td>
 		<td>101 :heavy_multiplication_x:</td>
 		<td>102 :heavy_multiplication_x:</td>
 		<td>103 :heavy_multiplication_x:</td>
@@ -459,7 +459,7 @@ Not all of my Project Euler progress is recorded here yet. There's problems I've
 		<td>354 :heavy_multiplication_x:</td>
 		<td>355 :heavy_multiplication_x:</td>
 		<td>356 :heavy_multiplication_x:</td>
-		<td>357 :heavy_check_mark:</td>
+		<td>357 :green_circle:</td>
 		<td>358 :heavy_multiplication_x:</td>
 		<td>359 :heavy_multiplication_x:</td>
 	</tr>
@@ -585,7 +585,7 @@ Not all of my Project Euler progress is recorded here yet. There's problems I've
 	</tr>
 	<tr>
 		<td>460 :heavy_multiplication_x:</td>
-		<td>461 :heavy_check_mark:</td>
+		<td>461 :green_circle:</td>
 		<td>462 :heavy_multiplication_x:</td>
 		<td>463 :heavy_multiplication_x:</td>
 		<td>464 :heavy_multiplication_x:</td>

@@ -177,7 +177,7 @@ public class EulerWriter {
     }
 
     private String getProgressIndex(int[] statusCounts) {
-        return ":heavy_check_mark: Complete: " + statusCounts[0]
+        return ":green_circle: Complete: " + statusCounts[0]
                 + "\n:small_orange_diamond: In Progress: " + statusCounts[1]
                 + "\n:heavy_multiplication_x: Incomplete: " + statusCounts[2] + "\n";
     }
@@ -185,7 +185,7 @@ public class EulerWriter {
     private String getEmojiString(String status) {
         return switch (status) {
             case "COMPLETE" ->
-                ":heavy_check_mark:";
+                ":green_circle:";
             case "IN_PROGRESS" ->
                 ":small_orange_diamond:";
             default ->
