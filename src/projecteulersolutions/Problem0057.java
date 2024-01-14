@@ -19,7 +19,7 @@ numerator exceeds the number of digits in the denominator.
 
 In the first one-thousand expansions, how many fractions contain a numerator
 with more digits than the denominator?
-*/
+ */
 public class Problem0057 extends Problem {
 
     @Override
@@ -30,5 +30,49 @@ public class Problem0057 extends Problem {
     @Override
     public void printSolution() {
         System.out.println("This problem has not yet been solved.");
+        /*for(int iter = 1; iter < 1000; iter++) {
+            double sqrt2Approx = 1.0 + getSqrt2DecApprox(iter);
+            System.out.printf("iter: %d| sqrt(2): %10.8f\n", iter, sqrt2Approx);
+        }*/
     }
+
+    /*private double getSqrt2DecApprox(int iterations) {
+        Fraction frac = new Fraction(2, 1);
+    }
+    
+    private class Fraction {
+        private int num, den;
+        
+        public Fraction(int num, int den) {
+            this.num = num;
+            this.den = den;
+        }
+        
+        public int getNumerator() {
+            return num;
+        }
+        
+        public void setNumerator(int num) {
+            this.num = num;
+        }
+        
+        public int getDenominator() {
+            return den;
+        }
+        
+        public void setDenominator(int den) {
+            this.den = den;
+        }
+        
+        public void simplify() {
+            int gcf = EulerMath.getGCD(num, den);
+            num /= gcf;
+            den /= gcf;
+            
+            if(den < 0) {
+                num *= -1;
+                den *= -1;
+            }
+        }
+    }*/
 }
