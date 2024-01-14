@@ -24,7 +24,7 @@ public class EulerWriter {
         /*2*/ "INCOMPLETE"};
 
     public EulerWriter() {
-        values = new EulerReader().getProgress();
+        values = new EulerReader().loadProgress();
         progressOutFile = new File(PROGRESS_PATH);
         headerInFile = new File(README_HEADER_PATH);
         readmeOutFile = new File(README_PATH);

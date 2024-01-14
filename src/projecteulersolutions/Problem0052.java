@@ -35,7 +35,7 @@ public class Problem0052 extends Problem {
     hasFivePermutedMultiples is a private checker method that returns if a given
     int n is such that multiples 2n-6n are permutations of the string of the 
     original int n
-    */
+     */
     private boolean hasFivePermutedMultiples(int n) {
         // string array to hold strings of n-6n
         String[] mults = new String[6];
@@ -54,7 +54,7 @@ public class Problem0052 extends Problem {
         
         That being said, I'm sure there's plenty of ways I can improve this
         method, and I very well may in the near future. We'll see.
-        */
+         */
         for (int i = 1; i < 6; i++) {
             // if the length of the two strings are not equal, they can not be
             // permutations. exit and return false
@@ -75,7 +75,7 @@ public class Problem0052 extends Problem {
     isPermutedString is a checker method that returns if the two provided strings
     s1 and s2 are permutations of one another, used by hasFivePermutedMultiples
     to check if each multiple 2n-6n is a permutation of the original value n
-    */
+     */
     private boolean isPermutedString(String s1, String s2) {
         // convert both strings to char arrays
         char[] c1 = s1.toCharArray();
