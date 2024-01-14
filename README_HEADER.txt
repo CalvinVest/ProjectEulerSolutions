@@ -7,7 +7,7 @@ This site contains spoilers. Please close this page if you wish to solve the inc
 ## What is Project Euler?
 <a href="https://www.projecteuler.net">Project Euler</a> is an active online archive of math and programming challenges inspired by the works of mathemetician Leonhard Euler.
 These problems allow the user to grow their own understanding of mathematical processes and programming techniques.
-Problems are usually formatted to accept a single numerical response, either the result of a complex calculation or some unique chain of numbers indicative of a correct solution.
+Problems are usually designed to accept a single numerical value, solved by the problem files in this repository.
 
 ## Why'd I do this?
 I started this project a few years ago as a small hobby program. It gave me the chance to work on my hobby programming proficiency in Java, and keep my math skills sharp as well.
@@ -23,7 +23,7 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
 
 ## Version History
 ### Version 0.0.2
-- 12 Jan 2024
+- 14 Jan 2024
 - Added Patchnotes page
 - Adds 12 WIP Problems
 
