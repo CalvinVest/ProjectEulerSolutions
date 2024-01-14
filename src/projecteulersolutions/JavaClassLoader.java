@@ -34,11 +34,13 @@ public class JavaClassLoader extends ClassLoader {
         } catch (ClassNotFoundException // from .loadClass();
                 | NoSuchMethodException // from .getMethod(); and .getConstructor();
                 | InstantiationException // from .newInstance();
-                | IllegalAccessException // from .newInstance(); and .invoke(Object);
-                | InvocationTargetException e) { // from .newInstance(); and .invoke(Object);
+                | IllegalAccessException e) {// from .newInstance(); and .invoke(Object);
             // basic exception printing
             // this should be expanded to more granular solutions in the future
             System.out.println("Exception encountered - " + e);
+        } catch (InvocationTargetException e) { // from .newInstance(); and .invoke(Object);
+            System.out.println("InvocationTargetException encountered.");
+            System.out.println(e.toString());
         }
         return null;
     }
