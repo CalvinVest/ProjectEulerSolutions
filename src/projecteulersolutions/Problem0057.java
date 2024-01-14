@@ -1,5 +1,7 @@
 package projecteulersolutions;
 
+import java.math.BigInteger;
+
 /*
 It is possible to show that the square root of two can be expressed as an
 infinite continued fraction.
@@ -29,50 +31,76 @@ public class Problem0057 extends Problem {
 
     @Override
     public void printSolution() {
+        int count = 0;
+        int iter;
         System.out.println("This problem has not yet been solved.");
-        /*for(int iter = 1; iter < 1000; iter++) {
-            double sqrt2Approx = 1.0 + getSqrt2DecApprox(iter);
-            System.out.printf("iter: %d| sqrt(2): %10.8f\n", iter, sqrt2Approx);
-        }*/
-    }
-
-    /*private double getSqrt2DecApprox(int iterations) {
-        Fraction frac = new Fraction(2, 1);
-    }
-    
-    private class Fraction {
-        private int num, den;
-        
-        public Fraction(int num, int den) {
-            this.num = num;
-            this.den = den;
-        }
-        
-        public int getNumerator() {
-            return num;
-        }
-        
-        public void setNumerator(int num) {
-            this.num = num;
-        }
-        
-        public int getDenominator() {
-            return den;
-        }
-        
-        public void setDenominator(int den) {
-            this.den = den;
-        }
-        
-        public void simplify() {
-            int gcf = EulerMath.getGCD(num, den);
-            num /= gcf;
-            den /= gcf;
-            
-            if(den < 0) {
-                num *= -1;
-                den *= -1;
+        for (iter = 1; iter < 1000; iter++) {
+            BigFraction sqrt2Frac = getSqrt2Approx(iter);
+            if(sqrt2Frac.getNumerator().toString().length() > sqrt2Frac.getDenominator().toString().length()) {
+                count++;
             }
         }
-    }*/
+        
+        System.out.println(count + " of the first " + iter + " iterations of the approximation of sqrt(2) have numerators of greter length");
+    }
+
+    private BigFraction getSqrt2Approx(int iterations) {
+        BigFraction frac = new BigFraction(BigInteger.TWO, BigInteger.ONE);
+
+        if (iterations > 0) {
+            for (int i = 0; i < iterations - 1; i++) {
+                // for each iteration, the fraction becomes 2 + 1/itself
+                // this can alternatively be expressed as the inverse, twice incremented.
+                frac.invert();
+                frac.increment();
+                frac.increment();
+            }
+
+            frac.invert();
+            frac.increment();
+        }
+
+        return frac;
+    }
+
+    private class BigFraction {
+
+        private BigInteger num, den;
+
+        public BigFraction(BigInteger num, BigInteger den) {
+            this.num = num;
+            this.den = den;
+        }
+
+        public BigInteger getNumerator() {
+            return num;
+        }
+
+        public void setNumerator(BigInteger num) {
+            this.num = num;
+        }
+
+        public BigInteger getDenominator() {
+            return den;
+        }
+
+        public void setDenominator(BigInteger den) {
+            this.den = den;
+        }
+
+        public void invert() {
+            BigInteger temp = num;
+            num = den;
+            den = temp;
+        }
+
+        public void increment() {
+            num = num.add(den);
+        }
+
+        @Override
+        public String toString() {
+            return "[" + num + "/" + den + "]";
+        }
+    }
 }
