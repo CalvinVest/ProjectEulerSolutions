@@ -76,16 +76,8 @@ public class Problem0057 extends Problem {
             return num;
         }
 
-        public void setNumerator(BigInteger num) {
-            this.num = num;
-        }
-
         public BigInteger getDenominator() {
             return den;
-        }
-
-        public void setDenominator(BigInteger den) {
-            this.den = den;
         }
 
         public void invert() {
@@ -96,11 +88,6 @@ public class Problem0057 extends Problem {
 
         public void increment() {
             num = num.add(den);
-        }
-
-        @Override
-        public String toString() {
-            return "[" + num + "/" + den + "]";
         }
     }
 }
