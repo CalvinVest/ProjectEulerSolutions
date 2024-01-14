@@ -175,6 +175,17 @@ public interface EulerMath {
 
         return a;
     }
+    
+    //==============================
+    // getLCM
+    //==============================
+    // Returns the least common
+    // multiple of two provided
+    // integer values.
+    //==============================
+    public static int getLCM(int a, int b) {
+        return a * b / getGCD(a, b);
+    }
 
     //==============================
     // getNextPrime
