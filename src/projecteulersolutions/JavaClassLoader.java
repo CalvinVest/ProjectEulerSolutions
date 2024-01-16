@@ -24,7 +24,7 @@ public class JavaClassLoader extends ClassLoader {
             ClassLoader cLoader = this.getClass().getClassLoader();
 
             // loads class of given class name, can throw ClassNotFoundException
-            Class myClass = cLoader.loadClass(className);
+            Class<?> myClass = cLoader.loadClass(className);
 
             // uses class constructor to instantiate new object of given class
             // can throw NoSuchMethodException
