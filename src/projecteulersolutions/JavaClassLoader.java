@@ -22,25 +22,33 @@ public class JavaClassLoader extends ClassLoader {
         try {
             // new ClassLoader for invocation
             ClassLoader cLoader = this.getClass().getClassLoader();
-            // loads class of given class name
-            Class myClass = cLoader.loadClass(className); // can throw cnfe
+
+            // loads class of given class name, can throw ClassNotFoundException
+            Class myClass = cLoader.loadClass(className);
+
             // uses class constructor to instantiate new object of given class
-            Constructor constructor = myClass.getConstructor(); // can throw nsme
-            Object myClassObject = constructor.newInstance(); // can throw ie, iae, ite
+            // can throw NoSuchMethodException
+            Constructor constructor = myClass.getConstructor();
+
+            // instantiates the given class (problem) 
+            // can throw IllegalAccessException, InstantiationException,
+            // and InvocationTargetException
+            Object myClassObject = constructor.newInstance();
+
             // uses class to get the proper given method
             Method myMethod = myClass.getMethod(methodName);
+
             // uses instatiated class object to invoke the given method
             return myMethod.invoke(myClassObject);
+
         } catch (ClassNotFoundException // from .loadClass();
-                | NoSuchMethodException // from .getMethod(); and .getConstructor();
+                | IllegalAccessException // from .newInstance(); and .invoke(Object);
                 | InstantiationException // from .newInstance();
-                | IllegalAccessException e) {// from .newInstance(); and .invoke(Object);
-            // basic exception printing
-            // this should be expanded to more granular solutions in the future
-            System.out.println("Exception encountered - " + e);
-        } catch (InvocationTargetException e) { // from .newInstance(); and .invoke(Object);
-            System.out.println("InvocationTargetException encountered.");
-            System.out.println(e.toString());
+                | InvocationTargetException // from .newInstance(); and .invoke(Object);
+                | NoSuchMethodException e) {  // from .getMethod(); and .getConstructor();
+            System.out.println("EXCEPTION ENCOUNTERED.");
+            System.out.println(e.toString() + " occured, program failed to run successfully.");
+            System.out.println("Cause: " + e.getCause().toString());
         }
         return null;
     }
