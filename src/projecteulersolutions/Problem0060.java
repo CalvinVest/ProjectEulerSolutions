@@ -28,10 +28,11 @@ public class Problem0060 extends Problem {
 
     private int[] getFiveConcatPrimes() {
         int[] primes = new int[5];
-        int ceiling = 100;
+        int ceiling = 500;
         primes[0] = 3;
+        primes[1] = 7;
 
-        for (int i = 1; i < primes.length; i++) {
+        for (int i = 2; i < primes.length; i++) {
             primes[i] = EulerMath.getNextPrime(primes[i - 1]);
         }
 
@@ -60,15 +61,16 @@ public class Problem0060 extends Problem {
             primes[0] = EulerMath.getNextPrime(primes[0]);
             primes[1] = EulerMath.getNextPrime(primes[0]);
         }
-        return null;
+        return new int[]{0, 0, 0, 0, 0};
     }
-    
+
     private boolean isSolutionArray(int[] primes) {
-        for(int i = 0; i < primes.length; i++) {
-            for(int j = 0; j < primes.length; j++) {
-                if(i != j) {
+        for (int i = 0; i < primes.length; i++) {
+            for (int j = 0; j < primes.length; j++) {
+                if (i != j) {
                     int k = Integer.parseInt(String.valueOf(primes[i]) + String.valueOf(primes[j]));
-                    if(!EulerMath.isPrime(k)) {
+                    if (!EulerMath.isPrime(k)) {
+                        System.out.println(primes[i] + " concat " + primes[j] + " = " + k + " which is not prime.");
                         return false;
                     }
                 }
@@ -84,10 +86,10 @@ public class Problem0060 extends Problem {
         }
         return resultStr.trim();
     }
-    
+
     private int calcSumIntArr(int[] arr) {
         int sum = 0;
-        for(int i : arr) {
+        for (int i : arr) {
             sum += i;
         }
         return sum;
