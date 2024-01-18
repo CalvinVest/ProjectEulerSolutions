@@ -28,7 +28,7 @@ public class Problem0060 extends Problem {
 
     private int[] getFiveConcatPrimes() {
         int[] primes = new int[5];
-        int ceiling = 500;
+        int ceiling = 1000;
         primes[0] = 3;
         primes[1] = 7;
 
@@ -37,11 +37,12 @@ public class Problem0060 extends Problem {
         }
 
         while (primes[0] < ceiling) {
+            System.out.println(primes[0]);
             while (primes[1] < ceiling) {
                 while (primes[2] < ceiling) {
                     while (primes[3] < ceiling) {
                         while (primes[4] < ceiling) {
-                            System.out.println(getArrayString(primes));
+                            // System.out.println(getArrayString(primes));
 
                             if (isSolutionArray(primes)) {
                                 return primes;
@@ -70,7 +71,6 @@ public class Problem0060 extends Problem {
                 if (i != j) {
                     int k = Integer.parseInt(String.valueOf(primes[i]) + String.valueOf(primes[j]));
                     if (!EulerMath.isPrime(k)) {
-                        System.out.println(primes[i] + " concat " + primes[j] + " = " + k + " which is not prime.");
                         return false;
                     }
                 }
@@ -93,5 +93,47 @@ public class Problem0060 extends Problem {
             sum += i;
         }
         return sum;
+    }
+    
+    private int[] getArrayOfPrimes(int ceilingInclusive) {
+        int primeCount = 0;
+        boolean[] sieve = sieveOfEratosthenes(ceilingInclusive);
+        for(boolean isPrimeFlag : sieve) {
+            if(isPrimeFlag) primeCount++;
+        }
+        int[] primes = new int[primeCount];
+        int primeIndex = 0;
+        for(int sieveIndex = 0; sieveIndex < sieve.length; sieveIndex++) {
+            if(sieve[sieveIndex]) {
+                primes[primeIndex++] = sieveIndex;
+            }
+        }
+        return primes;
+    }
+    
+    public static boolean[] sieveOfEratosthenes(int n) {
+        if (n < 0) {
+            throw new IllegalArgumentException("Negative array size");
+        }
+        // make a bool array for values 0 to n
+        boolean[] sieve = new boolean[n + 1];
+        // if array is 2 or more, 2 is prime
+        if (n >= 2) {
+            sieve[2] = true;
+        }
+        // for all odd values, set to true
+        for (int i = 3; i <= n; i += 2) {
+            sieve[i] = true;
+        }
+        // for all odd values up to sqrt n, set to false if not prime
+        for (int i = 3; i <= (int) Math.sqrt(n); i += 2) {
+            if (sieve[i]) {
+                int increment = 2 * i;
+                for (int j = i * i; j <= n; j += increment) {
+                    sieve[j] = false;
+                }
+            }
+        }
+        return sieve;
     }
 }
