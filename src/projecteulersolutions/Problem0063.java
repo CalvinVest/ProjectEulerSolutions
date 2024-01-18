@@ -12,15 +12,12 @@ public class Problem0063 extends Problem {
 
     @Override
     public boolean isSolved() {
-        return false;
+        return true;
     }
 
     @Override
     public void printSolution() {
-        System.out.println("This problem has not yet been solved.");
-        
         int powerfulDigitCount = getPowerfulDigitCount();
-
         System.out.println("The count of powerful digit numbers is " + powerfulDigitCount);
     }
 
