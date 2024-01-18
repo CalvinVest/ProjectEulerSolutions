@@ -52,6 +52,55 @@ public class Problem0058 extends Problem {
     */
     @Override
     public void printSolution() {
-        System.out.println("This problem has not yet been solved.");
+        long num = 1;
+        int incrementer;
+        int valid = 0;
+        int total = 1;
+        double ratio = 1.0;
+        int side = 1;
+        
+        // 
+        for(int i = 2; ratio >= 0.1; i+=2) {
+            incrementer = i;
+            // inner loop simulates a rotation of the spiral
+            for(int iter = 0; iter < 4; iter++) {
+                num += incrementer;
+                if(isPrimeLong(num)) {
+                    valid++;
+                }
+                total++;
+                System.out.print(num + " ");
+            }
+            System.out.println();
+            ratio = (double) valid / total;
+            //System.out.println("Side length: " + side + ", Diagonal prime ratio: " + ratio);
+            System.out.println(num + " | " + ratio);
+            side = incrementer + 1;
+            /*if(num >= Integer.MAX_VALUE * 0.9) {
+                System.out.println("OVERFLOW WARNING");
+                ratio = 0;
+            }*/
+        }
+        
+        System.out.println("The ratio of primes along the spiral diagonals first falls below 10% at side length = " + side);
+    }
+    
+    public static boolean isPrimeLong(long n) {
+        if (n < 2l) {
+            return false;
+        }
+        if (n == 2l || n == 3l) {
+            return true;
+        }
+        if (n % 2l == 0 || n % 3l == 0) {
+            return false;
+        }
+        int sqrtN = (int) Math.sqrt(n) + 1;
+        for (int i = 6; i <= sqrtN; i += 6) {
+            if (n % (i - 1l) == 0 || n % (i + 1l) == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
