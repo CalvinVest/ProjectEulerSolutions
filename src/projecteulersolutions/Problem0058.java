@@ -25,7 +25,7 @@ public class Problem0058 extends Problem {
 
     @Override
     public boolean isSolved() {
-        return false;
+        return true;
     }
 
     /*
@@ -70,7 +70,7 @@ public class Problem0058 extends Problem {
             // inner loop simulates a rotation of the spiral
             for (int iter = 0; iter < 4; iter++) {
                 num += incrementer;
-                
+
                 // if the current num is prime, increment prime count.
                 if (EulerMath.isPrime(num)) {
                     valid++;
@@ -85,8 +85,10 @@ public class Problem0058 extends Problem {
 
         }
 
-        // the length of a side is the incrementer value plus one, answer value
-        side = incrementer + 1;
+        // the length of a side is the incrementer value minus one, answer value
+        // this value is now inc - 1 instead of inc + 1 since the spiral is
+        // stepped an extra time in the loop above.
+        side = incrementer - 1;
 
         System.out.println("The ratio of primes along the spiral diagonals first falls below 10% at side length = " + side);
     }
