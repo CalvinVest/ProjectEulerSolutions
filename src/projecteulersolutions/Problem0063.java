@@ -20,6 +20,7 @@ public class Problem0063 extends Problem {
         System.out.println("This problem has not yet been solved.");
         int powerfulDigitCount = getPowerfulDigitCount(100);
         
+        System.out.println(getExponentCeiling() + " is the max exponent.");
         System.out.println("The count of powerful digit numbers is " + powerfulDigitCount);
     }
     
@@ -37,5 +38,19 @@ public class Problem0063 extends Problem {
             System.out.println(i);
         }
         return count;
+    }
+    
+    private int getExponentCeiling() {
+        int ceiling = 1;
+        BigInteger nine = new BigInteger("9");
+        BigInteger pow = nine.pow(ceiling);
+        
+        // eventually 9^x will be less than digits(x), giving the ceiling for
+        // what exponents need actually be considered for getPowerfulDigitCount.
+        while(ceiling <= pow.toString().length()) {
+            ceiling++;
+            pow = nine.pow(ceiling);
+        }
+        return ceiling;
     }
 }
