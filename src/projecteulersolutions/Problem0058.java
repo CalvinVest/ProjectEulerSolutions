@@ -20,7 +20,7 @@ If one complete new layer is wrapped around the spiral above, a square spiral
 with side length 9 will be formed. If this process is continued, what is the
 side length of the square spiral for which the ratio of primes along both
 diagonals first falls below 10%?
-*/
+ */
 public class Problem0058 extends Problem {
 
     @Override
@@ -49,58 +49,35 @@ public class Problem0058 extends Problem {
     through them until a running ratio of primes to total count of evaluated diagonal
     values is < 10%, and the side length for when this occurs can be expressed as
     the incrementer value at the time the 10% case is fulfilled, + 1.
-    */
+     */
     @Override
     public void printSolution() {
-        long num = 1;
+        int num = 1;
         int incrementer;
         int valid = 0;
         int total = 1;
         double ratio = 1.0;
         int side = 1;
-        
+
         // 
-        for(int i = 2; ratio >= 0.1; i+=2) {
-            incrementer = i;
+        for (incrementer = 2; ratio >= 0.1; incrementer += 2) {
             // inner loop simulates a rotation of the spiral
-            for(int iter = 0; iter < 4; iter++) {
+            for (int iter = 0; iter < 4; iter++) {
                 num += incrementer;
-                if(isPrimeLong(num)) {
+                if (EulerMath.isPrime(num)) {
                     valid++;
                 }
                 total++;
-                System.out.print(num + " ");
             }
-            System.out.println();
+
             ratio = (double) valid / total;
+
             //System.out.println("Side length: " + side + ", Diagonal prime ratio: " + ratio);
             System.out.println(num + " | " + ratio);
+
             side = incrementer + 1;
-            /*if(num >= Integer.MAX_VALUE * 0.9) {
-                System.out.println("OVERFLOW WARNING");
-                ratio = 0;
-            }*/
         }
-        
+
         System.out.println("The ratio of primes along the spiral diagonals first falls below 10% at side length = " + side);
-    }
-    
-    public static boolean isPrimeLong(long n) {
-        if (n < 2l) {
-            return false;
-        }
-        if (n == 2l || n == 3l) {
-            return true;
-        }
-        if (n % 2l == 0 || n % 3l == 0) {
-            return false;
-        }
-        int sqrtN = (int) Math.sqrt(n) + 1;
-        for (int i = 6; i <= sqrtN; i += 6) {
-            if (n % (i - 1l) == 0 || n % (i + 1l) == 0) {
-                return false;
-            }
-        }
-        return true;
     }
 }
