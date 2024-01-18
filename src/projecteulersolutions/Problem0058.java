@@ -28,6 +28,28 @@ public class Problem0058 extends Problem {
         return false;
     }
 
+    /*
+    The algorithm for finding all valid values for the diagonals of the spiral
+    can simply start at 1, the center value, and add a given incrementer four
+    times, emulating the four sides of the square spiral.
+    For example, the center value is 1.
+    The four diagonals of the spiral when the side length is 3 are:
+    1 + 2 = 3, 3 + 2 = 5, 5 + 2 = 7, 7 + 2 = 9.
+    The complete array of diagonal values at this point is now:
+    [1, 3, 5, 7, 9]
+    The next four diagonals, when side = 5, are:
+    9 + 4 = 13, 13 + 4 = 17, 17 + 4 = 21, 21 + 4 = 25.
+    The complete array is now:
+    [1, 3, 5, 7, 9, 13, 17, 21, 25]
+    It can be seen now that the starting value is 1. Each rotation of the spiral,
+    the number is incremented four times, by 2, then by 4, etc. incrementer = 2 (+= 2...)
+    The side length can be calculated by solving incrementer + 1.
+    
+    Using this method, I can easily calculate every diagonal value, by incrementing
+    through them until a running ratio of primes to total count of evaluated diagonal
+    values is < 10%, and the side length for when this occurs can be expressed as
+    the incrementer value at the time the 10% case is fulfilled, + 1.
+    */
     @Override
     public void printSolution() {
         System.out.println("This problem has not yet been solved.");
