@@ -17,6 +17,7 @@ public class Problem0063 extends Problem {
 
     @Override
     public void printSolution() {
+        // the count of all values where i^j = j.length()
         int powerfulDigitCount = getPowerfulDigitCount();
         System.out.println("The count of powerful digit numbers is " + powerfulDigitCount);
     }
@@ -24,11 +25,13 @@ public class Problem0063 extends Problem {
     private int getPowerfulDigitCount() {
         int count = 0;
         int exponentCeiling = getExponentCeiling();
-        for (int i = 1; i < 10; i++) { // a base >= 10 would result in more digits than the exponent value
-            for (int j = 1; j <= exponentCeiling; j++) {
-                BigInteger bigIntPow = new BigInteger(Integer.toString(i)).pow(j);
+        for (int base = 1; base < 10; base++) { // a base >= 10 would result in more digits than the exponent value
+            for (int exp = 1; exp <= exponentCeiling; exp++) {
+                // gets BigInt value of base^exp
+                BigInteger bigIntPow = new BigInteger(Integer.toString(base)).pow(exp);
                 String powString = bigIntPow.toString();
-                if (powString.length() == j) {
+                // if (base^exp).length() == exp, valid case; increment count.
+                if (powString.length() == exp) {
                     count++;
                 }
             }
@@ -36,18 +39,38 @@ public class Problem0063 extends Problem {
         return count;
     }
 
+    /*
+    My reasoning for the algorithm in getExponentCeiling is straightforward:
+    
+    The smallest base value for which the digit count of the base raised to a given
+    exponent x is equal to x is 9.
+    This is because 10, the next value, is THE base for base-10 counting. As a
+    result, 10^x will ALWAYS be x + 1 digits. Since we're only interested in
+    values where base^x == x.length(), any values >= 10 do not need to be
+    evaluated.
+    
+    Now that the ceiling for the base value has been found, it can be used to find
+    the ceiling for the exponent. Eventually, since 9 < 10, 9^x will eventually
+    be less than x.length(). Once this occurs, all further values of x will not
+    be valid solutions and the found exponent ceiling can be returned.
+    
+    By finding the lowest reasonable ceiling for both base and exp, I've been
+    able to reduce my runtime of 100ms for base, exp = 100 to 7ms for 
+    base <= 9, exp <= 22
+    */
     private int getExponentCeiling() {
-        int ceiling = 1;
+        int exp = 1;
 
+        // BigInts to hold values for 9 and 9^x, respectively.
         BigInteger nine = BigInteger.TEN.subtract(BigInteger.ONE);
-        BigInteger pow = nine.pow(ceiling);
+        BigInteger pow = nine.pow(exp);
 
-        // eventually 9^x will be less than digits(x), giving the ceiling for
-        // what exponents need actually be considered for getPowerfulDigitCount.
-        while (ceiling <= pow.toString().length()) {
-            ceiling++;
-            pow = nine.pow(ceiling);
+        // eventually 9^x will be less than x.length(), giving the ceiling for
+        // the greatest exponent need actually be considered for getPowerfulDigitCount.
+        while (exp <= pow.toString().length()) {
+            exp++;
+            pow = nine.pow(exp);
         }
-        return ceiling;
+        return exp;
     }
 }
