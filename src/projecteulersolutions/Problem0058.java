@@ -52,31 +52,41 @@ public class Problem0058 extends Problem {
      */
     @Override
     public void printSolution() {
+        // current number within the spiral to evaluate
         int num = 1;
+        // incrementer simulates advancing to the next spiral diagonal in each rotation
         int incrementer;
+        // number of prime diagonal values
         int valid = 0;
+        // total number of diagonal values
         int total = 1;
+        // ratio of primes to total number of diagonal values
         double ratio = 1.0;
-        int side = 1;
+        // length of a side of the spiral
+        int side;
 
-        // 
+        // outer loop increases incrementer value until the ratio falls below 10%
         for (incrementer = 2; ratio >= 0.1; incrementer += 2) {
             // inner loop simulates a rotation of the spiral
             for (int iter = 0; iter < 4; iter++) {
                 num += incrementer;
+                
+                // if the current num is prime, increment prime count.
                 if (EulerMath.isPrime(num)) {
                     valid++;
                 }
+                // increment total regardless of primality.
                 total++;
             }
 
+            // recalculates the ratio of primes to total diagonal values after
+            // each layer of the spiral
             ratio = (double) valid / total;
 
-            //System.out.println("Side length: " + side + ", Diagonal prime ratio: " + ratio);
-            System.out.println(num + " | " + ratio);
-
-            side = incrementer + 1;
         }
+
+        // the length of a side is the incrementer value plus one, answer value
+        side = incrementer + 1;
 
         System.out.println("The ratio of primes along the spiral diagonals first falls below 10% at side length = " + side);
     }
