@@ -22,26 +22,21 @@ public class Problem0097 extends Problem {
 
     @Override
     public void printSolution() {
-        System.out.println("This problem has not yet been solved.");
         int[] powerArr = {1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 1, 1};
 
         BigInteger tot = BigInteger.ONE;
         BigInteger curr = BigInteger.TWO;
 
+        // successive squaring algorithm using power array above
         for (int i = 0; i < powerArr.length; i++) {
             if (powerArr[i] == 1) {
-                System.out.println("Adding n = " + i + ", 2^2^n mod 1E10 = " + curr);
-                tot = tot.multiply(curr);
-                if (tot.toString().length() > 10) {
-                    tot = tot.remainder(BigInteger.TEN.pow(10));
-                }
-
-                System.out.println("tot = " + tot.toString());
+                tot = tot.multiply(curr).remainder(BigInteger.TEN.pow(10));
             }
             curr = curr.pow(2).remainder(BigInteger.TEN.pow(10));
         }
+        // add remaining operators, x28433 and +1, and mod 1E10
         tot = tot.multiply(new BigInteger("28433")).add(BigInteger.ONE).remainder(BigInteger.TEN.pow(10));
 
-        System.out.println("tot = " + tot.toString());
+        System.out.println("Last ten digits of result: " + tot.toString());
     }
 }
