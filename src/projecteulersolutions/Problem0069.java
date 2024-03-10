@@ -21,20 +21,18 @@ public class Problem0069 extends Problem {
     public void printSolution() {
         System.out.println("This problem has not yet been solved.");
 
-        double maxTotientRatio = 0.0;
-        int maxTotientVal = 0;
+        double maxRatio = 0.0;
+        int maxIndex = 0;
 
         for (int i = 2; i <= 1000000; i++) {
-            int currTotient = getTotient(i);
-            double currTotientRatio = i / (double) currTotient;
-            if (currTotientRatio > maxTotientRatio) {
-                maxTotientRatio = currTotientRatio;
-                maxTotientVal = i;
+            double currRatio = i / (double) getTotient(i);
+            if (currRatio > maxRatio) {
+                maxRatio = currRatio;
+                maxIndex = i;
             }
         }
 
-        System.out.println("The value n for which n/phi(n) is greatest, n <= 1000000 is: " + maxTotientVal);
-        System.out.println("The totient ratio for this value is n/phi(n) = " + maxTotientVal + "/" + getTotient(maxTotientVal) + " = " + maxTotientRatio);
+        System.out.println("The value n for which n/phi(n) is greatest, n <= 1000000 is: " + maxIndex);
     }
 
     private int getTotient(int n) {
