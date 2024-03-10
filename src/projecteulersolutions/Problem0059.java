@@ -24,27 +24,15 @@ public class Problem0059 extends Problem {
 
         System.out.println("\nThe length of the cipher is " + cipherArr.length + " items");
         // key values can range from 97 'a' to 122 'z'.
-        List<int[]> solArrs = new ArrayList<>();
-        int[] key = new int[3];
-        
-        for (key[0] = (int)'a'; key[0] <= (int)'z'; key[0]++) {
-            for (key[1] = (int)'a'; key[1] <= (int)'z'; key[1]++) {
-                for (key[2] = (int)'a'; key[2] <= (int)'z'; key[2]++) {
-                    System.out.println("Testing: " + (char) key[0] + " " + (char) key[1] + " " + (char) key[2]);
-                    String msgStr = getDecipherString(cipherArr, key);
-                    if (msgStr.contains("this") && msgStr.contains("the")) {
-                        solArrs.add(new int[]{key[0], key[1], key[2]});
-                    }
-                }
-            }
-        }
+        int[] key = findKeyWithCommonWords(cipherArr);
 
-        System.out.println("The solution keys are:");
-        for (int[] solArr : solArrs) {
-            System.out.println("Key: " + (char) solArr[0] + " " + (char) solArr[1] + " " + (char) solArr[2]);
-            System.out.println("Message: " + getDecipherString(cipherArr, solArr));
+        String msgStr = getDecipherString(cipherArr, key);
+
+        int sum = 0;
+        for (char c : msgStr.toCharArray()) {
+            sum += (int) c;
         }
-        System.out.println("Total solution keys found: " + solArrs.size());
+        System.out.println("The sum of the ASCII values of the original message is " + sum);
     }
 
     private String getDecipherString(int[] cipherArr, int[] key) {
@@ -57,6 +45,22 @@ public class Problem0059 extends Problem {
             msgStrBldr.append((char) currDecipherIntArr[j]);
         }
         return msgStrBldr.toString();
+    }
+
+    private int[] findKeyWithCommonWords(int[] cipherArr) {
+        int[] key = new int[3];
+        for (key[0] = (int) 'a'; key[0] <= (int) 'z'; key[0]++) {
+            for (key[1] = (int) 'a'; key[1] <= (int) 'z'; key[1]++) {
+                for (key[2] = (int) 'a'; key[2] <= (int) 'z'; key[2]++) {
+                    System.out.println("Testing: " + (char) key[0] + " " + (char) key[1] + " " + (char) key[2]);
+                    String msgStr = getDecipherString(cipherArr, key);
+                    if (msgStr.contains("this") && msgStr.contains("the")) {
+                        return key;
+                    }
+                }
+            }
+        }
+        return new int[]{97, 97, 97};
     }
 
     private List<Integer> readCipherFromFile(File cipherFile) {
