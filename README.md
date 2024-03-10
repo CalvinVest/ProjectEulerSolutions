@@ -35,8 +35,8 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
 
 ## Problem Status
 
-:green_circle: Complete: 68
-:small_orange_diamond: In Progress: 12
+:green_circle: Complete: 69
+:small_orange_diamond: In Progress: 11
 :heavy_multiplication_x: Incomplete: 775
 <table>
 	<tr>
@@ -136,7 +136,7 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
 		<td>79 :small_orange_diamond:</td>
 	</tr>
 	<tr>
-		<td>80 :small_orange_diamond:</td>
+		<td>80 :green_circle:</td>
 		<td>81 :heavy_multiplication_x:</td>
 		<td>82 :heavy_multiplication_x:</td>
 		<td>83 :heavy_multiplication_x:</td>
