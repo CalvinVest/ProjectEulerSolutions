@@ -6,7 +6,7 @@ public class Problem0076 extends Problem {
 
     @Override
     public boolean isSolved() {
-        return false;
+        return true;
     }
 
     @Override
