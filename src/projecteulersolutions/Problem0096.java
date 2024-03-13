@@ -39,6 +39,9 @@ public class Problem0096 extends Problem {
             System.out.println("Puzzle #" + puzzleIndex);
 
             printPuzzle(puzzle);
+            
+            String isSolveableStr = (solveSudoku(puzzle) ? "true" : "false");
+            System.out.println("Is the puzzle solvable? " + isSolveableStr);
 
             puzzleIndex++;
         }
@@ -64,5 +67,71 @@ public class Problem0096 extends Problem {
             }
             System.out.println();
         }
+    }
+
+    private boolean solveSudoku(int[][] board) {
+        for (int row = 0; row < 9; row++) {
+            for (int col = 0; col < 9; col++) {
+                // Find an unassigned cell
+                if (board[row][col] == 0) {
+                    // Try all possible numbers
+                    for (int number = 1; number <= 9; number++) {
+                        // Check if the number is allowed to be placed
+                        if (isSafe(board, row, col, number)) {
+                            // Make tentative assignment
+                            board[row][col] = number;
+
+                            // Return, if success
+                            if (solveSudoku(board)) {
+                                return true;
+                            }
+
+                            // Failure, unmake & try again
+                            board[row][col] = 0;
+                        }
+                    }
+                    // Trigger backtracking
+                    return false;
+                }
+            }
+        }
+        // Solution found
+        return true;
+    }
+
+    private boolean isSafe(int[][] board, int row, int col, int num) {
+        // Row has the unique number
+        for (int d = 0; d < board.length; d++) {
+            // Check if the number we are trying to place is already present in that row,
+            // return false;
+            if (board[row][d] == num) {
+                return false;
+            }
+        }
+
+        // Column has the unique number 
+        for (int[] boardRow : board) {
+            // Check if the number we are trying to place is already present in that column,
+            // return false;
+            if (boardRow[col] == num) {
+                return false;
+            }
+        }
+
+        // Corresponding square has the unique number
+        int sqrt = (int) Math.sqrt(board.length);
+        int boxRowStart = row - row % sqrt;
+        int boxColStart = col - col % sqrt;
+
+        for (int r = boxRowStart; r < boxRowStart + sqrt; r++) {
+            for (int d = boxColStart; d < boxColStart + sqrt; d++) {
+                if (board[r][d] == num) {
+                    return false;
+                }
+            }
+        }
+
+        // If there is no clash, it's safe
+        return true;
     }
 }
