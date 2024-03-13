@@ -15,8 +15,6 @@ public class Problem0096 extends Problem {
 
     @Override
     public void printSolution() {
-        System.out.println("This problem has not been solved.");
-
         File file = new File(Problem.FILEPATH + "problem0096.txt");
         List<String> lines = readLinesFromFile(file);
 
@@ -26,8 +24,7 @@ public class Problem0096 extends Problem {
             if (i % 10 == 0) {
                 continue;
             }
-            int puzzleIndex = i / 10;
-            int puzzleRow = i % 10;
+            int puzzleIndex = i / 10, puzzleRow = i % 10;
 
             for (int j = 0; j < lines.get(i).length(); j++) {
                 puzzles[puzzleIndex][puzzleRow - 1][j] = Integer.parseInt(lines.get(i).substring(j, j + 1));
@@ -35,16 +32,16 @@ public class Problem0096 extends Problem {
         }
 
         int puzzleIndex = 0;
+        int sum = 0;
         for (int[][] puzzle : puzzles) {
-            System.out.println("Puzzle #" + puzzleIndex);
 
-            printPuzzle(puzzle);
-            
-            String isSolveableStr = (solveSudoku(puzzle) ? "true" : "false");
-            System.out.println("Is the puzzle solvable? " + isSolveableStr);
+            solveSudoku(puzzle);
+
+            sum += puzzle[0][0] * 100 + puzzle[0][1] * 10 + puzzle[0][2];
 
             puzzleIndex++;
         }
+        System.out.println("The sum of the fifty three-digit numbers from the Sudoku puzzles is: " + sum);
     }
 
     private List<String> readLinesFromFile(File file) {
@@ -58,15 +55,6 @@ public class Problem0096 extends Problem {
             System.out.println("Exception encountered: " + file.toString() + " does not exist.");
         }
         return lines;
-    }
-
-    private void printPuzzle(int[][] puzzle) {
-        for (int[] row : puzzle) {
-            for (int num : row) {
-                System.out.print(num);
-            }
-            System.out.println();
-        }
     }
 
     private boolean solveSudoku(int[][] board) {
