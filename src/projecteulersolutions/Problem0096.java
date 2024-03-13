@@ -58,8 +58,8 @@ public class Problem0096 extends Problem {
     }
 
     private boolean solveSudoku(int[][] board) {
-        for (int row = 0; row < 9; row++) {
-            for (int col = 0; col < 9; col++) {
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < board[0].length; col++) {
                 // Find an unassigned cell
                 if (board[row][col] == 0) {
                     // Try all possible numbers
@@ -88,16 +88,14 @@ public class Problem0096 extends Problem {
     }
 
     private boolean isSafe(int[][] board, int row, int col, int num) {
-        // Row has the unique number
-        for (int d = 0; d < board.length; d++) {
-            // Check if the number we are trying to place is already present in that row,
-            // return false;
-            if (board[row][d] == num) {
+        // Check each value in row
+        for (int d : board[row]) {
+            if (d == num) {
                 return false;
             }
         }
 
-        // Column has the unique number 
+        // Check each value in column
         for (int[] boardRow : board) {
             // Check if the number we are trying to place is already present in that column,
             // return false;
@@ -106,20 +104,20 @@ public class Problem0096 extends Problem {
             }
         }
 
-        // Corresponding square has the unique number
-        int sqrt = (int) Math.sqrt(board.length);
-        int boxRowStart = row - row % sqrt;
-        int boxColStart = col - col % sqrt;
+        // Check each value in square
+        int boxSideLength = (int) Math.sqrt(board.length);
+        int boxRowStart = row - row % boxSideLength;
+        int boxColStart = col - col % boxSideLength;
 
-        for (int r = boxRowStart; r < boxRowStart + sqrt; r++) {
-            for (int d = boxColStart; d < boxColStart + sqrt; d++) {
-                if (board[r][d] == num) {
+        for (int r = boxRowStart; r < boxRowStart + boxSideLength; r++) {
+            for (int c = boxColStart; c < boxColStart + boxSideLength; c++) {
+                if (board[r][c] == num) {
                     return false;
                 }
             }
         }
 
-        // If there is no clash, it's safe
+        // No duplicate number found, value num is safe
         return true;
     }
 }
