@@ -12,26 +12,32 @@ public class Problem0051 extends Problem {
 
     @Override
     public void printSolution() {
+        int indexPrime = 11;
+        
+        while(!checkForFamilyPrimes(indexPrime, 8)) {
+            indexPrime = EulerMath.getNextPrime(indexPrime);
+        }
         
     }
     
-    private void checkForFamilyPrimes(int primeValue, int familyMemberCount) {
-        List<String> list = generateFamilyValueWildcards(56003);
+    private boolean checkForFamilyPrimes(int primeValue, int familyMemberCount) {
+        List<String> wildcardStrings = generateFamilyValueWildcards(primeValue);
         
-        for(String item : list) {
-            List<Integer> primes = getPrimeFamilyMembersFromWildcard(item);
-            if(primes.size() >= 6) {
-                System.out.println("SOLUTION FOUND");
+        for(String wildcardStr : wildcardStrings) {
+            List<Integer> primes = getPrimeFamilyMembersFromWildcard(wildcardStr);
+            if(primes.size() >= familyMemberCount) {
+                System.out.println("SOLUTION FOUND: " + primes.get(0));
                 System.out.println("Original Prime: " + primeValue);
-                System.out.println("Template for family members: " + item);
+                System.out.println("Template for family members: " + wildcardStr);
                 System.out.print("Prime Family Members: [");
                 for(int prime : primes) {
                     System.out.print(" " + prime);
                 }
                 System.out.println("]");
-                break;
+                return true;
             }
         }
+        return false;
     }
     
     private List<Integer> getPrimeFamilyMembersFromWildcard(String wildStr) {
