@@ -35,9 +35,9 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
 
 ## Problem Status
 
-:green_circle: Complete: 62
-:small_orange_diamond: In Progress: 8
-:heavy_multiplication_x: Incomplete: 785
+:green_circle: Complete: 73
+:small_orange_diamond: In Progress: 10
+:heavy_multiplication_x: Incomplete: 772
 <table>
 	<tr>
 		<td></td>
@@ -101,47 +101,47 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
 	</tr>
 	<tr>
 		<td>50 :green_circle:</td>
-		<td>51 :heavy_multiplication_x:</td>
+		<td>51 :green_circle:</td>
 		<td>52 :green_circle:</td>
-		<td>53 :heavy_multiplication_x:</td>
-		<td>54 :heavy_multiplication_x:</td>
-		<td>55 :heavy_multiplication_x:</td>
+		<td>53 :green_circle:</td>
+		<td>54 :green_circle:</td>
+		<td>55 :small_orange_diamond:</td>
 		<td>56 :green_circle:</td>
 		<td>57 :green_circle:</td>
 		<td>58 :green_circle:</td>
-		<td>59 :heavy_multiplication_x:</td>
+		<td>59 :green_circle:</td>
 	</tr>
 	<tr>
 		<td>60 :small_orange_diamond:</td>
-		<td>61 :heavy_multiplication_x:</td>
-		<td>62 :heavy_multiplication_x:</td>
+		<td>61 :small_orange_diamond:</td>
+		<td>62 :small_orange_diamond:</td>
 		<td>63 :green_circle:</td>
 		<td>64 :heavy_multiplication_x:</td>
 		<td>65 :heavy_multiplication_x:</td>
 		<td>66 :heavy_multiplication_x:</td>
 		<td>67 :green_circle:</td>
 		<td>68 :heavy_multiplication_x:</td>
-		<td>69 :small_orange_diamond:</td>
+		<td>69 :green_circle:</td>
 	</tr>
 	<tr>
 		<td>70 :heavy_multiplication_x:</td>
-		<td>71 :small_orange_diamond:</td>
+		<td>71 :green_circle:</td>
 		<td>72 :green_circle:</td>
 		<td>73 :heavy_multiplication_x:</td>
 		<td>74 :heavy_multiplication_x:</td>
 		<td>75 :heavy_multiplication_x:</td>
-		<td>76 :heavy_multiplication_x:</td>
+		<td>76 :green_circle:</td>
 		<td>77 :heavy_multiplication_x:</td>
 		<td>78 :heavy_multiplication_x:</td>
-		<td>79 :heavy_multiplication_x:</td>
+		<td>79 :small_orange_diamond:</td>
 	</tr>
 	<tr>
-		<td>80 :heavy_multiplication_x:</td>
+		<td>80 :green_circle:</td>
 		<td>81 :heavy_multiplication_x:</td>
 		<td>82 :heavy_multiplication_x:</td>
 		<td>83 :heavy_multiplication_x:</td>
 		<td>84 :heavy_multiplication_x:</td>
-		<td>85 :heavy_multiplication_x:</td>
+		<td>85 :green_circle:</td>
 		<td>86 :heavy_multiplication_x:</td>
 		<td>87 :heavy_multiplication_x:</td>
 		<td>88 :heavy_multiplication_x:</td>
@@ -154,8 +154,8 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
 		<td>93 :heavy_multiplication_x:</td>
 		<td>94 :heavy_multiplication_x:</td>
 		<td>95 :heavy_multiplication_x:</td>
-		<td>96 :heavy_multiplication_x:</td>
-		<td>97 :small_orange_diamond:</td>
+		<td>96 :green_circle:</td>
+		<td>97 :green_circle:</td>
 		<td>98 :heavy_multiplication_x:</td>
 		<td>99 :small_orange_diamond:</td>
 	</tr>
@@ -1008,7 +1008,7 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
 		<td>805 :heavy_multiplication_x:</td>
 		<td>806 :heavy_multiplication_x:</td>
 		<td>807 :heavy_multiplication_x:</td>
-		<td>808 :heavy_multiplication_x:</td>
+		<td>808 :small_orange_diamond:</td>
 		<td>809 :heavy_multiplication_x:</td>
 	</tr>
 	<tr>
