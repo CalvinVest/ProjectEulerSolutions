@@ -35,9 +35,9 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
 
 ## Problem Status
 
-:green_circle: Complete: 72
+:green_circle: Complete: 73
 :small_orange_diamond: In Progress: 10
-:heavy_multiplication_x: Incomplete: 773
+:heavy_multiplication_x: Incomplete: 772
 <table>
 	<tr>
 		<td></td>
@@ -104,7 +104,7 @@ I'd like to keep adding problem solutions as time goes on. There's no particular
 		<td>51 :green_circle:</td>
 		<td>52 :green_circle:</td>
 		<td>53 :green_circle:</td>
-		<td>54 :heavy_multiplication_x:</td>
+		<td>54 :green_circle:</td>
 		<td>55 :small_orange_diamond:</td>
 		<td>56 :green_circle:</td>
 		<td>57 :green_circle:</td>
