@@ -3,9 +3,13 @@ package projecteulersolutions;
 import java.io.File;
 import java.util.Collections;
 import java.util.Date;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.util.Scanner;
 
 public class EulerPrinter {
+    
+    private static final Logger logger = Logger.getLogger(EulerPrinter.class.getName());
 
     private static final int MENU_WIDTH = 47;
 
@@ -105,7 +109,7 @@ public class EulerPrinter {
             System.out.print("\nPress Enter to continue...");
 
         } catch (InterruptedException ex) {
-            System.out.println(ex.getMessage());
+            logger.log(Level.SEVERE, "Failed: Interrupted", ex);
         }
 
         userIn.nextLine();

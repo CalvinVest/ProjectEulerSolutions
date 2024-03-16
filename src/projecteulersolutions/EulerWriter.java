@@ -5,9 +5,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 import java.util.Scanner;
 
 public class EulerWriter {
+
+    private static final Logger logger = Logger.getLogger(EulerWriter.class.getName());
 
     private static final String README_HEADER_PATH = System.getProperty("user.dir") + "\\README_HEADER.txt";
     private static final String README_PATH = System.getProperty("user.dir") + "\\README.md";
@@ -52,7 +56,7 @@ public class EulerWriter {
             }
             writer.close();
         } catch (IOException ioe) {
-            System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
+            logger.log(Level.SEVERE, "Failed: Could not save to file.\n", ioe);
         }
         System.out.println("Saved to file: " + progressOutFile.getName());
         generateReadme();
@@ -141,7 +145,7 @@ public class EulerWriter {
             readmeFileOut.close();
             System.out.println("Saved to file: " + readmeOutFile.getName());
         } catch (IOException ioe) {
-            System.out.println("Failed: File " + readmeOutFile + " does not exist.");
+            logger.log(Level.SEVERE, "Failed: File " + readmeOutFile + " does not exist.", ioe);
         }
     }
 
