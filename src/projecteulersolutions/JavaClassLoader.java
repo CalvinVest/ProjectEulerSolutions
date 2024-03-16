@@ -1,8 +1,9 @@
 package projecteulersolutions;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.logging.Logger;
+import java.util.logging.Level;
 
 /*
 JavaClassLoader allows dynamic invokation of methods
@@ -18,22 +19,16 @@ based on user input.
  */
 public class JavaClassLoader extends ClassLoader {
 
-    public Object invokeClassMethod(String className, String methodName) {
-        try {
-            // new ClassLoader for invocation
-            ClassLoader cLoader = this.getClass().getClassLoader();
+    private static final Logger logger = Logger.getLogger(JavaClassLoader.class.getName());
 
-            // loads class of given class name, can throw ClassNotFoundException
-            Class<?> myClass = cLoader.loadClass(className);
+    public Object invokeClassMethod(String className, String methodName) {
+
+        try {
+            // loads class of given class name
+            Class<?> myClass = Class.forName(className);
 
             // uses class constructor to instantiate new object of given class
-            // can throw NoSuchMethodException
-            Constructor constructor = myClass.getConstructor();
-
-            // instantiates the given class (problem) 
-            // can throw IllegalAccessException, InstantiationException,
-            // and InvocationTargetException
-            Object myClassObject = constructor.newInstance();
+            Object myClassObject = myClass.getDeclaredConstructor().newInstance();
 
             // uses class to get the proper given method
             Method myMethod = myClass.getMethod(methodName);
@@ -41,15 +36,15 @@ public class JavaClassLoader extends ClassLoader {
             // uses instatiated class object to invoke the given method
             return myMethod.invoke(myClassObject);
 
-        } catch (ClassNotFoundException // from .loadClass();
-                | IllegalAccessException // from .newInstance(); and .invoke(Object);
-                | InstantiationException // from .newInstance();
-                | InvocationTargetException // from .newInstance(); and .invoke(Object);
-                | NoSuchMethodException e) {  // from .getMethod(); and .getConstructor();
-            System.out.println("EXCEPTION ENCOUNTERED.");
-            System.out.println(e.toString() + " occured, program failed to run successfully.");
-            System.out.println("Cause: " + e.getCause().toString());
+        } catch (ClassNotFoundException
+                | IllegalAccessException
+                | IllegalArgumentException
+                | InstantiationException
+                | NoSuchMethodException
+                | SecurityException
+                | InvocationTargetException e) {
+            logger.log(Level.SEVERE, "An error occurred while invoking class method", e);
+            return null;
         }
-        return null;
     }
 }
