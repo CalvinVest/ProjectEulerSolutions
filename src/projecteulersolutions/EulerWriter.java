@@ -74,7 +74,7 @@ public class EulerWriter {
         // all files in the project folder
         String[] pathnames = Problem.getProblemFiles();
         ArrayList<String> problems = new ArrayList<>();
-        // set all of the completed or in progress files based on existence of files
+        // set all the completed or in progress files based on existence of files
         for (String pathname : pathnames) {
             if (pathname.matches("^Problem\\d{4}.java$")) {
                 problems.add(pathname.substring(7, 11));

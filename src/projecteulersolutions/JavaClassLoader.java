@@ -5,7 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /*
-JavaClassLoader allows dynamic invokation of methods
+JavaClassLoader allows dynamic invocation of methods
 during runtime.
 
 JavaClassLoader extends ClassLoader for the purpose of inheriting
@@ -47,7 +47,7 @@ public class JavaClassLoader extends ClassLoader {
                 | InvocationTargetException // from .newInstance(); and .invoke(Object);
                 | NoSuchMethodException e) {  // from .getMethod(); and .getConstructor();
             System.out.println("EXCEPTION ENCOUNTERED.");
-            System.out.println(e.toString() + " occured, program failed to run successfully.");
+            System.out.println(e.toString() + " occurred, program failed to run successfully.");
             System.out.println("Cause: " + e.getCause().toString());
         }
         return null;
