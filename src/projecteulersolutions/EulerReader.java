@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import projecteulersolutions.problems.Problem;
+
 public class EulerReader {
 
     private static final String FILEPATH = Problem.FILEPATH + "progress.txt";

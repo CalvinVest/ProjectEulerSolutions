@@ -1,5 +1,7 @@
 package projecteulersolutions;
 
+import projecteulersolutions.problems.Problem;
+
 import java.io.File;
 import java.util.Collections;
 import java.util.Date;
@@ -90,7 +92,7 @@ public class EulerPrinter {
                 Thread.sleep(500);
 
                 Date dStart = new Date();
-                jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printSolution");
+                jcl.invokeClassMethod("projecteulersolutions.problems.Problem" + problemNumberText, "printSolution");
                 Date dEnd = new Date();
                 long durationMS = dEnd.getTime() - dStart.getTime();
                 Thread.sleep(500);
@@ -118,7 +120,7 @@ public class EulerPrinter {
     private void printProblemList() {
         EulerWriter writer = new EulerWriter();
         // list of strings to represent source folder contents:
-        String[] pathnames = new File(Problem.FILEPATH).list();
+        String[] pathnames = new File(Problem.PROBLEM_FILEPATH).list();
 
         // print list of valid files
         System.out.println("═".repeat(MENU_WIDTH + 1));
@@ -323,7 +325,7 @@ public class EulerPrinter {
     given problem's solution exists return true.
      */
     public static boolean existsProblemFile(int problemNumber) {
-        boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
+        boolean existsFile = new File(Problem.PROBLEM_FILEPATH + Problem.getFileName(problemNumber)).exists();
         System.out.print(TOP_BORDER
                 + String.format("%-" + MENU_WIDTH + "s", "║ Loading " + Problem.getFileName(problemNumber)) + "║\n"
                 + String.format("%-" + MENU_WIDTH + "s", (existsFile ? "║ Success" : "║ Failed: File does not exist.")) + "║\n"
