@@ -23,7 +23,7 @@ public interface EulerMath {
     // Return whether the provided
     // String is palindromic
     //==============================
-    public static boolean isPalindrome(String str) {
+    static boolean isPalindrome(String str) {
         str = str.toLowerCase();
 
         int length = str.length();
@@ -44,7 +44,7 @@ public interface EulerMath {
     // getDigitArray(long)
     // containsInt(int[], int)
     //==============================
-    public static boolean isPandigital(int n) {
+    static boolean isPandigital(int n) {
         int length = EulerMath.getDigitCount(n);
         int[] digitArr = getDigitArray(n);
         for (int i = 0; i < length; i++) {
@@ -87,7 +87,7 @@ public interface EulerMath {
     // Returns whether the provided
     // integer is prime.
     //==============================
-    public static boolean isPrime(int n) {
+    static boolean isPrime(int n) {
         if (n < 2) {
             return false;
         }
@@ -113,7 +113,7 @@ public interface EulerMath {
     // integers form a Pythagorean
     // triplet.
     //==============================
-    public static boolean isPythagorean(int a, int b, int c) {
+    static boolean isPythagorean(int a, int b, int c) {
         return a * a + b * b == c * c;
     }
 
@@ -131,7 +131,7 @@ public interface EulerMath {
     // Returns the number of digits
     // of a provided long
     //==============================
-    public static int getDigitCount(long n) {
+    static int getDigitCount(long n) {
         int count = 0;
         while (n > 0) {
             count++;
@@ -146,7 +146,7 @@ public interface EulerMath {
     // Returns the factorial of a
     // provided int as a double
     //==============================
-    public static double getFactorial(int num) {
+    static double getFactorial(int num) {
         if (num <= 1) {
             return 1;
         }
@@ -160,7 +160,7 @@ public interface EulerMath {
     // denominator of two provided
     // integer values.
     //==============================
-    public static int getGCD(int a, int b) {
+    static int getGCD(int a, int b) {
         if (b > a) {
             int t = a;
             a = b;
@@ -183,7 +183,7 @@ public interface EulerMath {
     // multiple of two provided
     // integer values.
     //==============================
-    public static int getLCM(int a, int b) {
+    static int getLCM(int a, int b) {
         return a * b / getGCD(a, b);
     }
 
@@ -194,7 +194,7 @@ public interface EulerMath {
     // prime integer, ascending from
     // the provided integer.
     //==============================
-    public static int getNextPrime(int n) {
+    static int getNextPrime(int n) {
         int nextPrime = n + 1;
         while (!isPrime(nextPrime)) {
             nextPrime++;
