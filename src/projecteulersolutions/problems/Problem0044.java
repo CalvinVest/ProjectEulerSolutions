@@ -44,7 +44,7 @@ public class Problem0044 extends Problem {
             // solution not yet found, add current pentagon number to list and repeat
             pentList.add(currPent);
         }
-        // technically only reachable if loop iterator i overflows
+        // technically only reachable if loop iterator "i" overflows
         return "The solution was not found.";
     }
 

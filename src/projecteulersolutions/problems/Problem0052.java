@@ -68,7 +68,7 @@ public class Problem0052 extends Problem {
             }
         }
 
-        // each of the multiples are permutations of the original value, true
+        // all the multiples are permutations of the original value, return true
         return true;
     }
 

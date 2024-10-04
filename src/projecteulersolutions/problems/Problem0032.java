@@ -32,7 +32,7 @@ public class Problem0032 extends Problem {
 
         /*
         In establishing upper bounds:
-        The smallest five digit number 10000 is made
+        The smallest five-digit number 10000 is made
         by multiplying 100 * 100
         100 * 100 = 10000; 11 digits
         20 * 500 = 10000; 10 digits

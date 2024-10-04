@@ -47,7 +47,7 @@ public class Problem0011 extends Problem {
 
         for (int i = 0; i < mx.length; i++) {
             for (int j = 0; j < mx[0].length; j++) {
-                // Horizontal, i is all but last three rows
+                // Horizontal, "i" is all but last three rows
                 if (i < mx.length - 3) {
                     int hProd = mx[i][j] * mx[i + 1][j] * mx[i + 2][j] * mx[i + 3][j];
                     if (hProd > maxProd) {
@@ -68,7 +68,7 @@ public class Problem0011 extends Problem {
                         maxProd = ddProd;
                     }
                 }
-                // Diagonal Ascending, i is all but first three rows and j is all but last three columns
+                // Diagonal Ascending, "i" is all but first three rows and j is all but last three columns
                 if (i >= 3 && j < mx[0].length - 3) {
                     int daProd = mx[i][j] * mx[i - 1][j + 1] * mx[i - 2][j + 2] * mx[i - 3][j + 3];
                     if (daProd > maxProd) {

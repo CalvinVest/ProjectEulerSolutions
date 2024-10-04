@@ -58,7 +58,7 @@ public class Problem0021 extends Problem {
         int sum = 0;
         // for all numbers up to half of given value
         for (int i = 1; i <= n / 2; i++) {
-            // if i is a factor of n then add i to sum of factors
+            // if "i" is a factor of n then add i to sum of factors
             if (n % i == 0) {
                 sum += i;
             }

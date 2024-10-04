@@ -45,8 +45,8 @@ public class Problem0004 extends Problem {
             n++; // increase lower bound
             m--; // decrease upper bound
         }
-        // if the while loop is broken because n >= m, then
-        // the int i is palindromic, return true.
+        // if the while loop is broken because n >= m,
+        // then the int "i" is palindromic, return true.
         return true;
     }
 }

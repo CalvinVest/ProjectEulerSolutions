@@ -32,7 +32,7 @@ public class Problem0038 extends Problem {
         int largestPan = 0;
 
         // arbitrary upper bound of one million, simply because the smallest
-        // possible i value for a product array of {1,2} would be 
+        // possible "i" value for a product array of {1,2} would be
         for (int i = 9; i < 100000; i++) {
             // for arrays {1,2} to {1,2,3,4,5} since a 5 member array is the largest
             // that can product an answer, 9 x {1,2,3,4,5}.

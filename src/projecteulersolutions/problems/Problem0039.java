@@ -39,7 +39,7 @@ public class Problem0039 extends Problem {
             }
         }
         // since perimeter is index of count array get the max index
-        // to find the perimeter with highest count
+        // to find the perimeter with the highest count
         int maxFreqP = getMaxIndex(perimeterCount);
 
         System.out.println("Perimeter with most solutions is " + maxFreqP);

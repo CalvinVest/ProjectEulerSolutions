@@ -116,7 +116,7 @@ public class Problem0089 extends Problem {
 
     /*
     numToRoman(int) returns the converted Roman numeral of the given int value as
-    a String. This Roman numeral is in its most efficient, least characters, form.
+    a String. This Roman numeral is in its most efficient, least-character form.
     
     There is no sanitization or input checking on this method.
     This method is private so this issue is low priority, but this should be

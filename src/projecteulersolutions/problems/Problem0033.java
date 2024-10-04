@@ -51,7 +51,7 @@ public class Problem0033 extends Problem {
                 }
             }
         }
-        // find GCD of solution fraction parts to simplify to smallest terms
+        // find GCD of solution fraction parts to simplify to the smallest terms
         int gcd = EulerMath.getGCD(solNum, solDnm);
         System.out.println("Product of solution fractions is " + solNum / gcd + "/" + solDnm / gcd);
     }

@@ -80,7 +80,7 @@ public class Problem0461 extends Problem {
     }
 
     /*
-    calcSums(nums, max) finds and returns a sorted array of all of
+    calcSums(nums, max) finds and returns a sorted array of all
     the sums nums[i] + nums[j] for the given array nums.
     This function does not consider any values where j >= i.
     The sums array is triangular (since i > j) with sides
