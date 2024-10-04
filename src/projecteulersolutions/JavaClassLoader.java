@@ -28,7 +28,7 @@ public class JavaClassLoader extends ClassLoader {
 
             // uses class constructor to instantiate new object of given class
             // can throw NoSuchMethodException
-            Constructor constructor = myClass.getConstructor();
+            Constructor<?> constructor = myClass.getConstructor();
 
             // instantiates the given class (problem) 
             // can throw IllegalAccessException, InstantiationException,
