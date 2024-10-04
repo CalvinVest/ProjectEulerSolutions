@@ -129,7 +129,7 @@ public class Problem0089 extends Problem {
         // corresponding array of Roman numeral pieces
         String[] romanStrs = {"M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"};
         // result string, starting as empty string
-        String resultStr = "";
+        StringBuilder resultStr = new StringBuilder();
         
         // reference int for both vals and romanStrs arrays to find corresponding values
         int index = 0;
@@ -156,12 +156,12 @@ public class Problem0089 extends Problem {
             // for however many times the given numeral can be added, append it
             // to the result String
             for (int i = 0; i < countOfNumeral; i++) {
-                resultStr += romanStrs[index];
+                resultStr.append(romanStrs[index]);
             }
             // increment index
             index++;
         }
 
-        return resultStr;
+        return resultStr.toString();
     }
 }

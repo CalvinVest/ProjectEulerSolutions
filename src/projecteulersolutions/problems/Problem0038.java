@@ -60,11 +60,11 @@ public class Problem0038 extends Problem {
     // up to n * iter, for example getConcatProdStr(9, 5) returns "9" + "18" + "27"
     // + "36" + "45" = "918273645".
     private String getConcatProdStr(int n, int iter) {
-        String concatStr = "";
+        StringBuilder concatStr = new StringBuilder();
         // for every value 1 to iter, concatenate the result of n*iter to concatStr
         for (int i = 1; i <= iter; i++) {
-            concatStr += (i * n) + "";
+            concatStr.append((i * n));
         }
-        return concatStr;
+        return concatStr.toString();
     }
 }
