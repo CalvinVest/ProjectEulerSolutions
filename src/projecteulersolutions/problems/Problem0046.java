@@ -17,6 +17,7 @@ It turns out that conjecture was false.
 What is the smallest odd composite that cannot be written as the sum of a prime
 and twice a square?
  */
+@SuppressWarnings("unused")
 public class Problem0046 extends Problem {
 
     @Override

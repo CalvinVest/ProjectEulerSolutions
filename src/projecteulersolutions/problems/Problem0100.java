@@ -12,6 +12,7 @@ discs at random, is a box containing 85 blue discs and 35 red discs.
 By finding the arrangement to contain over 10^12 = 1000000000000 discs in total,
 determine the number of blue discs that the box would contain.
  */
+@SuppressWarnings("unused")
 public class Problem0100 extends Problem {
 
     @Override

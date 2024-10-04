@@ -9,6 +9,7 @@ We are given f200(6) + f200(75) + f200(89) + f200(226)
 It is the best approximation of pi for n = 200
 with the expression fn(a) + fn(b) + fn(c) + fn(d)
  */
+@SuppressWarnings("unused")
 public class Problem0461 extends Problem {
 
     @Override

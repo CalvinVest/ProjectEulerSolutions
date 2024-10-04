@@ -1,5 +1,6 @@
 package projecteulersolutions.problems;
 
+@SuppressWarnings("unused")
 public class Problem0028 extends Problem {
     
     public static final int MAX = 1001;

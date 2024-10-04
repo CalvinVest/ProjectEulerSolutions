@@ -13,6 +13,7 @@ However, in 2004 there was found a massive non-Mersenne prime which contains
 
 Find the last ten digits of this prime number.
  */
+@SuppressWarnings("unused")
 public class Problem0097 extends Problem {
 
     @Override

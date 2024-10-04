@@ -10,6 +10,7 @@ Where
 
 Find the sum of all fifth power digit values.
  */
+@SuppressWarnings("unused")
 public class Problem0030 extends Problem {
 
     @Override

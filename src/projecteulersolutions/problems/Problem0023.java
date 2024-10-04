@@ -13,6 +13,7 @@ An abundant number is one where the sum of factors is more than the number.
 By mathematical analysis, all numbers > 28123 can be written as the sum of two
 abundant numbers.
  */
+@SuppressWarnings("unused")
 public class Problem0023 extends Problem {
 
     @Override

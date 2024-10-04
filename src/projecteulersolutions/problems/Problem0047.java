@@ -15,6 +15,7 @@ The first three consecutive numbers to have three distinct prime factors are:
 Find the first four consecutive numbers to have four distinct prime factors each.
 What is the first of these numbers?
  */
+@SuppressWarnings("unused")
 public class Problem0047 extends Problem {
 
     @Override

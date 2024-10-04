@@ -10,6 +10,7 @@ Find the sum of all numbers, less than one million, which are palindromic in bas
 
 (Please note that the palindromic number, in either base, may not include leading zeros.)
  */
+@SuppressWarnings("unused")
 public class Problem0036 extends Problem {
 
     public static final int MAX = 1000000;

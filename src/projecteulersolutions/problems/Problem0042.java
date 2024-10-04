@@ -20,6 +20,7 @@ we shall call the word a triangle word.
 Using words.txt, (renamed to problem0042.txt for this project), a 16K text file
 containing nearly two thousand common English words, how many are triangle words?
  */
+@SuppressWarnings("unused")
 public class Problem0042 extends Problem {
 
     @Override

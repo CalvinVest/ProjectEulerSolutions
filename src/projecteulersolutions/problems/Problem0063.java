@@ -8,6 +8,7 @@ number, 134217728 = 8^9, is a ninth power.
 
 How many n-digit positive integers exist which are also an nth power?
  */
+@SuppressWarnings("unused")
 public class Problem0063 extends Problem {
 
     @Override

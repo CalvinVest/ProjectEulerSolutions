@@ -3,6 +3,7 @@ package projecteulersolutions.problems;
 import java.math.BigDecimal;
 import java.math.MathContext;
 
+@SuppressWarnings("unused")
 public class Problem0080 extends Problem {
 
     @Override

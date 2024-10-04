@@ -12,6 +12,7 @@ p(2) = 0123456879
 
 find p(999999) (the millionth permutation)
  */
+@SuppressWarnings("unused")
 public class Problem0024 extends Problem {
 
     @Override

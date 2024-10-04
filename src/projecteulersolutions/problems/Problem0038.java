@@ -17,6 +17,7 @@ giving the pandigital, 918273645, which is the concatenated product of 9 and (1,
 What is the largest 1 to 9 pandigital 9-digit number that can be formed as the
 concatenated product of an integer with (1,2,...,n) where n > 1?
  */
+@SuppressWarnings("unused")
 public class Problem0038 extends Problem {
 
     @Override

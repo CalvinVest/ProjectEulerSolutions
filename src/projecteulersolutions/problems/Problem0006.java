@@ -13,6 +13,7 @@ largest number we'll be dealing with is the square of the sum of the
 first 100 natural numbers. The total value would be 5050^2 which is
 well within the bounds of int.
  */
+@SuppressWarnings("unused")
 public class Problem0006 extends Problem {
 
     @Override

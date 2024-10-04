@@ -8,6 +8,7 @@ that exists. An n-digit pandigital number makes use of all the digits
 1 to n exactly once.
 For example, 2143 is a 4-digit pandigital number.
  */
+@SuppressWarnings("unused")
 public class Problem0041 extends Problem {
 
     /*

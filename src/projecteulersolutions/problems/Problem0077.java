@@ -2,6 +2,7 @@ package projecteulersolutions.problems;
 
 import projecteulersolutions.EulerMath;
 
+@SuppressWarnings("unused")
 public class Problem0077 extends Problem {
 
     @Override

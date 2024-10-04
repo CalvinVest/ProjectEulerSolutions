@@ -9,6 +9,7 @@ A self power is a number raised to the power of itself.
 if f(x) = x^x,
 find the last ten digits of f(1) + f(2) + ... + f(1000)
  */
+@SuppressWarnings("unused")
 public class Problem0048 extends Problem {
 
     @Override

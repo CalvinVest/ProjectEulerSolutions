@@ -15,6 +15,7 @@ Find the sum of all factorial digit values.
 This problem is VERY similar to problem 30, and much of the process and
 documentation for this problem was taken from my solution for that problem.
  */
+@SuppressWarnings("unused")
 public class Problem0034 extends Problem {
 
     /*

@@ -11,6 +11,7 @@ d = 0.123456789101112131415...
 d(n) is the nth digit of the fractional part of the irrational decimal d
 find d(1) * d(10) * d(100) * d(1000) * d(10000) * d(100000) * d(1000000)
  */
+@SuppressWarnings("unused")
 public class Problem0040 extends Problem {
 
     @Override

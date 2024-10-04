@@ -5,6 +5,7 @@ import projecteulersolutions.EulerMath;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("unused")
 public class Problem0051 extends Problem {
 
     @Override

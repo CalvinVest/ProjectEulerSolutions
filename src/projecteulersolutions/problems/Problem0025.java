@@ -6,6 +6,7 @@ import java.math.BigInteger;
 The goal of problem 25 is to find the index of the first term of 
 the Fibonacci sequence to contain 1000 digits.
  */
+@SuppressWarnings("unused")
 public class Problem0025 extends Problem {
 
     @Override

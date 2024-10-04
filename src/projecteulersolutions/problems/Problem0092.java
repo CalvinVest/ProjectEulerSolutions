@@ -11,6 +11,7 @@ s(85) = s[i] = 85... s[x] = 89
 
 All square digit chains resolve to either 1 or 89. 
  */
+@SuppressWarnings("unused")
 public class Problem0092 extends Problem {
 
     @Override

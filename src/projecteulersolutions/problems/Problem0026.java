@@ -23,6 +23,7 @@ of the unit fractions with denominators 2 to 10 are:
 1/6 has a 1-digit recurring cycle, the repeating 6.
 1/7 has a 6-digit recurring cycle, the repeating 142857.
  */
+@SuppressWarnings("unused")
 public class Problem0026 extends Problem {
 
     @Override

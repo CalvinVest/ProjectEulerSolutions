@@ -9,6 +9,7 @@ The goal of problem 11 is to find the largest product of four
 adjacent values in the given matrix.
 Values can be adjacent up, down, left, right, and diagonally.
  */
+@SuppressWarnings("unused")
 public class Problem0011 extends Problem {
 
     @Override

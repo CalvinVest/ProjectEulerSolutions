@@ -2,6 +2,7 @@ package projecteulersolutions.problems;
 
 import java.math.BigInteger;
 
+@SuppressWarnings("unused")
 public class Problem0076 extends Problem {
 
     @Override

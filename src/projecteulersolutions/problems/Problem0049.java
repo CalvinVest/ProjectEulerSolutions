@@ -28,6 +28,7 @@ Plan:
 - valid is when j = i + 3330, k = j + 3330, and i j and k are permutative
 - solution is when i != 1487 (given solution, find other)
  */
+@SuppressWarnings("unused")
 public class Problem0049 extends Problem {
 
     @Override

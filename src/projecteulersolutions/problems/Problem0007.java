@@ -5,6 +5,7 @@ import projecteulersolutions.EulerMath;
 /*
 The goal of problem 7 is to find the 10001st prime number
  */
+@SuppressWarnings("unused")
 public class Problem0007 extends Problem {
 
     @Override

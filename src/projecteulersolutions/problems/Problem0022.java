@@ -16,6 +16,7 @@ The alphanumeric sum of a number is the sum of its characters a=1 values.
 The score of a name is its alphanumeric sum times its place in the alphabetized list
     For example, Colin is 938th in the list, so Colin's score is 53 * 938
  */
+@SuppressWarnings("unused")
 public class Problem0022 extends Problem {
 
     @Override

@@ -7,6 +7,7 @@ coins in general circulation.
 They are:
 1p, 2p, 5p, 10p, 20p, 50p, £1 (100p), and £2 (200p)
  */
+@SuppressWarnings("unused")
 public class Problem0031 extends Problem {
 
     @Override

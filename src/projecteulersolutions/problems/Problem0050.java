@@ -11,6 +11,7 @@ The prime 41 can be written as the sum of six consecutive primes:
 This is the longest sum of consecutive primes that adds to a prime below 100.
 The longest sum of consecutive primes below 1000 has 21 terms and is 953.
  */
+@SuppressWarnings("unused")
 public class Problem0050 extends Problem {
 
     @Override

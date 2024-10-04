@@ -16,6 +16,7 @@ It can be seen there are 21 elements in this set.
 How many elements would be contained in the set of reduced proper fractions for
 d <= 1,000,000?
  */
+@SuppressWarnings("unused")
 public class Problem0072 extends Problem {
 
     private static final int UPPER_BOUND = 1000000;

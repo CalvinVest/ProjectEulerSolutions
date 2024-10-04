@@ -12,6 +12,7 @@ and right to left.
 
 NOTE: 2, 3, 5, and 7 are not considered to be truncatable primes.
  */
+@SuppressWarnings("unused")
 public class Problem0037 extends Problem {
 
     private static final int COUNT_VALID = 11;

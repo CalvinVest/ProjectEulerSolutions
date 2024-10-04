@@ -19,6 +19,7 @@ Our solution will always be n of R + n of D for an n*n matrix.
 Thus, the solution is 40 R and D for a 20*20 matrix.
 This is given as the formula (40!)/(20! * 20!)
  */
+@SuppressWarnings("unused")
 public class Problem0015 extends Problem {
 
     @Override

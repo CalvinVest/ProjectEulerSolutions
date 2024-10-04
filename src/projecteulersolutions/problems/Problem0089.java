@@ -25,6 +25,7 @@ The 11K text file, problem0089.txt, contains one thousand numbers written in val
 but not necessarily minimal, Roman numerals. Find the number of characters saved
 by writing each of these in their minimal form.
  */
+@SuppressWarnings("unused")
 public class Problem0089 extends Problem {
 
     @Override

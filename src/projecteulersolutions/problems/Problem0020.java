@@ -9,6 +9,7 @@ The goal of problem 20 is to find the sum of the digits of (100)!
 f(10) = 3 + 6 + 2 + 8 + 8 + 0 + 0 = 27
 find f(100)
  */
+@SuppressWarnings("unused")
 public class Problem0020 extends Problem {
 
     @Override

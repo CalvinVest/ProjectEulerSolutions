@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 The goal of problem 13 is to find the first ten digits of the sum
 of the given one hundred 50-digit numbers.
  */
+@SuppressWarnings("unused")
 public class Problem0013 extends Problem {
 
     @Override

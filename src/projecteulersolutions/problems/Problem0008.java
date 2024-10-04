@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 
+@SuppressWarnings("unused")
 public class Problem0008 extends Problem {
 
     @Override

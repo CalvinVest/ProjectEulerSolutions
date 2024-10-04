@@ -9,6 +9,7 @@ Numbers a and b are amicable numbers if a != b, d(a) = b, and d(b) = a.
 
 A note for the method isAmicable, (d(a) = b && d(b) = a) -> d(d(a)) = a
  */
+@SuppressWarnings("unused")
 public class Problem0021 extends Problem {
 
     @Override

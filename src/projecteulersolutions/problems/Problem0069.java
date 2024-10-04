@@ -10,6 +10,7 @@ It is understood that n=6 produces a maximum n/[phi(n)] for n <= 10, at 3. (6/2)
 
 Find the value of n <= 1 000 000 for which n/[phi(n)] is a maximum.
  */
+@SuppressWarnings("unused")
 public class Problem0069 extends Problem {
 
     @Override

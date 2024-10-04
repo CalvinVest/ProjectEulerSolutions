@@ -11,6 +11,7 @@ It can be verified that T285 = P165 = H143 = 40755.
 
 Find the next triangle number that is also pentagonal and hexagonal
  */
+@SuppressWarnings("unused")
 public class Problem0045 extends Problem {
 
     @Override

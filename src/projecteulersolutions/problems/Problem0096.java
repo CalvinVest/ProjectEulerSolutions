@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@SuppressWarnings("unused")
 public class Problem0096 extends Problem {
 
     @Override

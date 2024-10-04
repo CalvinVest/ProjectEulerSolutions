@@ -15,6 +15,7 @@ one in value, and containing two digits in the numerator and denominator.
 If the product of these four fractions is given in its lowest common terms,
 find the value of the denominator.
  */
+@SuppressWarnings("unused")
 public class Problem0033 extends Problem {
 
     @Override

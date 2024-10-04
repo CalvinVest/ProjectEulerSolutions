@@ -10,6 +10,7 @@ That is,
 a^2 + b^2 = c^2, a + b + c = 1000, a < b < c
 find a*b*c
  */
+@SuppressWarnings("unused")
 public class Problem0009 extends Problem {
 
     @Override
