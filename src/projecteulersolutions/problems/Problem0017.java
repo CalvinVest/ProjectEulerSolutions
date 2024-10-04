@@ -66,47 +66,27 @@ public class Problem0017 extends Problem {
     }
 
     private int findCharCountSub20(int n) {
-        switch (n) {
-            case 19:
-                return "nineteen".length();
-            case 18:
-                return "eighteen".length();
-            case 17:
-                return "seventeen".length();
-            case 16:
-                return "sixteen".length();
-            case 15:
-                return "fifteen".length();
-            case 14:
-                return "fourteen".length();
-            case 13:
-                return "thirteen".length();
-            case 12:
-                return "twelve".length();
-            case 11:
-                return "eleven".length();
-            case 10:
-                return "ten".length();
-            case 9:
-                return "nine".length();
-            case 8:
-                return "eight".length();
-            case 7:
-                return "seven".length();
-            case 6:
-                return "six".length();
-            case 5:
-                return "five".length();
-            case 4:
-                return "four".length();
-            case 3:
-                return "three".length();
-            case 2:
-                return "two".length();
-            case 1:
-                return "one".length();
-            default:
-                return 0;
-        }
+        return switch (n) {
+            case 19 -> "nineteen".length();
+            case 18 -> "eighteen".length();
+            case 17 -> "seventeen".length();
+            case 16 -> "sixteen".length();
+            case 15 -> "fifteen".length();
+            case 14 -> "fourteen".length();
+            case 13 -> "thirteen".length();
+            case 12 -> "twelve".length();
+            case 11 -> "eleven".length();
+            case 10 -> "ten".length();
+            case 9 -> "nine".length();
+            case 8 -> "eight".length();
+            case 7 -> "seven".length();
+            case 6 -> "six".length();
+            case 5 -> "five".length();
+            case 4 -> "four".length();
+            case 3 -> "three".length();
+            case 2 -> "two".length();
+            case 1 -> "one".length();
+            default -> 0;
+        };
     }
 }
