@@ -1,4 +1,4 @@
-package projecteulersolutions;
+package projecteulersolutions.problems;
 
 import java.io.File;
 
@@ -13,6 +13,8 @@ the particular problem.
 public abstract class Problem {
 
     public static final String FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\";
+
+    public static final String PROBLEM_FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\problems\\";
 
     public abstract void printSolution();
 
@@ -30,6 +32,6 @@ public abstract class Problem {
     }
 
     public static String[] getProblemFiles() {
-        return new File(Problem.FILEPATH).list();
+        return new File(Problem.PROBLEM_FILEPATH).list();
     }
 }
