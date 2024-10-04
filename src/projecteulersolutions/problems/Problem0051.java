@@ -29,7 +29,7 @@ public class Problem0051 extends Problem {
         for(String wildcardStr : wildcardStrings) {
             List<Integer> primes = getPrimeFamilyMembersFromWildcard(wildcardStr);
             if(primes.size() >= familyMemberCount) {
-                System.out.println("SOLUTION FOUND: " + primes.get(0));
+                System.out.println("SOLUTION FOUND: " + primes.getFirst());
                 System.out.println("Original Prime: " + primeValue);
                 System.out.println("Template for family members: " + wildcardStr);
                 System.out.print("Prime Family Members: [");
@@ -75,8 +75,8 @@ public class Problem0051 extends Problem {
             }
             familyValues.addAll(newFamilyValues);
         }
-        familyValues.remove(familyValues.size() - 1);
-        familyValues.remove(0);
+        familyValues.removeLast();
+        familyValues.removeFirst();
         return familyValues;
     }
     

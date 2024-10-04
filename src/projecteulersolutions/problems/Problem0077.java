@@ -34,7 +34,7 @@ public class Problem0077 extends Problem {
 
             target++;
             // Generate the next prime and add it to the list
-            primes.add(EulerMath.getNextPrime(primes.get(primes.size() - 1)));
+            primes.add(EulerMath.getNextPrime(primes.getLast()));
         }
     }
 }
