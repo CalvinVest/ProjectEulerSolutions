@@ -105,7 +105,7 @@ public class Problem0054 extends Problem {
         return 0; // The hands are completely tied
     }
 
-    private class PokerHandEvaluator {
+    private static class PokerHandEvaluator {
         // Map to translate card rank characters to numerical values for easier comparison
 
         private static final Map<Character, Integer> cardRankValues = Map.ofEntries(
@@ -144,7 +144,7 @@ public class Problem0054 extends Problem {
 
         // Sorts the hand by card rank
         private static void sortHandByRank(String[] hand) {
-            Arrays.sort(hand, Comparator.comparingInt(card -> cardValue(card)));
+            Arrays.sort(hand, Comparator.comparingInt(PokerHandEvaluator::cardValue));
         }
 
         // Counts the occurrences of each rank in the hand
