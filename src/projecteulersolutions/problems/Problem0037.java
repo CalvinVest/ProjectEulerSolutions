@@ -67,7 +67,7 @@ public class Problem0037 extends Problem {
     // that each iteration while the number is a positive integer is a prime number.
     private boolean isPrimeRTL(int num) {
         // truncates least significant digit
-        int curr = num /= 10;
+        int curr = num / 10;
 
         // while still positive integer
         while (curr > 0) {

@@ -10,7 +10,7 @@ public class Problem0085 extends Problem {
     @Override
     public void printSolution() {
         long area = 0;
-        long minError = 2000000l;
+        long minError = 2000000L;
 
         for (int h = 2; h < 1000; h++) {
             for (int w = 2; w < 1000; w++) {
@@ -25,6 +25,6 @@ public class Problem0085 extends Problem {
     }
 
     private long getRectangles(int h, int w) {
-        return (h + 1) * h * (w + 1) * w / 4;
+        return (long) (h + 1) * h * (w + 1) * w / 4;
     }
 }

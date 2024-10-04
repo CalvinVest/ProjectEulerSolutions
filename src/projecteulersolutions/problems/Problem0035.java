@@ -108,9 +108,8 @@ public class Problem0035 extends Problem {
             // gets first digit for digit shift
             int firstDigit = n / mod;
             // shifts all digits
-            int nextRotation = ((n * 10) + firstDigit) - (firstDigit * mod * 10);
             // sets n to next rotation
-            n = nextRotation;
+            n = ((n * 10) + firstDigit) - (firstDigit * mod * 10);
         }
         return rotations;
     }

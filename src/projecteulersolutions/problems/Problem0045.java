@@ -75,11 +75,11 @@ public class Problem0045 extends Problem {
 
     //Pentagonal Pn = n(3n-1)/2   1, 5, 12, 22, 35, ...
     private long pentagon(int n) {
-        return (long) n * (3 * n - 1) / 2;
+        return n * (3L * n - 1) / 2;
     }
 
     //Hexagonal Hn = n(2n-1)      1, 6, 15, 28, 45, ...
     private long hexagon(int n) {
-        return (long) n * (2 * n - 1);
+        return n * (2L * n - 1);
     }
 }

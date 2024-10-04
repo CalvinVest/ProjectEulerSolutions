@@ -47,7 +47,7 @@ public class Problem0013 extends Problem {
     }
 
     private long sumLongArray(long[] nums) {
-        long sum = 0l;
+        long sum = 0L;
         for (long num : nums) {
             sum += num;
         }

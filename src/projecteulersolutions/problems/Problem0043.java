@@ -20,9 +20,6 @@ Find the sum of all 0 to 9 pandigital numbers with this property.
  */
 public class Problem0043 extends Problem {
 
-    public static final long LOWER_BOUND = 1023456789L;
-    public static final long UPPER_BOUND = 9876543210L;
-
     @Override
     public boolean isSolved() {
         return true;

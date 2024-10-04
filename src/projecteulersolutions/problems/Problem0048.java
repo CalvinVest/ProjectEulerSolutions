@@ -19,7 +19,7 @@ public class Problem0048 extends Problem {
     @Override
     public void printSolution() {
         long result = 0;
-        long modulo = 10000000000l; // ten zeros, to find last ten digits
+        long modulo = 10000000000L; // ten zeros, to find last ten digits
 
         for (int i = 1; i <= 1000; i++) {
             long temp = i;

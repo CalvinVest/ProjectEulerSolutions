@@ -15,7 +15,7 @@ public class Problem0003 extends Problem {
     public void printSolution() {
         // foo is the number to factor out into primes.
         // foo is divided by prime factors in ascending order
-        long foo = 600851475143l;
+        long foo = 600851475143L;
 
         System.out.print("The largest prime factor of " + foo + " is ");
         // an index value starting at 2 and incrementing to half of

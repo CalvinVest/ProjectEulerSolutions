@@ -12,7 +12,7 @@ public class Problem0028 extends Problem {
     @Override
     public void printSolution() {
         // 1 is the center of any spiral, so it is auto added to the sum
-        long sum = 1l;
+        long sum = 1L;
         // incrementer starts at 2 and increases by 2 every rotation, or 4 cycles
         int inc = 2;
         // clock to hold number of cycles within a given rotation. [0, 3]

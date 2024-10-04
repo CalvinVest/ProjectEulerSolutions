@@ -51,7 +51,7 @@ public class Problem0008 extends Problem {
     }
 
     private long calcSubstringProduct(String str) {
-        long product = 1l;
+        long product = 1L;
         for (char c : str.toCharArray()) {
             product *= Integer.parseInt(Character.toString(c));
         }

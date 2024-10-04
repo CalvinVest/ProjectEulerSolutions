@@ -39,7 +39,7 @@ public class Problem0010 extends Problem {
     }
 
     private long sumSieveOfEratosthenes(boolean[] primes) {
-        long sum = 0l;
+        long sum = 0L;
         for (int i = 2; i < primes.length; i++) {
             if (primes[i]) {
                 sum += i;

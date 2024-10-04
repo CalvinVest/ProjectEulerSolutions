@@ -28,7 +28,7 @@ public class Problem0040 extends Problem {
                 charList.add(numString.charAt(j));
             }
         }
-        int targets[] = {1, 10, 100, 1000, 10000, 100000, 1000000};
+        int[] targets = {1, 10, 100, 1000, 10000, 100000, 1000000};
 
         int product = getProductFromCharList(charList, targets);
 

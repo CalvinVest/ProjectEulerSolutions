@@ -27,8 +27,8 @@ public class Problem0100 extends Problem {
         progressing iteratively until a solution of t > 1E12 is found.
          */
 
-        long b = 15l;
-        long t = 21l;
+        long b = 15L;
+        long t = 21L;
 
         /*
         From the formula

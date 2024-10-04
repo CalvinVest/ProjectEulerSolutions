@@ -33,7 +33,7 @@ public class Problem0059 extends Problem {
     private int getSumOfASCII(String asciiStr) {
         int sum = 0;
         for (char c : asciiStr.toCharArray()) {
-            sum += (int) c;
+            sum += c;
         }
         return sum;
     }

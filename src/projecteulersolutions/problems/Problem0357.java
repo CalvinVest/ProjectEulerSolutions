@@ -25,7 +25,7 @@ public class Problem0357 extends Problem {
         // sieve is a sieve of eratosthenes with a range from 0 to our LIMIT value, 100,000,000
         sieve = sieveOfEratosthenes(LIMIT + 1);
         // sum variable to hold sum of all numbers whose factors are all prime cofactor sums
-        long sum = 0l;
+        long sum = 0L;
 
         // for every value within the given range
         for (int n = 0; n <= LIMIT; n++) {

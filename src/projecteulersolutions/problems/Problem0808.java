@@ -16,7 +16,7 @@ public class Problem0808 extends Problem {
         int i = 5;
 
         while (count < 50) {
-            long currSquare = i * i;
+            long currSquare = (long) i * i;
 
             if (!EulerMath.isPalindrome(Long.toString(currSquare))) {
                 long reverse = getReversedLong(currSquare);
@@ -34,7 +34,7 @@ public class Problem0808 extends Problem {
     }
 
     private long getReversedLong(long num) {
-        long rev = 0l;
+        long rev = 0L;
 
         while (num != 0) {
             int d = (int) (num % 10);
@@ -51,7 +51,7 @@ public class Problem0808 extends Problem {
         }
 
         int root = (int) Math.sqrt(num); // Integer square root
-        long checker = root * root;
+        long checker = (long) root * root;
         // Check if square of root equals n
         return checker == num;
     }

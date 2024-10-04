@@ -46,7 +46,7 @@ public class Problem0030 extends Problem {
         int temp = n;
         int sum = 0;
         while (temp > 0) {
-            sum += Math.pow(temp % 10, 5);
+            sum += (int) Math.pow(temp % 10, 5);
             temp /= 10;
         }
         return sum == n;

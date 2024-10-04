@@ -26,7 +26,6 @@ public class Problem0017 extends Problem {
     }
 
     private int findCharCount(int n) {
-        int sum = 0;
         if (n == 0) {
             return 0;
         }

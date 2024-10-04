@@ -43,7 +43,7 @@ public class Problem0079 extends Problem {
             this.vertices = vertices;
             adjacencyList = new LinkedList[vertices];
             for (int i = 0; i < vertices; ++i) {
-                adjacencyList[i] = new LinkedList();
+                adjacencyList[i] = new LinkedList<>();
             }
         }
 
