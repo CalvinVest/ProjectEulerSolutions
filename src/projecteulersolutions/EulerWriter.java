@@ -17,7 +17,7 @@ public class EulerWriter {
 
     protected static final int PROBLEM_COUNT = 855;
 
-    private final ArrayList<String> values;
+    private ArrayList<String> values;
     private final File progressOutFile, headerInFile, readmeOutFile;
 
     public final String[] STATUS = {
@@ -70,8 +70,10 @@ public class EulerWriter {
         System.out.println("-------------------------------------");
 
         // clear values list and reset all statuses to incomplete
+        values = new ArrayList<>(PROBLEM_COUNT * 2);
         for (int i = 1; i <= PROBLEM_COUNT; i++) {
-            values.set(2 * (i - 1), Integer.toString(i));
+            values.add(Integer.toString(i));
+            values.add("INCOMPLETE");
         }
         // all files in the project folder
         String[] pathnames = Problem.getProblemFiles();
@@ -83,8 +85,7 @@ public class EulerWriter {
             }
         }
 
-        for (int i = 0; i < problems.size(); i++) {
-            var problem = problems.get(i);
+        for (String problem : problems) {
             int problemNumber = Integer.parseInt(problem);
             // index of the given problem number
             int index = 2 * (problemNumber - 1);
