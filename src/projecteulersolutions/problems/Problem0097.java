@@ -29,8 +29,8 @@ public class Problem0097 extends Problem {
         BigInteger curr = BigInteger.TWO;
 
         // successive squaring algorithm using power array above
-        for (int i = 0; i < powerArr.length; i++) {
-            if (powerArr[i] == 1) {
+        for (int j : powerArr) {
+            if (j == 1) {
                 tot = tot.multiply(curr).remainder(BigInteger.TEN.pow(10));
             }
             curr = curr.pow(2).remainder(BigInteger.TEN.pow(10));

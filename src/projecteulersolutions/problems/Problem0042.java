@@ -37,9 +37,9 @@ public class Problem0042 extends Problem {
         List<String> words = readWordsFromFile(namesFile);
 
         // for every word in the list
-        for (int i = 0; i < words.size(); i++) {
+        for (String word : words) {
             // get alphanumeric value of word
-            int wordVal = getAlphaSum(words.get(i));
+            int wordVal = getAlphaSum(word);
             // if word value is triangular, increment the count of triangle words
             if (isTriangle(wordVal)) {
                 count++;

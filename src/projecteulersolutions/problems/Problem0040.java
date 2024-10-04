@@ -38,8 +38,8 @@ public class Problem0040 extends Problem {
 
     private int getProductFromCharList(ArrayList<Character> charList, int[] targets) {
         int product = 1;
-        for (int i = 0; i < targets.length; i++) {
-            product *= Integer.parseInt(charList.get(targets[i] - 1).toString());
+        for (int target : targets) {
+            product *= Integer.parseInt(charList.get(target - 1).toString());
         }
         return product;
     }
