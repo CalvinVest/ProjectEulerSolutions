@@ -32,7 +32,7 @@ public class Problem0022 extends Problem {
         Collections.sort(trimmedNames);
         List<Integer> nameScores = getNameScores(trimmedNames);
 
-        int nameScoreSum = nameScores.stream().reduce(0, (a, b) -> a + b);
+        int nameScoreSum = nameScores.stream().reduce(0, Integer::sum);
 
         System.out.println("The sum of the scores of all names in problem0022.txt is " + nameScoreSum);
     }
