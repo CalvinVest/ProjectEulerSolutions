@@ -55,7 +55,7 @@ public class Problem0059 extends Problem {
             if (msgStr.contains("this") && msgStr.contains("the")) {
                 return key;
             }
-            key = incrLowercaseCharArr(key);
+            incrLowercaseCharArr(key);
         }
         return key;
     }
@@ -74,7 +74,7 @@ public class Problem0059 extends Problem {
         return ciphers;
     }
 
-    private char[] incrLowercaseCharArr(char[] charArr) {
+    private void incrLowercaseCharArr(char[] charArr) {
         int index = charArr.length - 1;
         while (index >= 0) {
             if (charArr[index] == 'z') {
@@ -85,6 +85,5 @@ public class Problem0059 extends Problem {
                 break; // Exit the loop once incremented
             }
         }
-        return charArr;
     }
 }
