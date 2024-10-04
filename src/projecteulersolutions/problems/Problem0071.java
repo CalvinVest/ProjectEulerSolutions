@@ -31,7 +31,7 @@ public class Problem0071 extends Problem {
 
         for (int d = 8; d <= 1000000; d++) {
             int n = d * 3 / 7 - 10;
-            n = (n < 0) ? 0 : n;
+            n = Math.max(n, 0);
             while (7 * n < 3 * d) { // try while 7n < 3d
                 double currDbl = (double) n / (double) d;
                 if (currDbl < 3.0 / 7.0 && currDbl > solDbl) {

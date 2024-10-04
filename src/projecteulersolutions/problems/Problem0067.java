@@ -58,7 +58,7 @@ public class Problem0067 extends Problem {
             // j up to i since the matrix used is triangular
             for (int j = 0; j <= i; j++) {
                 // adds to current value the greater of two children
-                tree[i][j] += (tree[i + 1][j] > tree[i + 1][j + 1]) ? tree[i + 1][j] : tree[i + 1][j + 1];
+                tree[i][j] += Math.max(tree[i + 1][j], tree[i + 1][j + 1]);
             }
         }
         // this algorithm retroactively adds child values to parent values
