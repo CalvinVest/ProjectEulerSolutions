@@ -155,9 +155,7 @@ public class Problem0089 extends Problem {
 
             // for however many times the given numeral can be added, append it
             // to the result String
-            for (int i = 0; i < countOfNumeral; i++) {
-                resultStr.append(romanStrs[index]);
-            }
+            resultStr.append(romanStrs[index].repeat(countOfNumeral));
             // increment index
             index++;
         }
