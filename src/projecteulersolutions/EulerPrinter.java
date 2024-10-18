@@ -3,6 +3,7 @@ package projecteulersolutions;
 import projecteulersolutions.problems.Problem;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.Scanner;
@@ -42,8 +43,6 @@ public class EulerPrinter {
             switch (userChoice) {
                 case 's' ->
                     printSolveProblem();
-                case 'l' ->
-                    printProblemList();
                 case 'v' ->
                     printProgressMenu();
                 case 'q' ->
@@ -60,9 +59,15 @@ public class EulerPrinter {
     to execute the particular solution based on the user input.
      */
     private void printSolveProblem() {
-        System.out.print("Enter the Project Euler Problem #:\n> ");
+        String header = "Solve Problem";
+        var textBlock = new ArrayList<String>();
+        textBlock.add("Enter the problem number to solve.");
+        EulerConsole.printHeaderAndBlock(header, textBlock);
+        EulerConsole.printCursor();
+
         int userProblemNumber = userIn.nextInt();
         userIn.nextLine();
+
         if (userProblemNumber > 0 && userProblemNumber <= EulerWriter.PROBLEM_COUNT) {
             invokeProblemByNumber(userProblemNumber);
         } else {
@@ -95,8 +100,8 @@ public class EulerPrinter {
                 jcl.invokeClassMethod("projecteulersolutions.problems.Problem" + problemNumberText, "printSolution");
                 Date dEnd = new Date();
                 long durationMS = dEnd.getTime() - dStart.getTime();
-                Thread.sleep(500);
 
+                Thread.sleep(500);
                 System.out.println("The problem took " + durationMS / 1000
                         + " seconds (" + durationMS + "ms) to complete.");
                 Thread.sleep(500);
@@ -104,12 +109,11 @@ public class EulerPrinter {
                 System.out.println("Problem solution does not exist.");
             }
 
-            System.out.print("\nPress Enter to continue...");
-
         } catch (InterruptedException ex) {
             System.out.println(ex.getMessage());
         }
 
+        System.out.println("\nPress Enter to continue...");
         userIn.nextLine();
     }
 
@@ -122,8 +126,9 @@ public class EulerPrinter {
         // list of strings to represent source folder contents:
         String[] pathnames = new File(Problem.PROBLEM_FILEPATH).list();
 
-        // print list of valid files
-        System.out.println("═".repeat(MENU_WIDTH + 1));
+        var problemStrs = new ArrayList<String>();
+
+        // list of valid files
         for (String pathname : pathnames) {
             // if file is in format of "Problem0000.java"
             if (pathname.matches("Problem\\d{4}.java")) {
@@ -137,17 +142,21 @@ public class EulerPrinter {
                     default ->
                         problemStatus = "Incomplete";
                 }
-                System.out.println("Problem " + problemNumber + " - " + problemStatus);
+                problemStrs.add("Problem " + problemNumber + " - " + problemStatus);
             }
         }
-        System.out.println("═".repeat(MENU_WIDTH + 1));
 
         int[] problemStatusCounts = new int[writer.STATUS.length];
         for (int i = 0; i < problemStatusCounts.length; i++) {
             problemStatusCounts[i] = Collections.frequency(writer.getValues(), writer.STATUS[i]);
         }
-        System.out.println("Total Complete: " + problemStatusCounts[0]
-                + "\nTotal In Progress: " + problemStatusCounts[1]);
+        var footerStrs = new ArrayList<String>();
+        footerStrs.add("Total Complete: " + problemStatusCounts[0]);
+        footerStrs.add("\nTotal In Progress: " + problemStatusCounts[1]);
+
+        EulerConsole.printHeaderAndTwoBlocks("All Problems", problemStrs, footerStrs);
+        System.out.println("\nPress Enter to continue...");
+        userIn.nextLine();
     }
 
     /*
@@ -175,6 +184,8 @@ public class EulerPrinter {
             switch (userChoice) {
                 case 'v' ->
                     printProblemStatus(writer);
+                case 'l' ->
+                        printProblemList();
                 case 'r' ->
                     printRegenProgress(writer);
                 case 'q' ->
@@ -191,61 +202,23 @@ public class EulerPrinter {
     that problem.
      */
     private void printProblemStatus(EulerWriter writer) {
-        System.out.print("═".repeat(MENU_WIDTH + 1)
-                + "\nEnter the problem number:"
-                + "\n> ");
+        String header = "View Problem Status";
+        var textBlock = new ArrayList<String>();
+        textBlock.add("Enter the problem number to view.");
+        EulerConsole.printHeaderAndBlock(header, textBlock);
+        EulerConsole.printCursor();
+
         int problemNumber = userIn.nextInt();
         userIn.nextLine();
-        System.out.print(Problem.getFileName(problemNumber)
-                + "\nProblem Status: " + writer.getProblemStatus(problemNumber)
-                + "\nEdit Status? y/n:"
-                + "\n> ");
 
-        // This switch allows the user to confirm they'd like to edit a problem
-        // status before the changes are written
-        char userChoice = userIn.next().toLowerCase().charAt(0);
+        String statusHeader = "Problem " + problemNumber;
+        var statusBlock = new ArrayList<String>();
+        statusBlock.add(Problem.getFileName(problemNumber));
+        statusBlock.add("Problem Status: " + writer.getProblemStatus(problemNumber));
+        EulerConsole.printHeaderAndBlock(statusHeader, statusBlock);
+
+        System.out.println("\nPress Enter to continue...");
         userIn.nextLine();
-        switch (userChoice) {
-            case 'y' ->
-                printEditProblemStatus(writer, problemNumber);
-            case 'n' ->
-                System.out.println("Aborted: Operation cancelled by user.");
-            default ->
-                System.out.println("Failed: Invalid entry.");
-        }
-    }
-
-    /*
-    editStatus is a menu function that updates the status of the given
-    problem number and sets it to a status from user input.
-     */
-    private void printEditProblemStatus(EulerWriter writer, int problemNumber) {
-        printEditMenuOptions();
-        int status = userIn.nextInt();
-        userIn.nextLine();
-
-        if (status == 0) {
-            return;
-        }
-
-        if (status < writer.STATUS.length) {
-            System.out.print("Updating status to " + writer.STATUS[status]
-                    + "\nConfirm? y/n:"
-                    + "\n> ");
-            char userChoice = userIn.nextLine().toLowerCase().charAt(0);
-            switch (userChoice) {
-                case 'y' -> {
-                    writer.setProblemStatus(problemNumber, status);
-                    System.out.println("Success: Status updated.");
-                }
-                case 'n' ->
-                    System.out.println("Aborted: Operation cancelled by user.");
-                default ->
-                    System.out.println("Failed: Invalid entry.");
-            }
-        } else {
-            System.out.println("Failed: Value " + status + " is out of bounds.");
-        }
     }
 
     /*
@@ -276,14 +249,13 @@ public class EulerPrinter {
     available problem solutions, and viewing project progress.
      */
     private void printMainMenuOptions() {
-        System.out.print(TOP_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "║ Welcome! Please choose an option.") + "║\n"
-                + MID_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "║ S: Solve problem by number") + "║\n"
-                + String.format("%-" + MENU_WIDTH + "s", "║ L: Problem List") + "║\n"
-                + String.format("%-" + MENU_WIDTH + "s", "║ V: View Progress") + "║\n"
-                + String.format("%-" + MENU_WIDTH + "s", "║ Q: Quit") + "║\n"
-                + BOT_BORDER + "> ");
+        String header = "Welcome! Please choose an option.";
+        var textBlock = new ArrayList<String>();
+        textBlock.add("S: Solve Problem");
+        textBlock.add("V: View Progress.");
+        textBlock.add("Q: Quit.");
+        EulerConsole.printHeaderAndBlock(header, textBlock);
+        EulerConsole.printCursor();
     }
 
     /*
@@ -292,11 +264,14 @@ public class EulerPrinter {
     viewing/editing problem status, and regenerating project progress.
      */
     private void printProgressMenuOptions() {
-        System.out.print(TOP_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "║ V: View problem status.") + "║\n"
-                + String.format("%-" + MENU_WIDTH + "s", "║ R: Regenerate all progress.") + "║\n"
-                + String.format("%-" + MENU_WIDTH + "s", "║ Q: Return to main menu.") + "║\n"
-                + BOT_BORDER + "> ");
+        String header = "View Problem Status";
+        var textBlock = new ArrayList<String>();
+        textBlock.add("V: View Individual Problem Status");
+        textBlock.add("L: List all Problems");
+        textBlock.add("R: Regenerate Progress");
+        textBlock.add("Q: Quit to Main Menu");
+        EulerConsole.printHeaderAndBlock(header, textBlock);
+        EulerConsole.printCursor();
     }
 
     /*
@@ -309,12 +284,13 @@ public class EulerPrinter {
     Escape was the most generic verbiage for this mixed purpose.
      */
     private void printEditMenuOptions() {
-        System.out.print(TOP_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "║ Select a progress value:") + "║\n"
-                + String.format("%-" + MENU_WIDTH + "s", "║ 1: In progress.") + "║\n"
-                + String.format("%-" + MENU_WIDTH + "s", "║ 3: Incomplete.") + "║\n"
-                + String.format("%-" + MENU_WIDTH + "s", "║ 0: Escape") + "║\n"
-                + BOT_BORDER + "> ");
+        String header = "Select a Progress Value";
+        var textBlock = new ArrayList<String>();
+        textBlock.add("1: In progress");
+        textBlock.add("3: Incomplete");
+        textBlock.add("0: Escape");
+        EulerConsole.printHeaderAndBlock(header, textBlock);
+        EulerConsole.printCursor();
     }
 
     /*
@@ -326,10 +302,12 @@ public class EulerPrinter {
      */
     public static boolean existsProblemFile(int problemNumber) {
         boolean existsFile = new File(Problem.PROBLEM_FILEPATH + Problem.getFileName(problemNumber)).exists();
-        System.out.print(TOP_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "║ Loading " + Problem.getFileName(problemNumber)) + "║\n"
-                + String.format("%-" + MENU_WIDTH + "s", (existsFile ? "║ Success" : "║ Failed: File does not exist.")) + "║\n"
-                + BOT_BORDER);
+
+        var textBlock = new ArrayList<String>();
+        textBlock.add("Loading " + Problem.getFileName(problemNumber));
+        textBlock.add((existsFile ? "Success" : "Failed: File does not exist."));
+        EulerConsole.printHeaderAndBlock("Problem " + problemNumber, textBlock);
+
         return existsFile; // returns existence of file as flag
     }
 }
