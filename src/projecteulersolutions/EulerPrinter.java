@@ -1,5 +1,7 @@
 package projecteulersolutions;
 
+import projecteulersolutions.problems.Problem;
+
 import java.io.File;
 import java.util.Collections;
 import java.util.Date;
@@ -9,9 +11,9 @@ public class EulerPrinter {
 
     private static final int MENU_WIDTH = 47;
 
-    private static final String TOP_BORDER = "\u2554" + "\u2550".repeat(MENU_WIDTH - 1) + "\u2557\n";
-    private static final String MID_BORDER = "\u2560" + "\u2550".repeat(MENU_WIDTH - 1) + "\u2563\n";
-    private static final String BOT_BORDER = "\u255a" + "\u2550".repeat(MENU_WIDTH - 1) + "\u255d\n";
+    private static final String TOP_BORDER = "╔" + "═".repeat(MENU_WIDTH - 1) + "╗\n";
+    private static final String MID_BORDER = "╠" + "═".repeat(MENU_WIDTH - 1) + "╣\n";
+    private static final String BOT_BORDER = "╚" + "═".repeat(MENU_WIDTH - 1) + "╝\n";
 
     private final Scanner userIn;
 
@@ -90,7 +92,7 @@ public class EulerPrinter {
                 Thread.sleep(500);
 
                 Date dStart = new Date();
-                jcl.invokeClassMethod("projecteulersolutions.Problem" + problemNumberText, "printSolution");
+                jcl.invokeClassMethod("projecteulersolutions.problems.Problem" + problemNumberText, "printSolution");
                 Date dEnd = new Date();
                 long durationMS = dEnd.getTime() - dStart.getTime();
                 Thread.sleep(500);
@@ -118,10 +120,10 @@ public class EulerPrinter {
     private void printProblemList() {
         EulerWriter writer = new EulerWriter();
         // list of strings to represent source folder contents:
-        String[] pathnames = new File(Problem.FILEPATH).list();
+        String[] pathnames = new File(Problem.PROBLEM_FILEPATH).list();
 
         // print list of valid files
-        System.out.println("\u2550".repeat(MENU_WIDTH + 1));
+        System.out.println("═".repeat(MENU_WIDTH + 1));
         for (String pathname : pathnames) {
             // if file is in format of "Problem0000.java"
             if (pathname.matches("Problem\\d{4}.java")) {
@@ -138,7 +140,7 @@ public class EulerPrinter {
                 System.out.println("Problem " + problemNumber + " - " + problemStatus);
             }
         }
-        System.out.println("\u2550".repeat(MENU_WIDTH + 1));
+        System.out.println("═".repeat(MENU_WIDTH + 1));
 
         int[] problemStatusCounts = new int[writer.STATUS.length];
         for (int i = 0; i < problemStatusCounts.length; i++) {
@@ -189,7 +191,7 @@ public class EulerPrinter {
     that problem.
      */
     private void printProblemStatus(EulerWriter writer) {
-        System.out.print("\u2550".repeat(MENU_WIDTH + 1)
+        System.out.print("═".repeat(MENU_WIDTH + 1)
                 + "\nEnter the problem number:"
                 + "\n> ");
         int problemNumber = userIn.nextInt();
@@ -275,12 +277,12 @@ public class EulerPrinter {
      */
     private void printMainMenuOptions() {
         System.out.print(TOP_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Welcome! Please choose an option.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ Welcome! Please choose an option.") + "║\n"
                 + MID_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 S: Solve problem by number") + "\u2551\n"
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 L: Problem List") + "\u2551\n"
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 V: View Progress") + "\u2551\n"
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Q: Quit") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ S: Solve problem by number") + "║\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ L: Problem List") + "║\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ V: View Progress") + "║\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ Q: Quit") + "║\n"
                 + BOT_BORDER + "> ");
     }
 
@@ -291,9 +293,9 @@ public class EulerPrinter {
      */
     private void printProgressMenuOptions() {
         System.out.print(TOP_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 V: View problem status.") + "\u2551\n"
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 R: Regenerate all progress.") + "\u2551\n"
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Q: Return to main menu.") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ V: View problem status.") + "║\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ R: Regenerate all progress.") + "║\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ Q: Return to main menu.") + "║\n"
                 + BOT_BORDER + "> ");
     }
 
@@ -308,10 +310,10 @@ public class EulerPrinter {
      */
     private void printEditMenuOptions() {
         System.out.print(TOP_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Select a progress value:") + "\u2551\n"
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 1: In progress.") + "\u2551\n"
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 3: Incomplete.") + "\u2551\n"
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 0: Escape") + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ Select a progress value:") + "║\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ 1: In progress.") + "║\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ 3: Incomplete.") + "║\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ 0: Escape") + "║\n"
                 + BOT_BORDER + "> ");
     }
 
@@ -323,10 +325,10 @@ public class EulerPrinter {
     given problem's solution exists return true.
      */
     public static boolean existsProblemFile(int problemNumber) {
-        boolean existsFile = new File(Problem.FILEPATH + Problem.getFileName(problemNumber)).exists();
+        boolean existsFile = new File(Problem.PROBLEM_FILEPATH + Problem.getFileName(problemNumber)).exists();
         System.out.print(TOP_BORDER
-                + String.format("%-" + MENU_WIDTH + "s", "\u2551 Loading " + Problem.getFileName(problemNumber)) + "\u2551\n"
-                + String.format("%-" + MENU_WIDTH + "s", (existsFile ? "\u2551 Success" : "\u2551 Failed: File does not exist.")) + "\u2551\n"
+                + String.format("%-" + MENU_WIDTH + "s", "║ Loading " + Problem.getFileName(problemNumber)) + "║\n"
+                + String.format("%-" + MENU_WIDTH + "s", (existsFile ? "║ Success" : "║ Failed: File does not exist.")) + "║\n"
                 + BOT_BORDER);
         return existsFile; // returns existence of file as flag
     }

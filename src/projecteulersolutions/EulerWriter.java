@@ -1,5 +1,7 @@
 package projecteulersolutions;
 
+import projecteulersolutions.problems.Problem;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -15,7 +17,7 @@ public class EulerWriter {
 
     protected static final int PROBLEM_COUNT = 855;
 
-    private final ArrayList<String> values;
+    private ArrayList<String> values;
     private final File progressOutFile, headerInFile, readmeOutFile;
 
     public final String[] STATUS = {
@@ -68,21 +70,22 @@ public class EulerWriter {
         System.out.println("-------------------------------------");
 
         // clear values list and reset all statuses to incomplete
+        values = new ArrayList<>(PROBLEM_COUNT * 2);
         for (int i = 1; i <= PROBLEM_COUNT; i++) {
-            values.set(2 * (i - 1), Integer.toString(i));
+            values.add(Integer.toString(i));
+            values.add("INCOMPLETE");
         }
         // all files in the project folder
         String[] pathnames = Problem.getProblemFiles();
         ArrayList<String> problems = new ArrayList<>();
-        // set all of the completed or in progress files based on existence of files
+        // set all the completed or in progress files based on existence of files
         for (String pathname : pathnames) {
             if (pathname.matches("^Problem\\d{4}.java$")) {
                 problems.add(pathname.substring(7, 11));
             }
         }
 
-        for (int i = 0; i < problems.size(); i++) {
-            var problem = problems.get(i);
+        for (String problem : problems) {
             int problemNumber = Integer.parseInt(problem);
             // index of the given problem number
             int index = 2 * (problemNumber - 1);
@@ -90,7 +93,7 @@ public class EulerWriter {
             // bool flag of if problem is solved or not. Existing problems are
             // either solved or in progress. Incomplete problems do not have a
             // class file
-            boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.Problem" + problem, "isSolved");
+            boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.problems.Problem" + problem, "isSolved");
             int status = isSolved ? 0 : 1;
             // sets problem status
             values.set(index + 1, STATUS[status]);
