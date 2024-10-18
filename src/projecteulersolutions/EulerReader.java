@@ -4,10 +4,14 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import projecteulersolutions.problems.Problem;
 
 public class EulerReader {
+
+    private static final Logger logger = Logger.getLogger(EulerReader.class.getName());
 
     private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
     private final File file;
@@ -25,7 +29,7 @@ public class EulerReader {
             }
             return values;
         } catch (FileNotFoundException fnfe) {
-            System.out.println("Failed: " + file.getName() + " does not exist.");
+            logger.log(Level.SEVERE, "Failed: " + file.getName() + " does not exist.", fnfe);
         }
         return null;
     }

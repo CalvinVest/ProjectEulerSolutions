@@ -45,7 +45,7 @@ public interface EulerMath {
     // containsInt(int[], int)
     //==============================
     static boolean isPandigital(int n) {
-        int length = EulerMath.getDigitCount(n);
+        int length = getDigitCount(n);
         int[] digitArr = getDigitArray(n);
         for (int i = 0; i < length; i++) {
             if (!containsInt(digitArr, i + 1)) {
@@ -131,13 +131,12 @@ public interface EulerMath {
     // Returns the number of digits
     // of a provided long
     //==============================
-    static int getDigitCount(long n) {
-        int count = 0;
-        while (n > 0) {
-            count++;
-            n /= 10;
+    public static int getDigitCount(long n) {
+        if (n == 0) {
+            return 1; // Since log(0) is undefined
         }
-        return count;
+        n = Math.abs(n); // Ensure the input is positive
+        return (int) (Math.log10(n) + 1);
     }
 
     //==============================
@@ -161,12 +160,6 @@ public interface EulerMath {
     // integer values.
     //==============================
     static int getGCD(int a, int b) {
-        if (b > a) {
-            int t = a;
-            a = b;
-            b = t;
-        }
-
         while (b != 0) {
             int t = b;
             b = a % b;
@@ -175,7 +168,7 @@ public interface EulerMath {
 
         return a;
     }
-    
+
     //==============================
     // getLCM
     //==============================
@@ -195,9 +188,9 @@ public interface EulerMath {
     // the provided integer.
     //==============================
     static int getNextPrime(int n) {
-        int nextPrime = n + 1;
+        int nextPrime = (n % 2 == 0) ? n + 1 : n + 2;
         while (!isPrime(nextPrime)) {
-            nextPrime++;
+            nextPrime += 2;
         }
         return nextPrime;
     }
