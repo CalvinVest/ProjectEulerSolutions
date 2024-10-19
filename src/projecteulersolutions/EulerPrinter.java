@@ -16,17 +16,7 @@ public class EulerPrinter {
         userIn = new Scanner(System.in);
     }
 
-    /*
-    printMainMenu is the primary UI for this application.
-    The menu contains options for showing particular solutions,
-    listing all solutions, showing project progress, and provides simple
-    invalid entry catching
-    
-    printMainMenu is the only public method in EulerPrinter and is the
-    only point of access for external calls. All other methods are called
-    through printMainMenu.
-     */
-    public void printMainMenu() {
+    public void menuHome() {
         char userChoice;
         do {
             String welcomeHeader = "Welcome! Please choose an option.";
@@ -42,9 +32,9 @@ public class EulerPrinter {
 
             switch (userChoice) {
                 case 's' ->
-                    printSolveProblem();
+                    menuSolveProblem();
                 case 'v' ->
-                    printProgressMenu();
+                    menuProgress();
                 case 'q' ->
                     System.out.println("Thank you!");
                 default ->
@@ -53,12 +43,7 @@ public class EulerPrinter {
         } while (userChoice != 'q');
     }
 
-    /*
-    printSolutionMenu is a menu function for executing a
-    problem solution. This function calls invokeProblemByNumber()
-    to execute the particular solution based on the user input.
-     */
-    private void printSolveProblem() {
+    private void menuSolveProblem() {
         String header = "Solve Problem";
         var textBlock = new ArrayList<String>();
         textBlock.add("Enter the problem number to solve.");
@@ -75,14 +60,115 @@ public class EulerPrinter {
         }
     }
 
+    private void menuProgress() {
+        char userChoice;
+        EulerWriter writer = new EulerWriter();
+
+        do {
+            String header = "View Problem Status";
+            var textBlock = new ArrayList<String>();
+            textBlock.add("V: View Individual Problem Status");
+            textBlock.add("L: List all Problems");
+            textBlock.add("R: Regenerate Progress");
+            textBlock.add("Q: Quit to Main Menu");
+            EulerConsole.printHeaderAndBlock(header, textBlock);
+            EulerConsole.printCursor();
+
+            userChoice = userIn.nextLine().toLowerCase().charAt(0);
+            switch (userChoice) {
+                case 'v' -> menuViewProgress(writer);
+                case 'l' -> printProgressList();
+                case 'r' -> menuRegenProgress(writer);
+                case 'q' -> System.out.println("Returning to Main Menu");
+                default -> System.out.println("Invalid entry, please try again");
+            }
+        } while (userChoice != 'q');
+    }
+
+    private void menuViewProgress(EulerWriter writer) {
+        String header = "View Problem Status";
+        var textBlock = new ArrayList<String>();
+        textBlock.add("Enter the problem number to view.");
+        EulerConsole.printHeaderAndBlock(header, textBlock);
+        EulerConsole.printCursor();
+
+        int problemNumber = userIn.nextInt();
+        userIn.nextLine();
+
+        String statusHeader = "Problem " + problemNumber;
+        var statusBlock = new ArrayList<String>();
+        statusBlock.add(Problem.getFileName(problemNumber));
+        statusBlock.add("Problem Status: " + writer.getProblemStatus(problemNumber));
+        EulerConsole.printHeaderAndBlock(statusHeader, statusBlock);
+
+        System.out.println("\nPress Enter to continue...");
+        userIn.nextLine();
+    }
+
+    private void printProgressList() {
+        EulerWriter writer = new EulerWriter();
+        // list of strings to represent source folder contents:
+        String[] pathnames = new File(Problem.PROBLEM_FILEPATH).list();
+
+        var problemStrs = new ArrayList<String>();
+        for (String pathname : pathnames) {
+            // if file is in format of "Problem0000.java"
+            if (pathname.matches("Problem\\d{4}.java")) {
+                int problemNumber = Integer.parseInt(pathname.substring(7, 11));
+                String problemStatus;
+                switch (writer.getProblemStatusNum(problemNumber)) {
+                    case 0 ->
+                        problemStatus = "Complete";
+                    case 1 ->
+                        problemStatus = "In Progress";
+                    default ->
+                        problemStatus = "Incomplete";
+                }
+                problemStrs.add("Problem " + problemNumber + " - " + problemStatus);
+            }
+        }
+
+        var footerStrs = new ArrayList<String>();
+        footerStrs.add("Total Complete: " + Collections.frequency(writer.getValues(), writer.STATUS[0]));
+        footerStrs.add("\nTotal In Progress: " + Collections.frequency(writer.getValues(), writer.STATUS[1]));
+
+        EulerConsole.printHeaderAndTwoBlocks("All Problems", problemStrs, footerStrs);
+
+        System.out.println("\nPress Enter to continue...");
+        userIn.nextLine();
+    }
+
+    private void menuRegenProgress(EulerWriter writer) {
+        String regenHeader = "Regenerate Values";
+        var regenBlock = new ArrayList<String>();
+        regenBlock.add("Would you like to generate all values?");
+        regenBlock.add("WARNING: Data may be lost.");
+        regenBlock.add("Problem statuses should be regenerated any time a problem is completed, or new problems are added to be solved.");
+        regenBlock.add("");
+        regenBlock.add("To confirm regeneration, type \"regen\" below.");
+        EulerConsole.printHeaderAndBlock(regenHeader, regenBlock);
+        EulerConsole.printCursor();
+
+        String userChoice = userIn.nextLine().toLowerCase();
+        var outcomeBlock = new ArrayList<String>();
+        if (userChoice.equals("regen")) {
+            writer.regenerateValues();
+            outcomeBlock.add("Success: All progress has been defaulted.");
+        } else {
+            outcomeBlock.add("Failed: Regeneration aborted.");
+        }
+
+        EulerConsole.printHeaderAndBlock("Result", outcomeBlock);
+        System.out.println("\nPress Enter to continue...");
+        userIn.nextLine();
+    }
+
     /*
-    invokeProblemByNumber executes the particular problem
-    requested by the user by taking the problem number as an input
-    and invokes the printSolution method of the particular problem.
-    
-    The existence of the particular class is verified by ifProblemExists(int)
-    and all exceptions related to the classloader are handled within
-    JavaClassLoader.
+    invokeProblemByNumber takes the problem number as an int and executes that Project
+    Euler problem if the solution file exists.
+
+    Checks with existsProblemFile(problemNumber) that the problem file exists, then uses
+    JavaClassLoader to invoke the solution getter method with reflection.
      */
     private void invokeProblemByNumber(int problemNumber) {
         String problemNumberText = String.format("%04d", problemNumber);
@@ -117,142 +203,12 @@ public class EulerPrinter {
         userIn.nextLine();
     }
 
-    /*
-    printProgressMenu is a menu function that prints its options and,
-    based on a user input, executes a function related to project progress.
-    This includes printing progress values, viewing/editing the status of
-    a problem status, and regenerating progress values.
-     */
-    private void printProgressMenu() {
-        char userChoice;
-        EulerWriter writer = new EulerWriter();
-
-        do {
-            String header = "View Problem Status";
-            var textBlock = new ArrayList<String>();
-            textBlock.add("V: View Individual Problem Status");
-            textBlock.add("L: List all Problems");
-            textBlock.add("R: Regenerate Progress");
-            textBlock.add("Q: Quit to Main Menu");
-            EulerConsole.printHeaderAndBlock(header, textBlock);
-            EulerConsole.printCursor();
-
-            userChoice = userIn.nextLine().toLowerCase().charAt(0);
-            switch (userChoice) {
-                case 'v' -> printProblemStatus(writer);
-                case 'l' -> printProblemList();
-                case 'r' -> printRegenProgress(writer);
-                case 'q' -> System.out.println("Returning to Main Menu");
-                default -> System.out.println("Invalid entry, please try again");
-            }
-        } while (userChoice != 'q');
-    }
-
-    /*
-    viewStatus is a menu function that prints the status of a problem
-    number from user input and gives the option to edit the status of
-    that problem.
-     */
-    private void printProblemStatus(EulerWriter writer) {
-        String header = "View Problem Status";
-        var textBlock = new ArrayList<String>();
-        textBlock.add("Enter the problem number to view.");
-        EulerConsole.printHeaderAndBlock(header, textBlock);
-        EulerConsole.printCursor();
-
-        int problemNumber = userIn.nextInt();
-        userIn.nextLine();
-
-        String statusHeader = "Problem " + problemNumber;
-        var statusBlock = new ArrayList<String>();
-        statusBlock.add(Problem.getFileName(problemNumber));
-        statusBlock.add("Problem Status: " + writer.getProblemStatus(problemNumber));
-        EulerConsole.printHeaderAndBlock(statusHeader, statusBlock);
-
-        System.out.println("\nPress Enter to continue...");
-        userIn.nextLine();
-    }
-
-    /*
-    printProblemList is a print function to display
-    all problems which have a solution as a file list.
-     */
-    private void printProblemList() {
-        EulerWriter writer = new EulerWriter();
-        // list of strings to represent source folder contents:
-        String[] pathnames = new File(Problem.PROBLEM_FILEPATH).list();
-
-        var problemStrs = new ArrayList<String>();
-
-        // list of valid files
-        for (String pathname : pathnames) {
-            // if file is in format of "Problem0000.java"
-            if (pathname.matches("Problem\\d{4}.java")) {
-                int problemNumber = Integer.parseInt(pathname.substring(7, 11));
-                String problemStatus;
-                switch (writer.getProblemStatusNum(problemNumber)) {
-                    case 0 ->
-                        problemStatus = "Complete";
-                    case 1 ->
-                        problemStatus = "In Progress";
-                    default ->
-                        problemStatus = "Incomplete";
-                }
-                problemStrs.add("Problem " + problemNumber + " - " + problemStatus);
-            }
-        }
-
-        int[] problemStatusCounts = new int[writer.STATUS.length];
-        for (int i = 0; i < problemStatusCounts.length; i++) {
-            problemStatusCounts[i] = Collections.frequency(writer.getValues(), writer.STATUS[i]);
-        }
-        var footerStrs = new ArrayList<String>();
-        footerStrs.add("Total Complete: " + problemStatusCounts[0]);
-        footerStrs.add("\nTotal In Progress: " + problemStatusCounts[1]);
-
-        EulerConsole.printHeaderAndTwoBlocks("All Problems", problemStrs, footerStrs);
-        System.out.println("\nPress Enter to continue...");
-        userIn.nextLine();
-    }
-
-    /*
-    regenerateProgress will, upon user confirmation, regenerate all
-    progress values for the project. This process sets all nonbroken
-    problems to incomplete, then generates in progress and complete
-    problems based on the existence of the problem file and the return
-    of Problem0000.isSolved() respectively.
-     */
-    private void printRegenProgress(EulerWriter writer) {
-        String regenHeader = "Regenerate Values";
-        var regenBlock = new ArrayList<String>();
-        regenBlock.add("Would you like to generate all values?");
-        regenBlock.add("WARNING: Data may be lost.");
-        regenBlock.add("Problem statuses should be regenerated any time a problem is completed, or new problems are added to be solved.");
-        regenBlock.add("");
-        regenBlock.add("To confirm regeneration, type \"regen\" below.");
-        EulerConsole.printHeaderAndBlock(regenHeader, regenBlock);
-        EulerConsole.printCursor();
-
-        String userChoice = userIn.nextLine().toLowerCase();
-        var outcomeBlock = new ArrayList<String>();
-        if (userChoice.equals("regen")) {
-            writer.regenerateValues();
-            outcomeBlock.add("Success: All progress has been defaulted.");
-        } else {
-            outcomeBlock.add("Failed: Regeneration aborted.");
-        }
-
-        EulerConsole.printHeaderAndBlock("Result", outcomeBlock);
-        System.out.println("\nPress Enter to continue...");
-        userIn.nextLine();
-    }
-
     public static boolean existsProblemFile(int problemNumber) {
         boolean existsFile = new File(Problem.PROBLEM_FILEPATH + Problem.getFileName(problemNumber)).exists();
 
         var textBlock = new ArrayList<String>();
-        textBlock.add("Loading " + Problem.getFileName(problemNumber));
-        textBlock.add((existsFile ? "Success" : "Failed: File does not exist."));
+        textBlock.add("Loading " + Problem.getFileName(problemNumber) + "...");
+        textBlock.add((existsFile ? "Success: File loaded." : "Failed: File does not exist."));
         EulerConsole.printHeaderAndBlock("Problem " + problemNumber, textBlock);
 
         return existsFile; // returns existence of file as flag

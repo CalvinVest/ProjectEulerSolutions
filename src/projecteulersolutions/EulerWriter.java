@@ -33,17 +33,6 @@ public class EulerWriter {
     }
 
     /*
-    setProblemStatus sets the given problemNumber to the given status.
-     */
-    public void setProblemStatus(int problemNumber, int status) {
-        int problemIndex = (problemNumber - 1) * 2;
-        values.set(problemIndex, Integer.toString(problemNumber));
-        values.set(problemIndex + 1, STATUS[status]);
-
-        saveProgressToFile(values);
-    }
-
-    /*
     saveProgressToFile takes the progress data for all problems and saves the
     data to progress.txt
      */
@@ -67,7 +56,8 @@ public class EulerWriter {
     and state of the Problem0000.isSolved method respectively.
      */
     public void regenerateValues() {
-        System.out.println("-------------------------------------");
+        String regenHeader = "Regenerating Values";
+        var problemStatusList = new ArrayList<String>();
 
         // clear values list and reset all statuses to incomplete
         values = new ArrayList<>(PROBLEM_COUNT * 2);
@@ -99,9 +89,11 @@ public class EulerWriter {
             values.set(index + 1, STATUS[status]);
 
             // print problem status
-            System.out.println(problem + (isSolved ? " is solved." : " is in progress."));
+            problemStatusList.add(problem + (isSolved ? " SOLVED" : " IN PROGRESS"));
         }
-        System.out.println("-------------------------------------");
+
+
+        EulerConsole.printHeaderAndBlock(regenHeader, problemStatusList);
 
         saveProgressToFile(values);
     }
