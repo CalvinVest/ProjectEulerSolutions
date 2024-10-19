@@ -11,10 +11,9 @@ import projecteulersolutions.problems.Problem;
 import java.io.File;
 
 public interface EulerUtils {
-
-
-    public static final String FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\";
-    public static final String PROBLEM_FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\problems\\";
+    static final String FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\";
+    static final String PROBLEM_FILEPATH = FILEPATH + "problems\\";
+    static final String PROGRESS_FILEPATH = FILEPATH + "progress.txt";
 
     public static String[] getProblemFiles() {
         return new File(Problem.PROBLEM_FILEPATH).list();

@@ -8,12 +8,10 @@ import java.util.Scanner;
 import projecteulersolutions.problems.Problem;
 
 public class EulerReader {
-
-    private static final String FILEPATH = Problem.FILEPATH + "progress.txt";
     private final File file;
 
     public EulerReader() {
-        file = new File(FILEPATH);
+        file = new File(EulerUtils.PROGRESS_FILEPATH);
     }
 
     public ArrayList<String> loadProgress() {
@@ -25,7 +23,7 @@ public class EulerReader {
             }
             return values;
         } catch (FileNotFoundException fnfe) {
-            System.out.println("Failed: " + file.getName() + " does not exist.");
+            EulerConsole.printExceptionMessage(fnfe, "Failed: " + file.getName() + " does not exist.");
         }
         return null;
     }

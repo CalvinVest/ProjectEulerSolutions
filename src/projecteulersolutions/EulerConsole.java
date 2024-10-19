@@ -110,4 +110,18 @@ public interface EulerConsole {
 
         System.out.println(BOT_BORDER);
     }
+
+    static void printExceptionMessage(Exception e, String message) {
+        System.out.println(TOP_BORDER);
+
+        printWrappedBorderedLine("Exception Encountered.");
+
+        System.out.println(MID_BORDER);
+
+        printWrappedBorderedLine(message);
+
+        printWrappedBorderedLine("Exception message: " + e.toString());
+
+        System.out.println(BOT_BORDER);
+    }
 }
