@@ -25,6 +25,6 @@ public class EulerReader {
         } catch (FileNotFoundException fnfe) {
             EulerConsole.printExceptionMessage(fnfe, "Failed: " + file.getName() + " does not exist.");
         }
-        return null;
+        return new ArrayList<>();
     }
 }

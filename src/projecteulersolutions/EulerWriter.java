@@ -42,8 +42,8 @@ public class EulerWriter {
                 writer.write(values.get(i) + " " + values.get(i + 1) + "\n");
             }
             writer.close();
-        } catch (IOException ioe) {
-            EulerConsole.printExceptionMessage(ioe, "Failed: Could not save to file.");
+        } catch (IOException e) {
+            EulerConsole.printExceptionMessage(e, "Could not save to " + progressOutFile.getName());
         }
         EulerConsole.printSuccessMessage("Saved to file: " + progressOutFile.getName());
     }
