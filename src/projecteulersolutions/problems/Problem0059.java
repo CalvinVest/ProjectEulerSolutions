@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class Problem0059 extends Problem {
 
     @Override
     public void printSolution() {
-        File cipherFile = new File(Problem.FILEPATH + "problem0059.txt");
+        File cipherFile = new File(EulerUtils.DATA_FILEPATH + "problem0059.txt");
         List<Character> cipherList = readCipherFromFile(cipherFile);
         char[] cipherArr = new char[cipherList.size()];
         for (int i = 0; i < cipherArr.length; i++) {

@@ -13,7 +13,6 @@ public class EulerWriter {
 
     private static final String README_HEADER_PATH = System.getProperty("user.dir") + "\\README_HEADER.txt";
     private static final String README_PATH = System.getProperty("user.dir") + "\\README.md";
-    private static final String PROGRESS_PATH = Problem.FILEPATH + "progress.txt";
 
     protected static final int PROBLEM_COUNT = 855;
 
@@ -27,7 +26,7 @@ public class EulerWriter {
 
     public EulerWriter() {
         values = new EulerReader().loadProgress();
-        progressOutFile = new File(PROGRESS_PATH);
+        progressOutFile = new File(EulerUtils.PROGRESS_FILEPATH);
         headerInFile = new File(README_HEADER_PATH);
         readmeOutFile = new File(README_PATH);
     }

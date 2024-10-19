@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -33,7 +35,7 @@ public class Problem0042 extends Problem {
         // count of triangle words
         int count = 0;
         // loads name file and list of words from it, trimming unecessary text
-        File namesFile = new File(Problem.FILEPATH + "problem0042.txt");
+        File namesFile = new File(EulerUtils.DATA_FILEPATH + "problem0042.txt");
         List<String> words = readWordsFromFile(namesFile);
 
         // for every word in the list

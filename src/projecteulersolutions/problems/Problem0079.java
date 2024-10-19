@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -17,7 +19,7 @@ public class Problem0079 extends Problem {
     @Override
     public void printSolution() {
         System.out.println("This problem has not been solved.");
-        File keylogFile = new File(Problem.FILEPATH + "problem0079.txt");
+        File keylogFile = new File(EulerUtils.DATA_FILEPATH + "problem0079.txt");
         List<String> keylogs = readFile(keylogFile);
     }
 

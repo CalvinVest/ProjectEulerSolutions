@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.AbstractMap.SimpleEntry;
@@ -24,7 +26,7 @@ public class Problem0054 extends Problem {
     public void printSolution() {
         System.out.println("This problem has not been solved.");
 
-        File file = new File(Problem.FILEPATH + "problem0054.txt");
+        File file = new File(EulerUtils.DATA_FILEPATH + "problem0054.txt");
         List<String> lines = readLinesFromFile(file);
 
         int countP1Wins = 0;

@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -22,7 +24,7 @@ public class Problem0008 extends Problem {
     
     private String loadStringFromFile() {
         String str = "";
-        File file = new File(Problem.FILEPATH + "problem0008.txt");
+        File file = new File(EulerUtils.DATA_FILEPATH + "problem0008.txt");
         try {
             Scanner fileIn = new Scanner(file);
             str = fileIn.next();

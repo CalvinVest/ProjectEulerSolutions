@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -16,7 +18,7 @@ public class Problem0096 extends Problem {
 
     @Override
     public void printSolution() {
-        File file = new File(Problem.FILEPATH + "problem0096.txt");
+        File file = new File(EulerUtils.DATA_FILEPATH + "problem0096.txt");
         List<String> lines = readLinesFromFile(file);
 
         int[][][] puzzles = new int[50][9][9];

@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -26,7 +28,7 @@ public class Problem0022 extends Problem {
 
     @Override
     public void printSolution() {
-        File namesFile = new File(Problem.FILEPATH + "problem0022.txt");
+        File namesFile = new File(EulerUtils.DATA_FILEPATH + "problem0022.txt");
         List<String> names = readNamesFromFile(namesFile);
         List<String> trimmedNames = trimNames(names);
         Collections.sort(trimmedNames);

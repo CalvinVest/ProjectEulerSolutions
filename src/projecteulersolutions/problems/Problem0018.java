@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -34,7 +36,7 @@ public class Problem0018 extends Problem {
 
     private int[][] readFileValues(int treeWidth) {
         int[][] tree = new int[treeWidth][treeWidth];
-        File file = new File(Problem.FILEPATH + "problem0018.txt");
+        File file = new File(EulerUtils.DATA_FILEPATH + "problem0018.txt");
 
         try {
             Scanner fileIn = new Scanner(file);

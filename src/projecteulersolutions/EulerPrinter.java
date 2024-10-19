@@ -115,7 +115,7 @@ public class EulerPrinter {
     private void printProgressList() {
         EulerWriter writer = new EulerWriter();
         // list of strings to represent source folder contents:
-        String[] pathnames = new File(Problem.PROBLEM_FILEPATH).list();
+        String[] pathnames = new File(EulerUtils.PROBLEM_FILEPATH).list();
 
         var problemStrs = new ArrayList<String>();
         for (String pathname : pathnames) {
@@ -211,7 +211,7 @@ public class EulerPrinter {
     }
 
     public static boolean existsProblemFile(int problemNumber) {
-        boolean existsFile = new File(Problem.PROBLEM_FILEPATH + Problem.getFileName(problemNumber)).exists();
+        boolean existsFile = new File(EulerUtils.PROBLEM_FILEPATH + Problem.getFileName(problemNumber)).exists();
 
         var textBlock = new ArrayList<String>();
         textBlock.add("Loading " + Problem.getFileName(problemNumber) + "...");

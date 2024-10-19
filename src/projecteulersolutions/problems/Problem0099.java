@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.*;
 
 /*
@@ -35,7 +37,7 @@ public class Problem0099 extends Problem {
     }
 
     private int findMaxLineNum() throws IOException {
-        File problemFile = new File(Problem.FILEPATH + "problem0099.txt");
+        File problemFile = new File(EulerUtils.DATA_FILEPATH + "problem0099.txt");
         BufferedReader reader = new BufferedReader(new FileReader(problemFile));
         String line;
         int lineNumber = 0;

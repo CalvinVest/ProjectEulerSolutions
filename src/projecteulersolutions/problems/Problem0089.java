@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
@@ -35,7 +37,7 @@ public class Problem0089 extends Problem {
 
     @Override
     public void printSolution() {
-        File file = new File(Problem.FILEPATH + "problem0089.txt");
+        File file = new File(EulerUtils.DATA_FILEPATH + "problem0089.txt");
 
         try {
             Scanner fileIn = new Scanner(file);

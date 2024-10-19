@@ -1,5 +1,7 @@
 package projecteulersolutions.problems;
 
+import projecteulersolutions.EulerUtils;
+
 import java.io.File;
 
 /*
@@ -11,10 +13,6 @@ implementations of Problem.java to include actual results for
 the particular problem.
  */
 public abstract class Problem {
-
-    public static final String FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\";
-
-    public static final String PROBLEM_FILEPATH = System.getProperty("user.dir") + "\\src\\projecteulersolutions\\problems\\";
 
     public abstract void printSolution();
 
@@ -32,6 +30,6 @@ public abstract class Problem {
     }
 
     public static String[] getProblemFiles() {
-        return new File(Problem.PROBLEM_FILEPATH).list();
+        return new File(EulerUtils.PROBLEM_FILEPATH).list();
     }
 }
