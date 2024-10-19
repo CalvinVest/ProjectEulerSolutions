@@ -43,10 +43,9 @@ public class EulerWriter {
             }
             writer.close();
         } catch (IOException ioe) {
-            System.out.println("Failed: Could not save to file.\n" + ioe.getMessage());
+            EulerConsole.printExceptionMessage(ioe, "Failed: Could not save to file.");
         }
-        System.out.println("Saved to file: " + progressOutFile.getName());
-        generateReadme();
+        EulerConsole.printSuccessMessage("Saved to file: " + progressOutFile.getName());
     }
 
     /*
@@ -96,6 +95,7 @@ public class EulerWriter {
         EulerConsole.printHeaderAndBlock(regenHeader, problemStatusList);
 
         saveProgressToFile(values);
+        generateReadme();
     }
 
     /*
@@ -134,9 +134,9 @@ public class EulerWriter {
             printHeaderToReadme(readmeFileOut);
             printProgressToReadme(readmeFileOut);
             readmeFileOut.close();
-            System.out.println("Saved to file: " + readmeOutFile.getName());
+            EulerConsole.printSuccessMessage("Saved to file: " + readmeOutFile.getName());
         } catch (IOException ioe) {
-            System.out.println("Failed: File " + readmeOutFile + " does not exist.");
+            EulerConsole.printExceptionMessage(ioe, "Failed: File " + readmeOutFile + "does not exist.");
         }
     }
 

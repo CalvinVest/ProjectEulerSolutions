@@ -19,26 +19,33 @@ public class EulerPrinter {
     public void menuHome() {
         char userChoice;
         do {
-            String welcomeHeader = "Welcome! Please choose an option.";
-            var welcomeBlock = new ArrayList<String>();
-            welcomeBlock.add("S: Solve Problem");
-            welcomeBlock.add("V: View Progress.");
-            welcomeBlock.add("Q: Quit.");
-            EulerConsole.printHeaderAndBlock(welcomeHeader, welcomeBlock);
-            EulerConsole.printCursor();
+            try {
+                String welcomeHeader = "Welcome! Please choose an option.";
+                var welcomeBlock = new ArrayList<String>();
+                welcomeBlock.add("S: Solve Problem");
+                welcomeBlock.add("V: View Progress.");
+                welcomeBlock.add("Q: Quit.");
+                EulerConsole.printHeaderAndBlock(welcomeHeader, welcomeBlock);
+                EulerConsole.printCursor();
 
-            userChoice = userIn.nextLine().toLowerCase().charAt(0);
-            System.out.println();
+                userChoice = userIn.nextLine().toLowerCase().charAt(0);
+                System.out.println();
 
-            switch (userChoice) {
-                case 's' ->
-                    menuSolveProblem();
-                case 'v' ->
-                    menuProgress();
-                case 'q' ->
-                    System.out.println("Thank you!");
-                default ->
-                    System.out.println("Invalid entry, please try again.");
+                switch (userChoice) {
+                    case 's' ->
+                            menuSolveProblem();
+                    case 'v' ->
+                            menuProgress();
+                    case 'q' ->
+                            System.out.println("Thank you!");
+                    default ->
+                            System.out.println("Invalid entry, please try again.");
+                }
+            } catch(StringIndexOutOfBoundsException sioobe) {
+                EulerConsole.printExceptionMessage(sioobe, "Fatal exception encountered, program will be returned to the main menu.");
+                userChoice = ' ';
+                System.out.println("\nPress Enter to continue...");
+                userIn.nextLine();
             }
         } while (userChoice != 'q');
     }

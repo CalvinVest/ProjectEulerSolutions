@@ -124,4 +124,10 @@ public interface EulerConsole {
 
         System.out.println(BOT_BORDER);
     }
+
+    static void printSuccessMessage(String message) {
+        var messageList = new ArrayList<String>();
+        messageList.add(message);
+        printHeaderAndBlock("Success!", messageList);
+    }
 }
