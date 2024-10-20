@@ -104,7 +104,7 @@ public class EulerPrinter {
 
         String statusHeader = "Problem " + problemNumber;
         var statusBlock = new ArrayList<String>();
-        statusBlock.add(Problem.getFileName(problemNumber));
+        statusBlock.add(EulerUtils.getProblemFileName(problemNumber));
         statusBlock.add("Problem Status: " + writer.getProblemStatus(problemNumber));
         EulerConsole.printHeaderAndBlock(statusHeader, statusBlock);
 
@@ -211,10 +211,10 @@ public class EulerPrinter {
     }
 
     public static boolean existsProblemFile(int problemNumber) {
-        boolean existsFile = new File(EulerUtils.PROBLEM_FILEPATH + Problem.getFileName(problemNumber)).exists();
+        boolean existsFile = new File(EulerUtils.PROBLEM_FILEPATH + EulerUtils.getProblemFileName(problemNumber)).exists();
 
         var textBlock = new ArrayList<String>();
-        textBlock.add("Loading " + Problem.getFileName(problemNumber) + "...");
+        textBlock.add("Loading " + EulerUtils.getProblemFileName(problemNumber) + "...");
         textBlock.add((existsFile ? "Success: File loaded." : "Failed: File does not exist."));
         EulerConsole.printHeaderAndBlock("Problem " + problemNumber, textBlock);
 

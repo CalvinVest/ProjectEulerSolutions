@@ -18,18 +18,4 @@ public abstract class Problem {
 
     public abstract boolean isSolved();
 
-    /*
-    getFileName(int) returns the formatted filename for a problem
-    with the given int.
-    
-    Formats to the following pattern:
-    123 -> Problem0123.java
-     */
-    public static String getFileName(int problemNumber) {
-        return String.format("Problem%04d.java", problemNumber);
-    }
-
-    public static String[] getProblemFiles() {
-        return new File(EulerUtils.PROBLEM_FILEPATH).list();
-    }
 }

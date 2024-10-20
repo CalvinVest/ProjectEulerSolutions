@@ -64,7 +64,7 @@ public class EulerWriter {
             values.add("INCOMPLETE");
         }
         // all files in the project folder
-        String[] pathnames = Problem.getProblemFiles();
+        String[] pathnames = EulerUtils.getProblemFileList();
         ArrayList<String> problems = new ArrayList<>();
         // set all the completed or in progress files based on existence of files
         for (String pathname : pathnames) {

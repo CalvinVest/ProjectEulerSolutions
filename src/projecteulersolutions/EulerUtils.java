@@ -16,7 +16,12 @@ public interface EulerUtils {
     static final String PROGRESS_FILEPATH = FILEPATH + "progress.txt";
     static final String DATA_FILEPATH = FILEPATH + "data\\";
 
-    public static String[] getProblemFiles() {
+    public static String[] getProblemFileList() {
         return new File(PROBLEM_FILEPATH).list();
     }
+
+    public static String getProblemFileName(int problemNumber) {
+        return String.format("Problem%04d.java", problemNumber);
+    }
+
 }
