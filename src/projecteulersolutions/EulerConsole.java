@@ -62,17 +62,6 @@ public interface EulerConsole {
         return lines;
     }
 
-    static void printMainMenuOptions() {
-        System.out.println(TOP_BORDER);
-        printWrappedBorderedLine("Welcome! Please choose an option.");
-        System.out.println(MID_BORDER);
-        printWrappedBorderedLine("S: Solve problem by number");
-        printWrappedBorderedLine("L: Problem List");
-        printWrappedBorderedLine("V: View Progress");
-        printWrappedBorderedLine("Q: Quit");
-        System.out.println(BOT_BORDER);
-    }
-
     static void printCursor() {
         System.out.print("> ");
     }

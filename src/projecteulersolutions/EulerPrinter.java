@@ -3,10 +3,7 @@ package projecteulersolutions;
 import projecteulersolutions.problems.Problem;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.Scanner;
+import java.util.*;
 
 public class EulerPrinter {
 
@@ -183,10 +180,8 @@ public class EulerPrinter {
         JavaClassLoader jcl = new JavaClassLoader();
         try {
             if (existsProblemFile(problemNumber)) { // proceeds if problem solution exists
-                System.out.println("Problem " + problemNumber);
-                Thread.sleep(500);
+                EulerConsole.println("Calculating...");
 
-                System.out.println("Calculating...");
                 Thread.sleep(500);
 
                 Date dStart = new Date();
@@ -194,10 +189,8 @@ public class EulerPrinter {
                 Date dEnd = new Date();
                 long durationMS = dEnd.getTime() - dStart.getTime();
 
-                Thread.sleep(500);
                 System.out.println("The problem took " + durationMS / 1000
                         + " seconds (" + durationMS + "ms) to complete.");
-                Thread.sleep(500);
             } else {
                 System.out.println("Problem solution does not exist.");
             }
