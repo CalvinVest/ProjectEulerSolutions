@@ -38,7 +38,7 @@ public class JavaClassLoader extends ClassLoader {
             // uses class to get the proper given method
             Method myMethod = myClass.getMethod(methodName);
 
-            // uses instatiated class object to invoke the given method
+            // uses instantiated class object to invoke the given method
             return myMethod.invoke(myClassObject);
 
         } catch (ClassNotFoundException // from .loadClass();
@@ -46,9 +46,7 @@ public class JavaClassLoader extends ClassLoader {
                 | InstantiationException // from .newInstance();
                 | InvocationTargetException // from .newInstance(); and .invoke(Object);
                 | NoSuchMethodException e) {  // from .getMethod(); and .getConstructor();
-            System.out.println("EXCEPTION ENCOUNTERED.");
-            System.out.println(e.toString() + " occurred, program failed to run successfully.");
-            System.out.println("Cause: " + e.getCause().toString());
+            EulerConsole.printExceptionMessage(e, "Exception encountered, program failed to run.");
         }
         return null;
     }

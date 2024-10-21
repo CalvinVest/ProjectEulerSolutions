@@ -6,6 +6,7 @@ console. For now, all interactions with the console will be encapsulated in Eule
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public interface EulerConsole {
 
@@ -118,5 +119,10 @@ public interface EulerConsole {
         var messageList = new ArrayList<String>();
         messageList.add(message);
         printHeaderAndBlock("Success!", messageList);
+    }
+
+    static void waitForEnterPress(Scanner userIn) {
+        println("\nPress Enter to Continue...");
+        userIn.nextLine();
     }
 }

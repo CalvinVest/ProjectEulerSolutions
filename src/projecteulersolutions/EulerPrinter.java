@@ -26,23 +26,18 @@ public class EulerPrinter {
                 EulerConsole.printCursor();
 
                 userChoice = userIn.nextLine().toLowerCase().charAt(0);
-                System.out.println();
+                EulerConsole.println("");
 
                 switch (userChoice) {
-                    case 's' ->
-                            menuSolveProblem();
-                    case 'v' ->
-                            menuProgress();
-                    case 'q' ->
-                            System.out.println("Thank you!");
-                    default ->
-                            System.out.println("Invalid entry, please try again.");
+                    case 's' -> menuSolveProblem();
+                    case 'v' -> menuProgress();
+                    case 'q' -> EulerConsole.println("Thank you!");
+                    default -> EulerConsole.println("Invalid entry, please try again.");
                 }
             } catch(StringIndexOutOfBoundsException sioobe) {
                 EulerConsole.printExceptionMessage(sioobe, "Fatal exception encountered, program will be returned to the main menu.");
                 userChoice = ' ';
-                System.out.println("\nPress Enter to continue...");
-                userIn.nextLine();
+                EulerConsole.waitForEnterPress(userIn);
             }
         } while (userChoice != 'q');
     }
@@ -60,7 +55,9 @@ public class EulerPrinter {
         if (userProblemNumber > 0 && userProblemNumber <= EulerWriter.PROBLEM_COUNT) {
             invokeProblemByNumber(userProblemNumber);
         } else {
-            System.out.println("Failed: The number is not a valid problem number.");
+            var invalidProblemMessageList = new ArrayList<String>();
+            invalidProblemMessageList.add("The number is not a valid problem number.");
+            EulerConsole.printHeaderAndBlock("Failure.", invalidProblemMessageList);
         }
     }
 
@@ -83,8 +80,8 @@ public class EulerPrinter {
                 case 'v' -> menuViewProgress(writer);
                 case 'l' -> printProgressList();
                 case 'r' -> menuRegenProgress(writer);
-                case 'q' -> System.out.println("Returning to Main Menu");
-                default -> System.out.println("Invalid entry, please try again");
+                case 'q' -> EulerConsole.println("Returning to Main Menu");
+                default -> EulerConsole.println("Invalid entry, please try again");
             }
         } while (userChoice != 'q');
     }
@@ -105,8 +102,7 @@ public class EulerPrinter {
         statusBlock.add("Problem Status: " + writer.getProblemStatus(problemNumber));
         EulerConsole.printHeaderAndBlock(statusHeader, statusBlock);
 
-        System.out.println("\nPress Enter to continue...");
-        userIn.nextLine();
+        EulerConsole.waitForEnterPress(userIn);
     }
 
     private void printProgressList() {
@@ -138,8 +134,7 @@ public class EulerPrinter {
 
         EulerConsole.printHeaderAndTwoBlocks("All Problems", problemStrs, footerStrs);
 
-        System.out.println("\nPress Enter to continue...");
-        userIn.nextLine();
+        EulerConsole.waitForEnterPress(userIn);
     }
 
     private void menuRegenProgress(EulerWriter writer) {
@@ -163,8 +158,7 @@ public class EulerPrinter {
         }
 
         EulerConsole.printHeaderAndBlock("Result", outcomeBlock);
-        System.out.println("\nPress Enter to continue...");
-        userIn.nextLine();
+        EulerConsole.waitForEnterPress(userIn);
     }
 
     /*
@@ -189,18 +183,19 @@ public class EulerPrinter {
                 Date dEnd = new Date();
                 long durationMS = dEnd.getTime() - dStart.getTime();
 
-                System.out.println("The problem took " + durationMS / 1000
+                EulerConsole.println("The problem took " + durationMS / 1000
                         + " seconds (" + durationMS + "ms) to complete.");
             } else {
-                System.out.println("Problem solution does not exist.");
+                var dneMessageList = new ArrayList<String>();
+                dneMessageList.add("Problem solution does not exist.");
+                EulerConsole.printHeaderAndBlock("Problem File Missing!", dneMessageList);
             }
 
         } catch (InterruptedException ex) {
-            System.out.println(ex.getMessage());
+            EulerConsole.printExceptionMessage(ex, "Interrupted!");
         }
 
-        System.out.println("\nPress Enter to continue...");
-        userIn.nextLine();
+        EulerConsole.waitForEnterPress(userIn);
     }
 
     public static boolean existsProblemFile(int problemNumber) {
