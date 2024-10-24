@@ -30,9 +30,7 @@ public interface EulerConsole {
 
     private static void printWrappedBorderedLine(String str) {
         var strs = wrapText(str, MENU_WIDTH);
-        for(String lineStr : strs) {
-            printBorderedLine(lineStr);
-        }
+        for(String lineStr : strs) { printBorderedLine(lineStr); }
     }
 
     public static List<String> wrapText(String text, int menuWidth) {
@@ -69,49 +67,28 @@ public interface EulerConsole {
 
     static void printHeaderAndBlock(String header, List<String> block) {
         System.out.println(TOP_BORDER);
-
         printWrappedBorderedLine(header);
-
         System.out.println(MID_BORDER);
-
-        for(String str : block) {
-            printWrappedBorderedLine(str);
-        }
-
+        for(String str : block) { printWrappedBorderedLine(str); }
         System.out.println(BOT_BORDER);
     }
 
     static void printHeaderAndTwoBlocks(String header, List<String> block1, List<String> block2) {
         System.out.println(TOP_BORDER);
-
         printWrappedBorderedLine(header);
-
         System.out.println(MID_BORDER);
-
-        for(String str : block1) {
-            printWrappedBorderedLine(str);
-        }
-
+        for(String str : block1) { printWrappedBorderedLine(str); }
         System.out.println(MID_BORDER);
-
-        for(String str : block2) {
-            printWrappedBorderedLine(str);
-        }
-
+        for(String str : block2) { printWrappedBorderedLine(str); }
         System.out.println(BOT_BORDER);
     }
 
     static void printExceptionMessage(Exception e, String message) {
         System.out.println(TOP_BORDER);
-
         printWrappedBorderedLine("Exception Encountered.");
-
         System.out.println(MID_BORDER);
-
         printWrappedBorderedLine(message);
-
         printWrappedBorderedLine("Exception message: " + e.toString());
-
         System.out.println(BOT_BORDER);
     }
 
