@@ -1,7 +1,5 @@
 package main.java.projecteulersolutions;
 
-import main.java.projecteulersolutions.problems.Problem;
-
 import java.io.File;
 import java.util.*;
 
@@ -111,20 +109,22 @@ public class EulerPrinter {
         String[] pathnames = new File(EulerUtils.PROBLEM_FILEPATH).list();
 
         var problemStrs = new ArrayList<String>();
-        for (String pathname : pathnames) {
-            // if file is in format of "Problem0000.java"
-            if (pathname.matches("Problem\\d{4}.java")) {
-                int problemNumber = Integer.parseInt(pathname.substring(7, 11));
-                String problemStatus;
-                switch (writer.getProblemStatusNum(problemNumber)) {
-                    case 0 ->
-                        problemStatus = "Complete";
-                    case 1 ->
-                        problemStatus = "In Progress";
-                    default ->
-                        problemStatus = "Incomplete";
+        if (pathnames != null) {
+            for (String pathname : pathnames) {
+                // if file is in format of "Problem0000.java"
+                if (pathname.matches("Problem\\d{4}.java")) {
+                    int problemNumber = Integer.parseInt(pathname.substring(7, 11));
+                    String problemStatus;
+                    switch (writer.getProblemStatusNum(problemNumber)) {
+                        case 0 ->
+                            problemStatus = "Complete";
+                        case 1 ->
+                            problemStatus = "In Progress";
+                        default ->
+                            problemStatus = "Incomplete";
+                    }
+                    problemStrs.add("Problem " + problemNumber + " - " + problemStatus);
                 }
-                problemStrs.add("Problem " + problemNumber + " - " + problemStatus);
             }
         }
 
