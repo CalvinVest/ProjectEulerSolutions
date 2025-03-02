@@ -1,6 +1,7 @@
 package main.java.projecteulersolutions.problems;
 
 import main.java.projecteulersolutions.EulerUtils;
+import main.java.projecteulersolutions.EulerIO;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,7 +20,7 @@ public class Problem0096 extends Problem {
     @Override
     public void printSolution() {
         File file = new File(EulerUtils.DATA_FILEPATH + "problem0096.txt");
-        List<String> lines = readLinesFromFile(file);
+        List<String> lines = EulerIO.readLinesFromFile(file);
 
         int[][][] puzzles = new int[50][9][9];
 
@@ -45,19 +46,6 @@ public class Problem0096 extends Problem {
             puzzleIndex++;
         }
         System.out.println("The sum of the fifty three-digit numbers from the Sudoku puzzles is: " + sum);
-    }
-
-    private List<String> readLinesFromFile(File file) {
-        ArrayList<String> lines = new ArrayList<>();
-        try {
-            Scanner fileIn = new Scanner(file);
-            while (fileIn.hasNext()) {
-                lines.add(fileIn.nextLine());
-            }
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("Exception encountered: " + file.toString() + " does not exist.");
-        }
-        return lines;
     }
 
     private boolean solveSudoku(int[][] board) {

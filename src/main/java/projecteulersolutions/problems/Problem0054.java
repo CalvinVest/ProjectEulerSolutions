@@ -1,5 +1,6 @@
 package main.java.projecteulersolutions.problems;
 
+import main.java.projecteulersolutions.EulerIO;
 import main.java.projecteulersolutions.EulerUtils;
 
 import java.io.File;
@@ -27,7 +28,7 @@ public class Problem0054 extends Problem {
         System.out.println("This problem has not been solved.");
 
         File file = new File(EulerUtils.DATA_FILEPATH + "problem0054.txt");
-        List<String> lines = readLinesFromFile(file);
+        List<String> lines = EulerIO.readLinesFromFile(file);
 
         int countP1Wins = 0;
 
@@ -64,19 +65,6 @@ public class Problem0054 extends Problem {
 
         }
         System.out.println("\nPlayer 1 wins " + countP1Wins + " hands.");
-    }
-
-    private List<String> readLinesFromFile(File file) {
-        ArrayList<String> lines = new ArrayList<>();
-        try {
-            Scanner fileIn = new Scanner(file);
-            while (fileIn.hasNext()) {
-                lines.add(fileIn.nextLine());
-            }
-        } catch (FileNotFoundException fnfe) {
-            System.out.println("Exception encountered: " + file.toString() + " does not exist.");
-        }
-        return lines;
     }
 
     private static class HandResult {
