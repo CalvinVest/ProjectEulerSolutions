@@ -61,7 +61,7 @@ public class Problem0042 extends Problem {
                 words.add(word.substring(1, word.length() - 1));
             }
         } catch (FileNotFoundException fnfe) {
-            System.out.println("Exception encountered: " + file.toString() + " does not exist.");
+            System.out.println("Exception encountered: " + file + " does not exist.");
         }
         return words;
     }

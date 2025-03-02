@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
+@SuppressWarnings("unused")
 public class Problem0079 extends Problem {
 
     @Override
@@ -31,15 +32,15 @@ public class Problem0079 extends Problem {
                 vals.add(fileIn.next());
             }
         } catch (FileNotFoundException fnfe) {
-            System.out.println("Exception encountered: " + file.toString() + " does not exist.");
+            System.out.println("Exception encountered: " + file + " does not exist.");
         }
         return vals;
     }
 
     private class Graph {
 
-        private int vertices;
-        private LinkedList<Integer>[] adjacencyList;
+        private final int vertices;
+        private final LinkedList<Integer>[] adjacencyList;
 
         public Graph(int vertices) {
             this.vertices = vertices;

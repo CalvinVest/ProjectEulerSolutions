@@ -14,6 +14,7 @@ taking 7 and 109, both 7109 and 1097 are prime. The sum of these four primes,
 Find the lowest sum for a set of five primes for which any two primes concatenate
 to produce another prime.
  */
+@SuppressWarnings("unused")
 public class Problem0060 extends Problem {
 
     @Override

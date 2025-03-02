@@ -42,7 +42,7 @@ public class Problem0033 extends Problem {
                 // if a num and dnm digit are similar, see if the fraction of the
                 // remaining digits equals the original fraction. if so, a solution
                 // fraction has been found
-                boolean isSol = (a == c) ? (b * dnm == d * num) : (a == d) ? (b * dnm == c * num) : (b == c) ? (a * dnm == d * num) : (b == d) ? (a * dnm == c * num) : false;
+                boolean isSol = (a == c) ? (b * dnm == d * num) : (a == d) ? (b * dnm == c * num) : (b == c) ? (a * dnm == d * num) : b == d && (a * dnm == c * num);
 
                 if (isSol) {
                     System.out.println(num + "/" + dnm + " = " + (double) num / (double) dnm);

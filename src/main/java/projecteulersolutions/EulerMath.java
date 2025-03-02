@@ -131,7 +131,7 @@ public interface EulerMath {
     // Returns the number of digits
     // of a provided long
     //==============================
-    public static int getDigitCount(long n) {
+    static int getDigitCount(long n) {
         if (n == 0) {
             return 1; // Since log(0) is undefined
         }

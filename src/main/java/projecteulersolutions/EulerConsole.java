@@ -10,22 +10,22 @@ import java.util.Scanner;
 
 public interface EulerConsole {
 
-    static final int MENU_WIDTH = 50;
+    int MENU_WIDTH = 50;
 
-    final String TOP_BORDER = "╔" + "═".repeat(MENU_WIDTH) + "╗";
-    final String MID_BORDER = "╠" + "═".repeat(MENU_WIDTH) + "╣";
-    final String BOT_BORDER = "╚" + "═".repeat(MENU_WIDTH) + "╝";
+    String TOP_BORDER = "╔" + "═".repeat(MENU_WIDTH) + "╗";
+    String MID_BORDER = "╠" + "═".repeat(MENU_WIDTH) + "╣";
+    String BOT_BORDER = "╚" + "═".repeat(MENU_WIDTH) + "╝";
 
-    public static void println(String str) {
+    static void println(String str) {
         System.out.println(str);
     }
 
-    public static void print(String str) {
+    static void print(String str) {
         System.out.print(str);
     }
 
     private static void printBorderedLine(String str) {
-        System.out.println(String.format("%-" + MENU_WIDTH + "s", "║" + str + "║"));
+        System.out.printf("%-" + MENU_WIDTH + "s%n", "║" + str + "║");
     }
 
     private static void printWrappedBorderedLine(String str) {
@@ -33,7 +33,7 @@ public interface EulerConsole {
         for(String lineStr : strs) { printBorderedLine(lineStr); }
     }
 
-    public static List<String> wrapText(String text, int menuWidth) {
+    static List<String> wrapText(String text, int menuWidth) {
         String[] words = text.split(" ");
         List<String> lines = new ArrayList<>();
         StringBuilder currentLine = new StringBuilder();

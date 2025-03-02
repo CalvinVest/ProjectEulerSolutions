@@ -38,6 +38,6 @@ public class Problem0097 extends Problem {
         // add remaining operators, x28433 and +1, and mod 1E10
         tot = tot.multiply(new BigInteger("28433")).add(BigInteger.ONE).remainder(BigInteger.TEN.pow(10));
 
-        System.out.println("Last ten digits of result: " + tot.toString());
+        System.out.println("Last ten digits of result: " + tot);
     }
 }

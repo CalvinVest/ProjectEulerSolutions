@@ -11,16 +11,16 @@ import main.java.projecteulersolutions.problems.Problem;
 import java.io.File;
 
 public interface EulerUtils {
-    static final String FILEPATH = System.getProperty("user.dir") + "\\src\\main\\java\\projecteulersolutions\\";
-    static final String PROBLEM_FILEPATH = FILEPATH + "problems\\";
-    static final String PROGRESS_FILEPATH = FILEPATH + "progress.txt";
-    static final String DATA_FILEPATH = FILEPATH + "data\\";
+    String FILEPATH = System.getProperty("user.dir") + "\\src\\main\\java\\projecteulersolutions\\";
+    String PROBLEM_FILEPATH = FILEPATH + "problems\\";
+    String PROGRESS_FILEPATH = FILEPATH + "progress.txt";
+    String DATA_FILEPATH = FILEPATH + "data\\";
 
-    public static String[] getProblemFileList() {
+    static String[] getProblemFileList() {
         return new File(PROBLEM_FILEPATH).list();
     }
 
-    public static String getProblemFileName(int problemNumber) {
+    static String getProblemFileName(int problemNumber) {
         return String.format("Problem%04d.java", problemNumber);
     }
 

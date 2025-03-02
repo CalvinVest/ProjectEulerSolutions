@@ -72,7 +72,7 @@ public class Problem0022 extends Problem {
                 names.add(fileIn.next());
             }
         } catch (FileNotFoundException fnfe) {
-            System.out.println("Exception encountered: " + file.toString() + " does not exist.");
+            System.out.println("Exception encountered: " + file + " does not exist.");
         }
         return names;
     }

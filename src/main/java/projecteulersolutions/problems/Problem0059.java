@@ -71,7 +71,7 @@ public class Problem0059 extends Problem {
                 ciphers.add((char) fileIn.nextInt());
             }
         } catch (FileNotFoundException fnfe) {
-            System.out.println("Exception encountered: " + cipherFile.toString() + " does not exist.");
+            System.out.println("Exception encountered: " + cipherFile + " does not exist.");
         }
         return ciphers;
     }
