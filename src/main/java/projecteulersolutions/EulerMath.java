@@ -194,4 +194,32 @@ public interface EulerMath {
         }
         return nextPrime;
     }
+
+    //==============================
+    // getSieveOfEratosthenes
+    //==============================
+    // For any given int n, returns
+    // an array of booleans which
+    // represent the primality of
+    // the value of any index of the
+    // array 0 <= i <= n such that
+    // the T/F of the boolean at
+    // that index indicates whether
+    // that index is prime
+    //==============================
+    static boolean[] getSieveOfEratosthenes(int n) {
+        boolean[] truthArray = new boolean[n + 1];
+        for (int i = 0; i <= n; i++) {
+            truthArray[i] = true;
+        }
+
+        for (int i = 2; i * i <= n; i++) {
+            if (truthArray[i]) {
+                for (int j = i * i; j < n; j += i) {
+                    truthArray[j] = false;
+                }
+            }
+        }
+        return truthArray;
+    }
 }

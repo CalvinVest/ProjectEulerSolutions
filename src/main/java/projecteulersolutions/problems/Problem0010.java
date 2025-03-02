@@ -1,5 +1,7 @@
 package main.java.projecteulersolutions.problems;
 
+import main.java.projecteulersolutions.EulerMath;
+
 /*
 The goal of problem 10 is to find the sum of
 all primes below two million
@@ -18,25 +20,9 @@ public class Problem0010 extends Problem {
 
     @Override
     public void printSolution() {
-        long sum = sumSieveOfEratosthenes(sieveOfEratosthenes(2000000));
+        long sum = sumSieveOfEratosthenes(EulerMath.getSieveOfEratosthenes(2000000));
 
         System.out.println("The sum of all primes below two million is " + sum);
-    }
-
-    private boolean[] sieveOfEratosthenes(int n) {
-        boolean[] truthArray = new boolean[n + 1];
-        for (int i = 0; i <= n; i++) {
-            truthArray[i] = true;
-        }
-
-        for (int i = 2; i * i <= n; i++) {
-            if (truthArray[i]) {
-                for (int j = i * i; j < n; j += i) {
-                    truthArray[j] = false;
-                }
-            }
-        }
-        return truthArray;
     }
 
     private long sumSieveOfEratosthenes(boolean[] primes) {

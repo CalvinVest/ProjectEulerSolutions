@@ -1,5 +1,7 @@
 package main.java.projecteulersolutions.problems;
 
+import main.java.projecteulersolutions.EulerMath;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class Problem0060 extends Problem {
         int upperBound = 10000;
 
         // Generate prime numbers up to 10000
-        List<Integer> primes = getPrimesFromSieve(sieveOfEratosthenes(10000));
+        List<Integer> primes = getPrimesFromSieve(EulerMath.getSieveOfEratosthenes(10000));
         
         // Generate concatenation table for primes up to 10000
         boolean[][] concatenationTable = generateConcatenationTable(primes, upperBound);
@@ -40,22 +42,6 @@ public class Problem0060 extends Problem {
         } else {
             System.out.println("No set of five primes with concatenation property found.");
         }
-    }
-
-    private boolean[] sieveOfEratosthenes(int n) {
-        boolean[] truthArray = new boolean[n + 1];
-        for (int i = 0; i <= n; i++) {
-            truthArray[i] = true;
-        }
-
-        for (int i = 2; i * i <= n; i++) {
-            if (truthArray[i]) {
-                for (int j = i * i; j < n; j += i) {
-                    truthArray[j] = false;
-                }
-            }
-        }
-        return truthArray;
     }
 
     private List<Integer> getPrimesFromSieve(boolean[] sieve) {
