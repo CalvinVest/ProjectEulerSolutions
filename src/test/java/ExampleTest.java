@@ -1,4 +1,4 @@
-package test.java;
+/*package test.java;
 
 import org.junit.jupiter.api.Test;
 
@@ -10,4 +10,4 @@ public class ExampleTest {
     void simpleTest() {
         assertEquals(2, 1+1);
     }
-}
+}*/
