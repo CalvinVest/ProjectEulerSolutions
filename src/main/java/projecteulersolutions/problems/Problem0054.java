@@ -4,7 +4,6 @@ import main.java.projecteulersolutions.EulerIO;
 import main.java.projecteulersolutions.EulerUtils;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,7 +12,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 @SuppressWarnings("unused")
