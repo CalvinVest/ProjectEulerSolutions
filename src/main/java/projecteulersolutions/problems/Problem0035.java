@@ -29,10 +29,10 @@ public class Problem0035 extends Problem {
 
     @Override
     public void printSolution() {
-        // boolean array where prime indeces are true
-        boolean[] sieve = sieveOfEratosthenes(LIMIT);
+        // boolean array where prime indexes are true
+        boolean[] sieve = EulerMath.getSieveOfEratosthenes(LIMIT);
 
-        // for all prime indeces of the sieve
+        // for all prime indexes of the sieve
         for (int i = 0; i < sieve.length; i++) {
             if (sieve[i]) {
                 // if the given prime is not circular set to false
@@ -53,22 +53,6 @@ public class Problem0035 extends Problem {
         }
 
         System.out.println("The number of circular primes below one million is " + count);
-    }
-
-    private boolean[] sieveOfEratosthenes(int n) {
-        boolean[] truthArray = new boolean[n + 1];
-        for (int i = 2; i <= n; i++) {
-            truthArray[i] = true;
-        }
-
-        for (int i = 2; i * i <= n; i++) {
-            if (truthArray[i]) {
-                for (int j = i * i; j <= n; j += i) {
-                    truthArray[j] = false;
-                }
-            }
-        }
-        return truthArray;
     }
 
     /*
