@@ -6,9 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="maven-projeuler" />
-        <module name="ProjectEulerSolutions" />
+        <module name="projecteuler" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="ProjectEulerSolutions" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
