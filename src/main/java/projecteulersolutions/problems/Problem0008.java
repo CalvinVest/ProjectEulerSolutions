@@ -17,8 +17,7 @@ public class Problem0008 extends Problem {
     @Override
     public void printSolution() {
         String str = loadStringFromFile();
-        final int substringLength = 13;
-        long largestProduct = findLargestSubstringProduct(str, substringLength);
+        long largestProduct = findLargestSubstringProduct(str);
         System.out.println("The largest product substring is " + largestProduct);
     }
     
@@ -34,9 +33,9 @@ public class Problem0008 extends Problem {
         return str;
     }
 
-    private long findLargestSubstringProduct(String str, int substringLength) {
+    private long findLargestSubstringProduct(String str) {
         long maxProd = 0;
-        for (String substr : getAdjacentDigitArrays(str, substringLength)) {
+        for (String substr : getAdjacentDigitArrays(str)) {
             if (calcSubstringProduct(substr) > maxProd) {
                 maxProd = calcSubstringProduct(substr);
             }
@@ -44,11 +43,11 @@ public class Problem0008 extends Problem {
         return maxProd;
     }
 
-    private String[] getAdjacentDigitArrays(String str, int substringLength) {
-        int numAdjacentStrings = str.length() - substringLength;
+    private String[] getAdjacentDigitArrays(String str) {
+        int numAdjacentStrings = str.length() - 13;
         String[] subStrings = new String[numAdjacentStrings];
         for (int i = 0; i < numAdjacentStrings; i++) {
-            subStrings[i] = str.substring(i, i + substringLength);
+            subStrings[i] = str.substring(i, i + 13);
         }
         return subStrings;
     }
