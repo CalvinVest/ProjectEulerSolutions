@@ -11,6 +11,7 @@ Furthermore, the sum of all strong repunits below 1000 equals 15864.
 
 Find the sum of all strong repunits below 10^12.
 */
+@SuppressWarnings("unused")
 public class Problem0346 extends Problem {
 
     @Override

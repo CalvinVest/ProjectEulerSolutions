@@ -1,5 +1,6 @@
 package main.java.projecteulersolutions.problems;
 
+@SuppressWarnings("unused")
 public class Problem0105 extends Problem {
 
     @Override

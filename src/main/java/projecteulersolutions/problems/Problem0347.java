@@ -15,6 +15,7 @@ Let S(N) be the sum of all distinct M(p,q,N). S(100) = 2262.
 
 Find S(10 000 000).
 */
+@SuppressWarnings("unused")
 public class Problem0347 extends Problem {
 
     @Override

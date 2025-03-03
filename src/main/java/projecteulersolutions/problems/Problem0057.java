@@ -22,6 +22,7 @@ numerator exceeds the number of digits in the denominator.
 In the first one-thousand expansions, how many fractions contain a numerator
 with more digits than the denominator?
  */
+@SuppressWarnings("unused")
 public class Problem0057 extends Problem {
 
     @Override

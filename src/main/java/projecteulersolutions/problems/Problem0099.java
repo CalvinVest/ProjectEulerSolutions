@@ -16,6 +16,7 @@ Using problem0099.txt, a text file containing one thousand lines with a base/
 exponent pair on each line, determine which line number has the greatest
 numerical value.
 */
+@SuppressWarnings("unused")
 public class Problem0099 extends Problem {
 
     @Override

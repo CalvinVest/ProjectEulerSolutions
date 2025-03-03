@@ -2,6 +2,7 @@ package main.java.projecteulersolutions.problems;
 
 import main.java.projecteulersolutions.EulerMath;
 
+@SuppressWarnings("unused")
 public class Problem0808 extends Problem {
 
     @Override

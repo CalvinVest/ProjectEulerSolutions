@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
+@SuppressWarnings("unused")
 public class Problem0054 extends Problem {
 
     @Override
