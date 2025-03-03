@@ -3,7 +3,7 @@ package main.java.projecteulersolutions.problems;
 import main.java.projecteulersolutions.EulerMath;
 
 /*
-Euler dicovered the remarkable quadratic formula:
+Euler discovered the remarkable quadratic formula:
 n^2 + n + 41
 
 It turns out that the formula will produce 40 primes for the consecutive integer
@@ -35,22 +35,7 @@ public class Problem0027 extends Problem {
         for (int a = -999; a < 1000; a++) {
             for (int b = -1000; b <= 1000; b++) {
                 // count tracks the number of consecutive primes
-                int count = 0;
-                // n is the variable for the quadratic formula and increments
-                int n = 0;
-                // the first value is 0*0 + a*0 + b = b.
-                int curr = b;
-
-                // while the quadratic results are prime
-                while (EulerMath.isPrime(curr)) {
-                    // increment count of consecutive primes
-                    count++;
-
-                    // increment quadratic variable
-                    n++;
-                    // recalculate new curr value
-                    curr = n * n + a * n + b;
-                }
+                int count = getCount(a, b);
 
                 // if new max consecutive primes is found
                 if (count > maxCount) {
@@ -63,5 +48,25 @@ public class Problem0027 extends Problem {
         }
 
         System.out.println("The product of the coefficients of the longest quadratic prime chain is " + maxProd);
+    }
+
+    private static int getCount(int a, int b) {
+        int count = 0;
+        // n is the variable for the quadratic formula and increments
+        int n = 0;
+        // the first value is 0*0 + a*0 + b = b.
+        int curr = b;
+
+        // while the quadratic results are prime
+        while (EulerMath.isPrime(curr)) {
+            // increment count of consecutive primes
+            count++;
+
+            // increment quadratic variable
+            n++;
+            // recalculate new curr value
+            curr = n * n + a * n + b;
+        }
+        return count;
     }
 }
