@@ -20,7 +20,7 @@ public class Problem0020 extends Problem {
     @Override
     public void printSolution() {
         // BigInteger object to hold the value of 100!
-        BigInteger factorial = getBigIntFactorial(100);
+        BigInteger factorial = getOneHundredFactorialAsBigInt();
         // int value to hold the sum of the digits of 100!
         int digitSum = getBigIntDigitSum(factorial);
         System.out.println("The sum of the digits of (100)! is " + digitSum);
@@ -34,10 +34,10 @@ public class Problem0020 extends Problem {
         return sum;
     }
 
-    private BigInteger getBigIntFactorial(int n) {
+    private BigInteger getOneHundredFactorialAsBigInt() {
         BigInteger factorial = BigInteger.ONE;
 
-        for (int i = 2; i <= n; i++) {
+        for (int i = 2; i <= 100; i++) {
             factorial = factorial.multiply(BigInteger.valueOf(i));
         }
         return factorial;
