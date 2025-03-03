@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 /*
 The largest integer <= 100 that is only divisible by both the primes 2 and 3 is

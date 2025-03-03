@@ -1,6 +1,6 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
-import main.java.projecteulersolutions.EulerUtils;
+import projecteulersolutions.EulerUtils;
 
 import java.util.Scanner;
 import java.io.File;

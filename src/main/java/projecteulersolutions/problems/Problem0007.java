@@ -1,6 +1,6 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
-import main.java.projecteulersolutions.EulerMath;
+import projecteulersolutions.EulerMath;
 
 /*
 The goal of problem 7 is to find the 10001st prime number

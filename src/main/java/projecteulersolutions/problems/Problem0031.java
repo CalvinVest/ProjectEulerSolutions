@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 /*
 The goal of problem 31 is to find the number of ways £2 can be expressed with

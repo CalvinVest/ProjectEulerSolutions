@@ -1,6 +1,6 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
-import main.java.projecteulersolutions.EulerMath;
+import projecteulersolutions.EulerMath;
 
 /*
 The decimal number, 585 = 1001001001 (binary), is palindromic in both bases.

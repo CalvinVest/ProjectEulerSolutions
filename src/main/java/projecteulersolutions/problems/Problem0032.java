@@ -1,6 +1,6 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
-import main.java.projecteulersolutions.EulerMath;
+import projecteulersolutions.EulerMath;
 
 import java.util.ArrayList;
 

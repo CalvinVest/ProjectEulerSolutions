@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 import main.java.projecteulersolutions.EulerUtils;
 

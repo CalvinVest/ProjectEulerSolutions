@@ -1,6 +1,6 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
-import main.java.projecteulersolutions.EulerMath;
+import projecteulersolutions.EulerMath;
 
 /*
 The number 197 is called a circular prime because all rotations of the digits:

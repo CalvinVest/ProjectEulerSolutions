@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 /*
 Problem.java is an abstract class that provides a single print

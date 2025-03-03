@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 @SuppressWarnings("unused")
 public class Problem0003 extends Problem {

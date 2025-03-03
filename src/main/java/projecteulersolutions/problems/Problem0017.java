@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 /*
 The goal of problem 17 is to find the sum of all characters used to write

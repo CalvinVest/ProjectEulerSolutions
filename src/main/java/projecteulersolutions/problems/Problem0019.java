@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 /*
 The goal of problem 19 is to find the number of Sundays that fall on the 

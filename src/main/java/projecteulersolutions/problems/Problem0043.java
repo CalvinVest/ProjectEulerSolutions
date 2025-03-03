@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 /*
 The number 1406357289, is a 0 to 9 pandigital number because it is made up of each

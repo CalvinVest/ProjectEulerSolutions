@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 /*
 The number 7 is special, because 7 is 111_2 and 11_6. In other words, 7 is a

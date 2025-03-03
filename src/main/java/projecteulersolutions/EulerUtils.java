@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions;
+package projecteulersolutions;
 
 /*
 EulerUtils is a general utilities interface I intend to use for some of the commonly used functions and

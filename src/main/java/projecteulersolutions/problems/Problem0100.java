@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 /*
 If a box contains twenty-one colored discs, composes of fifteen blue discs and six

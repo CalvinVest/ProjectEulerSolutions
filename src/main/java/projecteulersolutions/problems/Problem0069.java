@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 /*
 Euler's totient function, phi(n) [sometimes called the phi function], is defined

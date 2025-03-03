@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions;
+package projecteulersolutions;
 
 import java.io.File;
 import java.util.*;

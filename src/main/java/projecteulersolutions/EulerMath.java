@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions;
+package projecteulersolutions;
 
 /*
 EulerMath is my own homebrew calculator to assist in solving

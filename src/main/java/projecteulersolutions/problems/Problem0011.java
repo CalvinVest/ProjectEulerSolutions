@@ -1,4 +1,4 @@
-package main.java.projecteulersolutions.problems;
+package projecteulersolutions.problems;
 
 import java.io.File;
 import java.io.FileNotFoundException;
