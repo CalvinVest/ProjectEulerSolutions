@@ -20,10 +20,6 @@ public interface EulerConsole {
         System.out.println(str);
     }
 
-    static void print(String str) {
-        System.out.print(str);
-    }
-
     private static void printBorderedLine(String str) {
         System.out.printf("%-" + MENU_WIDTH + "s%n", "║" + str + "║");
     }
@@ -47,14 +43,14 @@ public interface EulerConsole {
             }
 
             // Add the word to the current line
-            if (currentLine.length() > 0) {
+            if (!currentLine.isEmpty()) {
                 currentLine.append(" ");
             }
             currentLine.append(word);
         }
 
         // Add the last line to the list (if it's not empty)
-        if (currentLine.length() > 0) {
+        if (!currentLine.isEmpty()) {
             lines.add(String.format("%-" + menuWidth + "s", currentLine.toString().trim()));
         }
 

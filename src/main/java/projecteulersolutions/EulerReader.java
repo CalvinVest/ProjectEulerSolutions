@@ -5,8 +5,6 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import main.java.projecteulersolutions.problems.Problem;
-
 public class EulerReader {
     private final File file;
 

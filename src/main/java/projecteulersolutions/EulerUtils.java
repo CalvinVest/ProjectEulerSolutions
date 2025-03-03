@@ -6,8 +6,6 @@ resources like file paths and problem logic. This will probably end up interacti
 a utilities package with it in the future.
  */
 
-import main.java.projecteulersolutions.problems.Problem;
-
 import java.io.File;
 
 public interface EulerUtils {

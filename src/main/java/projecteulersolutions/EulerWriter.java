@@ -1,7 +1,5 @@
 package main.java.projecteulersolutions;
 
-import main.java.projecteulersolutions.problems.Problem;
-
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
