@@ -1,6 +1,6 @@
 package projecteulersolutions.problems;
 
-import main.java.projecteulersolutions.EulerUtils;
+import projecteulersolutions.EulerUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;

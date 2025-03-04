@@ -79,7 +79,7 @@ public class EulerWriter {
             // bool flag of if problem is solved or not. Existing problems are
             // either solved or in progress. Incomplete problems do not have a
             // class file
-            boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("main.java.projecteulersolutions.problems.Problem" + problem, "isSolved");
+            boolean isSolved = (boolean) new JavaClassLoader().invokeClassMethod("projecteulersolutions.problems.Problem" + problem, "isSolved");
             int status = isSolved ? 0 : 1;
             // sets problem status
             values.set(index + 1, STATUS[status]);

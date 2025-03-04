@@ -24,7 +24,6 @@ public class EulerPrinter {
                 EulerConsole.printCursor();
 
                 userChoice = userIn.nextLine().toLowerCase().charAt(0);
-                EulerConsole.println("");
 
                 switch (userChoice) {
                     case 's' -> menuSolveProblem();
@@ -179,7 +178,7 @@ public class EulerPrinter {
                 Thread.sleep(500);
 
                 Date dStart = new Date();
-                jcl.invokeClassMethod("main.java.projecteulersolutions.problems.Problem" + problemNumberText, "printSolution");
+                jcl.invokeClassMethod("projecteulersolutions.problems.Problem" + problemNumberText, "printSolution");
                 Date dEnd = new Date();
                 long durationMS = dEnd.getTime() - dStart.getTime();
 
